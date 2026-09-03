@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "name": "data-science-project-bootstrap",
+  "entrypoint": "SKILL.md",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "lib_name": "skills/data-science-project-bootstrap/SKILL.md"
+    },
+    {
+      "path": "references/templates.md",
+      "lib_name": "skills/data-science-project-bootstrap/references/templates.md"
+    }
+  ]
+}

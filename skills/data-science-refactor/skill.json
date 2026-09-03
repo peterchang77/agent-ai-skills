@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "name": "data-science-refactor",
+  "entrypoint": "SKILL.md",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "lib_name": "skills/data-science-refactor/SKILL.md"
+    },
+    {
+      "path": "references/architecture.md",
+      "lib_name": "skills/data-science-refactor/references/architecture.md"
+    },
+    {
+      "path": "references/checklist.md",
+      "lib_name": "skills/data-science-refactor/references/checklist.md"
+    }
+  ]
+}
