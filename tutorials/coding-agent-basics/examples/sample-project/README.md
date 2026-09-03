@@ -11,4 +11,4 @@ A safe fixture for the Coding Agent Basics tutorial. All values are fictional.
 
 ## Suggested first request
 
-See [`../request-examples/clean-csv-request.md`](../request-examples/clean-csv-request.md). Adapt it to inspect the fictional survey data without changing the raw CSV.
+See [`../request-examples/clean-csv-request.md`](../request-examples/clean-csv-request.md) for a capable broad request. Ask the agent to inspect the project, propose a plan and tool rationale, and surface only decisions that materially need your input before it creates a report.

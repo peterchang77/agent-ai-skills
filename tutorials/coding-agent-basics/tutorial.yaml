@@ -1,6 +1,6 @@
 schema: 1
 id: coding-agent-basics
-title: Coding Agent Basics Mission
+title: Directing Coding Agents: From Request to Reliable Result
 audience:
   - data scientists
   - office professionals
@@ -11,30 +11,27 @@ format:
   interactive_overlay: SKILL.md
   facilitator_skill: tutorial-facilitator
 delivery:
-  mode: mission-led-guided-build
-  learner_role: operator
+  mode: navigation-led-guided-build
+  learner_role: decision-maker-and-reviewer
   agent_roles:
     - coach
     - operator
   interaction_loop:
-    - brief
-    - learner-move
-    - operate
-    - inspect
-    - unlock
-    - record
+    - orient
+    - capable-request
+    - plan-and-options
+    - scope-check
+    - execute-and-review
 mission:
-  title: Trustworthy monthly report
-  outcome: Deliver a reviewable draft monthly report from raw CSV exports without modifying sources or resolving ambiguity without approval.
+  title: Reliable report from a capable request
+  outcome: Direct an agent from a broad reporting request to a reviewable, source-preserving draft while choosing meaningful trade-offs and avoiding unnecessary workflow debt.
   safe_project: examples/sample-project
-  acts:
-    - Survey the workspace safely
-    - Define the reporting job
-    - Investigate without changing sources
-    - Establish durable operating rules
-    - Package the repeatable workflow
-    - Prepare handoff and operating choices
-    - Review the trustworthy draft
+  modules:
+    - Understand the agent, tools, and files
+    - Give one capable request and inspect a plan
+    - Choose options and appropriate tools
+    - Assess scale, friction, and a staged route
+    - Review evidence, steer revision, and retain only useful reuse
 state:
   directory: .tutorial
   templates:
@@ -48,20 +45,15 @@ routes:
   - technical-transfer
   - goal-first
 required_outcomes:
-  - inspect-workspace-safely
-  - write-bounded-request
-  - validate-an-agent-output
-  - distinguish-markdown-agents-md-skill-tool
-  - create-proactive-handoff
-  - make-model-selection-decision
+  - describe-a-useful-outcome-and-boundary
+  - inspect-an-agent-plan-and-tool-rationale
+  - request-options-and-a-recommendation
+  - assess-scope-before-large-or-uncertain-work
+  - inspect-evidence-and-steer-a-revision
+  - decide-whether-reuse-is-justified
 modules:
-  - modules/00-mission-setup.md
-  - modules/01-what-is-a-coding-agent.md
-  - modules/02-model-provider-chat-agent.md
-  - modules/03-bounded-requests.md
-  - modules/04-inspect-and-validate.md
-  - modules/05-files-as-memory.md
-  - modules/06-reusable-skills.md
-  - modules/07-context-and-compaction.md
-  - modules/08-model-selection-and-connection.md
-  - modules/09-capstone.md
+  - modules/00-mental-model.md
+  - modules/01-capable-request.md
+  - modules/02-options-and-tools.md
+  - modules/03-scope-and-friction.md
+  - modules/04-review-revise-reuse.md

@@ -1,39 +1,37 @@
-# Coding Agent Basics — Mission Progress
+# Coding Agent Basics — Learning Progress
 
 ## Mission and route
-- Mission: Deliver a trustworthy draft monthly report without changing raw inputs.
+- Mission: Direct an agent from a broad request to a reliable, reviewable result.
 - Learner goal:
 - Selected route:
 
-## Acts unlocked
-- [ ] Act 1 — Survey the workspace safely.
-  - Learner-issued command:
-  - Evidence / artifact:
-- [ ] Act 2 — Define the reporting job.
-  - Learner-issued command:
-  - Evidence / artifact:
-- [ ] Act 3 — Investigate without changing sources.
-  - Learner-issued command:
-  - Evidence / artifact:
-- [ ] Act 4 — Establish durable operating rules.
-  - Learner-issued command:
-  - Evidence / artifact:
-- [ ] Act 5 — Package the repeatable workflow.
-  - Learner-issued command:
-  - Evidence / artifact:
-- [ ] Act 6 — Prepare handoff and operating choices.
-  - Learner-issued command:
-  - Evidence / artifact:
-- [ ] Act 7 — Review the trustworthy draft.
-  - Learner-issued command:
-  - Evidence / artifact:
+## Learning loops
+- [ ] 1. State the outcome and boundary
+  - Learner’s request or decision:
+  - Evidence / insight:
+- [ ] 2. Review the plan and tool rationale
+  - Learner’s request or decision:
+  - Evidence / insight:
+- [ ] 3. Choose a route or ask for a recommendation
+  - Learner’s request or decision:
+  - Evidence / insight:
+- [ ] 4. Assess scope and a lower-friction route
+  - Learner’s request or decision:
+  - Evidence / insight:
+- [ ] 5. Review evidence and steer a revision
+  - Learner’s request or decision:
+  - Evidence / insight:
 
 ## Current position
-- Current act/module:
-- Next learner-issued command or decision:
+- Current module:
+- Next learner command or decision:
 
-## Decisions and constraints
+## Meaningful decisions and constraints
 -
+
+## Optional durable assets worth considering
+- Script / template / instruction file / skill / handoff:
+- Why it would be worth retaining (or why not):
 
 ## Revisit later
 -

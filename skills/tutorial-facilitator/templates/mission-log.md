@@ -2,26 +2,27 @@
 
 ## Mission
 - Outcome to deliver:
-- Safe practice boundary:
+- Audience or practical use:
+- Safe practice and approval boundary:
 - Chosen route:
 
-## Acts
-- [ ] Act 1 — Survey the workspace safely
-  - Evidence / artifact:
-- [ ] Act 2 — Define the reporting job
-  - Evidence / artifact:
-- [ ] Act 3 — Investigate without changing sources
-  - Evidence / artifact:
-- [ ] Act 4 — Establish durable operating rules
-  - Evidence / artifact:
-- [ ] Act 5 — Package the repeatable workflow
-  - Evidence / artifact:
-- [ ] Act 6 — Prepare handoff and operating choices
-  - Evidence / artifact:
-- [ ] Act 7 — Review the trustworthy draft
-  - Evidence / artifact:
+## Learning loops or milestones
+- [ ] State the outcome and boundary
+  - Evidence / insight:
+- [ ] Review the plan, assumptions, and tool rationale
+  - Evidence / insight:
+- [ ] Choose a meaningful route or request a recommendation
+  - Evidence / insight:
+- [ ] Assess scope, friction, or a staged alternative
+  - Evidence / insight:
+- [ ] Review evidence and steer the result
+  - Evidence / insight:
 
 ## Current position
-- Current act:
+- Current module or milestone:
 - Next learner move:
-- Open risk or approval needed:
+- Open decision, risk, or approval needed:
+
+## Reuse decision
+- What is worth retaining, if anything:
+- Why:

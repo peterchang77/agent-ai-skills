@@ -4,9 +4,12 @@
 - Mission:
 - Learner goal:
 - Selected route:
-- Current act:
+- Current module:
 
 ## Completed work and evidence
+-
+
+## Chosen route, tools, and rationale
 -
 
 ## Active artifacts and paths
@@ -15,8 +18,12 @@
 ## Constraints and approval boundaries
 -
 
-## Open questions or topics to revisit
+## Open questions, trade-offs, or scope concerns
 -
 
+## Reuse decision
+- What is worth retaining, if anything:
+- Why:
+
 ## Resume here
-- Exact next learner-issued command or decision:
+- Exact next learner command or decision:

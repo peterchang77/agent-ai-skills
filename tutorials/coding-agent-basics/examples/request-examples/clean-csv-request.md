@@ -1,28 +1,15 @@
-# Bounded Request: Inspect Fictional Survey Data
+# Capable Request: Fictional Survey Report
 
-## Goal
+> Create a concise, reviewable Markdown report for a manager from the fictional survey data in this project. First inspect the project instructions, notes, and available tools, then propose a plan and explain the tool rationale before creating the report. Preserve the raw CSV, reuse an existing checker or suitable code where useful, flag uncertain records rather than resolving them, and show the evidence behind the result.
 
-Inspect the fictional survey export and create a data-quality report.
+## Why this request works
 
-## Inputs
+It gives the agent a useful outcome, audience, source boundary, and expectation of evidence without prescribing every command, library, filename, or intermediate step. The agent can inspect the project and choose routine means; it should surface a material choice—for example, report format, interpretation rule, or reusable-workflow need—if the available context does not settle it.
 
-`examples/sample-project/data/raw/survey_results.csv`
+## A useful follow-up
 
-## Desired output
+If the agent presents several reasonable routes, ask:
 
-Create `output/data_quality_report.md` under the sample project.
+> Compare the practical options, recommend one for an internal report likely to be revised, and explain what existing tools or project resources you would reuse.
 
-## Rules and constraints
-
-- Do not modify the source CSV.
-- Preserve every source row in any derived output.
-- Flag duplicate IDs, missing scores, and non-numeric scores; do not delete or replace records.
-- Use the definitions in `examples/sample-project/notes/`.
-
-## What to verify
-
-Report input row count, duplicate IDs, missing scores, non-numeric scores, and confirmation that the source was not changed.
-
-## What requires approval
-
-Ask before excluding, correcting, or interpreting any record.
+If the work becomes much larger or more uncertain, ask for an inventory and staged plan before processing anything.
