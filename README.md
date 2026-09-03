@@ -7,8 +7,6 @@ A collection of focused, reusable skills for AI agents. Each skill provides conc
 - [`skills/`](skills/) — reusable skill packages
 - [`tutorials/`](tutorials/) — guided learning material
 - [`workshops/`](workshops/) — practical exercises and experiments
-- [`tutorials/coding-agent-basics/`](tutorials/coding-agent-basics/) — browser-readable and agent-facilitated introduction to reliable coding-agent workflows
-- [`skills/tutorial-facilitator/`](skills/tutorial-facilitator/) — reusable adaptive delivery protocol for Markdown-based tutorials
 
 ## Skill packages
 
