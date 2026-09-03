@@ -6,6 +6,7 @@ Practical, GitHub-readable guides for working effectively with AI coding agents.
 
 - [**Introducing coding agents**](introducing-coding-agents/) — a practical introduction to directing an agent from a request to a reliable, reviewable result.
 - [**The Linux command line for coding-agent users**](linux-command-line-for-coding-agents/) — the paths, commands, permissions, separate-agent-account workflow, and secret-handling habits needed to supervise agent work safely.
+- [**Git and GitHub for coding-agent users**](git-and-github-for-coding-agents/) — use atomic commits, focused branches, reviewable diffs, and deliberate publication to preserve agent work safely.
 
 ## Adding a guide
 
