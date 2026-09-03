@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "name": "single-page-web",
+  "entrypoint": "SKILL.md",
+  "files": [
+    {"path": "SKILL.md", "lib_name": "skills/single-page-web/SKILL.md"},
+    {"path": "references/choosing-a-web-shape.md", "lib_name": "skills/single-page-web/references/choosing-a-web-shape.md"},
+    {"path": "references/headless-serving.md", "lib_name": "skills/single-page-web/references/headless-serving.md"}
+  ]
+}
