@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "name": "skill-writing",
+  "entrypoint": "SKILL.md",
+  "files": [
+    {"path": "SKILL.md", "lib_name": "skills/skill-writing/SKILL.md"},
+    {"path": "references/authoring-guide.md", "lib_name": "skills/skill-writing/references/authoring-guide.md"},
+    {"path": "templates/SKILL.md.template", "lib_name": "skills/skill-writing/templates/SKILL.md.template"},
+    {"path": "references/python-tool-installation.md", "lib_name": "skills/skill-writing/references/python-tool-installation.md"},
+    {"path": "references/importing-existing-skills.md", "lib_name": "skills/skill-writing/references/importing-existing-skills.md"},
+    {"path": "scripts/import-skill.py", "lib_name": "skills/skill-writing/scripts/import-skill.py", "mode": "0755"}
+  ]
+}

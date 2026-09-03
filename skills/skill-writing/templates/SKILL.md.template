@@ -1,0 +1,32 @@
+---
+name: <skill-name>
+description: <what the skill does and when an agent should use it>
+---
+
+# <Skill title>
+
+Use this skill when <activation context>.
+
+## Scope
+
+- **Purpose:** <concrete result this skill produces>
+- **Inputs:** <required files, information, or tools>
+- **Output:** <expected deliverable>
+- **Out of scope:** <nearby work handled elsewhere>
+
+## Workflow
+
+1. **Prepare:** <check prerequisites and gather inputs>.
+2. **Execute:** <perform the main task>.
+3. **Handle exceptions:** <state important branches or failure handling>.
+4. **Validate:** <run checks and inspect the result>.
+
+## Rules
+
+- <important constraint or decision rule>
+- <safety, portability, or quality requirement>
+- <formatting or delivery requirement>
+
+## Supporting material
+
+- [<topic>](references/<topic>.md)
