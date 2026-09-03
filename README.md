@@ -5,8 +5,9 @@ A collection of focused, reusable skills for AI agents. Each skill provides conc
 ## Repository layout
 
 - [`skills/`](skills/) — reusable skill packages
-- [`tutorials/`](tutorials/) — guided learning material
-- [`workshops/`](workshops/) — practical exercises and experiments
+- [`guides/`](guides/) — GitHub-readable practical guides
+
+Start with [Introducing coding agents](guides/introducing-coding-agents/) for a practical guide to directing an agent from a request to a reliable, reviewable result.
 
 ## Skill packages
 
