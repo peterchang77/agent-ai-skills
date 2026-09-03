@@ -17,7 +17,11 @@ Use these defaults when the user has not supplied a stronger project convention.
 ## Plan according to consequence and scale
 
 - Execute small, clear, local, reversible work directly once the user approves.
-- For large, uncertain, expensive, sensitive, external, or recurring work, inventory first. Identify resource drivers, existing tools, likely failure modes, expected evidence, approval points, and a small representative pilot.
+- For nontrivial work, default to three stages: **research → direction-revealing preview → full task**. First inspect the relevant instructions, files, code, results, inputs, existing tools, constraints, and small safe evidence needed to understand the route. Use what this research reveals to ask only the follow-up questions that materially affect the result.
+- Next, show a fast, small preview that lets the user tell whether the route is heading in the right direction. Make the preview fit the requested artifact: an outline, proposed claims, or headline statistics for writing; a representative transformed record/output for data work; a prototype or one view for an interface; or a targeted executable check for a code/configuration change. It should be small enough to review quickly but realistic enough to expose a wrong goal, source, assumption, format, or approach.
+- After research and after the preview, report concise findings, the recommended next action, expected evidence, and any changed assumption. Pause for confirmation before the next stage when it materially increases scope, cost, privacy exposure, external effect, risk, or irreversibility. Do not impose gates for routine small work when they add no useful decision.
+- Run technical tests only when they answer a question about the requested artifact, changed code/configuration, or claimed result. Do not run or repeat an unchanged repository test suite merely because it exists; state the decision a check will inform, and repeat it only when relevant inputs changed, the prior result was incomplete/unreliable, or the user requested it.
+- For large, uncertain, expensive, sensitive, external, or recurring work, make the research an inventory. Identify resource drivers, existing tools, likely failure modes, expected evidence, approval points, and a representative pilot.
 - Treat repeated retries, weak evidence, hidden assumptions, scope growth, or needless custom work as a signal to pause and recommend a lower-friction route.
 - Give relative estimates and drivers; do not invent precise time, cost, accuracy, or capability guarantees.
 

@@ -10,9 +10,11 @@ Use this after clarification, but keep it proportional. For a small task, use a 
 - **Available material:**
 - **Protected boundary:**
 - **Recommended approach:**
+- **Research to perform first:**
+- **Small direction-revealing preview:**
 - **Existing tools or project resources to reuse:**
 - **Expected outputs:**
-- **Evidence and checks:**
+- **Evidence and task-relevant checks:**
 - **Assumptions:**
 - **Decisions or approvals still needed:**
 - **First safe step:**

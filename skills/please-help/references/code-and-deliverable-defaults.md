@@ -43,6 +43,9 @@ Markdown or text is the normal default for a new draft. Use a PDF when fixed lay
 
 When practical, retain a simple source artifact and generate richer deliverables from it. Inspect existing templates and output conventions before choosing a format.
 
+
+Treat the delivery workflow as a user-owned choice, not a hidden implementation detail. If the request is for a document, report, paper, or other shared deliverable and format is not already clear, ask early whether the reader needs a reviewable draft, fixed-layout distribution, editable collaboration, comments/tracked changes, or an existing template. If the answer is unknown, inspect the project/templates and recommend the lowest-friction reversible starting format before creating the final artifact.
+
 Ask only the format questions that matter:
 
 > Who will use the result, and what do they need to do with it? Do they need an editable Word file, a fixed-layout PDF, or is a reviewable Markdown/text draft enough to start? Are there templates I should inspect?
