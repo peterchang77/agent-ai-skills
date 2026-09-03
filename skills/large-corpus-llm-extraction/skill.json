@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "name": "large-corpus-llm-extraction",
+  "entrypoint": "SKILL.md",
+  "files": [
+    {"path": "SKILL.md", "lib_name": "skills/large-corpus-llm-extraction/SKILL.md"}
+  ]
+}
