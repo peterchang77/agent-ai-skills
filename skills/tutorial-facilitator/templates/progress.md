@@ -1,18 +1,19 @@
 # Tutorial Progress
 
-## Course and route
-- Course:
-- Route:
+## Mission, goal, and route
+- Mission:
 - Learner goal:
+- Selected route:
+- Current act:
+- Mission:
 
-## Completed
-- [ ] Module or objective
+## Completed mission acts
+- [ ] Act or objective
   - Evidence:
   - Artifacts:
 
 ## Current work
-- Current module:
-- Next smallest action:
+- Next learner-issued command or decision:
 
 ## Decisions and constraints
 -

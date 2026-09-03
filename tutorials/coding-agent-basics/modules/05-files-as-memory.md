@@ -1,12 +1,13 @@
 ---
 id: files-as-memory
-title: Keep knowledge in files
+title: Act 4 — Establish durable operating rules
 estimated_minutes: 18
 prerequisites:
   - inspect-and-validate
+mission_act: establish-rules
 objectives:
-  - distinguish ordinary Markdown notes from AGENTS.md
-  - create concise project operating instructions
+  - direct the creation of concise project operating instructions
+  - place knowledge, rules, and repeatable procedures in appropriate files
 checkpoint: artifact
 required_artifacts:
   - AGENTS.md
@@ -17,73 +18,37 @@ adaptive:
   goal-first: full
 ---
 
-# Keep Knowledge in Files
+# Act 4 — Establish Durable Operating Rules
 
-## In brief
+## Situation
 
-A conversation is temporary working memory. Files are durable project memory. Store information where the next person—or the next agent session—can find and review it.
+The investigation uncovered report rules, exceptions, and a source-protection boundary. Leaving these only in the chat makes the next run inconsistent. The mission needs durable project memory.
 
-Start with ordinary Markdown for knowledge that people need to read and revise:
+## Your move
 
-```text
-notes/
-├── data-dictionary.md
-├── reporting-rules.md
-└── decisions.md
-```
+Tell the agent to inspect the existing `notes/` files and create or revise `AGENTS.md`. Direct it to include only the project purpose, protected source path, output path, rule to flag ambiguity, and required completion checks. Tell it to keep detailed metric definitions and decisions in `notes/`.
 
-Use Markdown for definitions, policies, exceptions, decision records, and requirements.
+## Agent mode
 
-## `AGENTS.md` is different
+The agent creates a concise operating file and reports its path. It should link or point to deeper knowledge rather than copying a long manual into always-loaded instructions.
 
-`AGENTS.md` is a short project instruction file supported by many coding-agent harnesses. It tells an agent how to operate in this project: purpose, commands, protected paths, output locations, conventions, and completion checks.
+## Inspect
 
-In Pi, matching `AGENTS.md` files can load at startup from the user directory, parent directories, and current project. Other harnesses differ, so treat the filename as a useful convention and check your agent's documentation.
+Open `AGENTS.md`. Test it as a new operator: can you tell what must not change, where outputs go, and what evidence is required before the agent calls the task complete? Then confirm the definition of a metric and reason for a rule remain in the relevant note instead.
 
-Keep it short. Do not put a large manual or all historical knowledge in it: always-loaded instructions consume working memory and can become stale.
+## Unlock
 
-## Compare
+Use ordinary Markdown for knowledge people need to read and revise: definitions, policies, exceptions, and decisions. Use **`AGENTS.md`** for short, always-relevant project operating rules.
 
-| Use | Best home |
+| Need | Best home |
 |---|---|
 | Meaning of a metric | `notes/metric-definitions.md` |
 | Why a rule changed | `notes/decisions.md` |
 | Never edit raw exports | `AGENTS.md` |
-| How to run the report check | `AGENTS.md` or a linked script README |
-| Exact steps for a recurring workflow | a skill |
+| Repeating procedure | a skill |
 
-## Try it
-
-Read the sample project's [`AGENTS.md`](../examples/sample-project/AGENTS.md). Then create or adapt an `AGENTS.md` for a safe practice project. Include only:
-
-```markdown
-# Project Instructions
-
-## Purpose
-
-## Working rules
--
-
-## Paths
-- Sources:
-- Outputs:
-
-## Before finishing
--
-```
-
-## Inspect
-
-Can a new agent answer these without guessing?
-
-1. What should it avoid changing?
-2. Where should it write outputs?
-3. What check must it perform before saying work is done?
-
-## Record
-
-Link your `AGENTS.md` from `progress.md`. Put deeper domain knowledge in a separate note and link it rather than inflating the instruction file.
+Many harnesses support `AGENTS.md`; Pi loads matching files at startup. Discovery differs elsewhere, so check the harness before relying on automatic loading.
 
 ## Checkpoint
 
-Explain why both a detailed Markdown note and a short `AGENTS.md` can be useful in the same project.
+Act 4 is unlocked when a new agent can operate safely from `AGENTS.md` and locate deeper context in notes.

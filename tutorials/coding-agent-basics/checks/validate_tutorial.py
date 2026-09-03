@@ -19,11 +19,11 @@ COURSE_FILES = [
     "SKILL.md",
     "tutorial.yaml",
     "templates/learner-profile.md",
-    "templates/progress.md",
+    "templates/mission-log.md",
     "templates/handoff.md",
 ]
 MODULE_FILES = [f"modules/{index:02d}-{name}.md" for index, name in [
-    (0, "welcome-and-pretest"),
+    (0, "mission-setup"),
     (1, "what-is-a-coding-agent"),
     (2, "model-provider-chat-agent"),
     (3, "bounded-requests"),
@@ -40,6 +40,7 @@ CAPSTONE_REQUIREMENTS = {
     "AGENTS.md": ["#", "Purpose", "Working rules", "Paths", "Before finishing"],
     "validation-note.md": ["#", "source", "check"],
     "model-selection.md": ["#", "task", "validation"],
+    ".tutorial/mission-log.md": ["#", "Mission", "Acts", "Current position"],
     ".tutorial/handoff.md": ["#", "Goal", "Completed", "Resume"],
     ".agents/skills/monthly-report/SKILL.md": ["---", "name:", "description:", "Workflow", "Validation"],
 }

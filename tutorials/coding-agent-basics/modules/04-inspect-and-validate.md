@@ -1,12 +1,13 @@
 ---
 id: inspect-and-validate
-title: Inspect and validate agent work
+title: Act 3 — Investigate without changing sources
 estimated_minutes: 15
 prerequisites:
   - bounded-requests
+mission_act: investigate-safely
 objectives:
-  - distinguish a plausible answer from evidence
-  - perform a source-preserving validation check
+  - direct a source-preserving investigation
+  - inspect validation evidence rather than a plausible explanation
 checkpoint: artifact
 required_artifacts:
   - validation-note.md
@@ -17,50 +18,32 @@ adaptive:
   goal-first: full
 ---
 
-# Inspect and Validate Agent Work
+# Act 3 — Investigate Without Changing Sources
 
-## In brief
+## Situation
 
-An agent's explanation can sound credible even when its work is incomplete or wrong. Validation means checking the result against evidence appropriate to the task.
+The job ticket is ready. Now the agent may inspect the CSV and create a draft quality report, but it must not decide which unusual records to remove or correct.
 
-A useful default is:
+## Your move
 
-```text
-preserve source → create derived output → compare → check exceptions → record evidence
-```
+Use `request.md` to direct the agent to inspect `data/raw/survey_results.csv`, create a draft report under `output/`, and write `validation-note.md`. Explicitly require it to report source count, duplicate IDs, missing scores, non-numeric scores, and any assumption it could not safely make.
 
-## Predict
+## Agent mode
 
-A report says a CSV was cleaned successfully. What evidence would make you trust that source records were not silently lost?
-
-Possible evidence includes separate paths, row counts before and after, duplicate or exclusion reports, and a readable record of applied rules.
-
-## Try it
-
-Use the sample project. Ask an agent to inspect `data/raw/survey_results.csv` and create a proposed—not destructive—data-quality report in `output/`. Give it the request from the prior module.
-
-Do not ask it to edit the source. If it proposes a cleaning rule that needs judgment, require it to flag the case rather than decide silently.
+The agent inspects and writes only derived artifacts. It should preserve every raw record, cite paths, and flag uncertainty. If it proposes a cleaning rule, it must ask for approval before applying it.
 
 ## Inspect
 
-Create `validation-note.md` with:
+Open the draft report and validation note. Compare the listed counts and exceptions to the raw CSV or run the sample skill’s `scripts/check_survey.py`. Confirm that `data/raw/` was not used as an output location.
 
-- source path and confirmation it remains unchanged;
-- output paths;
-- input and output row counts, if an output was created;
-- checks performed;
-- exceptions or assumptions needing review.
+## Unlock
 
-For documents, validation might be a side-by-side comparison. For data, it may include counts, schemas, ranges, IDs, or a sample review. For a script, it may include tests and a small known input.
+Validation is not “the agent said it worked.” It is evidence appropriate to the work: paths, counts, exceptions, comparison, a reproducible check, and a record of what was not decided. For data, a useful default is:
 
-## Reflect
-
-Why is “the agent said it worked” not enough evidence for a decision that affects other people?
-
-## Record
-
-Link your validation note from `progress.md`.
+```text
+preserve source → create derived output → compare → flag exceptions → record evidence
+```
 
 ## Checkpoint
 
-You can state what was checked, what was not checked, and who must review any remaining ambiguity.
+Act 3 is unlocked when the report and validation note make both the findings and the remaining review work visible.

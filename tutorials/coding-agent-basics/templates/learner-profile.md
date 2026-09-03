@@ -12,8 +12,7 @@
 - Relevant tools, access, or constraints:
 
 ## Starting point
-- Self-assessment:
-- Diagnostic observations:
+- Starting approach and demonstrated command habits:
 - Selected route: foundation / practitioner / technical-transfer / goal-first
 
 ## Facilitation notes

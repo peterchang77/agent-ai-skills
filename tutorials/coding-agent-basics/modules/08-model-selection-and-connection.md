@@ -1,13 +1,16 @@
 ---
 id: model-selection-and-connection
-title: Connect safely and choose a model
+title: Act 6 — Choose the operating setup
 estimated_minutes: 15
 prerequisites:
   - context-and-compaction
+mission_act: make-it-resumable
 objectives:
-  - describe a safe provider-connection sequence
-  - choose a model based on task requirements
+  - direct a safe provider-connection plan
+  - create a task-based model-selection decision
 checkpoint: decision
+required_artifacts:
+  - model-selection.md
 adaptive:
   foundation: full
   practitioner: full
@@ -15,56 +18,39 @@ adaptive:
   goal-first: full
 ---
 
-# Connect Safely and Choose a Model
+# Act 6 — Choose the Operating Setup
 
-## In brief
+## Situation
 
-A provider gives authenticated access to a model. A coding agent uses that model within a workspace and tool environment. The exact login, API-key, local-model, subscription, privacy, and billing arrangements vary by provider and harness.
+The mission needs an intentional operating setup. A fast model may be enough to inspect a well-defined CSV, while ambiguous interpretation needs more reasoning and review. Privacy, context capacity, cost, and tool reliability also matter.
 
-Use this safe sequence:
+## Your move
 
-1. Choose an approved provider or local setup.
-2. Authenticate through the agent's supported login or secure credential mechanism.
-3. Select a model appropriate to the task.
-4. Run a harmless smoke test: inspect sample files or write a temporary note.
-5. Keep credentials out of repositories, screenshots, and ordinary Markdown files.
+Tell the agent to create `model-selection.md` for this mission. Require it to document the task, consequence of error, input size, privacy requirements, speed/cost constraints, model qualities needed, validation plan, and a condition that would make you choose differently.
 
-Do not connect a real account or transmit work data merely for this lesson. Follow your organization's security and data policies.
+If you want to connect a real provider, stop after the plan and explicitly approve a provider-specific login or credential action. Do not place keys in the project.
 
-## Select by task, not brand
+## Agent mode
 
-| Need | Prefer |
-|---|---|
-| Routine, high-volume work | Fast, cost-effective tool use with strong checks. |
-| Ambiguous planning or debugging | Stronger reasoning and reliable tool use. |
-| Large documents or projects | Enough context capacity for the materials. |
-| Sensitive or offline work | An approved private or local option, if capable enough. |
-| Important final output | A capable model plus independent validation and human review. |
-
-Compare actual quality, tool reliability, latency, context capacity, privacy, and cost. A more expensive model does not remove the need to validate.
-
-## Predict
-
-You need to turn 500 similar files into a checked summary, then review a handful of ambiguous cases. Would one model setting be ideal for both phases? Why or why not?
-
-## Try it
-
-Write `model-selection.md` for one of your workflows. Include:
-
-- task and consequences of error;
-- input size and privacy needs;
-- desired speed and cost constraints;
-- model qualities needed;
-- validation and human-review plan.
+The agent drafts the decision from the mission constraints. It must not claim a subscription includes API access, reveal credentials, or connect an account without approval.
 
 ## Inspect
 
-Confirm the decision does not rely only on a model name or marketing claim. It should name a test or observable criterion that would cause you to choose differently.
+Check that the decision selects by observed needs rather than a brand name. It should distinguish a low-risk first-pass task from an ambiguous, high-impact decision and keep validation in both cases.
 
-## Record
+## Unlock
 
-Link `model-selection.md` from `progress.md`.
+A **provider** gives authenticated access to a **model**; an agent uses that model with workspace tools. Connection usually means choosing an approved provider or local setup, authenticating through a supported secure mechanism, selecting a model, then running a harmless smoke test.
+
+| Need | Prefer |
+|---|---|
+| Routine high-volume checks | Fast, cost-effective tool use plus strong checks. |
+| Ambiguous planning or debugging | Stronger reasoning and reliable tool use. |
+| Large documents or projects | Enough context capacity. |
+| Sensitive/offline work | Approved private or local option, if capable enough. |
+
+A more expensive model never removes the need for evidence and human review.
 
 ## Checkpoint
 
-Explain why a smaller model may be appropriate for a well-bounded task but not for an ambiguous, high-impact decision without stronger checks.
+Act 6 is unlocked when `model-selection.md` ties the model choice to the mission’s risks, constraints, and validation plan.
