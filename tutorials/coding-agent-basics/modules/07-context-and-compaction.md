@@ -1,13 +1,12 @@
 ---
 id: context-and-compaction
-title: Act 6 — Make the mission resumable
+title: Manage context and compaction
 estimated_minutes: 15
 prerequisites:
   - reusable-skills
-mission_act: make-it-resumable
 objectives:
-  - direct the creation of a compaction-ready handoff
-  - preserve mission state outside the conversation
+  - explain why long conversations need durable state
+  - create a compaction-ready handoff
 checkpoint: artifact
 required_artifacts:
   - handoff.md
@@ -18,32 +17,43 @@ adaptive:
   goal-first: full
 ---
 
-# Act 6 — Make the Mission Resumable
+# Manage Context and Compaction
 
-## Situation
+## In brief
 
-The reporting workflow now has several files, decisions, and checks. A long conversation can run out of working memory, and compaction can omit details. The mission must survive a new session or a new operator.
+An agent's **context** is the information it can currently use: recent messages, files it has read, tool results, instructions, and summaries. Its context window is finite. Large pasted documents, lengthy tool output, and long conversations consume it.
 
-## Your move
-
-Tell the agent to create `.tutorial/handoff.md` from the template. Require it to include the mission, current act, completed artifacts and evidence, active paths, source-protection rules, unresolved exceptions, and the exact next command.
-
-## Agent mode
-
-The agent writes the handoff from inspected project state. It must not fill gaps with invented history; it should mark missing evidence or decisions for review.
-
-## Inspect
-
-Imagine a different agent opens only the handoff. Check whether it can safely find the source, understand what is protected, see which quality exceptions remain, and take one next step without guessing. Add any missing path, rule, or result.
-
-## Unlock
-
-**Context** is the agent’s current working memory: messages, read files, tool results, instructions, and summaries. It is finite. **Compaction** summarizes older material to make room, but it can omit detail.
+**Compaction** summarizes older conversation material so the agent can continue with recent work. It is useful but lossy: omitted detail may no longer be immediately available. The safest response is to preserve important facts in files before they are needed again.
 
 > Conversation is working memory. Files are institutional memory.
 
-Prepare a handoff at phase boundaries, after large outputs, before changing tasks, or before intentional compaction. In Pi, `/compact` starts manual compaction; other harnesses differ.
+## When to prepare a handoff
+
+Do it at a phase boundary, after large outputs, before switching tasks, when a session becomes long, or before intentional compaction. In Pi, `/compact` starts manual compaction; automatic compaction may also run near the context limit. Other harnesses use different commands.
+
+## Try it
+
+Create `.tutorial/handoff.md` from the template. Fill in:
+
+- objective and selected route;
+- completed work and evidence;
+- active file paths and artifacts;
+- rules and approval boundaries;
+- unresolved questions;
+- exact next smallest action.
+
+## Inspect
+
+Imagine a different agent opens the handoff with no chat history. Can it safely resume without guessing what matters? If not, add the missing path, decision, or check result.
+
+## Reflect
+
+What information from your normal work is currently trapped in chat, email, or someone’s memory rather than a durable, searchable place?
+
+## Record
+
+Link the handoff in `progress.md`. Update it before intentional compaction or ending an unfinished session.
 
 ## Checkpoint
 
-Act 6 is unlocked when the handoff lets another session resume the mission without relying on the old conversation.
+Explain why compaction alone is not a substitute for project notes, `AGENTS.md`, or a progress record.

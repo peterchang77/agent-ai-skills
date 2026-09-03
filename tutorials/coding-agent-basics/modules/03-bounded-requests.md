@@ -1,13 +1,12 @@
 ---
 id: bounded-requests
-title: Act 2 — Define the reporting job
+title: Ask for bounded, checkable work
 estimated_minutes: 15
 prerequisites:
   - model-provider-chat-agent
-mission_act: define-the-job
 objectives:
-  - direct an agent to create a bounded task request
-  - set verification and approval boundaries
+  - write a bounded task request
+  - specify verification and approval boundaries
 checkpoint: artifact
 required_artifacts:
   - request.md
@@ -18,15 +17,13 @@ adaptive:
   goal-first: full
 ---
 
-# Act 2 — Define the Reporting Job
+# Ask for Bounded, Checkable Work
 
-## Situation
+## In brief
 
-“Clean this spreadsheet” leaves an agent to guess what clean means, where outputs belong, and when a person must decide. The mission needs a job ticket before the investigation begins.
+A strong request gives an agent enough structure to act safely and show its work. You do not need to write code; you need to make the desired result and boundaries clear.
 
-## Your move
-
-Tell the agent to draft `request.md` for this report. Include, in your own words:
+Use this pattern:
 
 ```text
 Goal:
@@ -37,20 +34,41 @@ What to verify:
 What requires approval:
 ```
 
-For this mission, make the raw CSV read-only, put outputs under `output/`, and require ambiguous records to be flagged rather than resolved.
+## Example
 
-## Agent mode
+```text
+Goal: Create a cleaned copy of the survey data and a data-quality summary.
+Inputs: data/raw/survey_results.csv
+Desired output: output/survey_results_clean.csv and output/data_quality_report.md
+Rules: Never change the source. Preserve respondent IDs. Flag duplicates; do not delete them.
+What to verify: Report input/output row counts, missing values by column, and duplicate IDs.
+What requires approval: Ask before excluding rows or deciding that a value is invalid.
+```
 
-The agent drafts the file and reports its path. It should ask you to fill any consequential gap rather than choosing a deletion, correction, or publication rule itself.
+## Predict
+
+Which missing field makes it hardest to know whether the agent succeeded: the goal, desired output, or what to verify? Why?
+
+## Try it
+
+Create `request.md` for a small task from your work or copy and adapt [`examples/request-examples/clean-csv-request.md`](../examples/request-examples/clean-csv-request.md). Keep it low risk and use samples or a copy.
 
 ## Inspect
 
-Read `request.md` as though another person will use it tomorrow. Verify it names a source path, a separate output path, a non-negotiable rule, a check, and an approval boundary. Revise the command if any of those are missing.
+Before giving the request to an agent, check that another person could answer all six headings without guessing. In particular, identify the source path, output path, non-negotiable rules, and approval boundary.
 
-## Unlock
+## Reflect
 
-A bounded request is an operational contract, not a polished prompt. It turns a broad wish into inspectable work: desired output plus constraints, evidence, and a point where the agent must stop for human judgment.
+Vague request: “Clean up this spreadsheet.”
+
+Bounded request: “Create a cleaned copy, preserve the source, flag ambiguous values, and report what changed.”
+
+What ambiguity did the second version remove?
+
+## Record
+
+Save the final request path and one rule you consider non-negotiable in `progress.md`.
 
 ## Checkpoint
 
-Act 2 is unlocked when `request.md` lets another operator run the first report step without guessing.
+Your request is complete when it names a goal, inputs, outputs, constraints, a check, and an approval boundary.

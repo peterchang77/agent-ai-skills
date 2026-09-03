@@ -7,7 +7,6 @@
     {"path": "references/delivery-protocol.md", "lib_name": "skills/tutorial-facilitator/references/delivery-protocol.md"},
     {"path": "references/adaptation-rules.md", "lib_name": "skills/tutorial-facilitator/references/adaptation-rules.md"},
     {"path": "templates/learner-profile.md", "lib_name": "skills/tutorial-facilitator/templates/learner-profile.md"},
-    {"path": "templates/progress.md", "lib_name": "skills/tutorial-facilitator/templates/progress.md"},
-    {"path": "templates/mission-log.md", "lib_name": "skills/tutorial-facilitator/templates/mission-log.md"}
+    {"path": "templates/progress.md", "lib_name": "skills/tutorial-facilitator/templates/progress.md"}
   ]
 }

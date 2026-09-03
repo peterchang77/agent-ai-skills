@@ -4,12 +4,12 @@
 
 | Route | Signals | Delivery |
 |---|---|---|
-| Foundation | New to the topic or tools; uses broad or uncertain commands | Define terms at use, offer a command starter, and use guided practice. |
-| Practitioner | Knows terms but lacks repeatable boundaries or checks | Keep definitions short; emphasize artifacts, boundaries, and validation. |
-| Technical transfer | Sets clear constraints and has technical/data experience | Skip familiar mechanics after observing an initial command; emphasize architecture and trade-offs. |
+| Foundation | New to the topic or tools; uncertain vocabulary | Define terms, demonstrate one safe example, use guided practice. |
+| Practitioner | Knows terms but lacks repeatable habits | Keep definitions short; emphasize artifacts, boundaries, and validation. |
+| Technical transfer | Has technical/data experience | Skip familiar mechanics after a quick probe; emphasize architecture and trade-offs. |
 | Goal-first | Has an urgent practical goal | Teach concepts immediately before use; preserve optional depth links. |
 
-Do not infer a route from profession alone. Observe how the learner scopes an initial command, sets boundaries, and interprets evidence; change route when they demonstrate a different level.
+Do not infer a route from profession alone. Ask, observe, and change route when the learner demonstrates a different level.
 
 ## Plain-language defaults
 

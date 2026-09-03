@@ -1,10 +1,8 @@
 # Tutorial Handoff
 
-## Mission, goal, and route
-- Mission:
+## Goal and route
 - Learner goal:
 - Selected route:
-- Current act:
 
 ## Completed work and evidence
 -
@@ -19,4 +17,5 @@
 -
 
 ## Resume here
-- Exact next learner-issued command or decision:
+- Current module:
+- Exact next smallest action:

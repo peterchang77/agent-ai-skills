@@ -1,14 +1,13 @@
 ---
 id: what-is-a-coding-agent
-title: Act 1 — Survey the workspace safely
+title: What a coding agent is
 estimated_minutes: 12
 prerequisites:
-  - mission-setup
-mission_act: survey-safely
+  - welcome-and-pretest
 objectives:
-  - direct a read-only workspace inspection
-  - identify evidence and the limits of agent access
-checkpoint: artifact
+  - explain an agent's action loop
+  - name the access and verification limits of an agent
+checkpoint: conceptual
 adaptive:
   foundation: full
   practitioner: full
@@ -16,40 +15,46 @@ adaptive:
   goal-first: full
 ---
 
-# Act 1 — Survey the Workspace Safely
+# What a Coding Agent Is
 
-## Situation
+## In brief
 
-Before reporting, you need to know what material exists. The first risk is accidental change: an agent that begins by “cleaning” a raw export can destroy the evidence needed to review its decisions.
+A coding agent is an AI assistant that can use a workspace and available tools to carry out bounded work. It can often read files, write code, run commands, create outputs, and inspect what happened.
 
-## Your move
-
-Direct the agent to survey the sample project. Your command must say:
-
-- what it may inspect;
-- that it must not change anything; and
-- what evidence it should report.
-
-For example, you might ask it to list the project files, identify the raw input and project instructions, and report the tool or command it used.
-
-## Agent mode
-
-After your instruction, the agent performs only the approved read-only inspection. It reports actual paths and the evidence it used; it does not invent file contents or create an output.
-
-## Inspect
-
-Check that the reported paths exist and that the source lives under `data/raw/`. Confirm no generated file appeared and no source changed. If the agent cannot inspect the project, treat that as an access limitation, not a reason to guess.
-
-## Unlock
-
-A coding agent is a model paired with an action loop, workspace, and tools. Its useful loop is:
+A useful mental model is:
 
 ```text
 request → inspect → plan → act → check → report
 ```
 
-The read-only tool result is evidence from the agent environment. A fluent answer without that evidence is not a completed inspection.
+The agent may repeat parts of this loop. Code is the intermediary that makes many tasks expressible and repeatable: transform a spreadsheet, compare documents, query a database, create a report, or check a folder.
+
+## Predict
+
+An assistant gives a convincing description of a CSV but cannot name files in your project folder. What is likely missing: reasoning ability, file access, or a provider account?
+
+## Try it
+
+In a sample workspace, ask:
+
+> List the files you can inspect. Do not change anything. State which tool or command you used and what it found.
+
+## Inspect
+
+Check three things:
+
+1. The response names real files, not generic examples.
+2. It identifies evidence, such as a tool result or command output.
+3. No file was changed.
+
+## Limits that matter
+
+An agent cannot bypass permissions, obtain data it cannot access, or make an uncertain result true by saying it confidently. Tools and services may have limits, costs, policies, and side effects. Ask for approval before deletion, publication, external communication, purchases, or changes to important sources.
+
+## Reflect and record
+
+Name one task from your work that would benefit from the loop above. Record the task and its most important approval boundary in `progress.md`.
 
 ## Checkpoint
 
-Act 1 is unlocked when you have directed a read-only survey and inspected its evidence.
+Explain the difference between “an agent answered a question” and “an agent completed an inspectable task.”

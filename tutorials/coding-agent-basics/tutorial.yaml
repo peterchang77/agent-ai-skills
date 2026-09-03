@@ -1,6 +1,6 @@
 schema: 1
 id: coding-agent-basics
-title: Coding Agent Basics Mission
+title: Coding Agent Basics
 audience:
   - data scientists
   - office professionals
@@ -10,37 +10,11 @@ format:
   browser_entrypoint: README.md
   interactive_overlay: SKILL.md
   facilitator_skill: tutorial-facilitator
-delivery:
-  mode: mission-led-guided-build
-  learner_role: operator
-  agent_roles:
-    - coach
-    - operator
-  interaction_loop:
-    - brief
-    - learner-move
-    - operate
-    - inspect
-    - unlock
-    - record
-mission:
-  title: Trustworthy monthly report
-  outcome: Deliver a reviewable draft monthly report from raw CSV exports without modifying sources or resolving ambiguity without approval.
-  safe_project: examples/sample-project
-  acts:
-    - Survey the workspace safely
-    - Define the reporting job
-    - Investigate without changing sources
-    - Establish durable operating rules
-    - Package the repeatable workflow
-    - Prepare handoff and operating choices
-    - Review the trustworthy draft
 state:
   directory: .tutorial
   templates:
     learner_profile: templates/learner-profile.md
     progress: templates/progress.md
-    mission_log: templates/mission-log.md
     handoff: templates/handoff.md
 routes:
   - foundation
@@ -48,14 +22,14 @@ routes:
   - technical-transfer
   - goal-first
 required_outcomes:
-  - inspect-workspace-safely
+  - distinguish-model-provider-chat-agent
   - write-bounded-request
   - validate-an-agent-output
   - distinguish-markdown-agents-md-skill-tool
-  - create-proactive-handoff
+  - explain-proactive-compaction
   - make-model-selection-decision
 modules:
-  - modules/00-mission-setup.md
+  - modules/00-welcome-and-pretest.md
   - modules/01-what-is-a-coding-agent.md
   - modules/02-model-provider-chat-agent.md
   - modules/03-bounded-requests.md

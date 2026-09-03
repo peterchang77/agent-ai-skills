@@ -1,13 +1,12 @@
 ---
 id: capstone
-title: Act 7 — Review and hand off the trustworthy draft
+title: Build a reliable reporting workflow
 estimated_minutes: 45
 prerequisites:
   - model-selection-and-connection
-mission_act: review-the-draft
 objectives:
-  - direct an end-to-end review of the reporting workflow
-  - verify durable artifacts, validation evidence, and handoff readiness
+  - apply the course concepts in one inspectable workflow
+  - create durable instructions, a skill outline, validation evidence, and a handoff
 checkpoint: capstone
 required_artifacts:
   - request.md
@@ -23,48 +22,41 @@ adaptive:
   goal-first: full
 ---
 
-# Act 7 — Review and Hand Off the Trustworthy Draft
+# Capstone: Build a Reliable Reporting Workflow
 
-## Situation
+## Scenario
 
-The mission has a draft report, instructions, a reusable procedure, validation evidence, and a handoff. The final obstacle is proving that these parts fit together without pretending that a structural check proves the report is correct.
+A team receives monthly CSV exports and needs a draft summary. The source files must remain unchanged. Ambiguous records need human review before publication.
 
-## Your move
+Use [`examples/sample-project/`](../examples/sample-project/) or a safe equivalent. Keep all generated work separate from `data/raw/`.
 
-Tell the agent to review the mission artifacts and run the structural validator. Require it to report:
+## Build
 
-- which required files exist;
-- which evidence confirms raw inputs stayed separate from outputs;
-- exceptions still requiring human judgment; and
-- what the validator cannot prove.
+1. **Bound the task.** Create `request.md` for the report workflow.
+2. **Set project rules.** Create or adapt `AGENTS.md` with purpose, protected sources, output paths, and completion checks.
+3. **Preserve knowledge.** Put metric definitions and decisions in `notes/`.
+4. **Package the repeatable part.** Create a focused `SKILL.md` under `.agents/skills/monthly-report/`.
+5. **Validate.** Create `validation-note.md` that records input/output paths, checks, assumptions, and exceptions.
+6. **Choose intentionally.** Create `model-selection.md` for this workflow.
+7. **Prepare resumption.** Update `.tutorial/handoff.md` and `progress.md`.
 
-Use the sample project or a safe equivalent. Do not publish, send, or modify raw data.
-
-## Agent mode
-
-The agent runs the validator and reports its exact result. It must distinguish a passed structure check from semantic correctness, accurate calculations, approval to publish, or suitability for real data.
+You may ask an agent to propose or create these files, but inspect them. Do not publish, send a report, or modify raw inputs.
 
 ## Inspect
 
-From `tutorials/coding-agent-basics/`, run or ask the agent to run:
+Run:
 
 ```bash
+# Run from tutorials/coding-agent-basics/
 python3 checks/validate_tutorial.py --project examples/sample-project
 ```
 
-Then inspect `request.md`, `AGENTS.md`, `validation-note.md`, `.agents/skills/monthly-report/SKILL.md`, `.tutorial/handoff.md`, and `model-selection.md`. Confirm that they agree on protected sources, outputs, approval boundaries, and unresolved exceptions.
+The script checks expected paths and required headings only. Review content yourself: structure is not correctness.
 
-## Unlock
+## Reflect
 
-You have directed an agent through a complete, inspectable workflow:
-
-```text
-read-only survey → bounded request → protected investigation → validation
-→ durable project rules → reusable skill → handoff and operating decision → review
-```
-
-Code made the repeatable inspection and checking possible. Your judgment set the objective, boundaries, interpretation, and approval point.
+Which part of this workflow benefits most from code? Which part still needs a person’s judgment?
 
 ## Checkpoint
 
-Act 7 is complete when the mission log links the required artifacts and the learner can identify one responsibility that remains human: interpreting ambiguity, approving changes, or deciding whether to distribute the report.
+You have completed the course when your artifacts show the six required outcomes from [`SKILL.md`](../SKILL.md), you have run the structural check, and you can explain the evidence behind each claim.
