@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "name": "coding-agent-basics-tutorial",
+  "entrypoint": "SKILL.md",
+  "files": [
+    {"path": "SKILL.md", "lib_name": "tutorials/coding-agent-basics/SKILL.md"},
+    {"path": "COURSE.md", "lib_name": "tutorials/coding-agent-basics/COURSE.md"},
+    {"path": "tutorial.yaml", "lib_name": "tutorials/coding-agent-basics/tutorial.yaml"},
+    {"path": "modules", "lib_name": "tutorials/coding-agent-basics/modules"},
+    {"path": "templates", "lib_name": "tutorials/coding-agent-basics/templates"},
+    {"path": "examples", "lib_name": "tutorials/coding-agent-basics/examples"},
+    {"path": "checks/validate_tutorial.py", "lib_name": "tutorials/coding-agent-basics/checks/validate_tutorial.py", "mode": "0755"}
+  ]
+}

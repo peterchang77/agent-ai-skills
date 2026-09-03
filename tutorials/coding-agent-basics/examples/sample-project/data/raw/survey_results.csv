@@ -1,0 +1,7 @@
+respondent_id,status,score,submitted_at,department
+R-001,complete,8,2026-01-03,Operations
+R-002,complete,9,2026-01-04,Finance
+R-003,incomplete,,2026-01-05,Operations
+R-004,complete,7,2026-01-05,People
+R-002,complete,9,2026-01-06,Finance
+R-005,complete,not-recorded,2026-01-06,Sales
