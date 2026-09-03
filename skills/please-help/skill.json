@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "name": "please-help",
+  "entrypoint": "SKILL.md",
+  "files": [
+    {"path": "SKILL.md", "lib_name": "skills/please-help/SKILL.md"},
+    {"path": "references/conversation-flow.md", "lib_name": "skills/please-help/references/conversation-flow.md"},
+    {"path": "references/default-practices.md", "lib_name": "skills/please-help/references/default-practices.md"},
+    {"path": "references/code-and-deliverable-defaults.md", "lib_name": "skills/please-help/references/code-and-deliverable-defaults.md"},
+    {"path": "references/approval-boundaries.md", "lib_name": "skills/please-help/references/approval-boundaries.md"},
+    {"path": "references/execution-brief-template.md", "lib_name": "skills/please-help/references/execution-brief-template.md"}
+  ]
+}
