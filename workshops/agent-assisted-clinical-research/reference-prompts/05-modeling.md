@@ -1,7 +1,0 @@
-# Reference prompt — modeling
-
-Use this only after drafting your own request.
-
-> Read `workshop/05-modeling/{CONTEXT,CONTRACT,ACCEPTANCE}.md` and inspect the prepared feature/manifest files. First report target support and unique patients by frozen partition; stop if support is inadequate. Build a CPU-fast, reproducible baseline using the preselected masked three-state target. Verify patient-disjoint partitions and unique transition IDs. Fit preprocessing and class weights on development only, evaluate a small declared candidate set on validation, then write `selection-lock.json` before any locked-test evaluation. Make a separate command evaluate the selected configuration once on test_locked, writing prediction-level protected output and aggregate support/coverage, balanced accuracy, macro-F1, and an explicitly ordered confusion matrix. Use a fixed seed and actionable errors. Do not use test labels for selection, impute masked labels, train a GPU CNN, or describe results as clinical performance. Run targeted smoke checks and report what the metric does and does not establish.
-
-This is intentionally specific about study discipline, but leaves the agent to adapt to the actual feature schema.

@@ -1,46 +1,35 @@
 # Agent-Assisted Clinical Research Workshop
 
-A workshop seed for learning to direct, inspect, and revise coding-agent work in a small longitudinal imaging study. Participants use a prepared CheXpert Plus workspace and an approved local LLM endpoint to build real artifacts. This repository supplies the research context and review contracts; it intentionally does **not** supply the implementations participants are meant to create.
+This archive is a small set of research briefs for a live, agent-assisted workshop. Each exercise has one participant-visible file, `AGENT_CONTEXT.md`. It provides the domain facts, resource locations, safety boundary, and desired outcome that a researcher would otherwise have to explain repeatedly to an agent.
 
-## Learning outcome
+## Participant workflow
 
-By the end, a participant should be able to give an agent a bounded research-engineering request, inspect its assumptions and implementation, run meaningful validation, and revise the request when evidence exposes a problem. The scientific thread is a report-derived temporal-change target for serial chest radiographs. Outputs are weak pseudo-labels and agreement metrics, **not** clinical ground truth or diagnostic performance.
+1. Open the exercise’s `AGENT_CONTEXT.md`.
+2. Write your own request to your agent. Ask it to read that context and inspect the workspace before making assumptions.
+3. Review the agent’s proposed approach, direct implementation, run its checks, and inspect the resulting artifact.
+4. Iterate when evidence exposes a flaw.
 
-## Start here
+The context is not a ready-made prompt or implementation plan. You decide how to request, scope, and review the work.
 
-1. Open [`00-orientation/README.md`](00-orientation/README.md) and set up the supplied cloud workspace.
-2. Work through the exercise folders in order. Start each task from its `BRIEF.md`; do not open reference prompts until after your first attempt.
-3. Use `CONTEXT.md`, `CONTRACT.md`, and `ACCEPTANCE.md` to improve your own agent request and review its work.
-4. Compare with `reference-prompts/` or a `reference/` artifact only after an attempt or when recovering from a blocked exercise.
+| Exercise | Artifact the agent should create |
+|---|---|
+| [01 Data discovery](01-data-discovery/AGENT_CONTEXT.md) | a safe small-export/discovery CLI |
+| [02 Cohort curation](02-cohort-curation/AGENT_CONTEXT.md) | an auditable chronological cohort manifest |
+| [03 Report abstraction](03-report-abstraction/AGENT_CONTEXT.md) | a resumable LLM extraction/validation pipeline |
+| [04 Annotation tool](04-annotation-tool/AGENT_CONTEXT.md) | a single-file local review interface |
+| [05 Modeling](05-modeling/AGENT_CONTEXT.md) | a simple selected-and-locked baseline evaluation |
+| [06 Results and writing](06-results-and-writing/AGENT_CONTEXT.md) | figures, a LaTeX results report, and verified citations |
 
-| Exercise | Participant asks an agent to create | Key lesson |
-|---|---|---|
-| [01 Data discovery](01-data-discovery/BRIEF.md) | a safe dataset-inspection/download utility | inspect before exporting; make cost and scope explicit |
-| [02 Cohort curation](02-cohort-curation/BRIEF.md) | cohort construction and temporal-pair validation | an executable pipeline can still encode an invalid study definition |
-| [03 Report abstraction](03-report-abstraction/BRIEF.md) | resumable LLM extraction and structural validation | constrain weak labels; retain evidence and provenance |
-| [04 Annotation tool](04-annotation-tool/BRIEF.md) | a single-file review/annotation application | agents can build small, inspectable research tools |
-| [05 Modeling](05-modeling/BRIEF.md) | a simple baseline, selection workflow, and evaluation | choose on validation; protect the held-out partition |
-| [06 Results and writing](06-results-and-writing/BRIEF.md) | figures/tables and a concise LaTeX report | report what the analysis supports, including limitations |
+## Instructor workflow
 
-## What is intentionally pre-built
+The answer keys, live-demo prompts, reference implementations, common failure modes, and troubleshooting material must be provisioned **outside this checkout**—for example, in a separate private instructor repository or a separately mounted directory. Do not hide them in a dot directory within the participant workspace: an agent that can access them can read them.
 
-- Data locations, endpoint conventions, and environment-variable names.
-- Scientific definitions, fixed data/output contracts, and acceptance criteria.
-- Small valid/invalid abstraction examples and a finished annotation-tool example.
-- Optional reference prompts and reference implementations, separated from the default path.
+Project the answer key during the demonstration or share it only after independent work. Participants can either work along with their agents or review the demonstrated result.
 
-## What participants should build
+## What this archive includes
 
-The download/inspection utility, date-pairing/cohort code, LLM abstraction runner, validator, annotation UI, baseline training/evaluation program, plots, and LaTeX results artifact. Agents should do real work; participants remain responsible for study decisions and review.
-
-## Instructor setup
-
-The cloud image must provide the approved CheXpert Plus data or a documented download path, an approved OpenAI-compatible LLM endpoint, and a Python environment. Put deployment-specific values in the workspace environment, never in Git. See [`shared/workspace-contract.md`](shared/workspace-contract.md).
+The `tools/` directory contains setup helpers only. It intentionally does not contain the primary artifacts participants are meant to ask agents to build. The cloud environment supplies approved data access, a local/institutional LLM endpoint, and its deployment-specific documentation.
 
 ## Data handling
 
-CheXpert Plus and all derived artifacts remain subject to the applicable data-use agreement. Do not commit credentials, raw protected reports/images, unrestricted exports, or endpoint logs containing protected content. The endpoint must be approved for the report text it receives. See [`shared/data-and-llm-safety.md`](shared/data-and-llm-safety.md).
-
-## Suggested timing
-
-A 110-minute first session: orientation (10 min), discovery (15), curation (20), abstraction plus annotation (30), modeling (20), and results/writing (15). An instructor may demonstrate the completed full pipeline between participant tasks, but each exercise should run independently.
+CheXpert Plus data and derived artifacts remain subject to the applicable data-use agreement. Do not commit raw reports, images, exports, endpoint logs, credentials, signed URLs, or tokens. Use only instructor-approved data locations and endpoints. This workshop produces report-derived weak pseudo-labels and agreement metrics; it does not establish clinical ground truth, diagnostic performance, or clinical utility.

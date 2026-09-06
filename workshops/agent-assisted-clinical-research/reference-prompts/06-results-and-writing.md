@@ -1,7 +1,0 @@
-# Reference prompt — results and writing
-
-Use this only after drafting your own request.
-
-> Read `workshop/06-results-and-writing/{CONTEXT,CONTRACT,ACCEPTANCE}.md` and inventory the saved result artifacts before writing. Create reproducible scripts/commands that generate a labeled figure and table-ready metrics output from those artifacts, then write a concise `methods-results.tex` and verified `references.bib`. Every numeric statement must be traceable to an input result file; every citation must be verified from a supplied trusted source. State the cohort temporal-ordering/split protocol, weak-label abstraction/masking, validation-based selection, metrics with support, and at least two specific limitations. Use language of agreement with report-derived pseudo-labels, not diagnosis or clinical performance. Identify at least three plausible overclaims before drafting and avoid them. Compile with the available TeX toolchain, inspect the log, and report generated paths, commands, validation, and unresolved limitations. Do not invent missing statistics, confidence intervals, p-values, or bibliographic metadata.
-
-The agent receives constraints and evidence requirements, not a prewritten conclusion.

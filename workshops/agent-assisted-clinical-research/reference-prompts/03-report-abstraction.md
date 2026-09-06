@@ -1,7 +1,0 @@
-# Reference prompt — report abstraction
-
-Use this only after drafting your own request.
-
-> Read `workshop/03-report-abstraction/{CONTEXT,CONTRACT,ACCEPTANCE}.md`, `schema.json`, and the examples. Inspect existing endpoint/client conventions and propose an output layout plus retry/resume semantics before coding. Build a CLI that reads the cohort manifest and, for a bounded initial run, sends only approved prior/current impressions to the configured OpenAI-compatible endpoint. Use one fixed prompt/schema/model/decode configuration per run. Persist raw request/response or terminal error records only in ignored protected storage; persist structured records with transition ID, model, prompt hash/version, timestamp, decode settings, and status. `--resume` must skip terminal records and never resubmit completed records to seek a better answer. Implement validation that masks instead of coerces unsupported/uncertain/unaligned labels, checks a current-impression evidence quote, and recognizes bare-negative resolution and isolated non-opacity failures. Run a ten-record smoke test and demonstrate resume plus an invalid-example validation. Do not send images/identifiers, claim clinical truth, or change the prompt/model during the run.
-
-The request gives the agent implementation freedom while making provenance and failure handling reviewable.
