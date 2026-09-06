@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Report2Delta workshop abstraction v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["comparison", "concepts"],
+  "properties": {
+    "comparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alignment", "valid", "reason"],
+      "properties": {
+        "alignment": {"enum": ["aligned", "not_aligned", "uncertain"]},
+        "valid": {"type": "boolean"},
+        "reason": {"type": ["string", "null"]}
+      }
+    },
+    "concepts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pleural_effusion", "pulmonary_edema", "lung_opacity", "support_devices"],
+      "properties": {
+        "pleural_effusion": {"$ref": "#/$defs/concept"},
+        "pulmonary_edema": {"$ref": "#/$defs/concept"},
+        "lung_opacity": {"$ref": "#/$defs/concept"},
+        "support_devices": {"$ref": "#/$defs/concept"}
+      }
+    }
+  },
+  "$defs": {
+    "concept": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "certainty", "evidence_quote", "reason"],
+      "properties": {
+        "state": {"enum": ["new", "worsened", "improved", "stable", "resolved", "not_mentioned", "present_no_comparison", "indeterminate", "not_applicable"]},
+        "certainty": {"enum": ["certain", "uncertain", "not_applicable"]},
+        "evidence_quote": {"type": ["string", "null"]},
+        "reason": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

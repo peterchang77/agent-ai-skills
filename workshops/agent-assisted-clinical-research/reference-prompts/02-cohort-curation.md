@@ -1,0 +1,7 @@
+# Reference prompt — cohort curation
+
+Use this only after drafting your own request.
+
+> Read `workshop/02-cohort-curation/{CONTEXT,CONTRACT,ACCEPTANCE}.md` and inspect the prepared metadata schema. Before writing code, identify date-bearing fields/report-header availability and propose how to demonstrate chronology; do not assume an order/index field is a date. Then create a deterministic cohort-builder that writes the required manifest and audit. Retain only same-patient transitions with nonblank impressions and documented `prior_date < current_date`; record date source and explicit exclusion reasons. Make patient-disjoint development/validation/test_locked assignments with a recorded seed. Add assertions/tests that reject inverted retained pairs and patient leakage, and make ambiguous/unparseable dates excluded rather than fabricated. Run it on the assigned small input and show the audit, sample manifest schema, checks, and limitations. Do not use test labels, do not make clinical claims, and stop/report if the source cannot support temporal validity.
+
+Notice that this prompt makes the research decision—what counts as time—explicit, rather than asking the agent merely to “pair studies.”
