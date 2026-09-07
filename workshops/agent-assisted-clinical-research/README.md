@@ -2,7 +2,9 @@
 
 A hands-on workshop in using coding agents to move from an unfamiliar research resource to a reproducible analysis and written result.
 
-This repository is a reusable workshop framework. The instructor chooses the dataset, research question, data-access method, and example artifacts for a particular offering. Participants use a prepared workspace and an agent to create real, reviewable work rather than merely execute a prebuilt notebook.
+Participants begin with a prepared research workspace: data to inspect, documentation and APIs to explore, and an agent that can read files, write code, run commands, and validate its work. They direct that agent through a connected sequence of real tasks—discovering the data, creating an analytic dataset, performing structured abstraction, building a small review tool, running an analysis, and writing up the result.
+
+The workshop is designed around the moments where research work most needs judgment. Participants decide what the agent should inspect before acting, what an acceptable output looks like, which assumptions need evidence, how the resulting artifact should be checked, and when to ask for a revision. The result is a set of working artifacts and a clearer method for using agents as collaborators in research practice—not merely a prebuilt notebook executed end to end.
 
 ## What participants practice
 
@@ -21,7 +23,7 @@ The central skill is directing and reviewing an agent: deciding what the agent s
 
 ## Workshop structure
 
-The six stages form a general research workflow. Their concrete content is supplied by the dataset and exercise selected for a workshop offering.
+The six stages follow the path from source material to an evidence-backed written result. Each stage produces an artifact used by the next one.
 
 | Stage | Typical artifact created by an agent | Participant practice |
 |---|---|---|
@@ -31,8 +33,6 @@ The six stages form a general research workflow. Their concrete content is suppl
 | [04. Annotation tool](04-annotation-tool/AGENT_CONTEXT.md) | A compact local review interface | Requesting a narrow, inspectable tool for a real task |
 | [05. Analysis or modeling](05-modeling/AGENT_CONTEXT.md) | A reproducible baseline analysis and evaluation | Defining a selection and evaluation workflow before interpreting results |
 | [06. Results and writing](06-results-and-writing/AGENT_CONTEXT.md) | Figures, a LaTeX report, and citations | Connecting written claims to saved evidence |
-
-Stages can be run in sequence or adapted independently. An instructor may use the full workflow, demonstrate selected stages, or substitute a different example while retaining the same learning pattern.
 
 ## Participant workflow
 
@@ -59,7 +59,7 @@ It supports two teaching styles:
 
 ### Sharing the guide or withholding it during an exercise
 
-The instructor guide is intentionally included in this repository so it can be shared, reviewed, and reused. An agent that can access this checkout can also read it.
+The instructor guide is included in this repository so participants can review the live demonstration and its answer keys. An agent that can access this checkout can also read it.
 
 When you want participants to work without answer-key access, create a participant-only copy before launching their sessions:
 
@@ -76,7 +76,7 @@ Before the session, the instructor provides:
 - a documented data source, data mount, or download route;
 - an authenticated workspace with the necessary software and packages;
 - any required API or model-endpoint configuration;
-- an exercise-specific input resource suitable for the selected stages;
+- the input resources required by each workshop stage;
 - a writable project directory for each participant; and
 - any reference artifacts used in the live demonstration.
 
@@ -86,7 +86,7 @@ The included preflight helper checks for `uv`, Python, and the configured LLM en
 bash tools/preflight.sh
 ```
 
-It reports only whether a variable is set, never its value. Adapt or replace it when an offering does not use an LLM endpoint.
+It reports only whether a variable is set, never its value. Omit it when the workshop does not use an LLM endpoint.
 
 ## Repository layout
 
@@ -102,16 +102,4 @@ tools/preflight.sh
 tools/make-participant-copy.sh
 ```
 
-The `tools/` directory contains setup and distribution helpers. The primary exercise artifacts are not prebuilt: participants direct their agents to create them. The existing context files and answer keys provide one concrete example that instructors can adapt, replace, or extend for another dataset or research workflow.
-
-## Using this framework for another topic
-
-To adapt the workshop, replace a stage’s `AGENT_CONTEXT.md` with a brief that states:
-
-- the available data, documentation, and workspace resources;
-- the artifact to create;
-- the scientific or operational background needed to make good decisions;
-- the required outputs and evidence of completion; and
-- the scope of the exercise.
-
-Then update the corresponding instructor answer key with the intended live flow, a reference prompt, expected outputs, common mistakes, and useful recovery prompts. This preserves the workshop’s core experience while allowing the example to change.
+The `tools/` directory contains setup and distribution helpers. The primary exercise artifacts are not prebuilt: participants direct their agents to create them.
