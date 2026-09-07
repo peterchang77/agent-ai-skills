@@ -1,8 +1,6 @@
 # From Data to Evidence with Research Agents
 
-A hands-on workshop in using coding agents to move from an unfamiliar research resource to a reproducible analysis and written result.
-
-Participants begin with a prepared research workspace: data to inspect, documentation and APIs to explore, and an agent that can read files, write code, run commands, and validate its work. They direct that agent through a connected sequence of real tasks—discovering the data, creating an analytic dataset, performing structured abstraction, building a small review tool, running an analysis, and writing up the result.
+Participants enter a prepared research workspace with data to inspect, documentation and APIs to explore, and an agent that can read files, write code, run commands, and validate its work. They direct that agent through a connected sequence of real tasks—from discovering a resource and creating an analytic dataset to performing structured abstraction, building a small review tool, running an analysis, and writing up the result.
 
 The workshop is designed around the moments where research work most needs judgment. Participants decide what the agent should inspect before acting, what an acceptable output looks like, which assumptions need evidence, how the resulting artifact should be checked, and when to ask for a revision. The result is a set of working artifacts and a clearer method for using agents as collaborators in research practice—not merely a prebuilt notebook executed end to end.
 
