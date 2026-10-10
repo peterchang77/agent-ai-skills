@@ -62,9 +62,10 @@ A small, synthetic clinic group has three sites and a handful of files: visit re
 visit notes. The work answers three questions and produces a report:
 
 ```text
-raw files -> profile -> plan and clean -> cohort -> analysis -> references -> abstract
-                                  \-> dashboard, Word/Excel export
-                                  \-> a reusable tool and skill -> Git
+raw files → profile → plan and clean → cohort → analysis → references → abstract
+                             │
+                             ├─→ dashboard, Word/Excel export
+                             └─→ reusable tool and skill → Git
 ```
 
 The questions are an operational one (which clinics meet their HbA1c target), a research one (was a follow-up call associated with a recheck, with

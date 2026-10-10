@@ -16,7 +16,7 @@ scripts/build.py                      validate references; generate docs/ and mk
 
 ```bash
 uv run scripts/build.py                               # validate + generate docs/ and mkdocs.yml
-uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
+uvx --with "mkdocs<2" --with mkdocs-material==9.7.7 mkdocs serve -a 127.0.0.1:8000
 ```
 
 `docs/` and `mkdocs.yml` are generated; edit `content/` and `mkdocs.base.yml`.

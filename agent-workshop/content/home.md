@@ -1,7 +1,10 @@
+<div class="wk-hero" markdown>
+
 # Working with Coding Agents
 
-A practical course for researchers who want to use an AI coding agent on their own data: an assistant that reads your files, runs code, shows its
-evidence, and leaves something you can check and repeat. It teaches the habits that make the results trustworthy.
+A practical course for researchers ready to put AI coding agents to work on their data. You’ll learn how to collaborate with assistants that read your files, execute code, and show their work, focusing on the critical habits that keep your findings verifiable and reproducible.
+
+</div>
 
 ## What you will be able to do
 

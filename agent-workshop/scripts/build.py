@@ -161,11 +161,13 @@ def render_concept(cid, here):
         out += ["", "## Related", "", " · ".join(f"[{short(concepts[c][0])}]({rel(here, concept_file(c))})" for c in rel_links)]
     return "\n".join(out) + "\n"
 
+def badge(cls, text=None):
+    return f'<span class="wk-badge wk-{cls}">{text or KIND.get(cls, cls.title())}</span>'
 KIND = {"full": "Full step", "mini": "Quick step", "detour": "Optional detour", "advanced": "Advanced"}
 def render_beat(r, here):
     fm, body = beats[r]
     ex = {label(s): example_block(s, r, here) for s in scenarios if (s, r) in examples}
-    meta = f"*{KIND[fm['kind']]} · about {fm['time']}*"
+    meta = f'<p class="wk-meta">{badge(fm["kind"])} &nbsp;about {fm["time"]}</p>'
     page = body.replace("<!-- example -->", tabs(ex))
     out = [f"# {fm['title']}", "", meta, "", resolve(page, here), "", "## Concepts behind this", ""]
     for c in fm["teaches"]:
@@ -194,12 +196,12 @@ def write(path, text):
 
 # ---------------- generate ----------------
 step_path = lambda s: concept_file(s["concept"]) if "concept" in s else SETUP_FILE if "setup" in s else beat_file(s["beat"])
-step_type = lambda s: "Concept" if "concept" in s else "Demo" if "beat" in s else "Setup"
+step_type = lambda s: badge("concept", "Concept") if "concept" in s else badge("demo", "Demo") if "beat" in s else badge("setup", "Setup")
 def step_desc(s):
     if "concept" in s: return concepts[s["concept"]][0]["blurb"]
     if "beat" in s: return beats[s["beat"]][0]["summary"]
     return "Restore the data kit and any starting point you need."
-def beat_kind(s): return KIND[beats[s["beat"]][0]["kind"]] if "beat" in s else "Setup"
+def beat_kind(s): return badge(beats[s["beat"]][0]["kind"]) if "beat" in s else badge("setup", "Setup")
 def beat_time(s): return beats[s["beat"]][0]["time"] if "beat" in s else ""
 
 def toc_tables(kind, toc, index):
@@ -219,6 +221,7 @@ def toc_tables(kind, toc, index):
     return "\n".join(out)
 
 if DOCS.exists(): shutil.rmtree(DOCS)
+shutil.copytree(ROOT / "assets", DOCS, dirs_exist_ok=True)   # logo, css
 nav = [{"Home": "index.md"}]
 for tid, (fm, body) in tracks.items():
     kind = fm["track"]; index = Path(kind) / "index.md"

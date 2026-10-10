@@ -1,0 +1,116 @@
+/* Calm, clinical theme for the workshop site. No external fonts or requests. */
+:root {
+  --md-text-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --md-code-font: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #0f766e;
+  --md-primary-fg-color--light: #14b8a6;
+  --md-primary-fg-color--dark: #115e59;
+  --md-accent-fg-color: #0d9488;
+  --md-default-bg-color: #fbfdfd;
+  --md-typeset-a-color: #0f766e;
+  --wk-card-bg: #ffffff;
+  --wk-card-border: #d5e6e4;
+  --wk-soft: #eef7f6;
+}
+[data-md-color-scheme="slate"] {
+  --md-hue: 200;
+  --md-primary-fg-color: #115e59;
+  --md-primary-fg-color--light: #2dd4bf;
+  --md-primary-fg-color--dark: #0f4c48;
+  --md-accent-fg-color: #5eead4;
+  --md-typeset-a-color: #5eead4;
+  --wk-card-bg: #1b2530;
+  --wk-card-border: #2c3a48;
+  --wk-soft: #1a2530;
+}
+
+/* Reading comfort */
+.md-typeset { font-size: 0.78rem; line-height: 1.7; }
+.md-typeset h1 { font-weight: 650; letter-spacing: -0.01em; color: var(--md-default-fg-color); }
+.md-typeset h1, .md-typeset h2, .md-typeset h3 { color: var(--md-default-fg-color); }
+.md-typeset h2 { font-weight: 600; margin-top: 2.2em; padding-bottom: 0.25em; border-bottom: 1px solid var(--wk-card-border); }
+.md-typeset h3 { font-weight: 600; }
+.md-content__inner { max-width: 46rem; }
+.md-typeset h1 + p > em:only-child { color: var(--md-default-fg-color--light); }
+
+/* Tables */
+.md-typeset table:not([class]) {
+  font-size: 0.72rem; border: 1px solid var(--wk-card-border); border-radius: 8px;
+  box-shadow: none; overflow: hidden; display: table; width: 100%;
+}
+.md-typeset table:not([class]) th { background: var(--wk-soft); font-weight: 600; }
+.md-typeset table:not([class]) td, .md-typeset table:not([class]) th { padding: 0.6em 0.9em; vertical-align: top; }
+
+/* Cards on the home page */
+.md-typeset .grid.cards > ul > li, .md-typeset .grid.cards > ol > li {
+  background: var(--wk-card-bg); border: 1px solid var(--wk-card-border); border-radius: 12px;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.md-typeset .grid.cards > ul > li:hover, .md-typeset .grid.cards > ol > li:hover {
+  border-color: var(--md-primary-fg-color--light); transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(15, 118, 110, .12);
+}
+.md-typeset .grid.cards hr { border-color: var(--wk-card-border); }
+
+@media (min-width: 60em) { .md-typeset .grid.cards { grid-template-columns: repeat(3, 1fr); } }
+
+/* Hero (home page) */
+.wk-hero {
+  margin: 0 0 1.6rem; padding: 1.6rem 1.6rem 1.3rem; border-radius: 14px;
+  background: linear-gradient(135deg, #0f766e 0%, #0e7490 100%); color: #fff;
+}
+.md-typeset .wk-hero h1 { color: #fff; margin: 0 0 .4rem; font-size: 2rem; }
+.wk-hero p { margin: 0; font-size: 0.9rem; max-width: 36rem; color: rgba(255,255,255,.92); }
+
+/* Workshop-example admonition: clearly set apart from the general text */
+.md-typeset .admonition.example, .md-typeset details.example {
+  border-color: #0e7490; border-width: 0 0 0 4px; border-radius: 0 8px 8px 0;
+  background: var(--wk-soft); box-shadow: none;
+}
+.md-typeset .example > .admonition-title, .md-typeset .example > summary {
+  background: transparent; font-weight: 650; color: #0e7490;
+}
+[data-md-color-scheme="slate"] .md-typeset .example > .admonition-title { color: #67e8f9; }
+.md-typeset .example > .admonition-title::before, .md-typeset .example > summary::before { background-color: #0e7490; }
+
+/* Badges for step type and kind */
+.wk-badge {
+  display: inline-block; padding: .05em .65em; border-radius: 999px; font-size: .68rem; font-weight: 600;
+  border: 1px solid transparent; vertical-align: middle; white-space: nowrap;
+}
+.wk-concept  { background: #e0f2fe; color: #075985; border-color: #bae6fd; }
+.wk-demo     { background: #ccfbf1; color: #115e59; border-color: #99f6e4; }
+.wk-setup    { background: #f1f5f9; color: #475569; border-color: #e2e8f0; }
+.wk-full     { background: #ccfbf1; color: #115e59; border-color: #99f6e4; }
+.wk-mini     { background: #e0f2fe; color: #075985; border-color: #bae6fd; }
+.wk-detour   { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+.wk-advanced { background: #ede9fe; color: #5b21b6; border-color: #ddd6fe; }
+[data-md-color-scheme="slate"] .wk-badge { background: transparent; }
+[data-md-color-scheme="slate"] .wk-concept, [data-md-color-scheme="slate"] .wk-mini { color: #7dd3fc; border-color: #0c4a6e; }
+[data-md-color-scheme="slate"] .wk-demo, [data-md-color-scheme="slate"] .wk-full { color: #5eead4; border-color: #115e59; }
+[data-md-color-scheme="slate"] .wk-setup { color: #cbd5e1; border-color: #334155; }
+[data-md-color-scheme="slate"] .wk-detour { color: #fcd34d; border-color: #78350f; }
+[data-md-color-scheme="slate"] .wk-advanced { color: #c4b5fd; border-color: #4c1d95; }
+.wk-meta { margin: -.4rem 0 1.2rem; color: var(--md-default-fg-color--light); font-size: .72rem; }
+
+/* Code */
+.md-typeset pre > code { border-radius: 8px; font-size: .74em; }
+.md-typeset .highlight { border: 1px solid var(--wk-card-border); border-radius: 8px; }
+
+/* Prompts are prose: wrap them instead of scrolling sideways */
+.md-typeset div.highlight:not([class*="language-"]) pre, .md-typeset div.highlight:not([class*="language-"]) pre > code { white-space: pre-wrap !important; overflow-wrap: anywhere; overflow-x: hidden; }
+
+/* Tabs */
+.md-typeset .tabbed-set { border-radius: 8px; }
+
+/* Footer navigation */
+.md-footer__link { border-radius: 8px; }
+
+@media print {
+  .md-header, .md-tabs, .md-sidebar, .md-footer { display: none; }
+  .md-content__inner { max-width: none; margin: 0; }
+  .wk-hero { background: none; color: inherit; border: 1px solid #999; }
+  .wk-hero h1, .wk-hero p { color: inherit; }
+}
