@@ -1,0 +1,228 @@
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["pyyaml==6.0.2"]
+# ///
+"""Validate content and generate docs/ + mkdocs.yml.
+
+Source of truth is content/:
+  concepts/<group>/<id>.md          scenario-independent concept pages
+  beats/<role>/general.md           the general (reusable) part of one demo step
+  beats/<role>/<scenario>.md        the scenario-specific example for that step
+  setup/primer.md, setup/<scenario>.md
+  paths/*.md                        tracks (track: concepts|demo) and mixed presenter paths
+
+A beat page = general.md with `<!-- example -->` replaced by one tab per scenario, each holding a
+labelled "Workshop example" admonition built from <role>/<scenario>.md.
+
+Link syntax in content:  (concept:ID)  (beat:ROLE)  (setup:ANCHOR)  (guide:NAME)
+Usage: uv run scripts/build.py
+"""
+import os, re, shutil, sys
+from pathlib import Path
+import yaml
+
+ROOT = Path(__file__).resolve().parent.parent
+CONTENT, DOCS = ROOT / "content", ROOT / "docs"
+REPO_URL = "https://github.com/peterchang77/agent-ai-skills/tree/main/guides/"
+errors: list[str] = []
+
+
+def load(p: Path):
+    m = re.match(r"---\n(.*?)\n---\n(.*)", p.read_text(), re.S)
+    if not m:
+        errors.append(f"{p}: missing front matter")
+        return {}, p.read_text()
+    return yaml.safe_load(m[1]) or {}, m[2].strip()
+
+
+concepts = {}   # id -> (fm, body)
+for p in sorted((CONTENT / "concepts").rglob("*.md")):
+    fm, body = load(p); fm["group"] = p.parent.name; concepts[fm.get("id")] = (fm, body)
+beats = {}      # role -> (fm, body)
+examples = {}   # (scenario, role) -> (fm, body)
+for d in sorted((CONTENT / "beats").iterdir()):
+    for p in sorted(d.glob("*.md")):
+        fm, body = load(p)
+        if p.name == "general.md": beats[fm.get("role")] = (fm, body)
+        else: examples[(fm.get("scenario"), fm.get("role"))] = (fm, body)
+tracks = {}
+for p in sorted((CONTENT / "paths").glob("*.md")):
+    fm, body = load(p); tracks[fm.get("id")] = (fm, body)
+primer = load(CONTENT / "setup" / "primer.md")
+setup_scn = {}
+for p in sorted((CONTENT / "setup").glob("*.md")):
+    if p.name != "primer.md":
+        fm, body = load(p); setup_scn[fm["scenario"]] = (fm, body)
+scenarios = sorted(setup_scn, key=lambda s: (s != "toy", s))
+label = lambda s: setup_scn[s][0].get("label", s)
+
+# ---------------- derived + validation ----------------
+for cid, (fm, _) in concepts.items():
+    fm["beats"] = [r for r, (bfm, _) in beats.items() if cid in (bfm.get("teaches") or [])]
+for cid, (fm, body) in concepts.items():
+    for k in ("id", "title", "blurb"):
+        if k not in fm: errors.append(f"concept {cid}: missing '{k}'")
+    for rel in fm.get("related", []) or []:
+        if rel not in concepts: errors.append(f"concept {cid}: unknown related '{rel}'")
+for role, (fm, body) in beats.items():
+    for k in ("title", "kind", "summary", "time", "teaches"):
+        if k not in fm: errors.append(f"beat {role}: missing '{k}'")
+    for n in fm.get("needs", []) or []:
+        if n not in beats: errors.append(f"beat {role}: needs unknown beat '{n}'")
+    for t in fm.get("teaches", []) or []:
+        if t not in concepts: errors.append(f"beat {role}: teaches unknown concept '{t}'")
+    if "<!-- example -->" not in body: errors.append(f"beat {role}: general.md lacks <!-- example --> marker")
+    if not any((s, role) in examples for s in scenarios): errors.append(f"beat {role}: no scenario example")
+for (sc, role), (fm, body) in examples.items():
+    if role not in beats: errors.append(f"example {sc}/{role}: no general.md")
+    if sc not in setup_scn: errors.append(f"example {sc}/{role}: unknown scenario")
+    for k in ("starts_from", "produces", "prompt"):
+        if k not in fm: errors.append(f"example {sc}/{role}: missing '{k}'")
+anchors = set(re.findall(r"^#+\s+(.*)$", primer[1], re.M))
+slug = lambda t: re.sub(r"[^\w\- ]", "", t.lower()).strip().replace(" ", "-")
+anchor_ids = {slug(a) for a in anchors} | {slug(a) for _, (_, b) in setup_scn.items() for a in re.findall(r"^#+\s+(.*)$", b, re.M)}
+all_bodies = [(f"concept {c}", b) for c, (_, b) in concepts.items()] + \
+             [(f"beat {r}", b) for r, (_, b) in beats.items()] + \
+             [(f"example {k}", b) for k, (_, b) in examples.items()]
+for src, body in all_bodies:
+    for kind, ident in re.findall(r"\]\((concept|beat|setup|guide):([\w#-]*)\)", body):
+        if kind == "concept" and ident not in concepts: errors.append(f"{src}: broken link concept:{ident}")
+        if kind == "beat" and ident not in beats: errors.append(f"{src}: broken link beat:{ident}")
+        if kind == "setup" and ident and ident not in anchor_ids: errors.append(f"{src}: unknown setup anchor {ident}")
+        if kind == "guide" and not (ROOT.parent / "guides" / ident).exists(): errors.append(f"{src}: unknown guide {ident}")
+
+def steps_of(fm):
+    if "sections" in fm: return [(sec["name"], sec["steps"]) for sec in fm["sections"]]
+    return [(None, fm.get("steps", []))]
+for tid, (fm, _) in tracks.items():
+    for _, steps in steps_of(fm):
+        for s in steps:
+            if "concept" in s and s["concept"] not in concepts: errors.append(f"track {tid}: unknown concept {s['concept']}")
+            if "beat" in s and s["beat"] not in beats: errors.append(f"track {tid}: unknown beat {s['beat']}")
+    if fm.get("track") == "demo":   # every beat's prerequisites must appear earlier in the demo track
+        seen = []
+        for _, steps in steps_of(fm):
+            for s in steps:
+                if "beat" in s:
+                    for n in beats[s["beat"]][0].get("needs", []) or []:
+                        if n not in seen: errors.append(f"track {tid}: {s['beat']} needs {n} earlier")
+                    seen.append(s["beat"])
+if errors:
+    print("\n".join(errors)); sys.exit(1)
+tr = [t for t in tracks.values() if t[0].get("track") == "concepts"]
+covered = {s["concept"] for t in tr for _, st in steps_of(t[0]) for s in st if "concept" in s}
+for c in concepts:
+    if c not in covered: print(f"note: concept '{c}' is not in the concept track")
+dtr = [t for t in tracks.values() if t[0].get("track") == "demo"]
+dcov = {s["beat"] for t in dtr for _, st in steps_of(t[0]) for s in st if "beat" in s}
+for b in beats:
+    if b not in dcov: print(f"note: beat '{b}' is not in the demo track")
+
+# ---------------- rendering helpers ----------------
+concept_file = lambda c: Path("concepts") / f"{c}.md"
+beat_file = lambda r: Path("demo") / f"{r}.md"
+SETUP_FILE = Path("demo") / "setup.md"
+rel = lambda frm, to: Path(os.path.relpath(to, frm.parent)).as_posix()
+
+def resolve(text: str, here: Path) -> str:
+    text = re.sub(r"\]\(concept:([\w-]+)\)", lambda m: f"]({rel(here, concept_file(m[1]))})", text)
+    text = re.sub(r"\]\(beat:([\w-]+)\)", lambda m: f"]({rel(here, beat_file(m[1]))})", text)
+    text = re.sub(r"\]\(setup:([\w-]*)\)", lambda m: f"]({rel(here, SETUP_FILE)}{'#' + m[1] if m[1] else ''})", text)
+    return re.sub(r"\]\(guide:([\w-]+)\)", lambda m: f"]({REPO_URL}{m[1]}/)", text)
+
+indent = lambda t, n=4: "\n".join(" " * n + l if l.strip() else "" for l in t.strip().splitlines())
+tabs = lambda items: "\n\n".join(f'=== "{k}"\n\n{indent(v)}' for k, v in items.items())
+
+def example_block(sc, role, here, full=True):
+    fm, body = examples[(sc, role)]
+    if not full:
+        inner = f"```text\n{fm['prompt'].strip()}\n```"
+    else:
+        head = (f"**Start from:** {fm['starts_from']} ([how to restore]({rel(here, SETUP_FILE)}#restore-a-starting-point))  \n"
+                f"**Produces:** {fm['produces']}\n\n")
+        inner = head + "**Prompt**\n\n```text\n" + fm["prompt"].strip() + "\n```\n\n" + body
+    return f'!!! example "Workshop example · {label(sc)}"\n\n{indent(inner)}'
+
+short = lambda fm: fm.get("short") or fm["title"]
+
+def render_concept(cid, here):
+    fm, body = concepts[cid]
+    demos = []
+    for r in fm["beats"]:
+        bfm = beats[r][0]
+        t = {label(s): example_block(s, r, here, full=False) for s in scenarios if (s, r) in examples}
+        demos.append(f"### {bfm['title']}\n\n{bfm['summary']}\n\n{tabs(t)}\n\n[Full step: {bfm['title']} →]({rel(here, beat_file(r))})")
+    if demos: body = body.replace("<!-- demos -->", "\n\n".join(demos))
+    else: body = re.sub(r"\n*## Demo it\s*\n\s*<!-- demos -->\s*", "\n", body)
+    out = [f"# {fm['title']}", "", f"*{fm['blurb']}*", "", resolve(body, here)]
+    rel_links = [c for c in fm.get("related", []) or []]
+    if rel_links:
+        out += ["", "## Related", "", " · ".join(f"[{short(concepts[c][0])}]({rel(here, concept_file(c))})" for c in rel_links)]
+    return "\n".join(out) + "\n"
+
+KIND = {"full": "Full step", "mini": "Quick step", "detour": "Optional detour", "advanced": "Advanced"}
+def render_beat(r, here):
+    fm, body = beats[r]
+    ex = {label(s): example_block(s, r, here) for s in scenarios if (s, r) in examples}
+    meta = f"*{KIND[fm['kind']]} · about {fm['time']}*"
+    page = body.replace("<!-- example -->", tabs(ex))
+    out = [f"# {fm['title']}", "", meta, "", resolve(page, here), "", "## Concepts behind this", ""]
+    for c in fm["teaches"]:
+        cf = concepts[c][0]
+        out.append(f"- **{short(cf)}.** {cf['blurb']} [Go deeper →]({rel(here, concept_file(c))})")
+    if fm.get("needs"):
+        out += ["", "**Builds on:** " + ", ".join(f"[{beats[n][0]['title']}]({rel(here, beat_file(n))})" for n in fm["needs"])]
+    return "\n".join(out) + "\n"
+
+def render_setup(here):
+    fm, body = primer
+    out = [f"# {fm['title']}", "", resolve(body, here), "", "## Your scenario's data", "",
+           tabs({label(s): setup_scn[s][1] for s in scenarios})]
+    return resolve("\n".join(out), here) + "\n"
+
+def render_step(step, here):
+    if "concept" in step: return render_concept(step["concept"], here)
+    if "beat" in step: return render_beat(step["beat"], here)
+    return render_setup(here)
+def step_title(step):
+    if "concept" in step: return short(concepts[step["concept"]][0])
+    if "beat" in step: return beats[step["beat"]][0]["title"]
+    return "Setup"
+def write(path, text):
+    (DOCS / path).parent.mkdir(parents=True, exist_ok=True); (DOCS / path).write_text(text)
+
+# ---------------- generate ----------------
+if DOCS.exists(): shutil.rmtree(DOCS)
+nav, home = [{"Home": "index.md"}], []
+for tid, (fm, body) in tracks.items():
+    kind = fm.get("track")
+    if kind in ("concepts", "demo"):
+        sections = []
+        for name, steps in steps_of(fm):
+            entries = []
+            for s in steps:
+                f = concept_file(s["concept"]) if "concept" in s else SETUP_FILE if "setup" in s else beat_file(s["beat"])
+                write(f, render_step(s, f)); entries.append({step_title(s): f.as_posix()})
+            sections.append({name: entries} if name else entries)
+        flat = [e for sec in sections for e in (sec if isinstance(sec, list) else [sec])]
+        nav.append({fm["title"]: sections if any(isinstance(s, dict) for s in sections) and "sections" in fm else flat})
+        first_steps = steps_of(fm)[0][1][0]
+        first = (concept_file(first_steps["concept"]) if "concept" in first_steps else SETUP_FILE if "setup" in first_steps else beat_file(first_steps["beat"])).as_posix()
+    else:
+        entries, rows, total = [], [], 0
+        sheet = Path("paths") / tid / "index.md"; entries.append({"Run sheet": sheet.as_posix()})
+        for i, s in enumerate(steps_of(fm)[0][1], 1):
+            name = s.get("concept") or s.get("beat") or "setup"
+            f = Path("paths") / tid / f"{i:02d}-{name}.md"
+            write(f, render_step(s, f)); entries.append({f"{i}. {step_title(s)}": f.as_posix()})
+            typ = "concept" if "concept" in s else "demo" if "beat" in s else "setup"
+            rows.append(f"| {i} | {s.get('minutes', '')} | [{step_title(s)}]({f.name}) | {typ} |"); total += s.get("minutes", 0)
+        write(sheet, f"# {fm['title']}\n\n{body}\n\n| # | min | Step | Type |\n|---|---|---|---|\n" + "\n".join(rows) + f"\n\nTotal: about {total} min plus discussion.\n")
+        nav.append({fm["title"]: entries}); first = sheet.as_posix()
+    home.append((fm["title"], first, fm.get("tagline", "")))
+write(Path("index.md"), "# Working with Coding Agents\n\n"
+      + (CONTENT / "home.md").read_text().strip() + "\n\n"
+      + "\n".join(f"- [**{l}**]({p}){' — ' + d if d else ''}" for l, p, d in home) + "\n")
+cfg = yaml.safe_load((ROOT / "mkdocs.base.yml").read_text()); cfg["nav"] = nav
+(ROOT / "mkdocs.yml").write_text(yaml.safe_dump(cfg, sort_keys=False, allow_unicode=True))
+print(f"ok: {len(concepts)} concepts, {len(beats)} beats, {len(examples)} examples, {len(tracks)} tracks -> docs/")

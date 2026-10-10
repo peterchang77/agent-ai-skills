@@ -1,0 +1,26 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{booktabs}
+\usepackage[numbers]{natbib}
+\begin{document}
+\begin{center}{\large\bfseries Follow-up calls and HbA1c recheck at a community clinic: an illustrative analysis}\\[2pt]
+{\small Synthetic data; for demonstration of methods only, not a finding about any real population.}\end{center}
+
+\paragraph{Background.} Telephone follow-up has been evaluated as a way to improve glycaemic control in type~2 diabetes \citep{Wu2010_20950378}, and trials have examined nurse and telephone follow-up for adherence, self-care, and metabolic control \citep{Wong2005_15842446,Nesari2010_21092015,AytekinKanadli2016_26871245}. We examined whether being reached by a nurse follow-up call was associated with timely HbA1c recheck in a clinic pilot.
+
+\paragraph{Methods.} Retrospective cohort of adults seen at one clinic between 2025-04-01 and 2025-08-31 whose first measured HbA1c in that window was 7.0\% or higher (index visit). Exposure: reached by a pilot call. Outcome: any HbA1c measured 14 to 120 days after the index visit. We estimated odds ratios by logistic regression, unadjusted and adjusted for age, sex, and index HbA1c. After cleaning (15 duplicate rows removed, 10 HbA1c values converted from mmol/mol, 6 dates and 1 age corrected), 819 adult patients had an HbA1c measured, and 251 met index criteria.
+
+\paragraph{Results.} Of 251 patients, 92 were reached by a call. HbA1c was rechecked in 45 of 92 (49\%) reached patients and 47 of 159 (30\%) not reached (Table~\ref{tab:or}). The unadjusted odds ratio was 2.28 (95\% CI 1.34--3.88); adjusted for age, sex, and index HbA1c it was 1.80 (95\% CI 1.03--3.15). Older patients were both more likely to be called and more likely to be rechecked, so the unadjusted estimate overstates the association.
+
+\begin{table}[h]\centering\caption{Association of being reached by a call with HbA1c recheck.}\label{tab:or}
+\begin{tabular}{lcc}\toprule
+Model & Odds ratio & 95\% CI\\\midrule
+Unadjusted & 2.28 & 1.34--3.88\\
+Adjusted (age, sex, index HbA1c) & 1.80 & 1.03--3.15\\\bottomrule\end{tabular}\end{table}
+
+\paragraph{Conclusions.} In this synthetic clinic cohort, being reached by a follow-up call was associated with higher odds of timely HbA1c recheck after adjustment. The design is observational and call assignment was not random; residual confounding is possible, and the estimate is imprecise.
+
+\setlength{\bibsep}{1pt}\small
+\bibliographystyle{plainnat}
+\bibliography{../references}
+\end{document}

@@ -1,0 +1,18 @@
+{
+  "true_log_or_call": 0.55,
+  "age_effect_recheck": 0.03,
+  "age_effect_call": 0.04,
+  "saturday_hours_start": "2025-03-08",
+  "pilot_eligible_patients": 251,
+  "planted": {
+    "hba1c_mmol_per_mol_rows": 10,
+    "age_212": {
+      "visit_id": "V00414",
+      "patient_id": "P0519",
+      "true_age": 70
+    },
+    "conflicting_id": "V06008",
+    "exact_duplicate_rows": 15
+  },
+  "notes": "Synthetic. Call effect is confounded by age (older -> more likely called and more likely to recheck)."
+}

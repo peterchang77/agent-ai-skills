@@ -1,0 +1,25 @@
+Operations memo: three-clinic network, 2025 (synthetic)
+
+From: Clinical operations lead
+To: Quality analyst
+
+Thanks for taking this on. Three things for the quarterly review.
+
+1. TARGETS. Each clinic has a 2025 target for the share of adult patients with diabetes whose
+   most recent HbA1c is below 8.0%. The targets are in clinic_targets.xlsx. Which clinics are
+   meeting them?
+
+2. HILLCREST PILOT. Since April 1 Hillcrest has run a nurse follow-up call program for
+   patients with poorly controlled diabetes (protocol in pilot_protocol.docx). We want to
+   know whether patients who were reached by a call were more likely to have their HbA1c
+   rechecked in time. Older patients seem to get more calls, so please be careful about
+   that. Draft a one-page abstract for the leadership packet, with references to
+   related published work.
+
+3. (If time) Northside moved to Saturday-morning hours on March 8. Front-desk staff think
+   urgent visits dropped afterward. Is that visible in the data?
+
+Notes on the data. The visit extract came from three different scheduling systems, so
+expect some inconsistencies. Please do not edit the original files; put anything you produce
+in a separate folder. Clinic hours and staffing context are in clinic_directory.html and
+staffing.db.

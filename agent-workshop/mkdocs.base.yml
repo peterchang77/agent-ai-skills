@@ -1,0 +1,15 @@
+site_name: Working with Coding Agents
+docs_dir: docs
+theme:
+  name: material
+  features:
+    - content.code.copy
+    - content.tabs.link
+    - navigation.sections
+    - navigation.footer
+    - navigation.top
+markdown_extensions:
+  - pymdownx.tabbed: {alternate_style: true}
+  - pymdownx.superfences
+  - admonition
+  - tables
