@@ -9,7 +9,7 @@ Source of truth is content/:
   beats/<role>/general.md           the general (reusable) part of one demo step
   beats/<role>/<scenario>.md        the scenario-specific example for that step
   setup/primer.md, setup/<scenario>.md
-  paths/*.md                        tracks (track: concepts|demo) and mixed presenter paths
+  tracks/*.md                       the three tracks (track: concepts | demo | tutorial)
 
 A beat page = general.md with `<!-- example -->` replaced by one tab per scenario, each holding a
 labelled "Workshop example" admonition built from <role>/<scenario>.md.
@@ -46,7 +46,7 @@ for d in sorted((CONTENT / "beats").iterdir()):
         if p.name == "general.md": beats[fm.get("role")] = (fm, body)
         else: examples[(fm.get("scenario"), fm.get("role"))] = (fm, body)
 tracks = {}
-for p in sorted((CONTENT / "paths").glob("*.md")):
+for p in sorted((CONTENT / "tracks").glob("*.md")):
     fm, body = load(p); tracks[fm.get("id")] = (fm, body)
 primer = load(CONTENT / "setup" / "primer.md")
 setup_scn = {}
@@ -95,11 +95,12 @@ def steps_of(fm):
     if "sections" in fm: return [(sec["name"], sec["steps"]) for sec in fm["sections"]]
     return [(None, fm.get("steps", []))]
 for tid, (fm, _) in tracks.items():
+    if fm.get("track") not in ("concepts", "demo", "tutorial"): errors.append(f"track {tid}: bad 'track'")
     for _, steps in steps_of(fm):
         for s in steps:
             if "concept" in s and s["concept"] not in concepts: errors.append(f"track {tid}: unknown concept {s['concept']}")
             if "beat" in s and s["beat"] not in beats: errors.append(f"track {tid}: unknown beat {s['beat']}")
-    if fm.get("track") == "demo":   # every beat's prerequisites must appear earlier in the demo track
+    if fm.get("track") in ("demo", "tutorial"):   # every beat's prerequisites must appear earlier in the demo track
         seen = []
         for _, steps in steps_of(fm):
             for s in steps:
@@ -192,37 +193,51 @@ def write(path, text):
     (DOCS / path).parent.mkdir(parents=True, exist_ok=True); (DOCS / path).write_text(text)
 
 # ---------------- generate ----------------
+step_path = lambda s: concept_file(s["concept"]) if "concept" in s else SETUP_FILE if "setup" in s else beat_file(s["beat"])
+step_type = lambda s: "Concept" if "concept" in s else "Demo" if "beat" in s else "Setup"
+def step_desc(s):
+    if "concept" in s: return concepts[s["concept"]][0]["blurb"]
+    if "beat" in s: return beats[s["beat"]][0]["summary"]
+    return "Restore the data kit and any starting point you need."
+def beat_kind(s): return KIND[beats[s["beat"]][0]["kind"]] if "beat" in s else "Setup"
+def beat_time(s): return beats[s["beat"]][0]["time"] if "beat" in s else ""
+
+def toc_tables(kind, toc, index):
+    out = []
+    for name, rows in toc:
+        if name: out += [f"### {name}", ""]
+        if kind == "concepts":
+            out += ["| Concept | What it covers |", "|---|---|"]
+            out += [f"| [{step_title(s)}]({rel(index, f)}) | {step_desc(s)} |" for _, s, f in rows]
+        elif kind == "demo":
+            out += ["| Step | Kind | Time | What you do |", "|---|---|---|---|"]
+            out += [f"| [{step_title(s)}]({rel(index, f)}) | {beat_kind(s)} | {beat_time(s)} | {step_desc(s)} |" for _, s, f in rows]
+        else:
+            out += ["| Step | Type | What it covers |", "|---|---|---|"]
+            out += [f"| [{step_title(s)}]({rel(index, f)}) | {step_type(s)} | {step_desc(s)} |" for n, s, f in rows]
+        out.append("")
+    return "\n".join(out)
+
 if DOCS.exists(): shutil.rmtree(DOCS)
-nav, home = [{"Home": "index.md"}], []
+nav = [{"Home": "index.md"}]
 for tid, (fm, body) in tracks.items():
-    kind = fm.get("track")
-    if kind in ("concepts", "demo"):
-        sections = []
-        for name, steps in steps_of(fm):
-            entries = []
-            for s in steps:
-                f = concept_file(s["concept"]) if "concept" in s else SETUP_FILE if "setup" in s else beat_file(s["beat"])
-                write(f, render_step(s, f)); entries.append({step_title(s): f.as_posix()})
-            sections.append({name: entries} if name else entries)
-        flat = [e for sec in sections for e in (sec if isinstance(sec, list) else [sec])]
-        nav.append({fm["title"]: sections if any(isinstance(s, dict) for s in sections) and "sections" in fm else flat})
-        first_steps = steps_of(fm)[0][1][0]
-        first = (concept_file(first_steps["concept"]) if "concept" in first_steps else SETUP_FILE if "setup" in first_steps else beat_file(first_steps["beat"])).as_posix()
-    else:
-        entries, rows, total = [], [], 0
-        sheet = Path("paths") / tid / "index.md"; entries.append({"Run sheet": sheet.as_posix()})
-        for i, s in enumerate(steps_of(fm)[0][1], 1):
-            name = s.get("concept") or s.get("beat") or "setup"
-            f = Path("paths") / tid / f"{i:02d}-{name}.md"
-            write(f, render_step(s, f)); entries.append({f"{i}. {step_title(s)}": f.as_posix()})
-            typ = "concept" if "concept" in s else "demo" if "beat" in s else "setup"
-            rows.append(f"| {i} | {s.get('minutes', '')} | [{step_title(s)}]({f.name}) | {typ} |"); total += s.get("minutes", 0)
-        write(sheet, f"# {fm['title']}\n\n{body}\n\n| # | min | Step | Type |\n|---|---|---|---|\n" + "\n".join(rows) + f"\n\nTotal: about {total} min plus discussion.\n")
-        nav.append({fm["title"]: entries}); first = sheet.as_posix()
-    home.append((fm["title"], first, fm.get("tagline", "")))
-write(Path("index.md"), "# Working with Coding Agents\n\n"
-      + (CONTENT / "home.md").read_text().strip() + "\n\n"
-      + "\n".join(f"- [**{l}**]({p}){' — ' + d if d else ''}" for l, p, d in home) + "\n")
-cfg = yaml.safe_load((ROOT / "mkdocs.base.yml").read_text()); cfg["nav"] = nav
-(ROOT / "mkdocs.yml").write_text(yaml.safe_dump(cfg, sort_keys=False, allow_unicode=True))
+    kind = fm["track"]; index = Path(kind) / "index.md"
+    sec_nav, toc, n = [], [], 0
+    for name, steps in steps_of(fm):
+        entries, rows = [], []
+        for s in steps:
+            n += 1
+            f = Path("tutorial") / f"{s.get('concept') or s.get('beat') or 'setup'}.md" if kind == "tutorial" else step_path(s)
+            if kind == "tutorial" and (DOCS / f).exists(): errors.append(f"tutorial: duplicate step {f.stem}")
+            write(f, render_step(s, f))
+            entries.append({step_title(s): f.as_posix()}); rows.append((n, s, f))
+        sec_nav.append({name: entries} if name else entries); toc.append((name, rows))
+    flat = [{"Overview": index.as_posix()}]
+    for e in sec_nav: flat += e if isinstance(e, list) else [e]
+    nav.append({fm["title"]: flat})
+    page = body.replace("<!-- toc -->", toc_tables(kind, toc, index))
+    write(index, f"# {fm['title']}\n\n" + resolve(page, index) + "\n")
+if errors: print("\n".join(errors)); sys.exit(1)
+write(Path("index.md"), resolve((CONTENT / "home.md").read_text().strip(), Path("index.md")) + "\n")
+(ROOT / "mkdocs.yml").write_text((ROOT / "mkdocs.base.yml").read_text().rstrip() + "\n" + yaml.safe_dump({"nav": nav}, sort_keys=False, allow_unicode=True))
 print(f"ok: {len(concepts)} concepts, {len(beats)} beats, {len(examples)} examples, {len(tracks)} tracks -> docs/")

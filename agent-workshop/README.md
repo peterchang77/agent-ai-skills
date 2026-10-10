@@ -7,7 +7,7 @@ content/concepts/<group>/<id>.md      concept pages (background, setup, practice
 content/beats/<role>/general.md       the reusable part of one demo step
 content/beats/<role>/<scenario>.md    the scenario-specific example for that step
 content/setup/                        generic setup primer + one page per scenario
-content/paths/                        the two tracks (concepts, demo) and mixed presenter paths
+content/tracks/                       the three tracks: concepts, demo, guided tutorial
 scenarios/<name>/                     data kit, generator, reference solutions, checkpoints
 scripts/build.py                      validate references; generate docs/ and mkdocs.yml
 ```
@@ -25,7 +25,7 @@ uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 
 - **Concept track** (`/concepts/…`): the ideas, each ending with short demos and links to the full step.
 - **Demo track** (`/demo/…`): one worked example. Each step states the starting state it needs, so it can be done alone.
-- **Presenter paths** (`/paths/…`): a mixed, timed running order.
+- **Guided tutorial** (`/tutorial/…`): one long path that interleaves concept pages and demo steps in a sensible order.
 
 The validator checks every link between concepts, beats and tracks, and that each beat's prerequisites come earlier in the demo track.
 
