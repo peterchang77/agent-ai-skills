@@ -243,4 +243,19 @@ for tid, (fm, body) in tracks.items():
 if errors: print("\n".join(errors)); sys.exit(1)
 write(Path("index.md"), resolve((CONTENT / "home.md").read_text().strip(), Path("index.md")) + "\n")
 (ROOT / "mkdocs.yml").write_text((ROOT / "mkdocs.base.yml").read_text().rstrip() + "\n" + yaml.safe_dump({"nav": nav}, sort_keys=False, allow_unicode=True))
+# --- downloadable kits for assets/install.sh: deterministic zip + per-file manifest + zip checksum ---
+import hashlib, zipfile
+def publish_zip(name, src):
+    out = DOCS / "downloads"; out.mkdir(parents=True, exist_ok=True)
+    files = sorted(f for f in src.rglob("*") if f.is_file())
+    with zipfile.ZipFile(out / f"{name}.zip", "w", zipfile.ZIP_DEFLATED) as z:
+        for f in files:
+            zi = zipfile.ZipInfo(f.relative_to(src).as_posix(), (2020, 1, 1, 0, 0, 0))
+            zi.external_attr = 0o644 << 16; zi.compress_type = zipfile.ZIP_DEFLATED
+            z.writestr(zi, f.read_bytes())
+    h = lambda b: hashlib.sha256(b).hexdigest()
+    (out / f"{name}.manifest").write_text("".join(f"{h(f.read_bytes())}  {f.relative_to(src).as_posix()}\n" for f in files))
+    (out / f"{name}.zip.sha256").write_text(h((out / f"{name}.zip").read_bytes()) + "\n")
+publish_zip("toy-kit", ROOT / "scenarios/toy/kit")
+publish_zip("toy-checkpoints", ROOT / "scenarios/toy/checkpoints")
 print(f"ok: {len(concepts)} concepts, {len(beats)} beats, {len(examples)} examples, {len(tracks)} tracks -> docs/")

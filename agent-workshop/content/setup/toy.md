@@ -6,8 +6,17 @@ label: Toy dataset
 A synthetic dataset for a three-clinic network, with every common file format and deliberate problems to find. It is
 safe to share and is not real patient data. The files live in `scenarios/toy/kit/` in this repository.
 
+The quickest way to get the files (and the Kiro CLI agent) is the installer. It asks where to put the data, skips anything already
+downloaded, and never overwrites files you have changed unless you pass `--force`:
+
 ```bash
-# from the repository's agent-workshop/ folder
+curl -fsSL https://peterchang77.github.io/agent-ai-skills/install.sh | bash
+```
+
+Useful options go after `bash -s --`, for example `bash -s -- --dir ~/my-folder --yes --checkpoints --no-agent`. It works on Linux,
+macOS and WSL. To copy the files by hand instead, from the repository's `agent-workshop/` folder:
+
+```bash
 cp -r scenarios/toy/kit/. ~/workshop-demo/
 cd ~/workshop-demo && ls
 ```
