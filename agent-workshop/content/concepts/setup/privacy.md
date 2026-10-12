@@ -6,9 +6,9 @@ related: [secrets, sandboxing, harnesses, inputs]
 blurb: Anything the agent reads may be sent to a model provider. Decide whether your data may go there before deciding what the agent can do with it.
 ---
 
-*General guidance only. Your institution's policies, agreements, and approvals determine what is actually allowed. This page helps you ask the right questions.*
-
 ## The first question
+
+Your institution decides what is allowed, through its policies, agreements and approvals, so the aim here is to know what to ask.
 
 Everything an agent reads, plus your messages and its replies, is sent to the model. So the question "can the agent
 do this?" comes second. The first is **"may this data go to this model, under this agreement?"**
@@ -34,7 +34,7 @@ Consumer, business, API, and cloud-platform offerings often carry different term
 ## Cloud versus local models
 
 - **Cloud (hosted) models** are the most capable. Data goes to the provider under its terms, which may be strong when an institutional agreement is in place.
-- **Local models** keep data on your machine, which can simplify some approvals. At the time of writing they are generally less capable and need suitable hardware.
+- **Local models** keep data on your machine, which can simplify some approvals. They are currently less capable and need suitable hardware.
 
 Neither is automatically right. The choice follows your data class and what your institution supports.
 

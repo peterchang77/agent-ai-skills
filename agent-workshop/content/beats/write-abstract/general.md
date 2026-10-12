@@ -4,7 +4,7 @@ title: Write a research abstract as LaTeX, with citations
 kind: full
 summary: Have the agent write the abstract as LaTeX from your results file and bibliography, compile it, and trace every number and claim back to its source.
 time: 9 min
-teaches: [outputs, verification, environment]
+teaches: [outputs, verification]
 needs: [analyze-pilot]
 ---
 

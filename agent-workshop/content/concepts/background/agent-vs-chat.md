@@ -31,7 +31,7 @@ CHAT                                   AGENT
 | Main risk | A confident wrong answer | The same, **plus** it can change things on your computer |
 | Best for | Quick questions, brainstorming, drafting | Multi-step work on real files and data |
 
-This is a deliberately clean split to build the concept. Real products blur it; see the caveats at the end.
+Real products blur this line somewhat, as the last section explains.
 
 ## How an agent acts on the world
 
@@ -63,7 +63,7 @@ The loop explains two behaviours you will see constantly:
 
 An agent is still a language model. It can be wrong, it can misread a file, and it can say a task is done when it is not. The difference is that an agent leaves *evidence* (scripts, logs, outputs) you can check, which is why [Verification](concept:verification) is a core habit.
 
-## Caveats
+## Where the line blurs
 
 Some chat products already offer file upload, web search, or a code sandbox, and some agents are restricted to a single folder. A more accurate picture is a spectrum of **access** (your files, code execution, the web, your own computer) and **control** (what you approve). The agent end of the spectrum is where the
 [approval modes](concept:steering) and [isolation choices](concept:sandboxing) matter.

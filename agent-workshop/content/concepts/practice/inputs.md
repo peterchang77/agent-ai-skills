@@ -7,8 +7,7 @@ related: [outputs, context, privacy, secrets, verification]
 blurb: Everything the agent sees arrives as text. Choose the route and the format that keep as much structure as possible.
 ---
 
-An agent can only work with what it can read, and it reads **text**. This page is about choosing how to hand
-something over. For how to read specific file types, see [Read spreadsheets, documents, and PDFs](beat:read-office-formats).
+An agent can only work with what it can read, and it reads **text**. Choose how to hand something over based on the file type. For how to read specific file types, see [Read spreadsheets, documents, and PDFs](beat:read-office-formats).
 
 ## Routes
 

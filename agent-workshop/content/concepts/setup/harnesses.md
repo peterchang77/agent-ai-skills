@@ -6,8 +6,6 @@ related: [agent-vs-chat, costs, sandboxing, privacy]
 blurb: The model is the brain; the harness is the program that gives it files and tools; the interface is how you talk to it. Keep them separate in your head.
 ---
 
-*Volatile page. The examples below are illustrative, written in October 2026 and not verified against each vendor's current offering. Product names and features change often; check before relying on them.*
-
 ## Three layers
 
 | Layer | What it is | Examples of the choice you make |
@@ -28,7 +26,7 @@ Most confusion comes from mixing these up. The same model behaves differently in
 | AWS | Kiro CLI | Kiro IDE | background tasks |
 | Provider-neutral | pi and other open-source agents | editor extensions | always-on assistants (e.g. OpenClaw, Hermes) |
 
-The grid is illustrative and incomplete; every cell changes frequently.
+Products and names change quickly, so treat this as a snapshot from October 2026 and look up what is current.
 
 ## A continuum of control
 
@@ -53,7 +51,7 @@ Many harnesses accept either a flat-rate subscription or pay-per-use API access.
 
 ## Local models
 
-A model can also run on your own computer. Local models keep data on the machine and can work offline, but at the time of writing they are generally less capable than the large hosted models and need capable hardware. They are worth considering when data cannot leave a machine ([Privacy](concept:privacy)).
+A model can also run on your own computer. Local models keep data on the machine and can work offline, but they are currently less capable than the large hosted models and need capable hardware. They are worth considering when data cannot leave a machine ([Privacy](concept:privacy)).
 
 ## Getting set up
 

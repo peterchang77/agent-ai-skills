@@ -4,24 +4,27 @@ title: Guided tutorial
 track: tutorial
 tagline: one path through the whole material, alternating ideas and hands-on steps
 sections:
-  - name: 1. Background
+  - name: 1. Get started
+    steps:
+      - {setup: true}
+  - name: 2. Meet your agent
     steps:
       - {concept: agent-vs-chat}
-      - {concept: what-code-can-do}
-  - name: 2. Set up safely
-    steps:
-      - {concept: harnesses}
-      - {concept: privacy}
-      - {setup: true}
       - {beat: orient-in-folder}
+      - {concept: what-code-can-do}
+      - {concept: harnesses}
+  - name: 3. Work safely
+    steps:
+      - {concept: privacy}
       - {concept: environment}
-  - name: 3. Understand the inputs
+      - {beat: prepare-environment}
+  - name: 4. Understand the inputs
     steps:
       - {concept: inputs}
       - {beat: read-text-files}
       - {beat: read-office-formats}
       - {beat: first-look}
-  - name: 4. Clean the data
+  - name: 5. Clean the data
     steps:
       - {concept: scoping-work}
       - {concept: verification}
@@ -31,14 +34,14 @@ sections:
       - {beat: clean-data}
       - {concept: memory}
       - {beat: add-agents-md}
-  - name: 5. Research analysis
+  - name: 6. Research analysis
     steps:
       - {concept: context}
       - {beat: build-cohort}
       - {beat: analyze-pilot}
       - {beat: review-with-second-agent}
       - {beat: saturday-hours}
-  - name: 6. Write it up
+  - name: 7. Write it up
     steps:
       - {concept: outputs}
       - {beat: find-references}
@@ -46,7 +49,7 @@ sections:
       - {beat: write-abstract}
       - {beat: build-dashboard}
       - {beat: export-office-formats}
-  - name: 7. Make it repeatable
+  - name: 8. Make it repeatable
     steps:
       - {concept: tools}
       - {beat: make-tool-and-skill}
@@ -79,7 +82,7 @@ resume later or skip steps ([Setup](../demo/setup.md#restore-a-starting-point)).
 
 ## Before you start
 
-- An agent installed on your computer (the [Setup](../demo/setup.md) page covers this).
+- A computer where you can install software, or where an agent is already installed. The first step covers setup.
 - A terminal and a folder to work in.
 - For the last two steps only, an approved API key and a small budget.
 

@@ -4,7 +4,7 @@ title: Clean the data with a script, and show the flow
 kind: full
 summary: Apply the agreed decisions in a script that writes a new file and a flow table showing what changed, so the result is reproducible and checkable.
 time: 7 min
-teaches: [verification, tools, environment]
+teaches: [verification, tools]
 needs: [plan-cleaning]
 ---
 

@@ -148,12 +148,9 @@ short = lambda fm: fm.get("short") or fm["title"]
 
 def render_concept(cid, here):
     fm, body = concepts[cid]
-    demos = []
-    for r in fm["beats"]:
-        bfm = beats[r][0]
-        t = {label(s): example_block(s, r, here, full=False) for s in scenarios if (s, r) in examples}
-        demos.append(f"### {bfm['title']}\n\n{bfm['summary']}\n\n{tabs(t)}\n\n[Full step: {bfm['title']} →]({rel(here, beat_file(r))})")
-    if demos: body = body.replace("<!-- demos -->", "\n\n".join(demos))
+    # Concept pages stand alone; they link to the steps that apply the idea instead of embedding them.
+    links = [f"- [{beats[r][0]['title']}]({rel(here, beat_file(r))}). {beats[r][0]['summary']}" for r in fm["beats"]]
+    if links: body = body.replace("## Demo it", "## Try it").replace("<!-- demos -->", "\n".join(links))
     else: body = re.sub(r"\n*## Demo it\s*\n\s*<!-- demos -->\s*", "\n", body)
     out = [f"# {fm['title']}", "", f"*{fm['blurb']}*", "", resolve(body, here)]
     rel_links = [c for c in fm.get("related", []) or []]

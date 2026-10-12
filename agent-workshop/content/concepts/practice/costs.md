@@ -7,8 +7,6 @@ related: [context, scoping-work, tools, harnesses]
 blurb: You pay for tokens read and written. Conversation history is re-sent each turn, so long sessions cost far more than several short ones.
 ---
 
-*Volatile page. All prices and plan details are placeholders; check current prices and your institution's arrangements.*
-
 ## What you pay for
 
 Cost is measured in **tokens**, short pieces of text ([Context](concept:context)). You pay for **input** tokens (what the
@@ -27,7 +25,7 @@ reduces the price of the repeated part but does not remove it. A worked example 
 | Placeholder input price | $X per million tokens |
 
 The conversation of 50 turns reads about 2.5 million input tokens, while ten sessions of 5 turns each read about 0.3
-million in total. Replace $X with the current price to get a number.
+million in total. Replace $X with the current price to get a number for your plan.
 
 ## Subscription or API?
 
@@ -38,7 +36,7 @@ million in total. Replace $X with the current price to get a number.
 | Watch for | Hitting limits mid-task | Runaway loops and long contexts |
 
 Typical subscription bands run from roughly $20 per month through $40, $100, and $200 or more, buying higher limits and
-access to larger models. Treat these as dated approximations. Your institution may provide access or a budget, in which case the choice may be made for you.
+access to larger models. Plans and prices change often, so check the current ones. Your institution may provide access or a budget, in which case the choice may be made for you.
 
 ## What drives cost up
 

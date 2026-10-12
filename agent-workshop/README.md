@@ -23,7 +23,7 @@ uvx --with "mkdocs<2" --with mkdocs-material==9.7.7 mkdocs serve -a 127.0.0.1:80
 
 ## Tracks
 
-- **Concept track** (`/concepts/…`): the ideas, each ending with short demos and links to the full step.
+- **Concept track** (`/concepts/…`): the ideas, each ending with links to the demo steps that apply it.
 - **Demo track** (`/demo/…`): one worked example. Each step states the starting state it needs, so it can be done alone.
 - **Guided tutorial** (`/tutorial/…`): one long path that interleaves concept pages and demo steps in a sensible order.
 

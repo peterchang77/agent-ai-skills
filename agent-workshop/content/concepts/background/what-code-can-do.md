@@ -52,7 +52,7 @@ route exists. For most tasks code is better: it is **repeatable** (rerun it on n
 
 ## How far can it go?
 
-What an agent can do on its own improves quickly, so treat any claim (including this page) as dated. The reliable habit is to try a small version of a task first and see ([Scoping work](concept:scoping-work)).
+What an agent can do on its own improves quickly, so a task that failed a few months ago may work now. The reliable habit is to try a small version of a task first and see ([Scoping work](concept:scoping-work)).
 
 ## Demo it
 

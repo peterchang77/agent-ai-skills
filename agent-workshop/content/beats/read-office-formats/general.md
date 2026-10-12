@@ -4,8 +4,8 @@ title: Read spreadsheets, documents, and PDFs
 kind: full
 summary: The same request works for XLSX, DOCX, and PDF. The agent installs a reader and converts to text first, and each format loses something different.
 time: 7 min
-teaches: [inputs, environment]
-needs: [orient-in-folder]
+teaches: [inputs]
+needs: [orient-in-folder, prepare-environment]
 ---
 
 Spreadsheets, Word documents, and PDFs are the formats most people already have, but they are not plain text. After this step

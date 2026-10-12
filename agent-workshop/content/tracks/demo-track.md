@@ -8,6 +8,7 @@ sections:
     steps:
       - {setup: true}
       - {beat: orient-in-folder}
+      - {beat: prepare-environment}
   - name: 1. Understand the inputs
     steps:
       - {beat: read-text-files}

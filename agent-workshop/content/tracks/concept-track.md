@@ -39,7 +39,7 @@ The concept track explains **why things work the way they do**. Each page covers
 results) in a general form that does not depend on any dataset. You can read the pages in order, or jump to the one you need.
 
 Every concept page follows the same pattern: background, a general approach you can reuse, what to check, common problems, and a short
-**Demo it** section with the relevant steps from the [demo track](../demo/index.md). Use the demos when you want to see an idea applied.
+**Try it** list linking to the steps in the [demo track](../demo/index.md) that apply the idea.
 
 ## How the pages are grouped
 

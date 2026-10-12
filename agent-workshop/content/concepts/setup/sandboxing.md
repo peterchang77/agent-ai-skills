@@ -6,8 +6,6 @@ related: [steering, secrets, privacy, version-control, environment]
 blurb: An agent runs commands as you, so decide how much it can reach. Match the isolation to the data and the task.
 ---
 
-*This page is conceptual. The workshop does not cover the setup of each option in depth.*
-
 ## What the risk actually is
 
 A normal agent runs commands **as you**. A mistake, or an instruction hidden in something it reads, could delete

@@ -2,7 +2,7 @@
 title: Setup
 ---
 
-This page gets you to a working folder with an agent running inside it. You do it once; the other pages assume it is done.
+Get a working folder with an agent running inside it. You do this once, and the other pages assume it is done.
 Each demo step also tells you which starting state it needs, so you can jump in anywhere ([Restore a starting point](#restore-a-starting-point)).
 
 ## Quickstart
@@ -29,8 +29,8 @@ cd ~/workshop-demo
 
 If you chose a different folder, use it wherever the other pages say `~/workshop-demo`. Options go after `bash -s --`, for example `bash -s -- --dir ~/my-folder --yes --checkpoints --no-agent`; run it with `--help` to see them all.
 Because the script is fetched from the internet, you can read it first at
-[install.sh](https://peterchang77.github.io/agent-ai-skills/install.sh), and your institution may restrict which tools you may install
-([Privacy](concept:privacy)).
+[install.sh](https://peterchang77.github.io/agent-ai-skills/install.sh), and your institution may restrict which tools you can install.
+The practice data is synthetic. Before you use your own data, read [Privacy](concept:privacy).
 
 ## Custom setup
 
@@ -64,7 +64,7 @@ pdflatex --version   # only needed for the PDF-report steps
 pandoc --version     # only needed for the Word-export step
 ```
 
-Anything missing can be installed by the agent when a step needs it ([Environment](concept:environment)); approve installs deliberately.
+The [Prepare your environment](beat:prepare-environment) step has the agent check these and install what is missing ([Environment](concept:environment)); approve installs deliberately.
 
 ### 4. Add the data for your scenario
 
