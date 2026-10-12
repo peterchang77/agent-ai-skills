@@ -7,7 +7,7 @@ prompt: |
   Using out/cohort.csv, compare HbA1c recheck between patients reached by a call and patients not reached. Report counts and rates for
   each group, then the unadjusted odds ratio, then an odds ratio from a logistic regression adjusted for age, sex and index HbA1c, each
   with a 95% confidence interval. Write the script to scripts/analyze_pilot.py and the results to out/pilot_results.md. State the model, the
-  number of patients in each model, and why the adjusted estimate differs from the crude one.
+  number of patients in each model (it should be 251), and why the adjusted estimate differs from the crude one.
 ---
 
 **Files used:** `out/cohort.csv` (251 patients).

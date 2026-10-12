@@ -7,7 +7,9 @@ prompt: |
   Read pilot_protocol.docx (or text/pilot_protocol.md if you converted it earlier). Quote the exact eligibility rules, index visit,
   exposure and outcome window. Then write scripts/build_cohort.py that applies them to data/clean/visits_clean.csv and pilot_calls.csv
   and writes out/cohort.csv (one row per patient, with columns for age, sex, index HbA1c, whether the patient was reached by a call, and
-  whether HbA1c was rechecked) and out/cohort_flow.md (patients remaining after each step). Tell me every place you had to interpret
+  whether HbA1c was rechecked) and out/cohort_flow.md (patients remaining after each step). Mark a patient as reached (1) only if
+  pilot_calls.csv has reached = Y for them; every other patient in the cohort, including those with reached = N and those with no call
+  record, is 0, so nobody is left blank. Tell me every place you had to interpret
   the protocol. Report the count with each step.
 ---
 
@@ -30,6 +32,7 @@ the index visit.
 **Interpretation points to look for.** "Reached" means `reached = Y`, not merely a call attempt: 11 further calls were not completed, and
 those patients belong in the comparison group. Window boundaries (14 and 120 days) are inclusive. A patient with no measured HbA1c
 cannot have an index visit. If the agent counts attempted calls as exposed, the exposed group will be 103, not 92, which is a good example
-of why the definition has to be checked.
+of why the definition has to be checked. Patients with no call record (148 of the 251) are not reached too. If they are left blank and dropped,
+the comparison group shrinks from 159 to 11 and the odds ratio changes completely.
 
 A reference version is in `scenarios/toy/checkpoints/cohort/out/`.

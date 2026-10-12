@@ -30,7 +30,7 @@ The choice of covariates is a modelling decision that belongs to you. Decide it 
 ```text
 Using <cohort file>, compare <outcome> between <exposed> and <unexposed>. Report counts and rates for each group, then the unadjusted
 odds ratio, then an odds ratio from a logistic regression adjusted for <covariates>, each with a 95% confidence interval. Write the script
-to <scripts/analyze.py> and the results to <out/results.md>. State the model and any assumptions, and the number of people in each model.
+to <scripts/analyze.py> and the results to <out/results.md>. State the model and any assumptions, and the number of people in each model, which should equal <the cohort size>.
 ```
 
 Ask the agent to state, in words, why the adjusted estimate differs from the crude one.
@@ -48,5 +48,6 @@ Ask the agent to state, in words, why the adjusted estimate differs from the cru
 
 | Symptom | Cause | Fix |
 |---|---|---|
+| A group is much smaller than expected | Rows with a blank exposure were dropped, so the comparison group shrank | Check that group sizes add up to the cohort, and fix the exposure column upstream |
 | Different numbers each run | Randomness or a changing input | Fix the input file; the analysis itself here is deterministic |
 | Perfect separation or huge confidence intervals | Too few events for the number of covariates | Use fewer covariates, or say the estimate is unstable |

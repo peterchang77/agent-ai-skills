@@ -34,7 +34,8 @@ A **flow table** (cohort diagram) lists the number of people at each step. If th
 ```text
 Read <protocol file>. Quote the exact eligibility rules, the index event, the exposure, and the outcome window. Then write a script
 <scripts/build_cohort.py> that applies them to <clean data> and writes <out/cohort.csv> (one row per person) and <out/cohort_flow.md>
-(people remaining after each step). Tell me every place where you had to interpret the protocol.
+(people remaining after each step). Mark a person as exposed only if <the exposure condition>; everyone else in the cohort is unexposed,
+so that nobody is left blank or dropped from the comparison. Tell me every place where you had to interpret the protocol.
 ```
 
 The last sentence matters: it surfaces the assumptions.
@@ -53,4 +54,5 @@ The last sentence matters: it surfaces the assumptions.
 | Symptom | Cause | Fix |
 |---|---|---|
 | More than one row per person | The index event was not restricted to the first qualifying visit | Group by person and keep the first |
+| The comparison group is far smaller than expected | People with no record of the exposure were left blank instead of counted as unexposed | State the comparison group in the prompt: everyone in the cohort who is not exposed |
 | Counts differ from a colleague's | A different interpretation of a window boundary | Compare the definitions, and note which edge cases decide it |
