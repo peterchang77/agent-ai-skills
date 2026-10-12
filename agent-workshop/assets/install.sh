@@ -14,11 +14,12 @@ DIR="" ; YES=0 ; FORCE=0 ; AGENT=ask ; CHECKPOINTS=ask
 
 usage() { cat <<'U'
 Usage: install.sh [options]
-  --dir PATH       where to put the data (default: ~/agent-workshop)
-  --checkpoints    also download the checkpoints (catch-up copies of each stage)
+  --dir PATH       your project folder for the data (default: ~/workshop-demo)
+  --checkpoints    also download the checkpoints, to <folder>-checkpoints
+                   (catch-up copies of each stage)
   --no-agent       do not install the agent (Kiro CLI)
   --force          overwrite files that differ from the published version
-                   (existing copies are backed up first)
+                   (existing copies are backed up to <folder>-backup-<time>)
   -y, --yes        accept defaults, no prompts
   -h, --help       show this help
 U
@@ -63,7 +64,7 @@ unzip_to() { # zip dest
 }
 
 TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
-STAMP="$(date +%Y%m%d-%H%M%S)"
+STAMP="$(date +%Y%m%d-%H%M%S)"; BACKUP=""
 
 # fetch_set NAME DEST : make DEST match the published set NAME without clobbering local work
 fetch_set() {
@@ -92,15 +93,15 @@ fetch_set() {
       have="$(sha "$dest/$path")"
       if [ "$have" = "$want" ]; then same=$((same+1))
       elif [ "$FORCE" = 1 ]; then
-        mkdir -p "$DIR/.backup-$STAMP/$name/$(dirname "$path")"
-        mv "$dest/$path" "$DIR/.backup-$STAMP/$name/$path"
+        mkdir -p "$BACKUP/$name/$(dirname "$path")"
+        mv "$dest/$path" "$BACKUP/$name/$path"
         cp "$TMP/$name/$path" "$dest/$path"; replaced=$((replaced+1))
       else kept=$((kept+1)); say "  kept your version of $path (differs; use --force to replace)"
       fi
     fi
   done < "$TMP/$name.manifest"
   say "  $name: $new added, $same unchanged, $replaced replaced, $kept kept"
-  [ "$replaced" -gt 0 ] && say "  replaced files were backed up to $DIR/.backup-$STAMP/$name/"
+  [ "$replaced" -gt 0 ] && say "  replaced files were backed up to $BACKUP/$name/"
   return 0
 }
 
@@ -108,15 +109,16 @@ say "Workshop installer"
 say
 
 # 1. Data
-[ -n "$DIR" ] || DIR="$(ask "Where should the workshop data go?" "$HOME/agent-workshop")"
+[ -n "$DIR" ] || DIR="$(ask "Which folder should the workshop data go in?" "$HOME/workshop-demo")"
 DIR="${DIR/#\~/$HOME}"
 mkdir -p "$DIR"; DIR="$(cd "$DIR" && pwd)"
-say "Data folder: $DIR"
-fetch_set toy-kit "$DIR/toy"
+BACKUP="$DIR-backup-$STAMP"
+say "Project folder: $DIR"
+fetch_set toy-kit "$DIR"
 if [ "$CHECKPOINTS" = ask ]; then
   if confirm "Also download the checkpoints (catch-up copies of each stage)?" n; then CHECKPOINTS=yes; else CHECKPOINTS=no; fi
 fi
-[ "$CHECKPOINTS" = yes ] && fetch_set toy-checkpoints "$DIR/toy-checkpoints"
+[ "$CHECKPOINTS" = yes ] && fetch_set toy-checkpoints "$DIR-checkpoints"
 say
 
 # 2. Agent harness
@@ -137,5 +139,5 @@ else
 fi
 
 say
-say "Done. Next:  cd \"$DIR/toy\" && kiro-cli"
+say "Done. Next:  cd \"$DIR\" && kiro-cli"
 say "Optional: some steps use 'uv' (https://docs.astral.sh/uv/) to run Python scripts."
