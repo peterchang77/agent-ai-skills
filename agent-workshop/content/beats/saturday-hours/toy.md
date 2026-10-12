@@ -6,7 +6,8 @@ produces: nothing required; ask for `out/saturday.md` to keep the result
 prompt: |
   Using data/clean/visits_clean.csv, compare the share of visits that are urgent before and after 2025-03-08 at Northside. Then do the same
   for the other two clinics combined. Report the counts, the change at each, and the difference between the changes with a 95% confidence
-  interval. Also check whether the months before the change look similar across sites, and state your assumptions.
+  interval. Use a normal-approximation interval computed directly from the four counts, with no bootstrap or simulation. Also show the
+  monthly urgent share for each site in the months before the change, as a table, and state your assumptions.
 ---
 
 **Files used:** `data/clean/visits_clean.csv`, `clinic_directory.html` (confirms Saturday hours began 2025-03-08).

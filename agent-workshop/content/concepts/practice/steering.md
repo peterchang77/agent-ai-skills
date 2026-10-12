@@ -32,6 +32,8 @@ Anything that sends, publishes, deletes, or spends money gets a preview and expl
 
 If the agent starts down the wrong path, stop it, say what is wrong, and redirect. Waiting for it to finish costs time and context.
 
+A run that takes far longer than the task seems to deserve is a signal. Stop it and ask what it is doing. The agent may have picked a much heavier method than you needed, such as simulating a result you could compute directly, and a one-line instruction to use the simpler method usually fixes it.
+
 ## Fix the cause, not the symptom
 
 If you correct the same mistake twice, put the rule in `AGENTS.md` ([Memory](concept:memory)). To make a procedure

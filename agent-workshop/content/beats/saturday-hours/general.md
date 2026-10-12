@@ -26,9 +26,13 @@ effect, not as proof.
 
 ```text
 Using <clean data>, compare the share of visits that are <outcome> before and after <date> at <intervention site>. Then do the same for the
-other sites combined. Report the counts, the change at each, and the difference between the changes with a 95% confidence interval. Also check
-whether the months before the change look similar across sites. State the assumptions.
+other sites combined. Report the counts, the change at each, and the difference between the changes with a 95% confidence interval. Use a
+simple closed-form interval computed from the counts, with no bootstrap or simulation. Also show the monthly share for each site before the
+change, as a table. State the assumptions.
 ```
+
+Say how heavy a method you want. A comparison like this is four counts and one formula, and it should run in under a second. If a script runs
+much longer than you expect, interrupt it and ask what it is doing ([Steering](concept:steering)).
 
 <!-- example -->
 
@@ -42,5 +46,6 @@ whether the months before the change look similar across sites. State the assump
 
 | Symptom | Cause | Fix |
 |---|---|---|
+| The script runs for minutes | The agent chose a resampling method, such as a bootstrap, or fitted several models | Interrupt it and ask for a closed-form interval. Visits from the same patient are not independent, so say so in the assumptions instead |
 | Seasonal patterns drive the change | The periods cover different seasons | Compare the same months, or model month |
 | Very few records before the change | The change happened early in the data | Say the baseline is thin and the estimate is imprecise |
