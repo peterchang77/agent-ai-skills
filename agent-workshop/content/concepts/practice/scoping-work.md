@@ -60,7 +60,7 @@ review at the stage boundaries instead of only at the end.
 
 ## How much can an agent do alone?
 
-This keeps changing, so treat any answer as dated. The reliable approach is to test a task at small scale and
+What agents can do alone grows every few months, so a task that failed before may work now. Test a task at small scale and
 increase the size as you build trust.
 
 ## Demo it

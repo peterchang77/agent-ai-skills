@@ -24,7 +24,7 @@ The names can vary between harnesses (`AGENTS.md` is a widely used convention; s
 
 ## Built-in memory features
 
-Some products add their own memory that persists across sessions. These differ by product and change often, so check
+Some products add their own memory that persists across sessions. These differ by product, so find out
 what yours stores, where, and how to see or delete it. Files you control are easier to review and share.
 
 ## What to record

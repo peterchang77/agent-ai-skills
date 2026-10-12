@@ -26,7 +26,7 @@ Most confusion comes from mixing these up. The same model behaves differently in
 | AWS | Kiro CLI | Kiro IDE | background tasks |
 | Provider-neutral | pi and other open-source agents | editor extensions | always-on assistants (e.g. OpenClaw, Hermes) |
 
-Products and names change quickly, so treat this as a snapshot from October 2026 and look up what is current.
+This is the landscape as of October 2026. Products and names change quickly, so look up what is current.
 
 ## A continuum of control
 

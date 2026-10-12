@@ -35,8 +35,8 @@ million in total. Replace $X with the current price to get a number for your pla
 | Best for | Steady interactive use | Bulk or automated jobs; precise cost control |
 | Watch for | Hitting limits mid-task | Runaway loops and long contexts |
 
-Typical subscription bands run from roughly $20 per month through $40, $100, and $200 or more, buying higher limits and
-access to larger models. Plans and prices change often, so check the current ones. Your institution may provide access or a budget, in which case the choice may be made for you.
+Subscription plans typically run from about $20 per month through $40, $100, and $200 or more, buying higher limits and
+access to larger models. Prices change often, so check the current ones. Your institution may provide access or a budget, in which case the choice may be made for you.
 
 ## What drives cost up
 

@@ -33,8 +33,7 @@ about a thousand tokens. Context limits, speed, and price are all measured in to
 ## How long is too long?
 
 Models advertise very large windows (a million tokens or more), but quality and cost are usually better when you stay
-well below the maximum. As a **rough, dated heuristic**, aim to keep a conversation under roughly **200,000 to
-300,000 tokens** even on a model with a 1 million-token window, and compact or restart earlier for precise work. Treat that as a starting point and adjust to your model and task.
+well below the maximum. A good working limit is **200,000 to 300,000 tokens**, even on a model with a 1 million-token window. Compact or restart earlier for precise work, and adjust the limit to your model and task.
 
 ## Signs context is overfull
 
