@@ -16,7 +16,7 @@ prompt: |
 
 **A skill sketch** (yours will differ):
 
-```text
+```markdown
 ---
 name: pilot-report
 description: Produce the Hillcrest follow-up pilot report (cleaning flow, cohort, odds ratios) from the visits and calls CSV files.

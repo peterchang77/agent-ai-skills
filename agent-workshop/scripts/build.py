@@ -125,7 +125,21 @@ beat_file = lambda r: Path("demo") / f"{r}.md"
 SETUP_FILE = Path("demo") / "setup.md"
 rel = lambda frm, to: Path(os.path.relpath(to, frm.parent)).as_posix()
 
+STRUCTURED = re.compile(r"^\s*(\d+[.)]|[-*•])\s|\n\s*\n|^\s{2,}\S|[│├└┌▶─]", re.M)
+def one_line(t: str) -> str:
+    """Join a hard-wrapped prompt into one line so it pastes into a terminal cleanly. Diagrams and lists are left alone."""
+    t = t.strip("\n")
+    return t if STRUCTURED.search(t) else " ".join(l.strip() for l in t.splitlines())
+
+def unwrap_prompts(text: str) -> str:
+    def fix(m):
+        ind = m[1]
+        body = "\n".join(l[len(ind):] if l.startswith(ind) else l for l in m[2].split("\n"))
+        return f"{ind}```text\n{ind}{one_line(body)}\n{ind}```"
+    return re.sub(r"^( *)```text\n(.*?)^\1```", fix, text, flags=re.S | re.M)
+
 def resolve(text: str, here: Path) -> str:
+    text = unwrap_prompts(text)
     text = re.sub(r"\]\(concept:([\w-]+)\)", lambda m: f"]({rel(here, concept_file(m[1]))})", text)
     text = re.sub(r"\]\(beat:([\w-]+)\)", lambda m: f"]({rel(here, beat_file(m[1]))})", text)
     text = re.sub(r"\]\(setup:([\w-]*)\)", lambda m: f"]({rel(here, SETUP_FILE)}{'#' + m[1] if m[1] else ''})", text)
@@ -137,11 +151,11 @@ tabs = lambda items: "\n\n".join(f'=== "{k}"\n\n{indent(v)}' for k, v in items.i
 def example_block(sc, role, here, full=True):
     fm, body = examples[(sc, role)]
     if not full:
-        inner = f"```text\n{fm['prompt'].strip()}\n```"
+        inner = f"```text\n{one_line(fm['prompt'])}\n```"
     else:
         head = (f"**Start from:** {fm['starts_from']} ([how to restore]({rel(here, SETUP_FILE)}#restore-a-starting-point))  \n"
                 f"**Produces:** {fm['produces']}\n\n")
-        inner = head + "**Prompt**\n\n```text\n" + fm["prompt"].strip() + "\n```\n\n" + body
+        inner = head + "**Prompt**\n\n```text\n" + one_line(fm["prompt"]) + "\n```\n\n" + body
     return f'!!! example "Workshop example · {label(sc)}"\n\n{indent(inner)}'
 
 short = lambda fm: fm.get("short") or fm["title"]
