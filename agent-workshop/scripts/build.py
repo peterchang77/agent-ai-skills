@@ -148,14 +148,21 @@ def resolve(text: str, here: Path) -> str:
 indent = lambda t, n=4: "\n".join(" " * n + l if l.strip() else "" for l in t.strip().splitlines())
 tabs = lambda items: "\n\n".join(f'=== "{k}"\n\n{indent(v)}' for k, v in items.items())
 
+def prompt_blocks(prompt):
+    """A prompt is one string, or a list of {label, text} to run in order (each gets its own copy button)."""
+    if isinstance(prompt, str):
+        return "**Prompt**\n\n```text\n" + one_line(prompt) + "\n```\n\n"
+    return "".join(f"**Prompt {i}: {p['label']}**\n\n```text\n{one_line(p['text'])}\n```\n\n" for i, p in enumerate(prompt, 1))
+
 def example_block(sc, role, here, full=True):
     fm, body = examples[(sc, role)]
+    first = fm["prompt"] if isinstance(fm["prompt"], str) else fm["prompt"][0]["text"]
     if not full:
-        inner = f"```text\n{one_line(fm['prompt'])}\n```"
+        inner = f"```text\n{one_line(first)}\n```"
     else:
         head = (f"**Start from:** {fm['starts_from']} ([how to restore]({rel(here, SETUP_FILE)}#restore-a-starting-point))  \n"
                 f"**Produces:** {fm['produces']}\n\n")
-        inner = head + "**Prompt**\n\n```text\n" + one_line(fm["prompt"]) + "\n```\n\n" + body
+        inner = head + prompt_blocks(fm["prompt"]) + body
     return f'!!! example "Workshop example · {label(sc)}"\n\n{indent(inner)}'
 
 short = lambda fm: fm.get("short") or fm["title"]
