@@ -6,7 +6,7 @@ related: [what-code-can-do, harnesses, verification]
 blurb: A standard chat model answers from training memory. An agent interacts with a live computing environment to inspect files, execute code, and produce verifiable artifacts.
 ---
 
-Most researchers first encounter artificial intelligence through conversational chat interfaces: you provide a prompt, and the model generates a response based on patterns learned during training. A coding agent connects that same underlying language model to an execution environment—such as a local terminal, filesystem, and external tools. This operational interface fundamentally transforms both what tasks you can delegate and how you must evaluate the results.
+Most researchers first encounter artificial intelligence through conversational chat interfaces: you provide a prompt, and the model generates a response based on patterns learned during training. A coding agent connects that same underlying language model to an execution environment, such as a local terminal, filesystem, and external tools. This operational interface fundamentally transforms both what tasks you can delegate and how you must evaluate the results.
 
 ![Chat compared with an agent. A chat model works only with text you paste in. An agent runs code in a local terminal, reads and writes local files, and fetches data from APIs and the web, inside an autonomous loop of acting, observing and fixing.](image:agent-vs-chat)
 
@@ -21,7 +21,7 @@ In everyday conversation, "agency" often implies conscious intent, free will, or
 When an agent works toward a research objective, the path is not predetermined:
 
 - **Choosing where to look:** When entering an unfamiliar project directory, the agent decides whether to inspect the directory tree, read a configuration file, or examine the top rows of a data table.
-- **Choosing which tools to deploy:** Rather than guessing an answer from static training memory, the agent selects among available tools—dispatching a shell command, executing a Python test, querying an API, or searching documentation.
+- **Choosing which tools to deploy:** Rather than guessing an answer from static training memory, the agent selects among available tools, such as dispatching a shell command, executing a Python test, querying an API, or searching documentation.
 - **Navigating dynamically from feedback:** When a script encounters an unexpected error or a data parser hits an unmapped column, the agent inspects the console output, diagnoses the failure, and chooses an alternate path forward.
 
 Tools serve as navigational instruments. Without tools, a language model is confined to a single speculative output stream. With tools, the model gains the agency to explore, probe, and manipulate its environment.
@@ -72,7 +72,7 @@ This iterative execution leads to two predictable operational dynamics:
 
 ## Foundational limits
 
-A coding agent remains an autoregressive language model. It can misinterpret file schemas, introduce subtle statistical errors, or prematurely declare that a task is finished. The crucial difference is that an agent leaves a concrete computational audit trail—scripts, execution logs, and generated tables—enabling researchers to independently verify every step ([Verification](concept:verification)).
+A coding agent remains an autoregressive language model. It can misinterpret file schemas, introduce subtle statistical errors, or prematurely declare that a task is finished. The crucial difference is that an agent leaves a concrete computational audit trail of scripts, execution logs, and generated tables, enabling researchers to independently verify every step ([Verification](concept:verification)).
 
 ## The spectrum of agency
 

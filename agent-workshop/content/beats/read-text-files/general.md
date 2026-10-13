@@ -14,7 +14,7 @@ Structured plain text is the most reliable medium for language model ingestion. 
 
 ## Background
 
-Plain-text formats—including Markdown (`.md`), CSV (`.csv`), JSON (`.json`), LaTeX (`.tex`), and HTML (`.html`)—are parsed directly as structured token sequences without requiring translation libraries ([Inputs](concept:inputs)). 
+Plain-text formats, including Markdown (`.md`), CSV (`.csv`), JSON (`.json`), LaTeX (`.tex`), and HTML (`.html`), are parsed directly as structured token sequences without requiring translation libraries ([Inputs](concept:inputs)). 
 
 Directing the agent to inspect files via relative filesystem paths is far superior to pasting excerpts into the chat window: it eliminates manual copy-paste errors, preserves tabular column alignments, and ensures the original file remains the definitive source of truth.
 

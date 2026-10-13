@@ -71,7 +71,7 @@ The workflow addresses three clinical research questions: an operational audit (
 
 ## Modular progression and checkpoints
 
-You do not need to execute the tutorial from start to finish in a single pass. Every exercise defines an explicit **starting state**—either the initial dataset or a saved checkpoint reflecting earlier results. The [Setup](setup.md#restore-a-starting-point) guide provides instructions for restoring any checkpoint, allowing you to jump directly into specific exercises such as statistical modeling or manuscript drafting.
+You do not need to execute the tutorial from start to finish in a single pass. Every exercise defines an explicit **starting state**, consisting of either the initial dataset or a saved checkpoint reflecting earlier results. The [Setup](setup.md#restore-a-starting-point) guide provides instructions for restoring any checkpoint, allowing you to jump directly into specific exercises such as statistical modeling or manuscript drafting.
 
 ## Exercise categories
 

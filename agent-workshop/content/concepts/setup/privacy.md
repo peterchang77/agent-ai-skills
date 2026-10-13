@@ -28,7 +28,7 @@ Because agent harnesses transmit file excerpts, terminal logs, and prompt instru
 | **Business Associate / Data Use Agreements** | Confirms whether formal legal protections (such as a HIPAA Business Associate Agreement or GDPR Data Processing Agreement) cover the endpoint. |
 | **Data residency and regional routing** | Establishes where inference servers and data processing pipelines physically operate, which is critical for jurisdiction-specific compliance. |
 
-Terms of service differ dramatically between consumer web interfaces, commercial API endpoints, and enterprise cloud agreements. A model's brand name does not define its data handling terms—always verify the legal agreement governing your specific account.
+Terms of service differ dramatically between consumer web interfaces, commercial API endpoints, and enterprise cloud agreements. A model's brand name does not define its data handling terms; always verify the legal agreement governing your specific account.
 
 ## Cloud vs. local models
 

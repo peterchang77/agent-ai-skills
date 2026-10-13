@@ -8,7 +8,7 @@ teaches: [agent-vs-chat, harnesses]
 needs: []
 ---
 
-When launched, a coding agent possesses no implicit knowledge of local project contents. The essential first step in any research workflow is establishing environmental grounding: directing the agent to inspect the active directory, inventory available datasets, and characterize file formats. This exercise provides your first tactile experience of tool-mediated agency in action—watching the agent actively choose how to navigate your directory rather than being confined to a single guessing path from pre-trained memory.
+When launched, a coding agent possesses no implicit knowledge of local project contents. The essential first step in any research workflow is establishing environmental grounding: directing the agent to inspect the active directory, inventory available datasets, and characterize file formats. This exercise provides your first tactile experience of tool-mediated agency in action, as you observe the agent actively choose how to navigate your directory rather than remaining confined to a single guessing path from pre-trained memory.
 
 **Before you start:** An active agent running inside your project directory ([Setup](setup:)).
 

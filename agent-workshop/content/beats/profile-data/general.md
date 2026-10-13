@@ -16,7 +16,7 @@ Observational datasets invariably contain anomalies that can alter downstream st
 
 Data profiling characterizes dataset distributions and integrity issues without altering records: auditing column types, missingness structures, duplicate keys, physiologically implausible values, and unit discordance. 
 
-Profiling is intentionally **decoupled from data cleaning**. Many apparent anomalies are not data errors—for instance, missing laboratory values often indicate that a test was clinically unnecessary rather than omitted by accident. Furthermore, determining how to address anomalies involves substantive research decisions that belong to the investigator, not the agent ([Steering](concept:steering)).
+Profiling is intentionally **decoupled from data cleaning**. Many apparent anomalies are not data errors; for instance, missing laboratory values often indicate that a test was clinically unnecessary rather than omitted by accident. Furthermore, determining how to address anomalies involves substantive research decisions that belong to the investigator, not the agent ([Steering](concept:steering)).
 
 | Anomaly class | Illustrative manifestation | Methodological risk |
 |---|---|---|

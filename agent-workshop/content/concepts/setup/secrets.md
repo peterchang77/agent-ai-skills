@@ -7,7 +7,7 @@ related: [privacy, sandboxing, tools, version-control]
 blurb: Credentials must never enter prompts, session logs, or version control. Use isolated environment variables and enforce immediate revocation protocols if exposed.
 ---
 
-In computational research, access credentials—such as database passwords, API tokens, cloud keys, and private SSH keys—authenticate requests to external data sources and computing clusters. Managing these credentials securely requires heightened vigilance when deploying coding agents in research workflows.
+In computational research, access credentials, such as database passwords, API tokens, cloud keys, and private SSH keys, authenticate requests to external data sources and computing clusters. Managing these credentials securely requires heightened vigilance when deploying coding agents in research workflows.
 
 ## Exposure vectors in agent workflows
 
@@ -38,7 +38,7 @@ The [Use secrets safely](beat:use-secrets) exercise walks through configuring th
 
 ## Incident response for credential leakage
 
-If a credential is accidentally exposed in a prompt, printed to console logs, or committed to Git, **deleting the line or rewriting repository history is insufficient**—assume the credential has been compromised. Execute the following incident response steps in order:
+If a credential is accidentally exposed in a prompt, printed to console logs, or committed to Git, **deleting the line or rewriting repository history is insufficient**: assume the credential has been compromised. Execute the following incident response steps in order:
 
 1. **Revoke immediately:** Invalidate the exposed token within the provider's management console to stop further access.
 2. **Rotate and provision:** Generate a new credential and configure it using an environment variable.

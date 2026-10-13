@@ -35,7 +35,7 @@ sections:
       - {concept: glossary}
 ---
 
-The concept track explains the foundational principles behind coding agents. Each page examines a core concept—such as agent architecture, context limits, or verification strategies—in a generalized form independent of any specific dataset or tool. You can read these modules sequentially or reference individual topics as needed.
+The concept track explains the foundational principles behind coding agents. Each page examines a core concept, such as agent architecture, context limits, or verification strategies, in a generalized form independent of any specific dataset or tool. You can read these modules sequentially or reference individual topics as needed.
 
 Every concept page follows a consistent structure: theoretical background, general methodology, verification guidelines, common failure modes, and a **Try it** section linking directly to practical exercises in the [demo track](../demo/index.md).
 

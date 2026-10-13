@@ -6,13 +6,13 @@ related: [agent-vs-chat, inputs, outputs, tools]
 blurb: Coding agents use executable code as a universal interface for research tasks, making text-based source formats and programmatic scripts far more reliable than manual GUI interactions.
 ---
 
-Because a coding agent operates through the command line and programming languages ([Agent vs. chat](concept:agent-vs-chat)), its reach matches the reach of software: virtually any analytical, computational, or document-processing task that can be defined programmatically. In research, code is not merely software development—it is the primary medium for executing and recording empirical work.
+Because a coding agent operates through the command line and programming languages ([Agent vs. chat](concept:agent-vs-chat)), its reach matches the reach of software: virtually any analytical, computational, or document-processing task that can be defined programmatically. In research, code is more than software development; it serves as the primary medium for executing and recording empirical work.
 
 ![An AI agent at the centre, connected through executable code to data analysis, research, media generation, voice outreach and system automation.](image:code-as-universal-interface)
 
 ## An intuitive analogy: code as an executable lab protocol
 
-In physical laboratory science, no investigator would accept a published paper where the methods section states: *"I clicked around in a graphical spreadsheet, adjusted some sliders, and copied the resulting chart."* That process has zero verifiable provenance—it cannot be audited, and no colleague can reproduce it.
+In physical laboratory science, no investigator would accept a published paper where the methods section states: *"I clicked around in a graphical spreadsheet, adjusted some sliders, and copied the resulting chart."* That process has zero verifiable provenance: it cannot be audited, and no colleague can reproduce it.
 
 Instead, empirical science relies on explicit **laboratory protocols**: precise, step-by-step records documenting every reagent volume, incubation temperature, and measurement time. 
 
@@ -22,7 +22,7 @@ Instead, empirical science relies on explicit **laboratory protocols**: precise,
 - Running the script reproduces the exact analytical output from raw records.
 - Any colleague or peer reviewer can inspect the code to see exactly how variables were derived.
 
-When an agent works through code, it does not leave behind ephemeral opinions—it leaves an auditable, executable protocol that belongs to you.
+Instead of leaving behind ephemeral opinions, an agent working through code creates an auditable, executable protocol that belongs to you.
 
 ## Code as the universal computational adapter
 

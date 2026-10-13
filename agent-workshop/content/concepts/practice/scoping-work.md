@@ -21,7 +21,7 @@ Calibrating the scope of each request is a vital skill when collaborating with c
 
 ## Balancing interactive steering and long-running execution
 
-Short feedback loops—proposing an approach, reviewing code, and confirming results—keep the researcher in control, catching flawed assumptions while they are inexpensive to correct. In contrast, granting extended autonomy saves researcher attention but risks compounding errors: an incorrect filtering criteria applied at minute two can invalidate an entire hour of subsequent calculations.
+Short feedback loops (proposing an approach, reviewing code, and confirming results) keep the researcher in control, catching flawed assumptions while they are inexpensive to correct. In contrast, granting extended autonomy saves researcher attention but risks compounding errors: an incorrect filtering criteria applied at minute two can invalidate an entire hour of subsequent calculations.
 
 **A practical rule of thumb:** A well-scoped unit of work is one you can verify in a few minutes. If you cannot explain how you will validate the output, break the task into smaller sub-tasks.
 
@@ -35,7 +35,7 @@ Detail the computational steps, expected artifacts, methodological assumptions, 
 Do not edit any files yet.
 ```
 
-Requiring a planning phase ensures that scientific judgements—such as variable definitions, exclusion criteria, and statistical models—remain firmly in your hands before code is run.
+Requiring a planning phase ensures that critical scientific decisions, including variable definitions, exclusion criteria, and statistical models, remain firmly in your hands before code runs.
 
 ## Structuring effective requests
 

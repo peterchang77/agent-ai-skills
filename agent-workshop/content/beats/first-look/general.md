@@ -14,7 +14,7 @@ An agent can calculate preliminary metrics across a raw dataset in minutes. This
 
 ## Background
 
-Generating an initial estimate from uncleaned data provides useful orientation, but represents **exploratory profiling rather than definitive findings**. Uncurated observational datasets almost always contain latent anomalies—such as placeholder test entries, date format discrepancies, or unit mismatches—that silently distort calculations. 
+Generating an initial estimate from uncleaned data provides useful orientation, but represents **exploratory profiling rather than definitive findings**. Uncurated observational datasets almost always contain latent anomalies (such as placeholder test entries, date format discrepancies, or unit mismatches) that silently distort calculations. 
 
 A rigorous first pass must explicitly declare the analytical definitions used and report the active sample sizes (denominators) supporting each metric, establishing an empirical baseline against which subsequent cleaning impacts can be audited ([Verification](concept:verification)).
 

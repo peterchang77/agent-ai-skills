@@ -7,7 +7,7 @@ related: [inputs, outputs, sandboxing, version-control]
 blurb: Computational research requires isolated execution environments to prevent dependency conflicts and guarantee that findings can be reproduced on other systems.
 ---
 
-Scientific computing requires reproducible execution environments. An empirical analysis depends on more than source code—it requires a specific runtime, system utilities, and an exact tree of third-party libraries. If an agent executes scripts or installs libraries directly across the host operating system, it risks mutating global state, causing version collisions with other projects, and producing non-reproducible artifacts.
+Scientific computing requires reproducible execution environments. An empirical analysis depends on more than source code alone; it requires a specific runtime, system utilities, and an exact tree of third-party libraries. If an agent executes scripts or installs libraries directly across the host operating system, it risks mutating global state, causing version collisions with other projects, and producing non-reproducible artifacts.
 
 To protect system integrity and ensure computational reproducibility, agents should operate within isolated execution environments scoped strictly to the project directory.
 

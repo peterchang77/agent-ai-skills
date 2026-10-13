@@ -14,7 +14,7 @@ In this optional exercise, you evaluate a policy intervention by contrasting a s
 
 ## Background
 
-When an outcome changes following a clinical or policy intervention, other background factors—such as seasonal illness waves, staffing turnover, or regional shifts—may have occurred simultaneously. A simple pre-post comparison at the intervention site cannot isolate the intervention effect from these concurrent trends.
+When an outcome changes following a clinical or policy intervention, other background factors (such as seasonal illness waves, staffing turnover, or regional shifts) may have occurred simultaneously. A simple pre-post comparison at the intervention site cannot isolate the intervention effect from these concurrent trends.
 
 Incorporating a **comparison group** of unaffected sites illustrates what would have happened in the absence of the intervention. A **difference-in-differences** estimator computes:
 

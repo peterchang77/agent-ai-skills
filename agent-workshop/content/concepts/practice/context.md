@@ -13,7 +13,7 @@ In language model architectures, **context** encompasses everything visible to t
 
 ## The mechanics of stateless inference
 
-Because foundation models are mathematically stateless, they retain no internal memory between requests. To maintain continuity throughout an interactive session, the agent harness re-transmits the **complete conversation history**—alongside your newest directive—with every single turn.
+Because foundation models are mathematically stateless, they retain no internal memory between requests. To maintain continuity throughout an interactive session, the agent harness re-transmits the **complete conversation history**, along with your newest directive, on every single turn.
 
 This architectural requirement produces three direct consequences:
 
@@ -23,7 +23,7 @@ This architectural requirement produces three direct consequences:
 
 ## Understanding token budgets
 
-Language models process text as **tokens**—discrete sub-word character fragments. In English text, 1,000 tokens corresponds roughly to 750 words (about two pages of double-spaced prose). Context limits, computational throughput, and API pricing are measured in tokens.
+Language models process text in units called **tokens**, which are discrete sub-word character fragments. In English text, 1,000 tokens corresponds roughly to 750 words (about two pages of double-spaced prose). Context limits, computational throughput, and API pricing are measured in tokens.
 
 ## Realistic context limits in research workflows
 
