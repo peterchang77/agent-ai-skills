@@ -10,11 +10,7 @@ blurb: Context is everything the model can see. Every turn re-sends all of it, s
 **Context** is everything the model has in front of it: your messages, its replies, files it has read, and the
 output of commands it ran, plus standing instructions such as `AGENTS.md`. It is finite, it costs money, and it is **gone when the session ends**.
 
-```text
-┌──────────────────── context window ────────────────────┐
-│ instructions │ your messages │ replies │ files │ output │  ← grows every turn
-└────────────────────────────────────────────────────────┘
-```
+![Context accumulating over time. Turn 1 holds the base context: system rules, project memory such as AGENTS.md, and your goal. By turn 2 the agent has added tool calls and file contents. By turn N the full history, including terminal output, error logs, past iterations and revised scripts, approaches the token limit.](image:agent-context-accumulation)
 
 ## Every turn re-sends everything
 
