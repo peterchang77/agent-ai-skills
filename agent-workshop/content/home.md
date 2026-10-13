@@ -1,8 +1,10 @@
 <div class="wk-hero" markdown>
 
-# Working with Coding Agents
+# Coding Agents for Research
 
-A practical course for researchers ready to put AI coding agents to work on their data. You’ll learn how to collaborate with assistants that read your files, execute code, and show their work, focusing on the critical habits that keep your findings verifiable and reproducible.
+### Navigating Code, Tools, and Reproducible Science
+
+A practical course for researchers ready to put AI coding agents to work on empirical data. You’ll learn how to collaborate with assistants that read your files, execute code, and show their work, focusing on the critical habits that keep your findings verifiable and reproducible.
 
 </div>
 

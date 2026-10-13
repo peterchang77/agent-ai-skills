@@ -18,7 +18,10 @@ Coding agent architectures separate reasoning, orchestration, and execution into
 | **Agent harness** | The client application that manages session state, assembles system prompts, invokes tools, prompts for human permissions, and handles error recovery. | Choice of client CLI, IDE extension, or autonomous runtime |
 | **Execution environment** | The computing infrastructure where shell commands execute and files reside. | Local workstation, isolated container, or remote compute cluster ([Environment](concept:environment)) |
 
-The foundation model evaluates context and proposes actions; the harness enforces boundaries and dispatches commands; and the host environment runs code and returns console output. Harnesses also provide different **user interfaces**, including command-line interfaces (CLIs), code editor extensions, and standalone desktop applications.
+The foundation model evaluates context and proposes actions; the harness enforces boundaries and dispatches commands; and the host environment runs code and returns console output. Harnesses provide different **user interface modalities**:
+- **Command-line interfaces (CLIs / TUIs):** Lightweight, scriptable, terminal-native harnesses focused on rapid tool dispatch and terminal workflows.
+- **Code editor integrations & AI-native IDEs:** In-editor extensions or dedicated development environments tightly coupled with syntax trees, active files, and inline diffing.
+- **Desktop agent workspaces:** Standalone desktop GUI environments that manage project directories, sandboxed web browsers, multi-file deliverables, and asynchronous task offloading.
 
 ## An intuitive analogy: the specialist, the apparatus, and the workbench
 
@@ -41,15 +44,18 @@ To see how the harness and model collaborate, consider what happens under the ho
 
 ## Current landscape
 
-| Ecosystem | Command-line (CLI/TUI) | Editor / IDE integration | Background / Autonomous |
+| Ecosystem | Command-line (CLI/TUI) | Desktop GUI / IDE | Background / Autonomous |
 |---|---|---|---|
-| **Anthropic** | Claude Code | Claude Code in VS Code / JetBrains | Scheduled tasks, background agents |
-| **OpenAI** | Codex CLI | Codex editor integrations | Background batch workers |
-| **Google** | Gemini CLI, Antigravity CLI | Antigravity IDE | Autonomous background tasks |
-| **AWS** | Kiro CLI | Kiro IDE | Cloud-backed agent tasks |
-| **Open Source / Neutral** | pi, Aider | Extension ecosystems | Continuous background assistants |
+| **Anthropic** | Claude Code | Claude Cowork (Claude Desktop), Claude Code (VS Code/JetBrains) | Claude Cowork cloud tasks, Claude Code scheduled agents |
+| **OpenAI** | Codex CLI | ChatGPT Work (Desktop), Codex editor integrations | GPT Dots (persistent cloud VM agents), Codex batch workers |
+| **AWS** | Kiro CLI | Kiro Desktop (Kiro IDE) | Kiro Crew (multi-agent workspace), cloud tasks |
+| **Google** | Gemini CLI, Antigravity CLI | Antigravity IDE | Antigravity background tasks (`/goal`, persistent subagents) |
+| **Open Source / Neutral** | pi, Aider, OpenHands CLI | Cursor, Windsurf, Trae, Cline / Roo Code | OpenHands, Devin, SWE-agent, Manus |
 
-System names and interfaces evolve rapidly. Rather than focusing on ephemeral product branding, focus on the structural patterns and underlying configurations.
+System names and interfaces evolve rapidly. Rather than focusing on ephemeral product branding, focus on the structural patterns across these tiers:
+
+- **Desktop GUI workspaces vs. code editors:** Tools like Claude Cowork and ChatGPT Work broaden the harness surface beyond software development into general analytical and knowledge work. They inspect local directories, orchestrate isolated built-in browsers, and produce rich multi-file deliverables (spreadsheets, slide decks, interactive web pages) while providing visual diff and permission reviews.
+- **Local interactive runs vs. persistent cloud agents:** While early harnesses operated only while the user kept an active terminal or chat window open, systems like OpenAI Dots and Kiro Crew run asynchronously in dedicated sandboxed environments (cloud VMs or daemon containers). They persist memory and context across sessions, monitor repositories or event streams, and notify users only when explicit human sign-off is required.
 
 ## The spectrum of human supervision
 
@@ -60,7 +66,7 @@ Different research tasks call for different levels of autonomy and supervision:
 - **Isolated chat:** No harness integration. You copy code out manually, execute it in a separate terminal, and verify all output.
 - **Inline copilot:** Suggests code completions directly inside your editor as you write, keeping control localized to each line.
 - **Interactive agent:** Proposes concrete shell commands, file modifications, or script executions, pausing for your explicit confirmation before executing. This interactive model is the central focus of this workshop: it offers transparency, prompt approval checkpoints, and file-based steering.
-- **Autonomous agent:** Executes multi-step pipelines independently in the background, presenting artifacts upon completion. This approach saves time on repetitive tasks, but requires strict [sandboxing](concept:sandboxing) and [steering constraints](concept:steering) since you review work after execution.
+- **Autonomous agent:** Executes multi-step pipelines independently in the background, presenting artifacts upon completion. This ranges from short-lived local background workers to persistent cloud agents (such as GPT Dots or Kiro Crew) running overnight or event-triggered workflows. This approach saves time on repetitive tasks, but requires strict [sandboxing](concept:sandboxing) and [steering constraints](concept:steering) since you review work after execution.
 
 ## Selecting a harness and model
 

@@ -1,6 +1,6 @@
-site_name: Working with Coding Agents
+site_name: Coding Agents for Research
 site_url: !ENV [SITE_URL, ""]
-site_description: Practical, hands-on material on working with coding agents for researchers.
+site_description: "Coding Agents for Research: Navigating Code, Tools, and Reproducible Science"
 docs_dir: docs
 theme:
   name: material

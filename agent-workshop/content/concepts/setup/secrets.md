@@ -7,7 +7,7 @@ related: [privacy, sandboxing, tools, version-control]
 blurb: Credentials must never enter prompts, session logs, or version control. Use isolated environment variables and enforce immediate revocation protocols if exposed.
 ---
 
-In computational research, access credentials—such as database passwords, API tokens, cloud keys, and private SSH keys—authenticate requests to external data sources and computing clusters. Managing these credentials securely requires heightened vigilance when working with coding agents.
+In computational research, access credentials—such as database passwords, API tokens, cloud keys, and private SSH keys—authenticate requests to external data sources and computing clusters. Managing these credentials securely requires heightened vigilance when deploying coding agents in research workflows.
 
 ## Exposure vectors in agent workflows
 

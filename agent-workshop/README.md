@@ -1,6 +1,8 @@
-# Agent workshop
+# Coding Agents for Research
 
-A modular workshop on working with coding agents. Concepts are written once and are scenario-independent; each demo step has a **general** part (reusable on any data) and a labelled **Workshop example** for a scenario.
+> **Navigating Code, Tools, and Reproducible Science**
+
+A modular curriculum on navigating coding agents in empirical research. Concepts are written once and are scenario-independent; each demo step has a **general** part (reusable on any data) and a labelled **Workshop example** for a scenario.
 
 ```text
 content/concepts/<group>/<id>.md      concept pages (background, setup, practice, themes, reference)
