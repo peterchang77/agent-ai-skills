@@ -2,45 +2,43 @@
 role: read-text-files
 title: Read and summarize text files
 kind: full
-summary: The agent opens local text files itself. You name the files and the task; you do not paste anything.
+summary: Direct the agent to inspect and synthesize project-local text files, validating source provenance and avoiding copy-paste truncation.
 time: 5 min
 teaches: [inputs, verification]
 needs: [orient-in-folder]
 ---
 
-Plain text is the easiest thing for an agent to work with. After this step you will know how to point an agent at local text
-files, and how to confirm it really read them.
+Structured plain text is the most reliable medium for language model ingestion. In this exercise, you direct the agent to read local text files directly from the filesystem, synthesize key findings, and attribute claims to specific source files.
 
-**Before you start:** a project folder with text-based files in it ([Setup](setup:)).
+**Before you start:** A project directory containing text-based documents or data files ([Setup](setup:)).
 
 ## Background
 
-Text, Markdown, CSV, JSON, LaTeX, and HTML files are all just text, so the agent can open them directly with no extra
-software ([Inputs](concept:inputs)). Pointing at a file is better than pasting its contents: nothing is retyped, nothing
-loses its columns, and the file stays the single source of truth.
+Plain-text formats—including Markdown (`.md`), CSV (`.csv`), JSON (`.json`), LaTeX (`.tex`), and HTML (`.html`)—are parsed directly as structured token sequences without requiring translation libraries ([Inputs](concept:inputs)). 
 
-## General approach
+Directing the agent to inspect files via relative filesystem paths is far superior to pasting excerpts into the chat window: it eliminates manual copy-paste errors, preserves tabular column alignments, and ensures the original file remains the definitive source of truth.
 
-Name the files and the task, and ask the agent to show where each claim came from.
+## General methodology
+
+Specify the target files and the extraction objective explicitly, instructing the agent to attribute each summary point to its source document.
 
 ```text
-Read <file1> and <file2>. Summarize <what you want>. For each point, say which file it came from.
+Read <file1> and <file2>. Synthesize <analytical objective>. For each key finding, cite the specific source file and section.
 ```
 
-Asking for sources turns "it read something" into something you can check ([Verification](concept:verification)). If the
-files contain sensitive data, check first that your model endpoint is approved for it ([Privacy](concept:privacy)).
+Requiring explicit file citations transforms conversational claims into an auditable evidence trail ([Verification](concept:verification)). If the files contain confidential or regulated records, verify that your model endpoint is authorized for that data tier ([Privacy and data handling](concept:privacy)).
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- The agent opened each named file (look for the read or command in the transcript).
-- Each point in the summary traces to a specific file.
-- Nothing in the summary is missing from the files, and nothing important in the files is missing from the summary.
+- **Verified file access:** Confirm that the agent executed read commands against each named file in the session transcript.
+- **Traceable citations:** Every claim or numerical parameter in the summary cites a specific file.
+- **Content fidelity:** The summary accurately reflects the text without omitting critical caveats or extrapolating unsupported claims.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| Vague summary | The task was vague | Say what the summary is for and in what shape |
-| Claims not in the files | It filled gaps from general knowledge | Ask it to quote the supporting line, and drop unsupported points |
+| Overly generalized summary | The extraction directive was underspecified | Clarify the research objective and specify the required structural format (e.g., bulleted list or markdown table) |
+| Unsupported claims | The model hallucinated details from pre-training memory | Direct the agent to quote the exact supporting sentences from the source text and excise unverified points |

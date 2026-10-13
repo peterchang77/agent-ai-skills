@@ -4,48 +4,50 @@ title: Steering — keeping the agent on course
 short: Steering
 themes: [recursive-ai, context-discipline]
 related: [scoping-work, memory, sandboxing, verification]
-blurb: Choose how much the agent may do without asking, interrupt early, and turn repeated corrections into standing rules.
+blurb: Balance supervisory approval modes with task risk, intervene early when execution drifts, and codify recurring corrections into standing rules.
 ---
 
-Steering is how you keep the agent doing what you want while it works: instructions, approvals, and course corrections.
+Steering refers to the real-time supervisory control a researcher exerts over an agent during execution. Effective steering balances efficiency with safety: granting sufficient autonomy for the agent to resolve routine implementation details while enforcing clear checkpoints for critical methodological decisions.
 
-## Approval modes
+## Supervisory approval modes
 
-Harnesses differ in names and details, but most offer a version of these:
+Agent harnesses implement different permission models to govern how commands and filesystem modifications are executed:
 
-| Mode | The agent… | Good for | What can go wrong |
+| Permission tier | System behavior | Recommended research use case | Operational risks |
 |---|---|---|---|
-| Plan / read-only | Explores and proposes; changes nothing | New or unclear work | Nothing happens until you approve |
-| Ask each time | Asks before every file change or command | Unfamiliar work, sensitive data | Approval fatigue; you stop reading the prompts |
-| Auto-accept edits | Edits files freely, asks before commands | Routine changes inside a project | Edits you did not review |
-| Auto-accept everything | Runs commands and edits without asking | Isolated, backed-up environments | Mistakes happen at full speed |
+| **Plan / Read-only** | Agent inspects files and proposes a plan; executes no writes or commands | Initial exploratory scoping; clarifying complex methodologies | Analysis cannot progress until plan approval is granted |
+| **Interactive confirmation** | Prompts for user approval before each command execution or file modification | Unfamiliar scripts, novel libraries, or sensitive project environments | Approval fatigue: repetitive prompts cause users to approve actions without careful review |
+| **Auto-accept file edits** | Modifies files directly; pauses only before executing shell commands | Iterative refactoring and script adjustments within an active project | Silent file edits that escape human inspection |
+| **Full autonomous execution** | Executes commands and modifies files continuously without pausing | Routine batch processing in isolated containers or disposable workspaces | Errors propagate rapidly without human intervention |
 
-**Match the mode to the risk.** Ask first with unfamiliar tasks or sensitive data. Allow more autonomy only inside an
-isolated, backed-up environment ([Sandboxing](concept:sandboxing), [Version control](concept:version-control)).
+**Calibrate permissions to operational risk:** Use interactive confirmation for unfamiliar analytical steps or sensitive environments. Increase autonomy only when working within isolated, version-controlled project trees ([Sandboxing](concept:sandboxing), [Version control](concept:version-control)).
 
-## Draft first for side effects
+## Enforcing dry runs for side-effecting operations
 
-Anything that sends, publishes, deletes, or spends money gets a preview and explicit approval, as in
-[Outputs](concept:outputs). Ask: "Show me exactly what you will send, and wait."
+Operations that modify remote cloud infrastructure, transmit network requests, delete datasets, or incur financial charges must follow a **preview-and-approve** protocol:
 
-## Interrupt early
+```text
+Draft the exact network payload and destination parameters.
+Display the preview and pause for my confirmation before executing.
+```
 
-If the agent starts down the wrong path, stop it, say what is wrong, and redirect. Waiting for it to finish costs time and context.
+## Active intervention and early redirection
 
-A run that takes far longer than the task seems to deserve is a signal. Stop it and ask what it is doing. The agent may have picked a much heavier method than you needed, such as simulating a result you could compute directly, and a one-line instruction to use the simpler method usually fixes it.
+Do not wait for an erroneous execution loop to terminate on its own. When an agent adopts an invalid premise or begins modifying the wrong files, interrupt execution immediately. Intervening early preserves working context and saves compute resources:
 
-## Fix the cause, not the symptom
+- **Detecting algorithmic drift:** If an agent attempts to simulate an empirical distribution when a closed-form formula is appropriate, halt execution and direct it toward the direct calculation.
+- **Excessive execution duration:** When a command runs unexpectedly long, interrupt the process to inspect the sub-command. The agent may be stuck in an unindexed table scan or an unbuffered network query.
 
-If you correct the same mistake twice, put the rule in `AGENTS.md` ([Memory](concept:memory)). To make a procedure
-reliable, combine a short instructions file with a skill or a tool; prose alone drifts.
+## Codifying feedback into durable rules
 
-## Prompt habits that help
+If you find yourself correcting the same behavior across multiple turns (e.g., repeatedly reminding the agent not to modify files in `data/raw/`), do not continue issuing ad-hoc reminders. Formalize the constraint as a standing instruction in `AGENTS.md` ([Memory](concept:memory)). Codifying rules into persistent project documentation prevents behavioral drift across subsequent sessions.
 
-- Say what to **avoid**, not only what to do.
-- Ask it to **state its assumptions** before it starts.
-- Ask for **options** before it commits to an approach.
-- Ask **what it is unsure about**.
-- Ask for **evidence**, not reassurance ([Verification](concept:verification)).
+## Prompting techniques for effective steering
+
+- **State negative constraints explicitly:** Define both what the agent should accomplish and what actions are strictly forbidden (e.g., *"Do not install system packages; use only libraries currently available in the environment"*).
+- **Surface assumptions early:** Instruct the agent to state its working assumptions before writing code.
+- **Request comparative options:** Ask for two or three alternative methodological approaches along with trade-offs before committing to a pipeline.
+- **Highlight uncertainties:** Ask the agent to identify ambiguous edge cases in the data that require domain expertise.
 
 ## Demo it
 

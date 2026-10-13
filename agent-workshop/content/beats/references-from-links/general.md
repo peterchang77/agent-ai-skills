@@ -2,56 +2,55 @@
 role: references-from-links
 title: Build references from links you provide
 kind: detour
-summary: A simpler workflow. You collect the links; the agent reads them and writes the BibTeX. Know when this works and when it fails.
+summary: Construct an auditable BibTeX bibliography from researcher-curated URLs, using DOI content negotiation and PMID lookups while barring model speculation.
 time: 6 min
 teaches: [inputs, verification, tools]
 needs: [orient-in-folder]
 ---
 
-Sometimes the quickest way to build a reference list is to paste the links to papers you have already found. After this step you will know how to
-do that, what to expect from different kinds of links, and how to check the result.
+In research workflows, investigators often accumulate specific URLs to articles, preprints, or bibliographic records during literature exploration. In this detour exercise, you direct the agent to fetch metadata directly from curated links, format the records as BibTeX, and audit extraction integrity.
 
-**Before you start:** a project folder and a few links you have chosen ([Setup](setup:)).
+**Before you start:** A project directory and a list of target URLs representing papers you intend to cite ([Setup](setup:)).
 
 ## Background
 
-This is the **web as an input** ([Inputs](concept:inputs)). You supply URLs (PubMed pages, DOI links, publisher pages, preprint servers) and the agent
-fetches each one and extracts the title, authors, year, journal, and identifier.
+This exercise illustrates the **web as an analytical input pathway** ([Inputs](concept:inputs)). You supply publication links (PubMed entries, DOI URLs, preprint repositories, or publisher landing pages), and the agent retrieves each resource to extract titles, authors, publication years, and persistent identifiers.
 
-Links behave very differently:
+Web interfaces vary significantly in how easily they yield bibliographic metadata:
 
-| Link type | What usually happens |
-|---|---|
-| A DOI | The DOI service can return BibTeX directly (via content negotiation), which is the most reliable route |
-| PubMed record | Best through PubMed's programmatic interface using the PMID; the ordinary web page may refuse automated requests |
-| Publisher article page | Often blocks automated requests or sits behind a paywall |
-| Preprint server | Usually open and easy to read |
+| URL structure | Expected retrieval behavior | Optimal technical pathway |
+|---|---|---|
+| **DOI links** (`doi.org/...`) | High reliability; official DOI resolvers support HTTP content negotiation | Request `Accept: application/x-bibtex` headers to retrieve authoritative BibTeX directly |
+| **PubMed records** | High reliability via API; standard web interfaces may block automated requests | Query PubMed E-utilities using the parsed PMID |
+| **Preprint repositories** (arXiv, bioRxiv) | High reliability; open metadata headers and Dublin Core tags | Parse HTML `<meta>` tags or query repository APIs |
+| **Commercial journal pages** | Variable; commercial firewalls or anti-bot protections frequently block scrapers | Fall back to DOI content negotiation or manual abstract pasting |
 
-When a page cannot be fetched, the agent may be tempted to fill in the details from memory. **Forbid that explicitly.** The safe fallbacks are to
-fetch metadata by identifier, or for you to paste the abstract or the citation text yourself.
+When an automated HTTP request fails (e.g., due to an institutional paywall or bot detection), language models are prone to fabricating missing citation fields from memory. **Explicitly prohibit guessing:** when a page cannot be retrieved, instruct the agent to declare the failure, fall back to identifier lookups, or request that you paste the metadata manually.
 
-## General approach
+## General methodology
+
+Direct the agent to resolve each link using official resolvers or metadata headers, mandating that the source channel be documented for every record:
 
 ```text
-Here are links to <n> papers: <url1> <url2> ... For each, retrieve the metadata from the page or from its DOI or PMID record. Add a BibTeX
-entry to references.bib with the DOI or PMID in it. If you cannot retrieve a link, say so and do not guess any field. Then list, for each
-entry, the source you used.
+Here are links to <N> target publications: <url1> <url2> ...
+For each link, retrieve official bibliographic metadata using DOI content negotiation, PubMed E-utilities, or publication metadata tags.
+Append verified BibTeX entries to references.bib, ensuring each entry includes an active DOI or PMID.
+If automated retrieval fails for any link, report the error explicitly; do not guess or fabricate missing fields from memory.
+Finally, provide a summary table listing each entry alongside the exact retrieval mechanism used.
 ```
-
-Check the list the agent returns: a source for every entry is your evidence that nothing was invented.
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- Every link is accounted for: added, or reported as failed.
-- Each entry has an identifier and a stated source.
-- Titles, years, and authors match the page when you open two or three yourself.
+- **Complete link accounting:** Every provided URL is explicitly accounted for as successfully added or transparently reported as failed.
+- **Persistent identifier presence:** All created BibTeX entries contain valid DOI or PMID attributes.
+- **Empirical source verification:** Spot-check two or three entries against original article pages to confirm author lists and publication years match.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| Some links failed | Paywall or bot protection | Use the DOI or PMID route, or paste the details |
-| Plausible but wrong details | The agent filled gaps from memory | Forbid guessing; ask for the source of each field |
-| Duplicates of papers already in the file | Different links to the same paper | Compare identifiers before adding |
+| Extraction blocked by publisher website | Commercial anti-bot protections or institutional paywalls | Extract the DOI string from the URL and query the official `dx.doi.org` resolver directly |
+| Fabricated author lists or journals | The agent encountered an extraction error and filled missing fields from pre-training memory | Explicitly mandate: *"Never guess missing fields; report extraction failures immediately"* |
+| Duplicate entries in bibliography | Multiple URLs referenced the same underlying publication | Direct the agent to de-duplicate against existing DOI and PMID attributes prior to appending |

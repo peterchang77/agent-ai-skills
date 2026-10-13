@@ -2,65 +2,63 @@
 role: find-references
 title: Find references from a bibliographic database
 kind: full
-summary: Retrieve real papers from PubMed with a small script, build a BibTeX file from the retrieved records, and verify it. Never cite from the model's memory.
+summary: Build a verified BibTeX bibliography via programmatic API retrieval (PubMed E-utilities), establishing a reproducible search log and eliminating hallucinated citations.
 time: 9 min
 teaches: [tools, verification, memory]
 needs: [orient-in-folder]
 ---
 
-Language models can produce plausible citations that do not exist. After this step you will have a repeatable way to find real references,
-keep them in a BibTeX file, record how you searched, and check that every entry is genuine.
+Large language models frequently fabricate plausible-sounding academic citations when prompted from training memory. In this exercise, you implement a programmatic reference retrieval workflow that queries PubMed via external APIs, saves verified records to a BibTeX bibliography, documents search parameters, and validates metadata against upstream registries.
 
-**Before you start:** a project folder and network access. A fallback is available if you cannot reach the network ([Setup](setup:)).
+**Before you start:** A project directory and active network access. (A local fallback archive is available if network access is restricted; see [Setup](setup:)).
 
 ## Background
 
-A safe reference workflow has four properties, which matter more than the particular tool:
+A dependable scientific bibliographic pipeline adheres to four core methodological principles:
 
-1. **Retrieve, do not recall.** Every entry comes from a record returned by a bibliographic service, never from the model's memory.
-2. **Keep identifiers.** Each entry carries a PMID or DOI, so it can be re-checked later.
-3. **Log the search.** Record the query, date, number of hits, and what you kept or rejected, so the search is reproducible.
-4. **Verify before use.** Re-fetch each entry and compare the title and year. Anything that does not resolve is flagged.
+1. **Programmatic retrieval over memory recall:** Every citation entry must be ingested directly from an authoritative bibliographic database, never generated from model parameters.
+2. **Persistent identifier tracking:** Every entry must store a persistent digital identifier (PMID or DOI) enabling automated re-verification.
+3. **Reproducible query auditing:** The search string, execution date, total hits returned, and explicit inclusion/exclusion decisions are preserved in an audit log (`refs/search-log.md`).
+4. **Upstream metadata validation:** Metadata fields (authors, title, publication year) are systematically validated against registry records before citing.
 
-This is a *working example* of such a workflow, not a definitive one. [PubMed](https://pubmed.ncbi.nlm.nih.gov/) offers a free programmatic
-interface (E-utilities): one call finds record IDs for a query, another fetches the records. It allows a few requests per second without an
-account; space your calls out.
+This exercise uses the National Library of Medicine's [PubMed E-utilities](https://pubmed.ncbi.nlm.nih.gov/) API: an open programmatic interface where an `esearch` query retrieves matching PMIDs and an `esummary` call retrieves structured metadata.
 
-A `references.bib` file is plain text: the agent edits it and the LaTeX build reads it, so it works as project memory
-([Memory](concept:memory)). Put the rule in `AGENTS.md`: "Citations come only from retrieved records; each must have a PMID or DOI."
+The generated `references.bib` file acts as durable project memory ([Memory](concept:memory)), readable by both the agent and LaTeX compilation engines. Establish a standing rule in `AGENTS.md`: *"All academic citations must be programmatically retrieved and include a valid PMID or DOI; never generate citations from memory."*
 
-## General approach
+## General methodology
 
-Ask the agent to build a small tool, then use it ([Tools](concept:tools)):
+Direct the agent to develop a lightweight, standard-library Python utility to search, append, and verify records:
 
 ```text
-Write a small command-line script, scripts/pubmed_refs.py, using only the Python standard library, with three commands: `search "query"`
-(prints PMID, year, title, first author, journal, and appends the query and results to refs/search-log.md), `add PMID...` (fetches
-records and appends BibTeX entries with the PMID to references.bib, skipping duplicates), and `verify` (re-fetches each entry and
-reports any whose title or year differs). Use PubMed E-utilities and wait between requests. Test it, and show me the --help.
+Create a Python CLI utility, scripts/pubmed_refs.py, using only the Python standard library, supporting three subcommands:
+1. `search "<query>"`: Queries PubMed E-utilities, prints candidate PMIDs with publication year, title, first author, and journal, and appends the query and result counts to refs/search-log.md.
+2. `add <PMID...>`: Fetches official metadata for the specified PMIDs and appends formatted BibTeX entries to references.bib, preventing duplicates.
+3. `verify`: Re-queries PubMed for each PMID in references.bib and asserts that local titles and publication years match official records.
+Incorporate polite rate limiting between API requests. Test the utility and display its --help documentation.
 ```
 
-Then use it:
+Execute the workflow interactively:
 
 ```text
-Search PubMed for <topic>. Show me the candidates; I will choose which to add. Then add them and run verify.
+Search PubMed for <research topic>.
+Display candidate papers with titles and abstracts. Pause so I can select which records to include.
+Then add the selected PMIDs to references.bib and run the verification audit.
 ```
 
-You choose what to add: relevance is a judgement. Read each abstract before citing a paper for a claim.
+The human researcher must make the final selection: relevance to your research question requires scientific judgement. Always read candidate abstracts before citing papers in your manuscripts.
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- Every `references.bib` entry has a PMID or DOI, and `verify` passes.
-- `refs/search-log.md` shows the query, the date, and what you kept or rejected.
-- You have read the abstract of each paper you will cite.
+- **Persistent identifier presence:** Every entry in `references.bib` contains a valid PMID or DOI, and running `scripts/pubmed_refs.py verify` exits without error.
+- **Auditable search log:** The file `refs/search-log.md` records the exact search query, execution timestamp, and rationale for selected records.
+- **Abstract verification:** The researcher has inspected the abstract for every cited paper to verify that findings support the intended manuscript claims.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| Few or irrelevant hits | The query is too narrow or too broad | Adjust terms; combine intervention and condition terms |
-| Rate-limit errors | Requests too fast | Add a delay between calls; use an API key for heavier use |
-| Entries missing a DOI | Some records have none | Keep the PMID; it is sufficient to re-check |
-| No network | Offline or blocked | Use the bundled `pubmed_refs.py` and `references.bib` in the extras folder |
+| HTTP 429 Too Many Requests | Script exceeded PubMed's unauthenticated request rate limits (typically 3 requests/second) | Add explicit sleep pauses (`time.sleep(0.4)`) between API calls |
+| Hallucinated reference fields | The agent supplemented missing metadata fields from internal memory | Mandate that all BibTeX attributes originate strictly from parsed API response payloads |
+| Duplicate bibliography keys | The same paper was added under multiple query variations | Enforce uniqueness checks on PMIDs and DOIs prior to appending entries |

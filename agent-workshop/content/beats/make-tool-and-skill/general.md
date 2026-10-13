@@ -2,67 +2,67 @@
 role: make-tool-and-skill
 title: Turn the analysis into a tool and a skill
 kind: full
-summary: When you will repeat a task, package it as a script with a help message, test it against a known answer, and write a short skill that says when and how to use it.
+summary: Package proven analytical pipelines into tested, parameterized command-line tools and modular agent skills for persistent reproducibility.
 time: 10 min
 teaches: [tools, memory, verification]
 needs: [add-agents-md, analyze-pilot]
 ---
 
-After this step you will have a tested command that reproduces an analysis on new data, and a short skill that tells a future session how to use it. That
-is the most durable kind of memory: the next run costs a sentence, not a conversation.
+In this exercise, you package an interactive multi-step analysis into a tested command-line script and author an agent skill that instructs future sessions when and how to invoke it. Codifying workflows into standalone tools represents the most durable form of project memory: executing future analyses requires a concise instruction rather than an extended exploratory conversation.
 
-**Before you start:** a working analysis script and its outputs ([Setup](setup:restore-a-starting-point)).
+**Before you start:** A verified analysis script, input datasets, and output tables ([Setup](setup:restore-a-starting-point)).
 
 ## Background
 
-A prompt-driven analysis may come out slightly differently each time. A **tool** (a script with arguments and `--help`) does the same thing every time, runs
-without the model, and can be tested ([Tools](concept:tools)). A **skill** is a short document in its own folder that tells the agent *when* to use the tool and
-*how*, without you re-explaining ([Memory](concept:memory)).
+Prompt-driven analytical sessions remain probabilistic: repeating an analysis via conversational prompts can introduce subtle discrepancies in column naming, statistical packages, or output formatting. 
 
-A useful split:
+In contrast, a **deterministic tool** (a Python script with explicit arguments and `--help` documentation) executes the exact same mathematical logic every time, runs independently of the language model, and can be validated with regression tests ([Tools](concept:tools)).
 
-| Piece | Holds |
-|---|---|
-| Tool (script) | The logic. Deterministic. Tested. |
-| `README.md` | What it does, inputs, outputs, an example run |
-| Skill (`SKILL.md`) | When to use it, the exact command, what to check afterwards |
-| `AGENTS.md` | Project-wide rules that always apply |
+An **agent skill** is a modular instruction runbook housed in its own directory that specifies *when* the agent should invoke the tool and *how* to evaluate its output, eliminating the need to re-explain procedures in future sessions ([Memory](concept:memory)).
 
-## General approach
+| Component | Responsibility | Technical properties |
+|---|---|---|
+| **Executable tool** | Analytical execution logic | Deterministic, parameterized, tested against reference data |
+| **Tool documentation (`README.md`)** | Usage instructions, arguments, sample calls | Human-readable specification |
+| **Agent skill (`SKILL.md`)** | Invocation criteria, exact CLI syntax, validation rules | Machine-readable runbook ingested dynamically by the harness |
+| **Standing instructions (`AGENTS.md`)** | Repository-wide guardrails and directory paths | Ingested at session initialization across all tasks |
 
-1. **Package.** 
+## General methodology
 
-```text
-Combine the cleaning, cohort, and analysis steps into one command-line tool scripts/pilot_report.py with arguments for the input files and an output folder,
-and a --help. It must not modify its inputs. Write a short README.md for it.
-```
-
-2. **Test.** Run it on the same data and compare the output with your saved results. Add a test that checks key numbers against the known answers
-(`pytest` or a simple check script).
-
-3. **Write the skill.**
+1. **Package into a parameterized script:**
 
 ```text
-Create a skill in .agents/skills/pilot-report/SKILL.md (under 40 lines): when to use it, the exact command, the inputs it needs, and what to check
-in the output. Do not repeat what the README already says; link to it.
+Consolidate data cleaning, cohort definition, and statistical modeling into an executable CLI tool: scripts/pilot_report.py.
+Provide structured arguments for input datasets and output destination directories, with full --help documentation.
+Ensure the tool does not modify input datasets. Provide a concise README.md detailing usage.
 ```
 
-4. **Prove it.** Start a new session, ask for the report on the data, and see whether the agent finds and uses the skill.
+2. **Implement regression testing:** Execute the script on baseline data and confirm that generated metrics match previously verified results. Implement an automated validation test (via `pytest` or an assertion script) that verifies core statistical estimates against known benchmarks.
 
-Where a skill lives, and how it is discovered, depends on your harness; check its documentation ([Harnesses](concept:harnesses)).
+3. **Author the modular skill:**
+
+```text
+Create a custom skill in .agents/skills/pilot-report/SKILL.md (under 40 lines) specifying:
+- Trigger criteria: when to invoke this tool.
+- Exact CLI execution syntax and required arguments.
+- Verification checks to execute on generated output files.
+Do not duplicate tool README documentation; reference the script directly.
+```
+
+4. **Verify skill discovery:** Launch a clean agent session, request an updated report on the data, and verify that the agent autonomously discovers and executes the skill.
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- The tool reproduces your earlier numbers exactly.
-- A test fails if a key number changes.
-- The skill is short, specific, and points at the tool and README rather than copying them.
-- The skill and tool contain no secrets.
+- **Numerical reproducibility:** The packaged tool reproduces earlier empirical point estimates and sample counts exactly.
+- **Automated test assertions:** The test suite passes on valid data and fails if key numerical values or column schemas are altered.
+- **Skill conciseness:** The `SKILL.md` file remains under 40 lines, providing targeted invocation guidelines without redundant documentation.
+- **Credential hygiene:** The skill, tool, and documentation contain zero hardcoded secrets.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| The new session does not use the skill | Wrong location or an unclear description | Check where your harness looks; sharpen the skill's description line |
-| Tool output differs from before | Logic changed while combining steps | Compare step by step against the saved results |
+| Agent fails to invoke the skill in fresh sessions | Skill file path does not match harness discovery conventions, or trigger description is vague | Verify your harness's expected skill directory path; clarify the description in `SKILL.md` |
+| Tool outputs diverge from prior results | Data filtering or modeling logic was altered during script consolidation | Conduct step-by-step diff comparisons between the original exploratory script and the consolidated CLI script |

@@ -4,49 +4,54 @@ title: Memory — durable knowledge lives in files
 short: Memory
 themes: [context-discipline, recursive-ai]
 related: [context, tools, steering, version-control]
-blurb: Agents forget everything between sessions. Anything worth keeping goes in a file the agent reads, and the most durable form is a tool.
+blurb: Language models do not retain memory across sessions. Preserving knowledge requires externalizing guidelines, documentation, and tools into persistent files.
 ---
 
-Nothing carries over from one session to the next except **files**. So the workaround for forgetting is the same each time: write it down.
+Autoregressive foundation models maintain no persistent internal state across independent invocations. Once an interactive session ends, the active context window is discarded. Consequently, the only durable mechanism for preserving project knowledge between sessions is external storage: **persisting guidelines, decisions, and logic into local files**.
 
-## Levels of durable knowledge
+## The hierarchy of externalized project memory
 
-| Level | What it is | Loaded | Use for |
+| Memory layer | Artifact structure | Ingestion mechanism | Optimal research role |
 |---|---|---|---|
-| `AGENTS.md` | A short instructions file in the project | Automatically, at the start of every session | Conventions, paths, "always/never" rules |
-| Notes and `README.md` | Ordinary documents | When the agent is told to read them or goes looking | Background, decisions, how to rerun |
-| Skills (`SKILL.md`) | A packaged procedure in its own folder | On demand, when the task matches | A repeatable task ("write the monthly report") |
-| Tools | Reusable code (a script or command-line program) | When run | Anything that should happen the same way each time |
+| **Standing instructions** | `AGENTS.md` in the project root | Loaded into context automatically at session initialization | Global repository rules, directory paths, and mandatory coding standards |
+| **Project documentation** | `README.md`, protocol notes | Read on demand when directed by the user or discovered via file search | Study background, data provenance, analytical rationale, rerun instructions |
+| **Procedural skills** | `SKILL.md` in dedicated skill folders | Loaded dynamically when a user prompt matches skill criteria | Complex multi-step runbooks (e.g., *"compile monthly quality control report"*) |
+| **Deterministic tools** | Parameterized scripts with CLI interfaces | Executed as standalone programs in the local shell | Core analytical algorithms, data transformations, and statistical pipelines |
 
-**Rule of thumb:** when you explain something twice, write it down; when you ask for the same task a third time, make it a skill or a tool.
+**A guiding principle:** If you explain a methodological preference twice, document it in `AGENTS.md`; if you request the same multi-step procedure a third time, codify it as a reusable skill or executable tool.
 
-The names can vary between harnesses (`AGENTS.md` is a widely used convention; some tools use their own filename), but plain files travel well between them.
+While file naming conventions vary across agent harnesses (`AGENTS.md` is an emerging cross-vendor standard, though some tools use platform-specific files), storing conventions in plain Markdown ensures your instructions remain portable across platforms.
 
-## Built-in memory features
+## Proprietary harness memory features
 
-Some products add their own memory that persists across sessions. These differ by product, so find out
-what yours stores, where, and how to see or delete it. Files you control are easier to review and share.
+Certain commercial agent platforms offer built-in semantic memory systems that automatically index past user interactions. If you use these features, understand what data is retained, where it is stored, and how to audit or delete entries. For shared research environments, storing instructions in repository files provides greater transparency, auditability, and team collaboration.
 
-## What to record
+## What to document in project memory
 
-- **Decisions** and why (cleaning rules, definitions, "we tried X and it failed because Y").
-- **How to run things** and where the data lives.
-- **Preferences and rules** the agent keeps getting wrong.
+- **Methodological decisions:** Document variable definitions, outlier thresholds, and analytical justifications (e.g., *"Excluded site C due to telemetry clock drift"*).
+- **Environment and execution commands:** Explicit instructions for activating virtual environments and running pipelines.
+- **Negative constraints:** Explicit boundaries detailing actions the agent must avoid (e.g., *"Never edit raw CSV files directly"*).
 
-Do not record what the agent can re-derive from the code. Keep memory files **short and specific**: everything in them is loaded into [context](concept:context) every session, so a sprawling file wastes space and gets ignored.
+Avoid recording trivial implementation details that an agent can easily derive by reading the code. Keep `AGENTS.md` **concise and focused**: because standing instructions consume context tokens on every single turn, bloated instruction files reduce available context and dilute the model's focus.
 
-## Use the agent to write the file
+## Using the agent to draft its own documentation
 
-Ask the agent to draft `AGENTS.md` from what you just did, then review it and cut anything vague. Using the agent to improve its own instructions is a core habit.
+An effective pattern is to prompt the agent to synthesize recent analytical decisions directly into `AGENTS.md` or a study log:
 
-## Tools are the strongest memory
+```text
+Summarize the data cleaning rules and cohort exclusion criteria we just established.
+Append them to AGENTS.md in a clean, concise bulleted format.
+```
 
-A prose instruction depends on interpretation; a script does the same thing every time and can be tested. When a
-procedure is stable, turn it into a tool and let the instructions simply say how to run it ([Tools](concept:tools)).
+Review the draft carefully to trim redundant explanations and verify accuracy before committing the changes.
 
-## Maintain it
+## Deterministic tools as the highest form of memory
 
-Stale instructions are worse than none. Keep memory files in [version control](concept:version-control), review changes to them like code, and never store [secrets](concept:secrets) in them.
+Prose instructions require stochastic interpretation by the model on every run. In contrast, an executable script performs the exact same mathematical operations every time and can be validated with automated tests. Once an analytical procedure stabilizes, package the logic into a standalone tool and reference its command syntax in documentation ([Tools](concept:tools)).
+
+## Maintenance and version control
+
+Outdated instructions are worse than missing instructions: they cause agents to run obsolete scripts or reference missing directories. Keep memory files under [version control](concept:version-control), review instruction changes alongside code diffs, and ensure credentials never enter persistent documentation ([Secrets](concept:secrets)).
 
 ## Demo it
 

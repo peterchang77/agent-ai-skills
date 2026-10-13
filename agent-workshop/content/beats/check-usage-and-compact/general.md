@@ -2,47 +2,50 @@
 role: check-usage-and-compact
 title: Check usage and compact the conversation
 kind: mini
-summary: See how large your conversation has become, summarise it into a file, and continue in a fresh session.
+summary: Monitor cumulative token consumption, synthesize session decisions into a persistent summary file, and initialize a clean working context.
 time: 5 min
 teaches: [context, costs]
 needs: [orient-in-folder]
 ---
 
-After this step you will know how to see how much context a session is using, how to compact it deliberately, and how to carry the important parts into a new session.
+In this exercise, you audit active token usage in your agent harness, synthesize key analytical decisions into a concise Markdown summary, and initialize a fresh working session without losing project state.
 
-**Before you start:** an agent session that has been running for a while, ideally after several of the earlier steps ([Setup](setup:)).
+**Before you start:** An active agent session that has executed multiple turns across earlier exercises ([Setup](setup:)).
 
 ## Background
 
-Every turn re-sends the whole conversation, so long sessions get slower, costlier, and less reliable ([Context](concept:context), [Costs](concept:costs)). Harnesses typically show
-a context or token indicator and offer a command to compact or clear the conversation; the names differ, so check yours.
+Because language model inference is stateless, each turn re-transmits the complete conversation transcript. Consequently, long-running sessions exhibit increased latency, higher token costs, and attention drift ([Context](concept:context), [Costs](concept:costs)). Most modern harnesses display active context usage and provide commands to compact or clear history.
 
-A manual compaction beats an automatic one because you choose the moment and decide what to keep.
+Executing manual compaction at logical project milestones is far superior to automatic truncation: you select the precise transition point and decide which decisions to preserve.
 
-## General approach
+## General methodology
 
-1. **Look.** Find your harness's usage display. Note the tokens used and the share of the window.
-2. **Summarise to a file.**
+1. **Audit token consumption:** Inspect your harness's token or context indicator to observe total tokens consumed and percentage of the sequence window occupied.
+2. **Synthesize state to disk:** Instruct the agent to summarize project state into a persistent document:
 
 ```text
-Summarise this session for a future session: what we were trying to do, the decisions made and why, the files created and what each is for, the current
-state, and the open questions. Save it as notes/session-summary.md. Keep it under 40 lines. Do not include anything sensitive.
+Summarize this session for a future fresh session:
+- The core analytical objective.
+- Specific data cleaning and modeling decisions made, along with justifications.
+- Files generated and their analytical roles.
+- Current project state and open research questions.
+Save this summary as notes/session-summary.md (under 40 lines). Do not include credentials or unredacted confidential data.
 ```
 
-3. **Restart.** Start a new session and ask it to read `notes/session-summary.md` and continue. Or use your harness's compaction command and compare.
-4. **Review the summary.** It is memory: anything wrong in it is inherited ([Memory](concept:memory)).
+3. **Initialize a fresh session:** Start a new agent session and direct it to read `notes/session-summary.md` to resume work with minimal context overhead.
+4. **Audit the summary document:** Review `notes/session-summary.md` carefully: because new sessions inherit claims recorded here, correct any inaccurate statements before continuing ([Memory](concept:memory)).
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- The summary captures decisions and file purposes, not a transcript.
-- The new session starts with far less context, and can still answer "where did we leave off?".
-- Anything important that was only in the conversation now exists in a file.
+- **Decision-centric summary:** The summary synthesizes methodological decisions and file roles rather than logging conversational dialogue.
+- **Context reduction:** The new session initializes with substantially reduced token overhead while accurately identifying where prior work concluded.
+- **Durable external state:** All critical conventions discussed in the earlier conversation now exist as persistent files on disk.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| Summary too long or generic | No length limit or structure | Ask for specific sections and a line limit |
-| Key decision missing | It was never written down | Add it to the summary and to `AGENTS.md` if it is a rule |
+| Summary is excessively verbose | Prompt lacked line constraints or section structure | Direct the agent to condense the document to under 40 lines across four explicit sections |
+| Key methodological rule omitted | Decision was discussed conversationally but never committed to disk | Add the missing rule directly to `notes/session-summary.md` and append to `AGENTS.md` |

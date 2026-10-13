@@ -2,46 +2,48 @@
 role: export-office-formats
 title: Export to Word and Excel for collaborators
 kind: detour
-summary: Work in text formats, then convert last. See what survives the conversion to DOCX and XLSX.
+summary: Convert plain-text source files into DOCX and XLSX deliverables for external collaborators, auditing formatting trade-offs and preserving master text sources.
 time: 6 min
 teaches: [outputs, text-formats]
 needs: [write-abstract]
 ---
 
-Colleagues often want Word or Excel. After this step you will know how to produce them from text sources, and what is lost in the conversion.
+While plain-text source formats are optimal for version control and automated execution, institutional collaborators frequently require deliverables formatted as Microsoft Word documents or Excel workbooks. In this exercise, you convert text source files into `.docx` and `.xlsx` artifacts, evaluate formatting fidelity, and manage version synchronization.
 
-**Before you start:** a finished text-source output, such as a LaTeX or Markdown document and a CSV ([Setup](setup:restore-a-starting-point)).
+**Before you start:** Completed plain-text research outputs, such as a LaTeX or Markdown manuscript and a structured CSV dataset ([Setup](setup:restore-a-starting-point)).
 
 ## Background
 
-Keep your master versions in text ([Outputs](concept:outputs)) and convert at the end, so the master can be regenerated and edited cleanly. Two common conversions:
+Maintain master files in structured text formats ([Outputs](concept:outputs)) and execute office conversions at the boundary of your research pipeline. This boundary conversion pattern ensures master analytical scripts remain clean, diffable, and programmatically regenerable.
 
-| From | To | Tool | Expect to lose |
+| Source format | Target deliverable | Conversion utility | Common structural translation compromises |
 |---|---|---|---|
-| Markdown or LaTeX | `.docx` | `pandoc` | Fine layout control; complex LaTeX (some tables, floats) simplifies |
-| CSV | `.xlsx` | `pandas` and `openpyxl` | Nothing in the data; formatting and formulas have to be added deliberately |
+| **Markdown / LaTeX** | Microsoft Word (`.docx`) | `pandoc` | Fine typographic layouts and complex LaTeX tables are simplified; mathematical equations convert to native Word equations |
+| **CSV / TSV** | Microsoft Excel (`.xlsx`) | `pandas`, `openpyxl` | Numerical data transfers cleanly; explicit column widths, header formatting, and frozen panes must be applied programmatically |
 
-Collaborators' edits made in Word or Excel do not flow back to your sources, so decide which copy is the master. Comments and tracked changes made in Word
-can be read back (see the `docx` skill if installed), but it is easier to keep one direction of travel.
+Edits made by collaborators directly inside Word or Excel files do not automatically synchronize back to plain-text source code. Establish a clear directional convention: designate plain-text files as the single source of truth, incorporating external editorial feedback back into master text files.
 
-## General approach
+## General methodology
+
+Direct the agent to compile the plain-text source files into office formats, inspecting the resulting documents to identify any structural changes introduced during translation:
 
 ```text
-Convert <source> to a Word document <out/file.docx> using pandoc, with the bibliography. Convert <csv> to <out/file.xlsx> with a header row, column widths,
-and a frozen header. Open each result and tell me what changed or was lost compared with the source.
+Convert <source document> into a Microsoft Word document (<out/manuscript.docx>) using pandoc, resolving citations against the bibliography.
+Convert <data.csv> into an Excel workbook (<out/data.xlsx>), configuring explicit column widths, formatted header rows, and frozen top panes.
+Inspect both generated files and provide an audit detailing any layout or structural modifications introduced during the conversion.
 ```
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- Open both files in Word and Excel, not just the agent's description.
-- Citations and the reference list survive in the Word document.
-- Numbers in the spreadsheet are numbers, not text, and dates are dates.
+- **Direct visual inspection:** Open the generated `.docx` and `.xlsx` files in standard office software rather than relying solely on conversational confirmations.
+- **Citation continuity:** In-text citation keys and the bibliography section resolved cleanly into formatted text within the Word document.
+- **Type integrity in spreadsheets:** Numerical columns parse as numbers rather than text strings, and dates parse as valid datetime objects.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| Citations appear as raw keys | The bibliography was not passed to pandoc | Add the bibliography option |
-| Numbers left-aligned as text | Written as strings | Ask for numeric types |
+| Citations display as unformatted keys (e.g., `[@author2024]`) | Pandoc executed without linking the local bibliography file | Ensure the conversion command includes `--bibliography=references.bib` |
+| Numbers are left-aligned and fail to compute in formulas | Values were written to Excel as string primitives | Direct the agent to cast columns to numeric types in `openpyxl`/`pandas` prior to export |

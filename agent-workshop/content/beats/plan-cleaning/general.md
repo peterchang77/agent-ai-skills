@@ -2,48 +2,48 @@
 role: plan-cleaning
 title: Plan the cleaning and make the judgement calls
 kind: full
-summary: Ask for a plan with options before any change is made. The agent proposes; you decide the choices that affect meaning.
+summary: Formulate an explicit data cleaning protocol separating deterministic syntactic repairs from substantive domain decisions before modifying data.
 time: 7 min
 teaches: [scoping-work, steering]
 needs: [profile-data]
 ---
 
-Cleaning data involves decisions, and some of them are yours. After this step you will be able to use a planning step to get
-options from the agent, decide the ones that matter, and record your decisions before any change is made.
+Data cleaning requires making methodological decisions that directly shape the research cohort. In this exercise, you use a structured planning step to evaluate cleaning options proposed by the agent, make necessary domain decisions, and document the resulting protocol in an auditable plan before modifying any data.
 
-**Before you start:** a data-quality profile of your data ([Profile the data](beat:profile-data)). If you do not have one, a short list of known problems is enough.
+**Before you start:** A data-quality audit of your dataset ([Profile the data](beat:profile-data)), or a concise summary of known data anomalies.
 
 ## Background
 
-Cleaning rules fall into two groups:
+Cleaning decisions fall into two distinct methodological categories:
 
-- **Mechanical fixes** have one sensible answer (trim stray spaces, standardise date formats, remove exact duplicate rows). The agent can propose these and you can approve them as a group.
-- **Judgement calls** change what the data means or whom it includes (what to do with an impossible value, how to treat a unit mismatch, whether to exclude a group). The agent should *offer options with consequences*, and **you** decide.
+- **Deterministic syntactic repairs:** Transformations with a single correct solution (e.g., trimming trailing whitespace, standardizing dates to ISO-8601, and eliminating exact duplicate rows). The agent can identify these and propose batch transformations for your approval.
+- **Substantive methodological choices:** Decisions that alter cohort composition or the mathematical meaning of variables (e.g., imputing vs. dropping missing values, converting discordant measurement units, or establishing exclusion thresholds). The agent should **propose viable options along with their analytical consequences**, leaving the decision to the human researcher.
 
-A **plan** step enforces this. Many harnesses have a *plan mode* that prevents any change until you approve ([Scoping work](concept:scoping-work), [Steering](concept:steering)).
+Enforcing a dedicated **planning phase** ensures this separation. Many agent harnesses support dedicated *plan modes* that restrict file edits until you explicitly approve the methodology ([Scoping work](concept:scoping-work), [Steering](concept:steering)).
 
-## General approach
+## General methodology
+
+Direct the agent to formulate a comprehensive cleaning protocol based on the profile audit, explicitly separating mechanical repairs from substantive methodological choices:
 
 ```text
-Do not change any files. Propose a cleaning plan for <data file> based on the problems above. For each problem give the options,
-the consequences of each, and your recommendation. Group the mechanical fixes together. Ask me about any judgement call
-instead of deciding it yourself.
+Do not modify any files yet. Propose an explicit data cleaning protocol for <data file> based on the anomalies identified.
+For each anomaly, detail viable handling options, downstream analytical implications, and your technical recommendation.
+Group deterministic syntactic repairs together. Pause and solicit my guidance on substantive methodological choices rather than deciding them autonomously.
 ```
 
-Answer the questions, then ask the agent to restate the final plan in a short list. Save that list as a file
-(`notes/cleaning-decisions.md`) so it outlives the conversation ([Memory](concept:memory)).
+Review the proposals, select the preferred remediation rules, and instruct the agent to synthesize the final agreed rules into a concise document (`notes/cleaning-decisions.md`). Persisting this decision log ensures methodological choices outlive the active conversational session ([Memory](concept:memory)).
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- The plan separates mechanical fixes from judgement calls.
-- It asks you about judgement calls rather than assuming.
-- You can state each decision in one line. If you cannot, the plan is too vague.
+- **Clear decision categorization:** The proposed plan cleanly separates mechanical formatting fixes from substantive methodological decisions.
+- **Explicit human steering:** The agent pauses to ask for guidance on ambiguous edge cases rather than making arbitrary assumptions.
+- **Auditable documentation:** Every cleaning rule is recorded in `notes/cleaning-decisions.md` with an unambiguous operational definition.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| It starts editing during the planning step | Not in plan mode, or not told to wait | Interrupt; restate "do not change any files" |
-| It decides every case itself | The prompt did not ask for options | Ask it to list options and wait for your choice |
+| Agent executes edits during planning | Session was not configured in read-only plan mode, or prompt lacked explicit write prohibitions | Interrupt the run and restate: *"Do not modify any files; propose the plan only"* |
+| Agent resolves substantive ambiguities autonomously | Prompt did not explicitly require options and trade-offs | Instruct the agent: *"List alternative methodological options for this issue and pause for my decision"* |

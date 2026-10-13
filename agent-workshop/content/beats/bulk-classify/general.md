@@ -2,50 +2,59 @@
 role: bulk-classify
 title: Classify many records with a language-model API
 kind: advanced
-summary: Write a script that calls a language-model API for each record; test on a few, estimate cost, then run, and measure accuracy on a labelled sample.
+summary: Execute batch record classification via programmatic API calls with dry-run estimation, incremental state checkpointing, and validation against a benchmark sample.
 time: 12 min
 teaches: [tools, costs, verification]
 needs: [use-secrets]
 ---
 
-After this step you will be able to process hundreds or thousands of records with a model through an API, with a cost estimate, saved partial results, and a measured accuracy.
+In this advanced exercise, you build a batch-processing script that queries an external language-model API to classify hundreds of text records, incorporating cost estimation, incremental checkpointing, and empirical accuracy benchmarking against human-annotated ground truth.
 
-**Before you start:** an approved API endpoint and key, set up safely ([Use a secret safely](beat:use-secrets)), and a file of records with a small labelled sample. This step costs money
-and sends data to a provider ([Costs](concept:costs), [Privacy](concept:privacy)).
+**Before you start:** An authorized API key configured via environment variables ([Use a secret safely](beat:use-secrets)), and a dataset of unclassified records alongside a small annotated validation sample. Note that this exercise incurs API costs and transmits text records across external networks ([Costs](concept:costs), [Privacy and data handling](concept:privacy)).
 
 ## Background
 
-Chat is the wrong tool for 500 records. A script calls the model once per record, saves each result, and can be rerun. Plan for:
+Interactive chat interfaces are unsuited for processing hundreds or thousands of empirical records. Developing a dedicated script automates inference record-by-record, records structured responses, and allows interrupted runs to resume.
 
-- **A fixed output format.** Ask for one label from a fixed list, as JSON, so the results can be parsed.
-- **A test on a handful first**, then a cost estimate for all records before running everything.
-- **Rate limits and retries**, and **saving partial results** so a failure does not lose work.
-- **Accuracy.** Compare the model's labels against a labelled sample. An unmeasured classifier is a guess.
-- **Reproducibility.** Record the model name, the prompt, and the date with the results.
+A production-grade batch classification script requires five engineering guardrails:
+- **Strict output schemas:** Require predictions as structured JSON matching a predefined enum list to eliminate parsing ambiguity.
+- **Dry-run cost estimation:** Test prompt formatting on a minimal sample and compute total projected cost before running full-scale processing.
+- **Resilient checkpointing and rate limiting:** Persist results incrementally to disk after each batch, incorporating exponential backoff to handle API rate limits.
+- **Empirical accuracy measurement:** Evaluate model classifications against a human-annotated ground truth sample to quantify precision, recall, or accuracy.
+- **Reproducible provenance tracking:** Record the model identifier, temperature, prompt text, and execution timestamp alongside output predictions.
 
-## General approach
+## General methodology
+
+Direct the agent to write a batch classification script supporting dry-run estimation, incremental checkpointing, and rate limiting:
 
 ```text
-Write scripts/classify_notes.py that reads <records file>, and for each record calls <the API> with a prompt asking for exactly one label from this list: <labels>,
-returning JSON. Save results incrementally to <out/labels.csv> so it can resume. Add retries and a short delay between calls. Add a --limit option and a --dry-run that
-prints the first prompt and an estimated cost without calling anything. Record the model name and prompt in the output.
+Write a batch classification script, scripts/classify_notes.py, that reads <records file> and prompts <API endpoint> to assign exactly one label from: <label categories>.
+Ensure responses return as valid JSON.
+Write classifications incrementally to <out/labels.csv> so interrupted runs can resume without reprocessing existing records.
+Incorporate exponential backoff retries and polite delays between requests.
+Support a --limit flag and a --dry-run flag that prints the initial prompt and calculates total projected token cost without executing API calls.
+Record the model identifier and prompt template within the output metadata.
 ```
 
-Then: run `--dry-run`, run with `--limit 5`, check by eye, estimate the total, set a spending cap, and run all. Finally compare against the labelled sample.
+Execute the evaluation workflow:
+1. Run `--dry-run` to inspect the assembled prompt and estimated token cost.
+2. Run with `--limit 5` to inspect real API response formatting.
+3. Establish a hard spending cap in your provider console and execute the full run.
+4. Calculate classification accuracy against the annotated validation benchmark.
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- The dry run printed a sensible prompt and cost estimate.
-- Results saved as it ran, and a rerun resumes rather than starting over.
-- Accuracy on the labelled sample is reported, with the number of records.
-- No key appears in the output, logs, or repository.
+- **Verified dry-run output:** The `--dry-run` command printed a valid prompt structure and an accurate token cost calculation.
+- **Incremental state persistence:** Output records save incrementally, and restarting an interrupted run resumes from the last processed index.
+- **Empirical classification metrics:** Accuracy or F1 scores are calculated and reported against the annotated validation sample.
+- **Credential security:** The API key is injected via environment variables and never printed to logs or output tables.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| Invalid labels in the output | The model did not follow the format | Validate against the label list; retry or mark as unparseable |
-| Cost higher than estimated | Longer prompts or more retries | Re-estimate from the first batch; set a cap |
-| Rate-limit errors | Calls too fast | Add delay and exponential backoff |
+| Unparseable response strings | Model generated conversational commentary alongside JSON | Direct the agent to use structured output mode or parse JSON using regex extractors |
+| Cumulative cost exceeds projections | Prompt length increased or retries consumed additional tokens | Recompute projections from the initial 5-record pilot and enforce hard budget caps |
+| HTTP 429 Rate Limit errors | Concurrency or request frequency exceeded provider quotas | Introduce exponential backoff retries (`time.sleep(2 ** attempt)`) |

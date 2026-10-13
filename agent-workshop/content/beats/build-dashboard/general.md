@@ -2,48 +2,51 @@
 role: build-dashboard
 title: Build a dashboard as a single web page
 kind: full
-summary: Ask for one self-contained HTML file with charts and tables. It opens in any browser, needs no software, and can be regenerated from the data.
+summary: Compile an interactive, self-contained HTML research dashboard displaying aggregated metrics and audit counts without external runtime dependencies.
 time: 7 min
 teaches: [outputs, tools]
 needs: [clean-data]
 ---
 
-After this step you will be able to turn a dataset into an interactive-looking dashboard in one HTML file, with a generating script, that you can open
-in any browser and share (if the data may be shared).
+In this exercise, you direct the agent to develop a standalone, interactive research dashboard packaged as a single self-contained HTML file (`out/dashboard.html`). Paired with a reproducible generator script, this web-based asset can be inspected in any browser without requiring external server infrastructure.
 
-**Before you start:** cleaned data, and a clear idea of the two or three questions the dashboard should answer ([Setup](setup:restore-a-starting-point)).
+**Before you start:** Cleaned data and a clear specification of the analytical questions and figures the dashboard should present ([Setup](setup:restore-a-starting-point)).
 
 ## Background
 
-A web page is a text file the agent can write well, and it replaces slides and spreadsheets for many purposes ([Outputs](concept:outputs)). Decide in
-advance:
+Web pages authored in plain HTML, CSS, and JavaScript represent an exceptional medium for research dissemination, often replacing static slide decks and complex spreadsheet workbooks ([Outputs](concept:outputs)).
 
-- **Self-contained.** One file with the data and chart code inside, so it works offline and cannot fetch anything from the network. This is also safer for sensitive data.
-- **Generated.** A script reads the data and writes the page, so it can be regenerated next month ([Tools](concept:tools)).
-- **Shareable only if the data may be shared.** Embedding patient-level data in a page you send around is a privacy decision ([Privacy](concept:privacy)). Prefer aggregated numbers in anything you distribute.
+A robust research dashboard embodies three design requirements:
+- **Self-contained execution:** The HTML file embeds all necessary CSS, JavaScript, and aggregated data inline, operating entirely offline without making external CDN requests. This self-contained architecture enhances security and prevents tracking.
+- **Programmatic reproducibility:** A dedicated Python script (`scripts/make_dashboard.py`) processes the dataset and compiles the HTML output, ensuring the dashboard can be regenerated whenever data is updated ([Tools](concept:tools)).
+- **Aggregate data privacy:** Dashboards intended for dissemination must display only aggregated summary statistics, stratified rates, and cell counts—never embedding row-level patient or participant records ([Privacy and data handling](concept:privacy)).
 
-## General approach
+## General methodology
+
+Instruct the agent to write a generator script that ingests the cleaned dataset and compiles the self-contained dashboard:
 
 ```text
-Write scripts/make_dashboard.py that reads <clean data> and writes out/dashboard.html: a single self-contained page (no external
-network requests) with <the two or three charts or tables>. Use aggregated numbers only, not patient-level rows. Label axes and units,
-and show the number of records behind each chart. Open question: tell me which parts you chose and why.
+Write a reproducible generator script, scripts/make_dashboard.py, that reads <clean data> and outputs out/dashboard.html.
+The dashboard must be a single, self-contained HTML file (making zero external network requests) featuring <specified figures or tables>.
+Embed aggregated summary metrics only; do not include row-level patient records.
+Ensure all chart axes and measurement units are explicitly labeled, and display the underlying sample sizes supporting each visualization.
+Provide an overview explaining your choice of visualization components and layout hierarchy.
 ```
 
-Open the file in your browser and look at it. Then iterate in plain language: "make Riverside's bar red", "add the target line".
+Open the generated file in your browser to inspect visual formatting, then refine elements using conversational directives (e.g., *"highlight clinic site B in contrasting blue"*, *"add horizontal benchmark target lines"*).
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- The file has no external links (search it for `http`).
-- Chart values match numbers you can reproduce from the data.
-- Every chart has labelled axes, units, and a count.
-- It contains only aggregated data.
+- **Zero external dependencies:** The HTML file makes no outbound network connections (verified by searching file contents for external `http://` or `https://` script tags).
+- **Metric fidelity:** Plotted values and table figures match empirical numbers derived from the cleaned dataset.
+- **Complete axis annotation:** Every figure displays explicit axis labels, measurement units, and supporting sample counts.
+- **Privacy preservation:** The underlying HTML source contains strictly aggregated metrics, with zero identifiable row-level data.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| Blank charts | A charting library failed to load | Ask for a version with no external dependencies |
-| Numbers differ from your analysis | The dashboard used raw instead of cleaned data | Point it at the cleaned file |
+| Visualizations render as blank elements | External CDN charting libraries failed to load due to offline execution | Direct the agent to use inline SVG or embed a lightweight, self-contained charting script inline |
+| Dashboard numbers diverge from statistical models | The generator script accidentally ingested raw uncleaned data rather than the cleaned dataset | Update the generator script to ingest exclusively from `data/clean/` |

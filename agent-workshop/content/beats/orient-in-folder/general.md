@@ -2,44 +2,41 @@
 role: orient-in-folder
 title: Orient the agent in a folder
 kind: mini
-summary: Ask a question about your files. A chat cannot answer it; an agent answers by looking.
+summary: Direct the agent to audit local project files, establishing environmental grounding and identifying files requiring specialized parsers.
 time: 3 min
 teaches: [agent-vs-chat, harnesses]
 needs: []
 ---
 
-An agent starts with no idea what is on your computer. Your first useful move in any project is to have it look. After this
-step you will know how an agent discovers files, and you will have seen the practical difference between chat and an agent.
+When launched, a coding agent possesses no prior knowledge of local project contents. The essential first step in any research workflow is establishing environmental grounding: directing the agent to inspect the active directory, inventory available datasets, and characterize file types. This exercise demonstrates how an agent discovers local files through active tool execution rather than static memory.
 
-**Before you start:** an agent running inside a project folder that contains some files ([Setup](setup:)).
+**Before you start:** An active agent running inside your project directory ([Setup](setup:)).
 
 ## Background
 
-An agent works in the folder where you launched it. It looks around by running ordinary commands (list a directory, open
-a file) and reading the output as text ([Agent vs. chat](concept:agent-vs-chat)). That is why it matters where you start it.
+An agent operates strictly within the working directory where its harness process was launched. It explores the workspace by executing standard operating system utilities (such as `ls` or directory walks) and reading the resulting stdout stream into working memory ([Agent vs. chat](concept:agent-vs-chat)). Ensuring the agent is initialized in the correct project root is critical for accurate file discovery.
 
-## General approach
+## General methodology
 
-Ask for an inventory, and ask which files it could not read as plain text. That second question tells you early which
-files will need conversion ([Inputs](concept:inputs)).
+Instruct the agent to provide a structured directory inventory and identify files that cannot be parsed as plain text. This diagnostic step immediately reveals which datasets or documentation will require specialized libraries or conversion pipelines ([Inputs](concept:inputs)).
 
 ```text
-What files are in this folder? Describe each in one line, and tell me which ones you could not read as plain text.
+What files are in this folder? Describe each in one line, and identify which ones cannot be parsed as plain text.
 ```
 
-For contrast, ask the same question in an ordinary chat window. It can only guess, because it cannot see your files.
+By comparison, submitting this prompt to a conversational chat interface produces speculative guesses, as a pure chat model lacks an execution harness to inspect your local storage.
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- The agent actually listed the folder (you can see the command), rather than guessing from the project name.
-- It opened or inspected files before describing them.
-- It flagged binary formats (spreadsheets, Word documents, PDFs, databases) as needing a reader.
+- **Verified command execution:** Confirm that the agent ran an actual terminal command (e.g., `ls -la` or `find`) rather than inferring file contents from the project directory name.
+- **Empirical file inspection:** Verify that the agent sampled file headers or metadata before generating descriptions.
+- **Format discrimination:** Ensure the agent correctly flagged binary containers (such as `.xlsx`, `.docx`, or `.pdf`) as requiring dedicated readers.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| It describes files that do not exist | It answered from habit, not by looking | Ask: "Which command did you run to see this?" |
-| It sees an empty or wrong folder | The agent was started somewhere else | Quit, `cd` to the right folder, and restart |
+| Describes non-existent files | Hallucination due to lack of tool execution | Prompt: *"Which specific command did you execute to inspect this directory?"* |
+| Reports an empty directory | Agent was launched from an incorrect parent or child directory | Terminate the session, change into the intended project directory (`cd ~/workshop-demo`), and relaunch |

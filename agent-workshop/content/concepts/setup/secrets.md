@@ -4,53 +4,45 @@ title: Secrets — passwords, keys, and tokens
 short: Secrets
 themes: [recursive-ai]
 related: [privacy, sandboxing, tools, version-control]
-blurb: A secret is anything that grants access. Keep it out of prompts, transcripts, and Git, and know what to do when one leaks.
+blurb: Credentials must never enter prompts, session logs, or version control. Use isolated environment variables and enforce immediate revocation protocols if exposed.
 ---
 
-A **secret** is anything that grants access: a password, an API key, an access token, a database credential, a private key.
+In computational research, access credentials—such as database passwords, API tokens, cloud keys, and private SSH keys—authenticate requests to external data sources and computing clusters. Managing these credentials securely requires heightened vigilance when working with coding agents.
 
-## Why agents raise the stakes
+## Exposure vectors in agent workflows
 
-An agent reads files and prints output, and everything it sees goes into the session transcript and to the model
-provider. A secret in a file the agent reads, or in a command it runs, can end up in several places you did not intend.
+Because an agent inspects filesystem contents and executes terminal commands, any credential exposed in plain text can easily leak across multiple channels:
+- **Model context payloads:** Files read into working memory are transmitted to the model provider as part of the prompt sequence ([Privacy and data handling](concept:privacy)).
+- **Terminal execution logs:** Commands that pass keys via inline arguments (e.g., `curl -H "Authorization: Bearer KEY"`) print the secret directly to stdout/stderr, recording it in session transcripts.
+- **Persistent version control:** Scripts containing hardcoded secrets can be inadvertently committed to Git history, exposing them to repository collaborators or public remotes ([Version control](concept:version-control)).
 
-## Getting started quickly (and safely enough)
+## The standard secret management pattern
 
-Often the fastest way to connect an agent to a service is to give it the URL and a key, and let it work out the
-interface. That is a reasonable way to start, with these conditions:
-
-- Use a **throwaway, read-only, or limited** key for the first session.
-- Treat it as **already exposed**, and replace it afterwards with a properly stored one.
-
-## The standard pattern
-
-Keep the secret out of code and prompts. Store it in an **environment variable**, usually loaded from a `.env` file
-that is excluded from Git, and have the code read it.
+Never hardcode authentication keys directly into prompts or analysis scripts. Instead, inject credentials via **environment variables**, typically loaded from a local `.env` configuration file excluded from version control:
 
 ```text
-.env           API_KEY=...        (never committed; the agent should not print it)
-.gitignore     .env               (so it cannot be committed by accident)
-code           reads os.environ["API_KEY"]
+.env          API_KEY=...                (local configuration; excluded from version control)
+.gitignore    .env                       (prevents accidental Git staging)
+script.py     os.environ.get("API_KEY")  (reads the variable into runtime memory)
 ```
 
-A walk-through is in [Use secrets safely](beat:use-secrets). For anything shared or long-lived, use a secrets manager
-or your platform's credential system.
+The [Use secrets safely](beat:use-secrets) exercise walks through configuring this pattern. For production workflows or shared institutional clusters, use dedicated secrets managers (such as HashiCorp Vault, AWS Secrets Manager, or system keyrings).
 
-## Good habits
+## Best practices for credential safety
 
-- **Least privilege.** Read-only where possible, limited to the task, with an expiry and a spending cap if the service allows.
-- **A dedicated key for the agent.** Do not hand over your personal account. A separate key can be revoked without disrupting you.
-- **A rule for the agent.** Put "never print, log, or commit credentials" in `AGENTS.md` ([Memory](concept:memory)).
-- **Check before you commit.** Review `git status` and the diff, and use secret-scanning tools where available.
+- **Enforce the principle of least privilege:** Provision scoped, read-only API keys restricted to the specific endpoints required for the task. Configure expiration dates and spending caps where supported.
+- **Provision dedicated machine credentials:** Never provide an agent with your personal account credentials. Creating a distinct API token ensures access can be revoked independently without disrupting your primary workflows.
+- **Codify standing instructions in `AGENTS.md`:** Explicitly instruct the agent never to print, echo, or commit credential strings to files or terminal output ([Memory](concept:memory)).
+- **Pre-commit audit habits:** Review `git status` and staged diffs before executing commits, and employ automated secret scanners (such as `trufflehog` or `git-secrets`) to catch accidental exposures.
 
-## If a secret leaks
+## Incident response for credential leakage
 
-Deleting the file or the Git history is **not enough**; assume it was copied. In order:
+If a credential is accidentally exposed in a prompt, printed to console logs, or committed to Git, **deleting the line or rewriting repository history is insufficient**—assume the credential has been compromised. Execute the following incident response steps in order:
 
-1. **Revoke** the secret at the provider.
-2. **Replace** it with a new one, stored properly.
-3. **Check the logs** for use you did not make.
-4. Then clean the history or transcript as a secondary step.
+1. **Revoke immediately:** Invalidate the exposed token within the provider's management console to stop further access.
+2. **Rotate and provision:** Generate a new credential and configure it using an environment variable.
+3. **Audit access logs:** Review the provider's access logs to determine whether unauthorized requests occurred during the exposure window.
+4. **Purge local and remote traces:** Remove the exposed string from local session transcripts and rewrite affected Git commits as a secondary cleanup step.
 
 ## Demo it
 

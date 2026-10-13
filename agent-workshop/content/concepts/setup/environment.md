@@ -4,48 +4,47 @@ title: Environment — let the agent install what it needs
 short: Environment
 themes: [recursive-ai]
 related: [inputs, outputs, sandboxing, version-control]
-blurb: Give each project its own environment and let the agent install dependencies there, so your machine stays clean and the setup is reproducible.
+blurb: Computational research requires isolated execution environments to prevent dependency conflicts and guarantee that findings can be reproduced on other systems.
 ---
 
-Real tasks need software: a library to read spreadsheets, a LaTeX compiler, a PDF text extractor. An agent can usually
-install what it needs. Your job is to make sure it does so **inside the project**, in a way that is recorded.
+Scientific computing requires reproducible execution environments. An empirical analysis depends on more than source code—it requires a specific runtime, system utilities, and an exact tree of third-party libraries. If an agent executes scripts or installs libraries directly across the host operating system, it risks mutating global state, causing version collisions with other projects, and producing non-reproducible artifacts.
 
-## Three layers of "what is installed"
+To protect system integrity and ensure computational reproducibility, agents should operate within isolated execution environments scoped strictly to the project directory.
 
-| Layer | Examples | Managed with | Risk if mishandled |
+## Layers of software dependencies
+
+| Dependency layer | Examples | Typical management mechanism | Governance and operational risk |
 |---|---|---|---|
-| Python packages | `pandas`, `openpyxl`, `statsmodels` | a package manager (below) | Version conflicts between projects |
-| System tools | LaTeX (`pdflatex`), `pandoc`, `pdftotext` | the operating system's package manager | Needs admin rights; affects the whole machine |
-| The machine itself | OS, drivers, other users' software | you / your IT group | Shared or managed machines may forbid changes |
+| **Language packages** | `pandas`, `statsmodels`, `openpyxl` | Project package manager (`uv`, `venv`, `conda`) | Version drift and dependency conflicts between local projects |
+| **System utilities & compilers** | LaTeX (`pdflatex`), `pandoc`, C/C++ compilers | Operating system package manager (`apt`, `brew`) | Requires administrative (sudo) privileges; modifies the host environment machine-wide |
+| **Host platform & runtime** | Linux/macOS kernel, system drivers, container engines | System administrators / institutional IT | Managed institutional workstations often restrict unauthorized binary installations |
 
-## What is a package manager?
+## Package management and dependency pinning
 
-A **package manager** downloads libraries and records which versions a project uses. This material uses
-**[uv](https://docs.astral.sh/uv/)** for Python: it creates an isolated environment per project and writes the
-dependencies to a file, so the project can be rebuilt later. Common alternatives are `pip` with `venv`, `conda`,
-and `poetry`. Any of them works; the point is *one isolated environment per project, with the dependencies recorded*.
+A **package manager** automates library installation while recording exact version numbers in a reproducible lockfile. In this workshop, we use **[uv](https://docs.astral.sh/uv/)** for Python: it creates an isolated virtual environment (`.venv/`) within the project folder and pins dependencies in `pyproject.toml`. 
 
-## Good habits
+While alternatives such as standard `venv`, `conda`, or `poetry` serve similar roles, the underlying principle is universal: **every project maintains an isolated environment, and every dependency version is explicitly recorded**.
 
-- **Say what you need, not how to install it.** "Read this spreadsheet" is enough; the agent picks the library.
-- **Keep installs project-local.** Python packages go in the project environment, not into your system Python.
-- **Pin versions** for anything you will rerun, so results do not change when a library updates.
-- **Check unfamiliar package names** before approving. Look-alike (typosquatted) packages exist.
-- **Record the setup** in the project `README.md` or `AGENTS.md` so the next session knows how to run things ([Memory](concept:memory)).
+## Best practices for agent-driven environments
 
-## System tools and managed machines
+- **Specify requirements by intent:** State the analytical objective (e.g., *"extract tables from this spreadsheet and calculate logistic regressions"*); the agent will identify the appropriate libraries.
+- **Keep dependencies project-local:** Ensure all Python packages are installed within the local `.venv/` directory rather than the global system environment.
+- **Pin dependency versions:** Record exact version numbers so subsequent executions produce identical numerical results even after library updates.
+- **Verify unfamiliar package names:** Review suggested libraries before approving installations to guard against typosquatting or insecure packages.
+- **Document setup instructions:** Maintain explicit environment creation commands in `README.md` or `AGENTS.md` so future sessions or research collaborators can rebuild the runtime from scratch ([Memory](concept:memory)).
 
-Installing system software usually needs administrator rights. On a managed or shared machine the agent may be unable
-to install, and you should not work around that. Ask your IT group, use a container, or choose a user-space install.
+## System tools and managed environments
 
-## Common failures
+Installing system-level binaries typically requires administrative privileges. On institutional high-performance computing clusters or managed workstations, agents will lack administrative access. Rather than attempting workarounds, request necessary tools through institutional administrators, use containerized environments, or explore user-space binaries.
 
-- The wrong Python version for a package.
-- A missing system library behind a Python package.
-- A package that has to be compiled and no compiler is present.
-- No network access to download anything.
+## Common environment failures
 
-When one occurs, paste the error to the agent and ask for options; do not retry the same command repeatedly.
+- **Incompatible runtime versions:** A library requires a newer or older Python minor version than the host runtime.
+- **Missing shared libraries:** A Python package installs successfully but fails at runtime because an underlying C/Fortran library is absent.
+- **Compilation errors:** A package distributed as source cannot build because no C compiler or header files exist on the host.
+- **Restricted network access:** Institutional firewalls or proxies block connections to package registries.
+
+When an environment error occurs, provide the traceback to the agent to diagnose alternative packages or configuration flags rather than retrying the same installation repeatedly.
 
 ## Demo it
 

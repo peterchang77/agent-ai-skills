@@ -2,7 +2,7 @@
 id: guided-tutorial
 title: Guided tutorial
 track: tutorial
-tagline: one path through the whole material, alternating ideas and hands-on steps
+tagline: a structured path through the curriculum, alternating conceptual foundations with practical exercises
 sections:
   - name: 1. Get started
     steps:
@@ -65,38 +65,37 @@ sections:
       - {beat: bulk-classify}
 ---
 
-The guided tutorial is **one path through everything**, in an order that works. It alternates a concept page (the idea) with the demo steps that use it,
-so each hands-on step comes right after the background it needs. It is the same pages as the other two tracks, only arranged as a sequence, and each
-page links back to its place in them.
+The guided tutorial provides a structured, linear path through the entire workshop. By sequencing conceptual background alongside practical exercises, this track ensures you have the necessary context immediately before each hands-on task. While drawing from the same underlying material as the independent concept and demo tracks, this sequence organizes the workshop into a continuous progression with direct links back to the reference pages.
 
-There is no time limit. Do it in one sitting or over several, and stop at any point: the work up to each step is saved as a checkpoint, so you can
-resume later or skip steps ([Setup](../demo/setup.md#restore-a-starting-point)).
+You can complete the workshop in a single session or across multiple sittings. Work from each stage is preserved as a restorable checkpoint, allowing you to pause, resume, or skip forward at any point ([Setup](../demo/setup.md#restore-a-starting-point)).
 
-## What you will have at the end
+## Learning outcomes
 
-- A working agent setup and a safe way to handle data and credentials.
-- A cleaned dataset with a written record of every cleaning decision.
-- An analysis with crude and adjusted estimates, reviewed by a second agent.
-- A verified bibliography, a one-page cited abstract, and a dashboard.
-- A reusable tool and skill, committed to Git, and a classification script that uses an API.
+By completing this tutorial, you will produce:
 
-## Before you start
+- A configured local agent environment with safe data-handling and credential practices.
+- A reproducible data cleaning pipeline with an explicit audit trail of cleaning decisions.
+- A statistical analysis featuring crude and adjusted estimates, independently reviewed by a second agent.
+- A verified bibliography, an executive abstract with citations, and an interactive reporting dashboard.
+- A reusable command-line tool and agent skill tracked in Git, alongside a bulk classification workflow using an external API.
 
-- A computer where you can install software, or where an agent is already installed. The first step covers setup.
-- A terminal and a folder to work in.
-- For the last two steps only, an approved API key and a small budget.
+## Prerequisites
 
-## How to use it
+- A computer with terminal access where you can install tools (or where an agent CLI is already configured). The initial step walks through setup.
+- A dedicated working directory for workshop files.
+- For the advanced section only: an active API key with a modest usage budget.
 
-- **Read a concept page first**, then do the demo steps that follow it. The concept pages are short; the steps are where you practise.
-- **Do the example before your own data.** The supplied dataset has known answers, so you can tell whether the agent is right. Then repeat the general approach on your data.
-- **Skip freely.** Optional detours and the advanced steps are labelled. If you are short of time, the core path is the "Full step" entries in the [demo track](../demo/index.md).
+## Recommended approach
+
+- **Review the concept page first**, then proceed to the demo exercise. Concept summaries are intentionally concise, providing the methodological grounding before you run commands.
+- **Work through the benchmark dataset before using your own data.** The provided scenario includes known ground truth, making it straightforward to evaluate whether the agent's calculations are accurate before applying the patterns to novel data.
+- **Adapt to your schedule.** Optional detours and advanced exercises are clearly labelled. If you have limited time, focus on the core "Full step" exercises listed in the [demo track](../demo/index.md).
 
 ## Contents
 
 <!-- toc -->
 
-## How this fits with the other tracks
+## Track navigation
 
-- Use the [concept track](../concepts/index.md) for reference, or to read an idea without doing the demo.
-- Use the [demo track](../demo/index.md) when you want one worked example that you can start in the middle.
+- Consult the [concept track](../concepts/index.md) for a modular reference covering core ideas independently of hands-on steps.
+- Use the [demo track](../demo/index.md) to explore individual practical exercises or jump into specific checkpoints.

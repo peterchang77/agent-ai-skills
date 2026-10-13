@@ -1,29 +1,29 @@
 ---
 id: glossary
 title: Glossary
-blurb: Short definitions of terms used across the pages.
+blurb: Definitions of foundational terms and concepts used across the workshop.
 ---
 
-| Term | Meaning |
+| Term | Definition |
 |---|---|
-| **Agent** | A model connected to tools (files, code, the web) so it can act, not only answer. See [Agent vs. chat](concept:agent-vs-chat). |
-| **Harness** | The program that connects a model to tools and asks for your approval. See [Harnesses](concept:harnesses). |
-| **Model** | The language model that reads and writes text. |
-| **Context** | Everything the model can see in the current conversation. See [Context](concept:context). |
-| **Token** | A short piece of text; the unit for context size and price. |
-| **Compaction** | Summarising a long conversation to free up context. |
-| **Prompt** | What you send to the agent. |
-| **AGENTS.md** | A short instructions file the agent reads at the start of a session. See [Memory](concept:memory). |
-| **Skill** | A packaged procedure, in its own folder, that the agent loads when relevant. |
-| **Tool** | Anything the agent can run: a command, a library, a script, an API. See [Tools](concept:tools). |
-| **API** | A way for programs to talk to a service. |
-| **Environment** | The set of installed software a project uses. See [Environment](concept:environment). |
-| **Package manager** | Software that installs libraries and records their versions (for example `uv`). |
-| **Sandbox** | A restricted place where the agent runs, to limit damage. See [Sandboxing](concept:sandboxing). |
-| **Prompt injection** | Hidden instructions in text the agent reads. |
-| **Repository (repo)** | A project folder tracked by Git. See [Version control](concept:version-control). |
-| **Commit / diff** | A saved snapshot / the lines that changed. |
-| **Secret** | A password, key, or token. See [Secrets](concept:secrets). |
-| **OCR** | Turning an image of text into text. |
-| **BibTeX** | A text format for bibliographic references. |
-| **EDA** | Exploratory data analysis: looking at data before modelling. |
+| **Agent** | An AI system pairing a foundation model with an operational harness, enabling it to inspect files, execute code, and interact with external environments. See [Agent vs. chat](concept:agent-vs-chat). |
+| **Agent Harness** | The client application that manages session state, assembles system prompts, invokes tools, and prompts for human approvals. See [Harnesses and models](concept:harnesses). |
+| **Foundation Model** | The underlying language model that processes input context and generates text or structured tool invocations. |
+| **Context** | The complete sequence of text tokens available to the model on an active turn, including instructions, conversation history, and terminal output. See [Context](concept:context). |
+| **Token** | A discrete sub-word character fragment; the base unit used to measure context window size, throughput, and compute pricing. |
+| **Compaction** | Synthesizing a lengthy session history into a structured summary to free working context while preserving critical analytical state. |
+| **Prompt** | The text instruction, query, or constraint provided to the agent by the user. |
+| **AGENTS.md** | A standardized repository configuration file containing standing instructions and conventions loaded by the agent at session initialization. See [Memory](concept:memory). |
+| **Skill** | A packaged operational runbook stored in a dedicated directory, loaded dynamically when a user prompt matches its role. |
+| **Tool** | An executable program, library, or script that an agent can invoke to inspect state or perform deterministic computations. See [Tools](concept:tools). |
+| **API** | Application Programming Interface: a structured network interface enabling software systems to exchange data. |
+| **Environment** | The isolated software runtime, package libraries, and system utilities configured for a specific project. See [Environment](concept:environment). |
+| **Package Manager** | A tool (such as `uv` or `conda`) that automates library installation and pins dependency versions in reproducible lockfiles. |
+| **Sandbox** | An isolated execution boundary (e.g., container or virtual machine) restricting an agent's filesystem and network privileges. See [Sandboxing](concept:sandboxing). |
+| **Prompt Injection** | An adversarial attack where untrusted text read by an agent contains instructions intended to hijack model behavior. |
+| **Repository (Repo)** | A project directory tracked by Git, containing the complete history of all tracked files. See [Version control](concept:version-control). |
+| **Commit / Diff** | An immutable cryptographic snapshot of staged project files / the exact line-by-line differences between revisions. |
+| **Secret** | A sensitive authentication credential, such as an API key, database password, or private certificate. See [Secrets](concept:secrets). |
+| **OCR** | Optical Character Recognition: converting raster images of text into machine-readable character strings. |
+| **BibTeX** | A standardized text format used for storing bibliographic references and citations. |
+| **EDA** | Exploratory Data Analysis: the empirical practice of profiling distributions, missing values, and anomalies before formal modeling. |

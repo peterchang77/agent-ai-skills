@@ -2,50 +2,52 @@
 role: saturday-hours
 title: Before-and-after comparison with a comparison group
 kind: detour
-summary: A second analysis that shows why a before/after change needs a comparison group, because other things also change over time.
+summary: Execute a quasi-experimental difference-in-differences analysis comparing intervention and control sites to account for secular temporal trends.
 time: 7 min
 teaches: [verification, scoping-work]
 needs: [clean-data]
 ---
 
-After this step you will be able to ask for a before/after comparison and a comparison with unaffected sites, and you will know why the
-second is more convincing than the first.
+In this optional exercise, you evaluate a policy intervention by contrasting a simple pre-post analysis against a quasi-experimental **difference-in-differences** design that incorporates unexposed control sites. This exercise demonstrates why unadjusted temporal comparisons are vulnerable to secular confounding.
 
-**Before you start:** cleaned data with dates, a site variable, and a change that happened at a known date ([Setup](setup:restore-a-starting-point)).
+**Before you start:** Cleaned data containing temporal dates, site identifiers, and an intervention introduced on a known date ([Setup](setup:restore-a-starting-point)).
 
 ## Background
 
-If an outcome changes after an intervention, other things may have changed too (season, staffing, policy). A **before/after** comparison
-cannot separate these. Adding a **comparison group** that did not receive the change shows what would have happened anyway. The comparison of
-the two changes is called **difference-in-differences**: the change at the intervention site minus the change at the comparison sites.
+When an outcome changes following a clinical or policy intervention, other background factors—such as seasonal illness waves, staffing turnover, or regional shifts—may have occurred simultaneously. A simple pre-post comparison at the intervention site cannot isolate the intervention effect from these concurrent trends.
 
-It still relies on an assumption (the sites would have moved in parallel without the change), so describe the result as consistent with an
-effect, not as proof.
+Incorporating a **comparison group** of unaffected sites illustrates what would have happened in the absence of the intervention. A **difference-in-differences** estimator computes:
 
-## General approach
+$$\Delta_{\text{DID}} = (\bar{Y}_{\text{Intervention, After}} - \bar{Y}_{\text{Intervention, Before}}) - (\bar{Y}_{\text{Control, After}} - \bar{Y}_{\text{Control, Before}})$$
+
+This design relies on the **parallel trends assumption**: assuming that intervention and control sites would have experienced parallel trajectories had the policy not been introduced. Consequently, report findings as consistent with an intervention effect rather than definitive causal proof.
+
+## General methodology
+
+Direct the agent to compute the pre-post changes for both target and control sites alongside closed-form confidence intervals, requesting pre-intervention monthly trends to evaluate the parallel trends assumption:
 
 ```text
-Using <clean data>, compare the share of visits that are <outcome> before and after <date> at <intervention site>. Then do the same for the
-other sites combined. Report the counts, the change at each, and the difference between the changes with a 95% confidence interval. Use a
-simple closed-form interval computed from the counts, with no bootstrap or simulation. Also show the monthly share for each site before the
-change, as a table. State the assumptions.
+Using <clean data>, evaluate the proportion of visits classified as <outcome> before and after <intervention date> at <intervention site>.
+Perform the identical calculation for the unexposed comparison sites combined.
+Report cell counts, baseline and follow-up rates, the absolute change within each group, and the difference-in-differences point estimate with a 95% confidence interval.
+Calculate standard errors using closed-form analytical formulas based on cell counts, avoiding computationally expensive bootstrap resampling.
+Provide a table of monthly outcome proportions across each site during the pre-intervention period, and document key methodological assumptions.
 ```
 
-Say how heavy a method you want. A comparison like this is four counts and one formula, and it should run in under a second. If a script runs
-much longer than you expect, interrupt it and ask what it is doing ([Steering](concept:steering)).
+Explicitly specifying closed-form analytical formulas ensures the script executes in seconds. If an analysis script runs unexpectedly long, interrupt execution to ensure the agent has not defaulted to computationally intensive resampling loops ([Steering](concept:steering)).
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- The "before" and "after" periods and the comparison sites are what you intended.
-- Counts for each cell of the before/after table are shown.
-- The assumptions (parallel trends, no other change) are stated.
+- **Explicit baseline and follow-up partitions:** Temporal intervals and comparison site definitions match the evaluation protocol exactly.
+- **Complete contingency counts:** Raw numerator and denominator counts are displayed for all four cells of the difference-in-differences matrix.
+- **Documented methodological assumptions:** The summary explicitly discusses the parallel trends assumption and potential unmeasured confounders.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| The script runs for minutes | The agent chose a resampling method, such as a bootstrap, or fitted several models | Interrupt it and ask for a closed-form interval. Visits from the same patient are not independent, so say so in the assumptions instead |
-| Seasonal patterns drive the change | The periods cover different seasons | Compare the same months, or model month |
-| Very few records before the change | The change happened early in the data | Say the baseline is thin and the estimate is imprecise |
+| Script execution stalls for minutes | The agent defaulted to computationally intensive bootstrap resampling or complex hierarchical modeling | Interrupt execution and mandate closed-form analytical standard errors |
+| Seasonal patterns bias estimates | The pre and post observation periods span discordant seasons (e.g., comparing winter to summer) | Restrict comparisons to matched seasonal months, or incorporate explicit calendar month controls |
+| Sparse pre-intervention baseline | Policy intervention was introduced near the beginning of data collection | Acknowledge that the brief baseline window widens estimation uncertainty |

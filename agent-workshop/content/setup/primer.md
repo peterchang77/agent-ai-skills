@@ -2,91 +2,88 @@
 title: Setup
 ---
 
-Get a working folder with an agent running inside it. You do this once, and the other pages assume it is done.
-Each demo step also tells you which starting state it needs, so you can jump in anywhere ([Restore a starting point](#restore-a-starting-point)).
+Before beginning the exercises, configure a dedicated project directory with an active coding agent. You only need to perform this setup once; subsequent tutorial modules assume this environment is in place.
+
+Each demo step specifies its required starting state, allowing you to jump directly into any exercise ([Restore a starting point](#restore-a-starting-point)).
 
 ## Quickstart
 
-One command downloads the practice data and installs a coding agent (Kiro CLI), so you can start the demo straight away. It works on Linux, macOS and
-Windows with WSL:
+An automated setup script installs the sample data and configures a coding agent (Kiro CLI). The script runs on Linux, macOS, and Windows via WSL:
 
 ```bash
 curl -fsSL https://peterchang77.github.io/agent-ai-skills/install.sh | bash
 ```
 
-What it does:
+The script performs the following actions:
 
-- **Asks a few questions.** Where to put the data (default `~/workshop-demo`), whether to also download the checkpoints, and whether to install the agent.
-- **Downloads the data.** It fetches the toy dataset, checks it arrived intact, and unpacks it into that folder.
-- **Installs the agent.** It runs the vendor's installer after showing you the address, and skips this if the agent is already installed.
-- **Is safe to repeat.** Files that are already up to date are not downloaded again. Files you have changed are kept, and only replaced if you add `--force`, which first copies the old versions into a sibling backup folder.
+- **Prompts for configuration preferences:** Confirms the destination directory (defaulting to `~/workshop-demo`), asks whether to download intermediate checkpoints, and checks whether to install the agent.
+- **Retrieves the benchmark dataset:** Downloads the synthetic clinical dataset, verifies data integrity against SHA-256 checksums, and unpacks the archive into your chosen directory.
+- **Configures the agent:** Downloads and runs the official agent installer after displaying the source URL. This step is skipped if an agent is already detected.
+- **Ensures idempotent execution:** Re-running the script updates missing files without overwriting local modifications unless you explicitly pass the `--force` flag (which creates a timestamped backup before replacing files).
 
-When it finishes, start the agent inside that folder:
+Once the script completes, change into the project directory and launch your agent:
 
 ```bash
 cd ~/workshop-demo
 ```
 
-If you chose a different folder, use it wherever the other pages say `~/workshop-demo`. Options go after `bash -s --`, for example `bash -s -- --dir ~/my-folder --yes --checkpoints --no-agent`; run it with `--help` to see them all.
-Because the script is fetched from the internet, you can read it first at
-[install.sh](https://peterchang77.github.io/agent-ai-skills/install.sh), and your institution may restrict which tools you can install.
-The practice data is synthetic. Before you use your own data, read [Privacy](concept:privacy).
+If you chose a custom folder, use that path wherever this guide references `~/workshop-demo`. Advanced flags can be passed after `bash -s --` (for example, `bash -s -- --dir ~/my-folder --yes --checkpoints --no-agent`); pass `--help` to inspect all options.
+
+> [!NOTE]
+> Review network scripts before execution: you can inspect the installer source at [install.sh](https://peterchang77.github.io/agent-ai-skills/install.sh). The workshop dataset is completely synthetic; before using institutional or clinical data, consult [Privacy and data handling](concept:privacy).
 
 ## Custom setup
 
-Prefer to do it yourself, use a different agent, or work on a managed machine? These steps do the same job by hand.
+If you prefer to configure your workspace manually, use an alternative agent, or operate within a restricted computing environment, follow these steps:
 
 ### 1. Install an agent
 
-Install a coding-agent harness from the vendor's own instructions. Many are a one-line install script
-(`curl ... | sh`). Read a script before running it, and install only from the vendor's site. For the choices and
-trade-offs, see [Harnesses and models](concept:harnesses). Your institution may also restrict which tools and models
-you may use with real data ([Privacy](concept:privacy)).
+Install your preferred agent harness following the vendor's official documentation. Most tools provide straightforward command-line installation instructions. Always review third-party scripts before execution. For architectural trade-offs between different harnesses, see [Harnesses and models](concept:harnesses). Verify institutional approval before analyzing sensitive or regulated datasets ([Privacy and data handling](concept:privacy)).
 
-### 2. Make a project folder
+### 2. Create a project directory
 
-An agent works in the folder where you start it, so start it in the right one.
+An agent scopes its filesystem context to the directory where it is launched. Always initialize a dedicated folder for your project:
 
 ```bash
-mkdir -p ~/workshop-demo     # create the folder
-cd ~/workshop-demo           # go into it
-pwd                          # confirm where you are
+mkdir -p ~/workshop-demo     # create project directory
+cd ~/workshop-demo           # enter directory
+pwd                          # verify current path
 ```
 
-`ls` lists what is here and `cd ..` goes up one level. For more on paths, permissions, and safe habits, see the
-[Linux command line](guide:linux-command-line-for-coding-agents) guide.
+Use `ls` to audit local contents. For additional guidance on permissions, directory navigation, and shell safety, refer to the [Linux command line](guide:linux-command-line-for-coding-agents) guide.
 
-### 3. Check the tools
+### 3. Verify local software dependencies
+
+Check whether essential system utilities and compilers are available:
 
 ```bash
-uv --version         # Python environments and packages
-pdflatex --version   # only needed for the PDF-report steps
-pandoc --version     # only needed for the Word-export step
+uv --version         # Python environment and package manager
+pdflatex --version   # required for PDF report compilation
+pandoc --version     # required for Word document conversion
 ```
 
-The [Prepare your environment](beat:prepare-environment) step has the agent check these and install what is missing ([Environment](concept:environment)); approve installs deliberately.
+During [Prepare your environment](beat:prepare-environment), the agent will audit these dependencies and propose installation commands for missing tools ([Environment](concept:environment)). Always inspect and approve system-level installations deliberately.
 
-### 4. Add the data for your scenario
+### 4. Populate scenario data
 
-See the tabs under [Your scenario's data](#your-scenarios-data) below. (The quickstart has already done this for the toy dataset.)
+Consult the tabs under [Your scenario's data](#your-scenarios-data) below to unpack the required dataset files. (The automated quickstart performs this step automatically for the synthetic clinical scenario.)
 
 ## Restore a starting point
 
-Each demo step names the state it starts from, such as the data kit or a checkpoint. A checkpoint is a complete
-project folder. To start a step cleanly, use an empty folder and copy the checkpoint into it:
+Each demo exercise defines the prerequisite state it expects, such as the raw data kit or an intermediate checkpoint representing earlier analytical progress. A checkpoint is a self-contained snapshot of the project directory.
+
+To reset your workspace to a clean checkpoint:
 
 ```bash
-rm -rf ~/workshop-demo && mkdir ~/workshop-demo      # only if you are sure this folder is disposable
+rm -rf ~/workshop-demo && mkdir ~/workshop-demo      # ensure the target folder is disposable before removing
 cp -r <scenario folder>/checkpoints/<name>/. ~/workshop-demo/
 cd ~/workshop-demo
 ```
 
-If you used the quickstart with `--checkpoints`, they are in `~/workshop-demo-checkpoints/<name>/`, which replaces `<scenario folder>/checkpoints/<name>` above.
+If you ran the quickstart with `--checkpoints`, snapshots are pre-downloaded to `~/workshop-demo-checkpoints/<name>/`, which replaces `<scenario folder>/checkpoints/<name>` in the snippet above.
 
-Then start the agent in that folder. Keeping a pristine copy of the kit lets you reset between attempts, and
-[version control](concept:version-control) gives you the same ability for your own work.
+After copying the files, start the agent inside that folder. Maintaining an untouched copy of the data archive allows quick resets between exercises, while [version control](concept:version-control) provides the same safety for your ongoing work.
 
-## If your agent gives different results
+## Expected variance in agent outputs
 
-Live agents vary: a different route, different file names, slightly different wording. That is normal. Each step lists
-what to check and the reference results, so you can judge whether your result is right even if the path differs.
+Large language models generate non-deterministic outputs. Two runs will frequently follow slightly different execution paths, generate different helper filenames, or format code uniquely. This variance is expected. Each demo module provides explicit validation criteria and reference benchmarks so you can verify that the final analytical result is correct regardless of the specific route taken.

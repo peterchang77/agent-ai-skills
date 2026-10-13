@@ -2,48 +2,50 @@
 role: use-secrets
 title: Use a secret safely
 kind: advanced
-summary: Store a key in an environment file that Git ignores, load it from code, and show that it never appears in the repository or the transcript.
+summary: Configure API credentials securely via restricted .env environment files and .gitignore, preventing secret leakage into transcripts and version control.
 time: 7 min
 teaches: [secrets, tools, version-control]
 needs: [commit-work]
 ---
 
-After this step you will know a safe, simple pattern for giving a script a key or password, and how to check that it did not leak.
+In this advanced exercise, you configure access credentials for external APIs using local environment files, load tokens securely in Python scripts, and verify that credentials never enter repository commits or session transcripts.
 
-**Before you start:** a project in Git, and a throwaway or limited key for a service you are allowed to use ([Setup](setup:)). Never use your personal account key.
+**Before you start:** A project managed in Git, and a dedicated, scoped API key for an authorized service ([Setup](setup:)). Never use primary personal credentials.
 
 ## Background
 
-The aim is to keep the secret out of code, prompts, and Git ([Secrets](concept:secrets)). The standard pattern: put it in an **environment variable**, usually loaded from a `.env` file that is listed in
-`.gitignore`, and have the code read it. The agent should never need to print it.
+The primary security objective is keeping authentication tokens out of source code, prompts, and version control ([Secrets](concept:secrets)). The standard pattern is storing credentials in an **environment variable**, loaded locally from a `.env` configuration file excluded by `.gitignore`. The agent writes code to access the environment variable without ever reading or displaying the secret string.
 
-## General approach
+## General methodology
 
-1. **Create the file yourself**, outside the conversation, so the key never passes through the model:
+1. **Create the credential file directly:** Initialize the configuration file outside the agent conversation so the secret string never enters the model context:
 
 ```bash
-printf 'API_KEY=paste-your-key-here\n' > .env     # then edit it in a text editor
-chmod 600 .env                                       # readable only by you
+printf 'API_KEY=paste-your-token-here\n' > .env     # populate key in local text editor
+chmod 600 .env                                     # restrict read/write permissions to user only
 ```
 
-2. **Ask the agent to wire it up without seeing it:**
+2. **Direct the agent to integrate the variable blindly:**
 
 ```text
-Make scripts/<tool>.py read API_KEY from the environment (load it from .env if present). Never print or log it. Make sure .env is in .gitignore. Do not open or display .env.
+Update scripts/<tool>.py to read API_KEY from environment variables (loading from .env via python-dotenv if present).
+Never print, echo, or log the key string to stdout or stderr.
+Verify that .env is explicitly listed in .gitignore.
+Do not open, read, or print the contents of .env.
 ```
 
-3. **Check:** `git status` must not list `.env`; search the repository for the key text; run the tool and confirm it works.
+3. **Verify isolation:** Confirm that `git status` ignores `.env`, search repository files for the secret string, and run the script to confirm successful API authentication.
 
-Add "never print, log, or commit credentials; do not open .env" to `AGENTS.md`.
+Append a standing security rule to `AGENTS.md`: *"Never print, log, or commit authentication credentials; do not inspect .env."*
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- `.env` is ignored by Git and has restricted permissions.
-- The key does not appear in any committed file, in the transcript, or in logs.
-- The tool fails with a clear message when the key is missing.
+- **Git exclusion verified:** The `.env` file does not appear in `git status` and file permissions are restricted (`chmod 600`).
+- **Zero credential leakage:** The secret string does not appear in any committed file, transcript log, or console output.
+- **Graceful error handling:** The script fails with an informative error message if the environment variable is absent.
 
-## If the key leaks
+## Incident response for credential exposure
 
-Revoke it, replace it, check the logs for use you did not make, and only then clean up the history ([Secrets](concept:secrets)).
+If a credential is inadvertently printed to console output or committed to Git, immediately revoke and rotate the token within the provider management console before cleaning repository history ([Secrets](concept:secrets)).

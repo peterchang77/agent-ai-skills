@@ -2,14 +2,14 @@
 id: context-discipline
 title: Theme — manage context carefully
 short: Manage context carefully
-blurb: Context is limited, costly, and temporary. Keep it small, focused, and written down.
+blurb: Working memory is finite, costly, and ephemeral. Maintain focused sessions and externalize knowledge into durable files.
 related: [context, scoping-work, memory, tools, costs, steering]
 ---
 
-Most disappointing sessions come down to context.
+Most unproductive agent interactions stem from unmanaged context growth. Effective supervision requires active context hygiene:
 
-- Keep sessions focused and short ([Context](concept:context), [Scoping work](concept:scoping-work)).
-- Put what matters in files, not in the conversation ([Memory](concept:memory)).
-- Replace repeated explanations with tools ([Tools](concept:tools)).
-- Turn repeated corrections into rules ([Steering](concept:steering)).
-- Remember that history is re-sent every turn, which is also where cost comes from ([Costs](concept:costs)).
+- **Maintain focused, single-objective sessions:** Prevent sprawling multi-topic histories from degrading reasoning fidelity ([Context](concept:context), [Scoping work](concept:scoping-work)).
+- **Externalize critical state to disk:** Persist decisions, interim dataframes, and analytical parameters into files rather than relying on session memory ([Memory](concept:memory)).
+- **Codify recurring logic into tools:** Convert repetitive multi-step prompt sequences into tested scripts ([Tools](concept:tools)).
+- **Transform persistent feedback into rules:** Codify recurring corrections into standing repository instructions in `AGENTS.md` ([Steering](concept:steering)).
+- **Account for compounding costs:** Remember that conversation transcripts re-transmit on every turn, driving token consumption and latency ([Costs](concept:costs)).

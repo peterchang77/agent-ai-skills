@@ -2,57 +2,56 @@
 role: build-cohort
 title: Build a study cohort with a flow table
 kind: full
-summary: Turn written inclusion rules into a cohort file, with a flow table showing how many people remain after each step.
+summary: Translate formal study eligibility criteria into a reproducible cohort dataset, accompanied by an attrition flow diagram reconciling excluded populations.
 time: 8 min
 teaches: [verification, tools, inputs]
 needs: [clean-data]
 ---
 
-A research question needs a precisely defined group of people. After this step you will be able to turn written eligibility rules
-into a cohort file, with a flow table that shows how many people remain after each rule, which is the standard way to document a
-cohort.
+Empirical research requires defining an unambiguous study population. In this exercise, you direct the agent to translate written clinical eligibility criteria into a reproducible cohort dataset (`out/cohort.csv`) alongside a formal cohort attrition diagram (`out/cohort_flow.md`) tracking sample sizes across each selection rule.
 
-**Before you start:** cleaned data and a written definition of the cohort ([Setup](setup:restore-a-starting-point)).
+**Before you start:** Cleaned data and a written study protocol or cohort specification ([Setup](setup:restore-a-starting-point)).
 
 ## Background
 
-A **cohort definition** has parts that must each be stated exactly:
+In observational study design, an unambiguous cohort definition specifies four distinct parameters:
 
-- **Population:** who is eligible (for example, adults at one site).
-- **Index event:** the moment that starts follow-up for each person (for example, the first qualifying visit in a period).
-- **Exposure:** what you compare (for example, received an intervention or not).
-- **Outcome and window:** what you measure and when (for example, a repeat test within a time window after the index event).
+- **Target population:** Broad demographic or clinical eligibility criteria (e.g., adults receiving care at designated clinic sites).
+- **Index event:** The precise anchor timestamp that initiates follow-up for each individual (e.g., the first qualifying encounter within the study window).
+- **Exposure classification:** The operational definition distinguishing exposed individuals from controls.
+- **Outcome observation window:** The defined temporal interval following the index event during which endpoints are ascertained.
 
-Vague definitions are the largest source of silent error. If the definition lives in a document (a protocol, a memo), have the agent read the
-document and **quote the exact rules** back to you before writing any code ([Inputs](concept:inputs)).
+Ambiguity in eligibility criteria is a primary source of silent bias. When rules reside in study protocols or memos, require the agent to read the document and **quote the exact eligibility sentences** before writing any code ([Inputs](concept:inputs)).
 
-A **flow table** (cohort diagram) lists the number of people at each step. If the numbers fail to add up, something was dropped silently
-([Verification](concept:verification)).
+An **attrition flow table** (or PRISMA/STROBE cohort flow diagram) documents sample counts retained and excluded at each stage. Any discrepancy between step counts indicates unintended record drops ([Verification](concept:verification)).
 
-## General approach
+## General methodology
+
+Instruct the agent to audit protocol definitions, quote the source rules, and generate an executable cohort creation script:
 
 ```text
-Read <protocol file>. Quote the exact eligibility rules, the index event, the exposure, and the outcome window. Then write a script
-<scripts/build_cohort.py> that applies them to <clean data> and writes <out/cohort.csv> (one row per person) and <out/cohort_flow.md>
-(people remaining after each step). Mark a person as exposed only if <the exposure condition>; everyone else in the cohort is unexposed,
-so that nobody is left blank or dropped from the comparison. Tell me every place where you had to interpret the protocol.
+Read <protocol file>. Quote the exact eligibility criteria, index event definition, exposure criteria, and outcome observation window.
+Then write an executable script (<scripts/build_cohort.py>) applying these rules to <clean data>.
+Generate a cohort dataset (<out/cohort.csv>) with strictly one row per individual, and an attrition flow table (<out/cohort_flow.md>) reporting counts remaining after each selection rule.
+Classify an individual as exposed if <exposure condition>; categorize all remaining eligible individuals as unexposed controls so no eligible subjects are dropped.
+Explicitly document any areas where protocol phrasing required interpretation.
 ```
 
-The last sentence matters: it surfaces the assumptions.
+Requiring the agent to highlight interpretive assumptions ensures domain choices remain visible for researcher confirmation.
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- The quoted rules match the protocol word for word.
-- One row per person in the cohort file.
-- Each flow step is no larger than the one before it, and the final count equals the cohort file's row count.
-- Assumptions were listed, and you agree with them.
+- **Protocol alignment:** The quoted eligibility rules match the protocol source text verbatim.
+- **Unit of observation integrity:** The final cohort dataset contains strictly one record per patient ID.
+- **Monotonic sample reduction:** Each row in the attrition flow table is less than or equal to the prior count, and the final flow count matches `out/cohort.csv` exactly.
+- **Transparent assumptions:** The agent explicitly documents edge-case assumptions (e.g., handling ties in same-day visits) for your review.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| More than one row per person | The index event was not restricted to the first qualifying visit | Group by person and keep the first |
-| The comparison group is far smaller than expected | People with no record of the exposure were left blank instead of counted as unexposed | State the comparison group in the prompt: everyone in the cohort who is not exposed |
-| Counts differ from a colleague's | A different interpretation of a window boundary | Compare the definitions, and note which edge cases decide it |
+| Multiple rows per patient ID | Index event logic failed to restrict records to the initial qualifying encounter | Instruct the agent to group records by patient ID and slice the earliest qualifying event |
+| Unexposed comparison group is unexpectedly small | Records lacking explicit exposure logs were coded as null and dropped | Explicitly define the control group as all eligible cohort members who do not meet exposure criteria |
+| Sample size diverges from historical benchmarks | Discordant temporal window boundary interpretations (e.g., `< 30` vs. `<= 30` days) | Reconcile window boundary expressions against protocol definitions |

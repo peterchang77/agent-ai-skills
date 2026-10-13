@@ -6,13 +6,13 @@ A practical course for researchers ready to put AI coding agents to work on thei
 
 </div>
 
-## What you will be able to do
+## Core competencies
 
-- Explain how an agent differs from a chat window, and choose a tool that fits your data and rules.
-- Give an agent the right inputs, ask for the right outputs, and keep its context in good shape.
-- Check its work before you rely on it, including with a second agent.
-- Clean data, run an analysis, find real references, and produce a cited report.
-- Package what worked as a tool and skill, keep it in Git, and handle secrets and cost.
+- **Differentiate agentic workflows from conversational chat**, selecting harnesses and models tailored to your security requirements.
+- **Master context management**, structuring inputs and outputs to prevent attention degradation and excessive token consumption.
+- **Implement rigorous verification practices**, validating computational steps using independent execution, automated tests, and multi-agent peer reviews.
+- **Execute end-to-end data analyses**, transforming raw observational data into cleaned datasets, statistical models, verified citations, and reproducible reports.
+- **Codify workflows into durable assets**, packaging scripts into deterministic command-line tools and version-controlled agent skills while managing credentials securely.
 
 <div class="grid cards" markdown>
 
@@ -20,55 +20,52 @@ A practical course for researchers ready to put AI coding agents to work on thei
 
     ---
 
-    The ideas, one page each. Read in order or as a reference.
+    Modular explorations of core principles, designed for sequential reading or reference.
 
-    [:octicons-arrow-right-24: Start the concepts](concepts/index.md)
+    [:octicons-arrow-right-24: Explore concepts](concepts/index.md)
 
 -   :material-flask-outline: **Demo track**
 
     ---
 
-    One worked example from raw files to a cited report. Every step stands on its own.
+    An end-to-end empirical case study structured into modular, restorable exercises.
 
-    [:octicons-arrow-right-24: Start the demos](demo/index.md)
+    [:octicons-arrow-right-24: Start demo track](demo/index.md)
 
 -   :material-map-marker-path: **Guided tutorial**
 
     ---
 
-    A single path that alternates ideas and hands-on steps, for people who want to be led.
+    A unified, step-by-step curriculum pairing theoretical background with hands-on practice.
 
-    [:octicons-arrow-right-24: Start the tutorial](tutorial/index.md)
+    [:octicons-arrow-right-24: Begin guided tutorial](tutorial/index.md)
 
 </div>
 
-## How the three fit together
+## Track comparison
 
-| | Answers | Best for |
+| Track | Primary focus | Recommended usage |
 |---|---|---|
-| Concept track | *Why, and what to watch for* | Understanding, and coming back to look something up |
-| Demo track | *How, on real files* | Seeing a technique work, then copying the pattern |
-| Guided tutorial | *In what order* | Following the whole thing without deciding what to read next |
+| **Concept track** | Methodological principles and guardrails | Gaining foundational understanding and looking up specific topics |
+| **Demo track** | Practical execution on realistic files | Observing hands-on patterns and adapting code templates to your data |
+| **Guided tutorial** | Integrated, progressive workflow | Following a complete, end-to-end path without managing navigation |
 
-All three use the same pages. Each concept links to the demo steps that use it, and each step links back to its concepts, so you can switch at any
-point without losing your place.
+All tracks utilize the same core modules. Each concept page links directly to corresponding practical steps, and each demo exercise references supporting theory, enabling seamless movement between tracks.
 
-## Which should I start with?
+## Choosing your starting point
 
-| If you... | Start with |
+| If your immediate priority is... | Recommended path |
 |---|---|
-| Are new to coding agents | [Guided tutorial](tutorial/index.md) |
-| Have an agent installed and want to see it work | [Demo track](demo/index.md) |
-| Want to understand before you try | [Concept track](concepts/index.md) |
-| Are about to use real or sensitive data | [Privacy](concept:privacy) and [Secrets](concept:secrets) |
-| Have one task in mind | The matching [demo step](demo/index.md), then its concepts |
-| Are teaching others | The [guided tutorial](tutorial/index.md), with each step's example as the exercise |
+| Building a comprehensive understanding from scratch | [Guided tutorial](tutorial/index.md) |
+| Running code immediately with an existing agent | [Demo track](demo/index.md) |
+| Reviewing architecture, safety, and operational patterns | [Concept track](concepts/index.md) |
+| Ensuring compliance before handling proprietary data | [Privacy and data handling](concept:privacy) and [Secrets](concept:secrets) |
+| Solving a specific data or coding task | The relevant [demo exercise](demo/index.md), followed by its supporting concepts |
+| Instructing students or research colleagues | The [guided tutorial](tutorial/index.md), using each step's example as a classroom exercise |
 
-## About the example data
+## Benchmark dataset
 
-The demos use a **synthetic** clinic dataset with known problems and known answers, so you can see whether the agent got it right. Nothing in it is real
-patient data. Each step has a general part you can reuse on your own data, and a labelled **Workshop example** that uses the supplied files. Your choice of
-scenario tab is remembered across pages.
+The demonstrations use a **synthetic** multi-site clinical dataset engineered with known baseline characteristics and planted data artifacts. This provides an objective ground truth, enabling participants to verify agent calculations with certainty. The data contains no real patient health information. Each exercise provides a generalized approach suitable for any research domain alongside a concrete **Workshop example** based on the synthetic kit. Scenario preferences are preserved across pages.
 
 ## Also in this repository
 

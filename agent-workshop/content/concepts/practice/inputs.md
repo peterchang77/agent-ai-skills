@@ -4,64 +4,60 @@ title: Inputs — getting information to the agent
 short: Inputs
 themes: [text-formats]
 related: [outputs, context, privacy, secrets, verification]
-blurb: Everything the agent sees arrives as text. Choose the route and the format that keep as much structure as possible.
+blurb: Language models process information as text. Selecting appropriate ingestion pathways and source formats preserves data structure and prevents extraction errors.
 ---
 
-An agent can only work with what it can read, and it reads **text**. Choose how to hand something over based on the file type. For how to read specific file types, see [Read spreadsheets, documents, and PDFs](beat:read-office-formats).
+An agent operates strictly on the data provided to its context window or accessible via its environment tools. Because language models process sequences of text tokens, how information is formatted directly determines parsing accuracy and analytical fidelity. For practical exercises reading diverse formats, see [Read spreadsheets, documents, and PDFs](beat:read-office-formats).
 
-## Routes
+## Data ingestion pathways
 
-| Route | How | Good for | Notes |
+| Ingestion pathway | Mechanism | Optimal use case | Key considerations |
 |---|---|---|---|
-| Paste | Copy text into the prompt | A few lines: an error message, a snippet | Tables lose their columns when pasted |
-| Local file | Put it in the project folder and name it | Most work | The default choice |
-| Website | Give a URL | Reference pages, public data | Save a local copy if you need to reproduce it |
-| API | Give the agent an endpoint and a key | Live or large data | See below |
-| Database | Give the agent a connection and a password | Structured records | See below |
+| **Prompt insertion** | Pasting snippets directly into the prompt | Brief error logs, short configuration snippets | Tabular columns often lose alignment; fills context quickly |
+| **Local filesystem** | Placing files within the project working tree | Primary empirical data files, source code, protocols | Standard approach; preserves file structure and relative paths |
+| **Web retrieval** | Providing a URL for HTTP fetching | Public documentation, regulatory guidance, preprints | Archive retrieved copies locally to maintain computational reproducibility |
+| **REST APIs** | Providing an endpoint URL and scoped credential | Live data feeds, dynamic queries, bulk records | Store credentials securely ([Secrets](concept:secrets)); record API query parameters |
+| **Databases** | Providing a connection string or SQL client | Enterprise data warehouses, relational records | Use read-only credentials; persist query extracts to disk for reproducibility |
 
-**Rule of thumb:** paste a few lines; use a file for anything structured.
+**General guideline:** Paste short excerpts of unstructured text directly into the prompt; maintain structured data and multi-page documents as local files within the project.
 
-### APIs and databases
+### Connecting to APIs and relational databases
 
-An agent is usually good at figuring out an interface from its documentation. Often the easiest start is simply to
-give it the **endpoint URL and an API key** (or the **database URL and a password**) and ask it to explore what is
-available. Two cautions: use a limited or read-only credential to begin with, and read [Secrets](concept:secrets)
-before you paste anything sensitive. If the work has to be reproducible, ask the agent to save what it retrieved
-(or the query that produced it) in the project.
+Coding agents excel at writing integration code when provided with interface documentation. A common pattern is to provide an API endpoint or database connection string and ask the agent to inspect the schema:
 
-## The format ladder
+1. Provision a scoped, read-only credential to safeguard production systems.
+2. Store credentials in environment variables rather than prompts ([Secrets](concept:secrets)).
+3. Require the agent to persist extracted records (and the exact query used) into a local data directory to ensure research reproducibility.
 
-| Best: plain text | Fine: needs a library | Lossy: convert first |
-|---|---|---|
-| `.txt`, `.md`, `.csv`, `.json`, `.tex`, `.html` | `.xlsx`, `.docx` | scanned PDFs and images; `.pptx` |
+## The representation hierarchy
 
-Between those, **PDF** needs a distinction:
+| Format category | Extensions | Processing behavior | Structural preservation |
+|---|---|---|---|
+| **High fidelity (Plain text)** | `.csv`, `.tsv`, `.json`, `.md`, `.tex`, `.yaml` | Parsed directly as structured text tokens | High: Preserves tabular rows, hierarchical keys, and semantic tags exactly. |
+| **Intermediate (Office containers)** | `.xlsx`, `.docx` | Requires extraction libraries (`openpyxl`, `python-docx`) | Moderate: Extracts values reliably; may drop macros, cell formatting, and revision marks. |
+| **Lossy (Visual & compound)** | Scanned `.pdf`, raster images, `.pptx` | Requires OCR engines or layout-heuristic parsers | Low: Column order, table structures, and complex formatting are frequently distorted. |
 
-- A PDF with an **embedded text layer** (most PDFs) can have its text extracted, though tables and columns may come out jumbled.
-- A **scanned PDF** is only pictures of pages. It has no text until it goes through OCR (optical character recognition), which is slower and makes mistakes.
+### Understanding PDF extraction challenges
 
-If you have a choice, ask for the text version at the source: export Excel to CSV, Word to Markdown, slides to a web page. Conversion silently drops structure such as merged cells, tracked changes, footnotes, and table layout. See [what code makes possible](concept:what-code-can-do) for the wider rule.
+PDF documents present distinct analytical challenges depending on their internal structure:
+- **Digital PDFs with text layers:** Standard extraction utilities can extract the underlying text stream, but multi-column layouts, footnotes, and complex tables can be merged out of order.
+- **Scanned image PDFs:** Contain only raster graphics without character streams. Extracting text requires Optical Character Recognition (OCR), which is slower, computationally intensive, and susceptible to character-recognition errors.
 
-## Dependencies are normal
+Where possible, obtain data directly in structured plain-text formats at the source (e.g., exporting Excel sheets to CSV, or pulling raw database tables).
 
-Reading `.xlsx` or `.docx` needs a library; reading a PDF needs a text-extraction tool. Let the agent install what it
-needs inside the project ([Environment](concept:environment)). Tell it *which file* you care about, not which library to use.
+## Dependency management for input processing
 
-## Keep inputs organised
+Ingesting non-text formats requires specialized libraries: reading `.xlsx` files requires spreadsheet parsers, while extracting text from PDFs requires command-line utilities. Rather than manually researching and installing these tools, allow the agent to install what it needs within the project virtual environment ([Environment](concept:environment)).
 
-- Keep original files in one place (for example `data/raw/`) and **never modify them**; write results elsewhere.
-- Put a **data dictionary** next to the data, saying what each column means and its units.
-- For large files, do not ask the agent to read everything. Have it inspect the structure and a sample, then **process with code** and report ([Context](concept:context)).
+## Data organization and management hygiene
 
-## Before you hand it over
+- **Enforce read-only raw data stores:** Maintain immutable original records in a dedicated directory (such as `data/raw/`) and instruct the agent never to modify them. All cleaning scripts should write to separate output folders.
+- **Provide comprehensive data dictionaries:** Accompany datasets with a schema definition detailing column definitions, expected types, and measurement units to prevent hallucinated interpretations.
+- **Inspect schemas before loading records:** For large datasets, direct the agent to inspect column headers and sample rows first, then execute data transformations using standalone scripts rather than dumping complete datasets into working memory ([Context](concept:context)).
 
-Check that the data is allowed to go to the model you are using ([Privacy](concept:privacy)).
+## Ethical and privacy governance
 
-## Common mistakes
-
-- Pasting a table from a PDF or a web page and trusting the columns.
-- Assuming the agent read all of a large file. Ask what it actually opened.
-- Leaving out the data dictionary, so the agent guesses what columns mean.
+Ensure all ingested data complies with institutional research approvals and privacy policies before exposing it to cloud-hosted agents ([Privacy and data handling](concept:privacy)).
 
 ## Demo it
 

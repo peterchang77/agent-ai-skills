@@ -4,45 +4,51 @@ title: Tools — repeatable capabilities
 short: Tools
 themes: [recursive-ai, context-discipline]
 related: [memory, secrets, costs, version-control]
-blurb: A tool is anything the agent can run. When a task will recur, turn it into a script so it behaves the same way every time.
+blurb: Turning interactive prompts into parameterized scripts creates deterministic, testable tools that run identically on every execution.
 ---
 
-A **tool** is anything the agent can run to get something done.
+In an agent workflow, a **tool** is any executable program, library, or network interface the agent can invoke to inspect the environment or modify state.
 
-| Kind | Examples |
-|---|---|
-| Local software | Commands, Python libraries, LaTeX, `pandoc` |
-| Cloud services | A web API, a database, an LLM API |
-| Tools you write | A script with a command-line interface (`--help`) |
+| Tool category | Examples | Key characteristics |
+|---|---|---|
+| **System & runtime utilities** | Python libraries, shell commands, LaTeX, Pandoc | Executes locally on the host; fast and deterministic |
+| **External cloud APIs** | Bibliographic APIs, cloud databases, model endpoints | Interfaces with remote systems; requires authentication and network access |
+| **Custom project scripts** | Tailored Python scripts with CLI arguments (`--help`) | Codifies custom analytical workflows; version-controlled within the project |
 
-## Why a tool beats a prompt for repeatable work
+## Why programmatic tools outperform repeated prompts
 
-A prompt is interpreted differently each time. A script runs the same way, can be **tested** against known answers, runs
-without the model, and costs nothing per use. This is why a tool is the strongest form of [memory](concept:memory).
+Prompting an agent in natural language is well-suited for interactive data exploration, but natural language instructions remain probabilistic. A prompt may yield subtle variations in code logic, column naming, or floating-point formatting across repeated runs.
 
-## Turn a task into a tool
+In contrast, codifying a procedure into a dedicated script provides distinct scientific advantages:
+- **Determinism:** The script executes identical mathematical algorithms on every invocation.
+- **Testability:** The tool can be benchmarked against synthetic datasets with known ground truth.
+- **Decoupled execution:** The tool runs independently in standard terminal environments without requiring an active language model or incurring API token costs.
 
-1. Do the task once with the agent, interactively.
-2. Ask it to turn the steps into a script with arguments and `--help`.
-3. Run it on the same input and confirm the output matches.
-4. Test it against a case where you know the answer.
-5. Document it in the `README.md` and keep it in [version control](concept:version-control).
+Transforming interactive workflows into durable tools represents the most reliable form of project memory ([Memory](concept:memory)).
 
-Using the agent to build the tool, and then reviewing the tool, is the "use AI recursively" pattern in practice.
+## The workflow: from prompt exploration to validated tool
 
-## Cloud APIs and bulk LLM calls
+1. **Explore interactively:** Develop the analytical steps interactively with the agent, verifying intermediate tables.
+2. **Package the script:** Direct the agent to synthesize the verified commands into a standalone Python script equipped with structured command-line arguments and standard help documentation (`--help`).
+3. **Validate against baseline results:** Run the newly packaged script on the original dataset to confirm that output files match the interactive results.
+4. **Implement automated assertion tests:** Add a unit test or validation script (e.g., using `pytest`) that asserts expected column names and summary totals against known benchmarks.
+5. **Document and commit:** Add usage instructions to `README.md` and commit the script and test suite to version control ([Version control](concept:version-control)).
 
-For hundreds or thousands of items (classifying notes, extracting fields), write a script that calls an LLM API for each
-item rather than working through them in chat. A few things to plan for:
+Using the agent to draft, refine, and test its own analytical scripts demonstrates the recursive application of AI to improve research software engineering.
 
-- **Test on a handful first**, then estimate the total cost before running everything ([Costs](concept:costs)).
-- **Handle rate limits and retries**, and **save partial results** so a failure does not lose everything.
-- **Validate the outputs** against a labelled sample.
-- **Use credentials safely** ([Secrets](concept:secrets)), and check that your data is allowed to go to that endpoint ([Privacy](concept:privacy)).
+## Integrating cloud APIs and batch model execution
 
-## Trust requires documentation and tests
+When a research task involves processing hundreds or thousands of text records (e.g., classifying clinical notes or extracting structured entities), executing requests individually within an interactive chat session is inefficient. 
 
-A short README with an example run, and a check against known answers, is the minimum for a tool you or others will rely on.
+Instead, develop a standalone batch processing script that calls an API endpoint programmatically:
+- **Validate on a representative pilot:** Test the classification prompt and parsing logic on 10 to 50 records before running the full dataset.
+- **Estimate total API expenditure:** Calculate anticipated token volume and pricing before launching full-scale processing ([Costs](concept:costs)).
+- **Implement rate limiting and checkpointing:** Incorporate retry logic with exponential backoff to handle transient API rate limits, and write partial outputs to disk so an interrupted run does not lose completed records.
+- **Protect credentials and data:** Inject API keys via environment variables ([Secrets](concept:secrets)) and verify institutional authorizations for external data egress ([Privacy and data handling](concept:privacy)).
+
+## Minimum documentation and testing standards
+
+For any tool intended for ongoing research or collaboration, maintain a concise README section demonstrating an example invocation, an explanation of inputs and outputs, and an automated test against known reference values.
 
 ## Demo it
 

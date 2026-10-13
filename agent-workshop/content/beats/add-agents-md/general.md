@@ -2,50 +2,53 @@
 role: add-agents-md
 title: Make the agent remember with AGENTS.md
 kind: full
-summary: Start a fresh session and watch the agent forget your decisions; then write the rules to a short file it reads every time.
+summary: Persist critical project rules and analytical conventions in AGENTS.md, ensuring new sessions maintain project memory without redundant steering.
 time: 8 min
 teaches: [memory, context, steering]
 needs: [clean-data]
 ---
 
-An agent forgets everything between sessions, so every new session starts by re-asking questions you already answered. After this
-step you will know how to fix that with a short instructions file, and you will have seen the fix work.
+Because language models maintain no persistent internal state across independent sessions, launching a new conversation typically requires re-explaining directory structures, cleaning conventions, and project constraints. In this exercise, you observe this loss of context firsthand and resolve it by establishing an `AGENTS.md` configuration file.
 
-**Before you start:** a project in which you have already made decisions you do not want to repeat, such as cleaning rules
-([Setup](setup:restore-a-starting-point) if you need a starting state).
+**Before you start:** A project directory where key analytical decisions have already been made ([Setup](setup:restore-a-starting-point)).
 
 ## Background
 
-When a session ends, the conversation is gone ([Context](concept:context)). What persists is **files**. An **`AGENTS.md`** file in the
-project folder is read automatically at the start of each session, which makes it the cheapest form of memory
-([Memory](concept:memory)). It should be short and specific: where things are, what the rules are, and what never to do. Everything in
-it is loaded into context every time, so length has a cost.
+When an interactive session terminates, the active conversational context is discarded ([Context](concept:context)). The only way to preserve state across sessions is through persistent **files**. 
 
-## General approach
+An **`AGENTS.md`** file located in the project root is automatically ingested by most modern agent harnesses at session initialization, providing a standardized, portable mechanism for project memory ([Memory](concept:memory)). 
 
-1. **See the problem.** Start a new session in the project and ask a question that depends on your earlier decisions. Notice what the agent has to ask or guesses wrong.
-2. **Write the rules.** Ask the agent to draft the file from what you have decided, then review it.
+Effective standing instructions must be concise and specific: documenting directory locations, active cleaning definitions, output paths, and strict negative constraints (such as never overwriting raw datasets). Because every line in `AGENTS.md` consumes context tokens on every turn, keep the file concise and focused.
+
+## General methodology
+
+1. **Observe context loss:** Launch a fresh agent session in the project directory and prompt it with a question that depends on prior decisions. Note how the agent either makes incorrect assumptions or asks for clarification on previously resolved conventions.
+2. **Draft standing instructions:** Instruct the agent to synthesize the established project conventions into `AGENTS.md`:
 
 ```text
-Create AGENTS.md in this folder, under 25 lines, capturing: where the data and data dictionary live; the decisions we made and why;
-where outputs go; what must never be modified; and how to report numbers. Be specific. Leave out anything you could work out from the code.
+Create an AGENTS.md file in the project root (under 25 lines) documenting:
+- Relative paths to raw data, cleaned datasets, and the data dictionary.
+- Key data cleaning rules and cohort definitions established so far.
+- Designated output directories for generated tables and figures.
+- Explicit operational constraints (e.g., raw data is read-only; all numbers must report denominators).
+Keep instructions concise and specific. Omit trivial details that can be derived directly from the code.
 ```
 
-3. **Test it.** Start another new session and repeat the question from step 1. The agent should now apply the rules without asking.
-4. **Improve it.** Ask: "Review AGENTS.md and remove anything vague or redundant." Using the agent to improve its own instructions is a habit worth keeping ([steering](concept:steering)).
+3. **Verify memory persistence:** Launch another new session and re-issue the initial query from step 1. The agent should now execute the task adhering to the documented conventions without asking redundant questions.
+4. **Refine instructions recursively:** Direct the agent: *"Review AGENTS.md and remove any vague generalities or redundant rules."* Using the agent to audit its own instructions is a high-leverage maintenance practice ([Steering](concept:steering)).
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- The file is short, specific, and consistent with your actual decisions.
-- It contains no secrets and no sensitive data ([Secrets](concept:secrets)).
-- In the test session, the agent cited or followed the file.
+- **Concise and specific:** The file remains under 25 lines and provides concrete rules rather than vague generalities.
+- **Security compliance:** The file contains zero API keys, passwords, or confidential data ([Secrets](concept:secrets)).
+- **Effective steering:** In a clean test session, the agent correctly cites and adheres to the rules defined in `AGENTS.md`.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| The agent ignores the file | It is not named or placed where the harness looks | Check your harness's convention for the filename and location |
-| A long, generic file | The prompt did not ask for specifics | Cut it to the rules that would have prevented a real mistake |
-| Rules that contradict the data | The file was drafted before decisions were final | Reconcile it with `notes/cleaning-decisions.md` |
+| Agent ignores instructions | File name or directory location does not match harness configuration conventions | Verify the expected instruction file convention for your specific agent harness |
+| Bloated, generic instructions | Prompt failed to enforce brevity constraints | Edit the file to retain only high-impact rules that prevent genuine operational mistakes |
+| Contradictory rules | Instructions reflect outdated draft decisions rather than finalized rules | Reconcile `AGENTS.md` directly against `notes/cleaning-decisions.md` |

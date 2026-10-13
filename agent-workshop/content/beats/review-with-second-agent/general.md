@@ -2,51 +2,51 @@
 role: review-with-second-agent
 title: Review the analysis with a fresh second agent
 kind: detour
-summary: Open a new session and ask a second agent to find errors in the first one's work. It is cheap, independent of the first session's momentum, and often catches something.
+summary: Commission an independent peer review of scripts and findings using a secondary agent session with a clean context window.
 time: 6 min
 teaches: [verification, context, recursive-ai]
 needs: [analyze-pilot]
 ---
 
-After this step you will know how to use a second agent, with a clean context, as a reviewer of work done by a first, and what a review can and
-cannot tell you.
+In this exercise, you commission an independent code and methodological review by launching a second agent session with a clean context window. Unburdened by the assumptions and conversational momentum of the session that generated the analysis, a fresh agent evaluates artifacts with greater objectivity, catching edge cases and undocumented assumptions.
 
-**Before you start:** a finished piece of work saved in files: a script and a results file ([Setup](setup:restore-a-starting-point)).
+**Before you start:** A completed analytical milestone persisted as local files: an analysis script, input data, and a results summary ([Setup](setup:restore-a-starting-point)).
 
 ## Background
 
-The agent that did the work is poorly placed to check it: it has the whole conversation in context, including its own assumptions, and tends to
-confirm them. A **new session** has none of that. It reads only the files, so it behaves like a colleague seeing the work for the first time
-([Context](concept:context)).
+The agent session that authored an analysis is structurally ill-suited to audit its own code: its context window retains earlier conversational turns and reasoning steps, creating confirmation bias that favors its own assumptions.
 
-Frame the review as **finding errors**, not confirming. A request such as "is this right?" invites agreement. Also be aware of the limit: the
-same model can share the first session's blind spots, so a clean review lowers risk but does not prove correctness
-([Verification](concept:verification)).
+Launching a **new session** eliminates this history entirely. The secondary agent evaluates only the persisted files on disk, acting as an independent peer reviewer encountering the codebase for the first time ([Context](concept:context)).
 
-## General approach
+Frame the review request as an **adversarial error audit** rather than a confirmation check. Inquiring *"Does this look correct?"* induces sycophantic agreement. Furthermore, recognize model limitations: because models from the same architecture family can share similar reasoning biases, a clean secondary review lowers risk but does not replace human domain oversight ([Verification](concept:verification)).
 
-Start a new session in the project and give it the files, not the history:
+## General methodology
+
+Initialize a clean agent session in the project directory, directing it to audit persisted files without granting conversational background:
 
 ```text
-You are reviewing someone else's analysis. Read <the protocol or definition>, <the script>, and <the results>. Find errors, questionable
-assumptions, and anything in the write-up not supported by the results. Check the script against the definition line by line. Do not
-change any files; list the issues in order of importance, each with the evidence.
+You are an independent peer reviewer auditing an empirical analysis.
+Inspect <protocol file>, <scripts/analyze.py>, and <out/results.md>.
+Audit the script line by line against the protocol specification.
+Identify computational errors, unstated assumptions, and claims in the narrative that are not supported by empirical estimates.
+Do not modify any files.
+Present your findings as a prioritized list ordered by potential impact on study conclusions, providing line-specific evidence for each issue.
 ```
 
-Then decide which findings are real. A reviewer can be wrong too.
+Review the resulting critique carefully. Secondary reviewers can also propose false positives; evaluate whether each flagged issue represents a substantive methodological defect before taking action.
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- Each finding points to a specific line, number, or sentence.
-- You have confirmed the important ones yourself before acting.
-- The review did not modify any files.
+- **Evidence-backed critiques:** Every critique cites a specific line of code, formula, or table value.
+- **Human evaluation:** Flagged concerns are reviewed and confirmed by the researcher before altering analytical code.
+- **Read-only execution:** The secondary review session produced an evaluation report without modifying repository files.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| "Looks good" with no detail | The prompt asked for confirmation | Ask for a list of at least the assumptions and risks |
-| Many trivial findings | No ranking requested | Ask for the top three that could change a conclusion |
-| It rewrote the analysis | Not told to leave files alone | Restate "do not change any files" |
+| Superficial review ("Analysis looks sound") | Prompt requested confirmation rather than an adversarial audit | Direct the agent: *"Identify at least three potential sources of bias, unhandled edge cases, or model limitations"* |
+| Excessive trivial formatting critiques | Prompt failed to require prioritization | Instruct the agent: *"Rank the top three issues most likely to invalidate study conclusions"* |
+| Agent rewrites the analysis autonomously | Prompt lacked explicit write prohibitions | Re-issue command: *"Provide review notes only; do not modify any files"* |

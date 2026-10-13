@@ -2,48 +2,47 @@
 role: first-look
 title: A first answer from raw data
 kind: full
-summary: Get a quick answer from the raw data, with the definition and the denominator stated. It will look plausible, which is exactly why you should not trust it yet.
+summary: Generate an initial exploratory estimate from uncleaned data, requiring explicit definitions and denominators to establish an uncleaned baseline.
 time: 6 min
 teaches: [verification, inputs, scoping-work]
 needs: [read-text-files]
 ---
 
-An agent can answer a data question in minutes. This step shows how to ask for a first answer in a way that you can check, and sets
-up the next steps, where cleaning the data changes the answer.
+An agent can calculate preliminary metrics across a raw dataset in minutes. This exercise demonstrates how to request an initial exploratory estimate while enforcing strict verification standards: requiring explicit variable definitions, reporting exact denominators, and documenting baseline anomalies before cleaning begins.
 
-**Before you start:** a data file, a data dictionary, and (if the question has a target or benchmark) the file that holds it
-([Setup](setup:)).
+**Before you start:** A raw dataset, an accompanying data dictionary, and any relevant performance target files ([Setup](setup:)).
 
 ## Background
 
-A first pass on raw data is useful for orientation, but it is **exploration, not a result**. Raw data usually has problems
-that quietly change the numbers. A good first answer therefore states its definitions and shows how many rows each number rests on,
-so you can see what to question ([Verification](concept:verification)).
+Generating an initial estimate from uncleaned data provides useful orientation, but represents **exploratory profiling rather than definitive findings**. Uncurated observational datasets almost always contain latent anomalies—such as placeholder test entries, date format discrepancies, or unit mismatches—that silently distort calculations. 
 
-## General approach
+A rigorous first pass must explicitly declare the analytical definitions used and report the active sample sizes (denominators) supporting each metric, establishing an empirical baseline against which subsequent cleaning impacts can be audited ([Verification](concept:verification)).
 
-Put the definition in the prompt, so the agent does not invent one, and ask for denominators.
+## General methodology
+
+Include the exact operational definition within the prompt to prevent the agent from assuming informal definitions, and mandate explicit sample size reporting:
 
 ```text
-Using <data file> and <data dictionary>, answer: <question>. Use this definition: <definition>. Report every number with the
-number of rows (or people) it is based on. Do not change or exclude any data; just tell me what you notice.
+Using <data file> and <data dictionary>, evaluate: <research question>.
+Apply this operational definition: <definition>.
+Report every calculated metric alongside the exact count of underlying rows or individuals (denominator).
+Do not filter, clean, or modify any data points yet; report the raw numbers and note any data anomalies observed.
 ```
 
-"Do not change the data" keeps the first pass honest: you see what the raw data says, and you decide the cleaning later
-([Scoping work](concept:scoping-work)).
+Explicitly instructing the agent not to filter data keeps the initial baseline honest: you observe what the uncurated records state, leaving data cleaning decisions for subsequent planned stages ([Scoping work](concept:scoping-work)).
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- The definition you gave was used (not a different one).
-- Every number has its denominator.
-- The agent mentioned anything odd it noticed, without silently fixing it.
+- **Operational definition fidelity:** The agent adhered strictly to the provided definition rather than substituting a default metric.
+- **Unambiguous denominators:** Every summary percentage or mean displays both the numerator and the active denominator.
+- **Anomaly transparency:** The agent flags irregular records or impossible values observed during calculation without silently omitting them.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| Answer uses a different definition | The definition was missing or ambiguous | Restate it exactly; ask which definition it used |
-| No denominators | They were not requested | Ask: "How many rows is each number based on?" |
-| Quietly dropped rows | Default behaviour of the code | Ask what was excluded, and why |
+| Calculation uses an unexpected definition | Operational definition was omitted or ambiguous | Restate the exact formula and prompt: *"Which mathematical definition was applied here?"* |
+| Missing denominators | Prompt did not explicitly mandate sample counts | Instruct the agent: *"Report the exact row and patient counts supporting each metric"* |
+| Silent record exclusions | Scripting library omitted nulls or outliers automatically | Direct the agent to report the total count of unmapped or dropped rows |

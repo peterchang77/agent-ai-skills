@@ -2,57 +2,54 @@
 role: write-abstract
 title: Write a research abstract as LaTeX, with citations
 kind: full
-summary: Have the agent write the abstract as LaTeX from your results file and bibliography, compile it, and trace every number and claim back to its source.
+summary: Author a structured scientific abstract in LaTeX from empirical results files and a verified bibliography, compiling a publication PDF and tracing numerical claims to their source.
 time: 9 min
 teaches: [outputs, verification]
 needs: [analyze-pilot]
 ---
 
-After this step you will be able to turn saved results and a verified bibliography into a compiled PDF abstract, and to check that every number
-and citation in it is supported.
+In this exercise, you direct the agent to synthesize empirical results and verified bibliographic citations into a publication-ready structured scientific abstract in LaTeX (`out/abstract.tex`), compile the document to PDF, and trace every numerical claim back to underlying data tables.
 
-**Before you start:** a results file, a `references.bib` whose entries were retrieved (not recalled), and a LaTeX installation
-([Setup](setup:)). If LaTeX is missing, the agent can usually help install it ([Environment](concept:environment)), or you can ask for Markdown and
-convert with `pandoc`.
+**Before you start:** A results file from statistical analysis, a verified `references.bib` containing retrieved citations, and a local LaTeX compiler environment ([Setup](setup:)). If LaTeX is absent, the agent can configure it ([Environment](concept:environment)), or compile via Markdown and Pandoc.
 
 ## Background
 
-Write the **source** and render it ([Outputs](concept:outputs)). LaTeX produces a clean PDF with automatic numbering and a reference list generated from
-`references.bib`. Because the PDF is built from text, a correction is one edit and one rebuild.
+Adopting a **source-first compilation pattern** ensures maximum reproducibility ([Outputs](concept:outputs)). LaTeX generates clean, standardized typography with automated section numbering and bibliographic citation formatting resolved against `references.bib`. Because the final PDF is compiled programmatically from plain text, updating estimates or refining prose requires only a concise source edit and recompilation.
 
-Two rules keep the abstract trustworthy:
+Two mandatory guardrails maintain scientific integrity:
+- **Numerical claims derive strictly from results files:** Every percentage, odds ratio, and sample size must be extracted directly from `out/results.md` and flow tables, rather than recalled from conversational memory.
+- **Citations derive strictly from `references.bib`:** The agent is prohibited from introducing external citations that do not exist within the local bibliography ([Verification](concept:verification)).
 
-- **Numbers come from the results file**, not from the agent's recollection of the conversation. Tell it to copy them from the file.
-- **Citations come only from `references.bib`.** It may not add a reference that is not already there ([Verification](concept:verification)).
+A structured scientific abstract adheres to standard sections: Background, Methods, Results, and Conclusions. Ensure the concluding interpretation aligns strictly with what the observational design mathematically supports.
 
-A structured abstract has a fixed shape: Background, Methods, Results, Conclusions. Keep the conclusions to what the design supports.
+## General methodology
 
-## General approach
+Direct the agent to draft the structured abstract, embed citations from the verified bibliography, compile the document, and provide an explicit provenance checklist for every number:
 
 ```text
-Write a one-page structured abstract (Background, Methods, Results, Conclusions) as out/abstract.tex, with a results table and citations
-from references.bib only. Take every number from <results file> and <flow table>. Do not add any citation that is not in references.bib. State
-the study design and its main limitation. Compile it to out/abstract.pdf and report any warnings. Then list each number and each citation
-in the abstract with where it came from.
+Draft a single-page structured abstract (Background, Methods, Results, Conclusions) as out/abstract.tex.
+Incorporate an embedded results summary table and citations drawn exclusively from references.bib.
+Extract all numerical estimates, denominators, and confidence intervals directly from <results file> and <flow table>.
+Do not fabricate or introduce any citation key absent from references.bib.
+State the study design clearly, noting primary observational limitations.
+Compile the document to out/abstract.pdf and report any LaTeX compiler warnings.
+Finally, provide a provenance checklist mapping every number and citation key in the abstract to its specific source table or reference record.
 ```
-
-The final sentence gives you a checklist. Work through it.
 
 <!-- example -->
 
-## What to check
+## Verification criteria
 
-- Each number matches the results file.
-- Each citation key exists in `references.bib`, and the cited paper supports the sentence it is attached to (read the abstract of the paper).
-- The conclusion uses language of association if the design is observational.
-- The PDF compiled with no unresolved references (no `?` or `[?]`).
-- If the data is synthetic, the abstract says so.
+- **Numerical concordance:** Every statistic, sample size, and confidence interval in the PDF matches underlying results tables exactly.
+- **Bibliographic validity:** All citation keys resolve cleanly against `references.bib` without missing reference warnings (`?` or `[?]`), and cited papers substantiate their corresponding assertions.
+- **Epistemic calibration:** The conclusions section discusses observed statistical associations without overreaching into unverified causal claims.
+- **Synthetic data disclosure:** If analyzing the workshop benchmark dataset, the abstract explicitly discloses that the findings derive from synthetic data.
 
-## Common problems
+## Common pitfalls
 
-| Symptom | Cause | Fix |
+| Symptom | Underlying cause | Resolution |
 |---|---|---|
-| `[?]` in the text | The bibliography step did not run | Rerun LaTeX, BibTeX, then LaTeX twice |
-| Missing package | A LaTeX package is not installed | Let the agent install it, or use a simpler template |
-| A claim the cited paper does not support | The citation was attached to the wrong sentence | Ask for the supporting statement from the paper, or remove the citation |
-| Runs onto a second page | Too much text or spacing | Ask it to tighten the text and margins |
+| Unresolved citations (`[?]`) | The bibliography engine did not execute the full compile cycle | Recompile using the standard sequence: `pdflatex`, `bibtex`, followed by two passes of `pdflatex` |
+| Missing LaTeX package errors | Required style packages are absent from the host LaTeX distribution | Authorize the agent to install missing packages via the system package manager, or simplify the LaTeX preamble |
+| Disconnected citations | The model attached a legitimate citation to an unrelated claim | Direct the agent to cite the supporting sentence from the cited paper's abstract, or remove the reference |
+| Document spills onto a second page | Preamble geometry or margins exceed single-page limits | Instruct the agent to adjust geometry margins or tighten section spacing |

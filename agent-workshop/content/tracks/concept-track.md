@@ -35,36 +35,34 @@ sections:
       - {concept: glossary}
 ---
 
-The concept track explains **why things work the way they do**. Each page covers one idea (what an agent is, what context is, how to verify
-results) in a general form that does not depend on any dataset. You can read the pages in order, or jump to the one you need.
+The concept track explains the foundational principles behind coding agents. Each page examines a core concept—such as agent architecture, context limits, or verification strategies—in a generalized form independent of any specific dataset or tool. You can read these modules sequentially or reference individual topics as needed.
 
-Every concept page follows the same pattern: background, a general approach you can reuse, what to check, common problems, and a short
-**Try it** list linking to the steps in the [demo track](../demo/index.md) that apply the idea.
+Every concept page follows a consistent structure: theoretical background, general methodology, verification guidelines, common failure modes, and a **Try it** section linking directly to practical exercises in the [demo track](../demo/index.md).
 
-## How the pages are grouped
+## Topic areas
 
-| Group | What it is for |
+| Section | Focus |
 |---|---|
-| Background | What an agent is, how it differs from a chat window, and what it can do for research |
-| Setup and safety | Choosing and installing a tool, where it runs, and how to protect data and credentials |
-| Practice | The working habits: scoping, inputs, outputs, context, memory, tools, steering, verification, version control, cost |
-| Themes and reference | Short cross-cutting pages and a glossary |
+| Background | Core agent mechanics, differences from conversational models, and capabilities in research workflows |
+| Setup and safety | Harness selection, execution environments, and security practices for data and credentials |
+| Practice | Essential operational habits: task scoping, data ingestion, context hygiene, durable memory, steering, verification, and cost control |
+| Themes and reference | Cross-cutting principles and a reference glossary |
 
-## Start here if...
+## Recommended entry points
 
-| You are... | Read first |
+| Research need | Recommended reading |
 |---|---|
-| New to coding agents | [Agents versus chat](concept:agent-vs-chat), then [What code can do](concept:what-code-can-do) |
-| About to use real data | [Privacy](concept:privacy), [Secrets](concept:secrets), [Sandboxing](concept:sandboxing) |
-| Getting poor or inconsistent results | [Scoping work](concept:scoping-work), [Context](concept:context), [Verification](concept:verification) |
-| Worried about cost | [Costs](concept:costs), [Context](concept:context) |
-| Wanting a reusable setup | [Memory](concept:memory), [Tools](concept:tools) |
+| Getting started with coding agents | [Agent vs. chat](concept:agent-vs-chat), followed by [What code makes possible](concept:what-code-can-do) |
+| Handling confidential or sensitive data | [Privacy and data handling](concept:privacy), [Secrets](concept:secrets), and [Sandboxing](concept:sandboxing) |
+| Diagnosing inconsistent or unreliable outputs | [Scoping work](concept:scoping-work), [Context](concept:context), and [Verification](concept:verification) |
+| Managing compute and token expenses | [Costs](concept:costs) and [Context](concept:context) |
+| Creating reusable workflows | [Memory](concept:memory) and [Tools](concept:tools) |
 
 ## Contents
 
 <!-- toc -->
 
-## How this fits with the other tracks
+## Track navigation
 
-- The [demo track](../demo/index.md) applies these ideas, step by step, to one worked example.
-- The [guided tutorial](../tutorial/index.md) alternates concept pages and demo steps in a fixed order, if you would rather be led.
+- The [demo track](../demo/index.md) applies these concepts sequentially to a complete research case study.
+- The [guided tutorial](../tutorial/index.md) interleaves these concepts with corresponding hands-on exercises in a single progression.

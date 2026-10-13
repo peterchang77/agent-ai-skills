@@ -3,60 +3,62 @@ id: harnesses
 title: Harnesses and models
 themes: [recursive-ai]
 related: [agent-vs-chat, costs, sandboxing, privacy]
-blurb: The model is the brain; the harness is the program that gives it files and tools; the environment is where its commands run. Keep the three separate in your head.
+blurb: An agent system separates the inference engine (the model), the orchestration software (the harness), and the execution target (the environment). Understanding this separation clarifies system capabilities and boundaries.
 ---
 
-## Three layers
+## The three architectural tiers
+
+Coding agent architectures separate reasoning, orchestration, and execution into three distinct layers:
 
 ![The three layers of a coding agent system. The model, a cloud language model, receives context and returns tool calls. The harness assembles context, drives the loop and dispatches tools. The environment, your local filesystem and shell, runs the commands and returns output and errors.](image:three-layers-model-harness-interface)
 
-| Layer | What it is | The choice you make |
+| Architectural layer | Role and responsibility | Researcher choice |
 |---|---|---|
-| **Model** | The language model that reads and writes. It is stateless: it only sees what the harness sends | Which provider, which size and version |
-| **Harness** | The program that assembles the context, runs the loop, sends tool calls to the environment, and asks for your approval | Which agent application |
-| **Environment** | The computer where commands run and files live | Your own machine, a container, or a remote server ([Environment](concept:environment)) |
+| **Foundation model** | The underlying language model that processes context and generates structured tool calls. Because the model is stateless, it only perceives what is passed in the context window. | Provider, architecture tier, and context window size |
+| **Agent harness** | The client application that manages session state, assembles system prompts, invokes tools, prompts for human permissions, and handles error recovery. | Choice of client CLI, IDE extension, or autonomous runtime |
+| **Execution environment** | The computing infrastructure where shell commands execute and files reside. | Local workstation, isolated container, or remote compute cluster ([Environment](concept:environment)) |
 
-The model proposes actions, the harness carries them out in the environment, and the output returns to the model as text. You also choose an **interface** for the harness: a terminal, an editor, a desktop app, or an always-on service.
+The foundation model evaluates context and proposes actions; the harness enforces boundaries and dispatches commands; and the host environment runs code and returns console output. Harnesses also provide different **user interfaces**, including command-line interfaces (CLIs), code editor extensions, and standalone desktop applications.
 
-Most confusion comes from mixing these layers up. The same model behaves differently in different harnesses, and one harness can often run several models.
+Distinguishing between these layers prevents common misconceptions. The exact same foundation model can behave very differently across two different harnesses due to variations in system prompting, tool definitions, and context compaction strategies. Similarly, most harnesses allow switching between multiple model backends.
 
-## A grid of examples
+## Current landscape
 
-| Provider | Terminal (CLI/TUI) | Editor / IDE / desktop | Long-running agent |
+| Ecosystem | Command-line (CLI/TUI) | Editor / IDE integration | Background / Autonomous |
 |---|---|---|---|
-| Anthropic | Claude Code | Claude Code in an editor, desktop app | scheduled / background agents |
-| OpenAI | Codex CLI | Codex in an editor or app | background tasks |
-| Google | Gemini CLI, Antigravity CLI | Antigravity (IDE) | background tasks |
-| AWS | Kiro CLI | Kiro IDE | background tasks |
-| Provider-neutral | pi and other open-source agents | editor extensions | always-on assistants (e.g. OpenClaw, Hermes) |
+| **Anthropic** | Claude Code | Claude Code in VS Code / JetBrains | Scheduled tasks, background agents |
+| **OpenAI** | Codex CLI | Codex editor integrations | Background batch workers |
+| **Google** | Gemini CLI, Antigravity CLI | Antigravity IDE | Autonomous background tasks |
+| **AWS** | Kiro CLI | Kiro IDE | Cloud-backed agent tasks |
+| **Open Source / Neutral** | pi, Aider | Extension ecosystems | Continuous background assistants |
 
-This is the landscape as of October 2026. Products and names change quickly, so look up what is current.
+System names and interfaces evolve rapidly. Rather than focusing on ephemeral product branding, focus on the structural patterns and underlying configurations.
 
-## A continuum of control
+## The spectrum of human supervision
 
 ![The continuum of control in AI harnesses, in four stages. In isolated chat there is no harness and you copy, run and verify everything. An inline copilot assists as you type in an editor. An interactive agent proposes actions and you grant permissions. An autonomous agent loops end to end in the background and you review the result.](image:continuum-of-agent-control)
 
-- **Isolated chat** has no harness. You copy code out, run it yourself, and check everything.
-- **An inline copilot** suggests code in your editor while you direct each line.
-- **An interactive agent** proposes actions and runs them once you grant permission. A terminal agent is the usual example, and it is the focus of this material: you see each command, approve steps, and customise behaviour with plain files.
-- **An autonomous agent** loops from task to result, often in the background. It is powerful for routine work, but you review results after the fact, so it needs more careful [isolation](concept:sandboxing) and [steering](concept:steering).
+Different research tasks call for different levels of autonomy and supervision:
 
-Moving right means delegating more. Interface and control are related but separate: editors and desktop apps can host an interactive agent too, usually with a friendlier view and inline diffs.
+- **Isolated chat:** No harness integration. You copy code out manually, execute it in a separate terminal, and verify all output.
+- **Inline copilot:** Suggests code completions directly inside your editor as you write, keeping control localized to each line.
+- **Interactive agent:** Proposes concrete shell commands, file modifications, or script executions, pausing for your explicit confirmation before executing. This interactive model is the central focus of this workshop: it offers transparency, prompt approval checkpoints, and file-based steering.
+- **Autonomous agent:** Executes multi-step pipelines independently in the background, presenting artifacts upon completion. This approach saves time on repetitive tasks, but requires strict [sandboxing](concept:sandboxing) and [steering constraints](concept:steering) since you review work after execution.
 
-## How to choose
+## Selecting a harness and model
 
-- Start with a terminal agent from a provider whose model you can already access (through a subscription, your institution, or an API key).
-- Check what your institution approves **before** using real data ([Privacy](concept:privacy)).
-- Prefer to keep your knowledge in **plain files** (`AGENTS.md`, skills, scripts, notes). Those travel between harnesses, so switching later is cheap ([Memory](concept:memory)).
+- Begin with a command-line harness connected to a foundation model you can access through existing institutional agreements or API keys.
+- Confirm institutional data privacy approvals **before** analyzing sensitive or proprietary datasets ([Privacy and data handling](concept:privacy)).
+- Store project conventions and procedures in **plain-text files** (`AGENTS.md`, modular skills, and documentation). Plain files are portable across harnesses, preventing vendor lock-in ([Memory](concept:memory)).
 
-## Subscription or API access
+## Subscription vs. API access
 
-Many harnesses accept either a flat-rate subscription or pay-per-use API access. The trade-offs are covered in [Costs](concept:costs).
+Most agent harnesses support flat-rate monthly subscriptions or pay-per-token API endpoints. For a comparison of cost predictability, rate limits, and model access tiers, see [Costs](concept:costs).
 
-## Local models
+## Cloud vs. local model deployment
 
-A model can also run on your own computer. Local models keep data on the machine and can work offline, but they are currently less capable than the large hosted models and need capable hardware. They are worth considering when data cannot leave a machine ([Privacy](concept:privacy)).
+While cloud-hosted models currently offer the highest reasoning and coding capabilities, foundation models can also run locally on dedicated GPU hardware. Local deployment provides total data residency and offline execution, making it an important option when institutional policies strictly prohibit transmitting data to external cloud services ([Privacy and data handling](concept:privacy)).
 
-## Getting set up
+## Getting started
 
-Installation is usually one command from the vendor's own instructions. The steps are on the [setup page](setup:).
+Installing an agent harness typically involves running a single package command or binary installer provided by the vendor. Step-by-step setup instructions are available on the [setup page](setup:).
