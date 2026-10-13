@@ -17,6 +17,7 @@ In physical laboratory science, no investigator would accept a published paper w
 Instead, empirical science relies on explicit **laboratory protocols**: precise, step-by-step records documenting every reagent volume, incubation temperature, and measurement time. 
 
 **Executable code is the digital equivalent of a laboratory protocol:**
+
 - Every data transformation, filtering threshold, and statistical formula is written in human-readable text.
 - Running the script reproduces the exact analytical output from raw records.
 - Any colleague or peer reviewer can inspect the code to see exactly how variables were derived.
@@ -26,6 +27,7 @@ When an agent works through code, it does not leave behind ephemeral opinions—
 ## Code as the universal computational adapter
 
 Why is code such an effective medium for an agent? Because operating systems expose almost all computational capabilities through text-based programming interfaces:
+
 - Filesystems are traversed with shell commands (`bash`).
 - Data cleaning and modeling are executed with numerical libraries (`Python`, `R`).
 - Relational databases are queried with structured syntax (`SQL`).
@@ -66,6 +68,7 @@ Adopting text-first formats during active analysis does not mean abandoning Word
 ## Programmatic code vs. graphical automation
 
 Some AI systems interact with software visually by capturing screenshots and clicking virtual buttons ("computer use"). While visual automation is helpful when no programmatic interface exists, writing and running code provides distinct advantages for research:
+
 - **Reproducibility:** A script can run again next month on new data with identical logic.
 - **Inspectability:** Researchers can review the exact mathematical expressions and transformations applied.
 - **Precision:** Refining an analysis requires only a concise clarification (e.g., *"adjust for patient age and clinic site"*), which the agent translates into precise code updates.
@@ -73,6 +76,7 @@ Some AI systems interact with software visually by capturing screenshots and cli
 ## Fundamental boundaries
 
 Executable code automates operational steps, but cannot resolve methodological ambiguities:
+
 - It cannot correct fundamentally biased or missing data.
 - It cannot formulate a research hypothesis on its own.
 - It cannot interpret the clinical or scientific meaning of an estimate; substantive interpretation remains the researcher's responsibility.

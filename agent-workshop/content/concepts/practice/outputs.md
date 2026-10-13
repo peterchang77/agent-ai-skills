@@ -42,6 +42,7 @@ When collaborators require Word or Excel files, author the work in Markdown or C
 ## Inspecting generated artifacts directly
 
 A conversational confirmation from an agent (e.g., *"I have generated the regression table and plot"*) is not proof that the analysis is correct. Always open the generated figure, PDF, or dataset to verify:
+
 - Axis ranges, labels, and measurement units match the underlying data.
 - Sample sizes and degrees of freedom in tables match the cohort definitions.
 - Outliers or missing data points are handled consistently with the research protocol.
@@ -49,6 +50,7 @@ A conversational confirmation from an agent (e.g., *"I have generated the regres
 ## Managing side-effecting operations
 
 Actions that modify remote infrastructure, incur financial charges, or delete files must be approached with care:
+
 1. Require a **dry-run preview** detailing the exact files affected or API parameters called.
 2. Verify that credentials are not printed into exported files or dashboards ([Secrets](concept:secrets)).
 3. Grant approval only after verifying the intended action ([Steering](concept:steering)).

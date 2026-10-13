@@ -40,6 +40,7 @@ Requiring a planning phase ensures that scientific judgements—such as variable
 ## Structuring effective requests
 
 An effective prompt provides three clear components:
+
 1. **The objective:** The research question and the intended artifact (e.g., an audit table or publication plot).
 2. **Operational boundaries:** Specific input datasets to use, files that must remain untouched, and required software dependencies.
 3. **Verification standards:** The criteria by which correctness will be judged (e.g., expected row totals, specific reference benchmarks).

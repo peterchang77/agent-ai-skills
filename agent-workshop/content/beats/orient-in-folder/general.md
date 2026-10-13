@@ -17,6 +17,7 @@ When launched, a coding agent possesses no implicit knowledge of local project c
 An agent operates strictly within the working directory where its harness process was launched. It explores the workspace by executing standard operating system utilities (such as `ls` or directory walks) and reading the resulting stdout stream into working memory ([Agent vs. chat](concept:agent-vs-chat)). Ensuring the agent is initialized in the correct project root is critical for accurate file discovery.
 
 This prompt serves as an immediate diagnostic test of the difference between chat and agents:
+
 - Submitting *"What files are in this folder?"* to a standard chat window yields an apology or an invented guess, because a standalone model cannot touch your storage.
 - Submitting the same prompt to an agent causes the harness to dispatch a shell command, read the console output, and report empirical reality.
 

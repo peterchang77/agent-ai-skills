@@ -12,6 +12,7 @@ In computational research, access credentials—such as database passwords, API 
 ## Exposure vectors in agent workflows
 
 Because an agent inspects filesystem contents and executes terminal commands, any credential exposed in plain text can easily leak across multiple channels:
+
 - **Model context payloads:** Files read into working memory are transmitted to the model provider as part of the prompt sequence ([Privacy and data handling](concept:privacy)).
 - **Terminal execution logs:** Commands that pass keys via inline arguments (e.g., `curl -H "Authorization: Bearer KEY"`) print the secret directly to stdout/stderr, recording it in session transcripts.
 - **Persistent version control:** Scripts containing hardcoded secrets can be inadvertently committed to Git history, exposing them to repository collaborators or public remotes ([Version control](concept:version-control)).

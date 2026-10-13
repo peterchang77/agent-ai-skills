@@ -17,6 +17,7 @@ In this exercise, you direct the agent to conduct a statistical analysis contras
 A **crude statistical comparison** evaluates raw differences in outcome rates between exposed and unexposed groups. In observational research, crude comparisons are frequently biased by **confounding**: baseline imbalances across characteristics that influence both exposure likelihood and outcome risk. For example, if older patients are more likely to receive clinical outreach and independently experience higher re-encounter rates, age confounds the observed association.
 
 A **multivariable logistic regression** models the relationship between exposure and outcome while holding candidate covariates (such as age, sex, and baseline severity) constant, estimating an **adjusted odds ratio (aOR)**:
+
 - $\text{OR} = 1.0$: Indicates no association.
 - $\text{OR} > 1.0$: Indicates higher odds of the outcome among the exposed.
 - $95\%\text{ Confidence Intervals}$: Quantify estimation uncertainty; intervals spanning 1.0 indicate associations consistent with chance variation.

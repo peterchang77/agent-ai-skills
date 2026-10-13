@@ -40,6 +40,7 @@ Coding agents excel at writing integration code when provided with interface doc
 ### Understanding PDF extraction challenges
 
 PDF documents present distinct analytical challenges depending on their internal structure:
+
 - **Digital PDFs with text layers:** Standard extraction utilities can extract the underlying text stream, but multi-column layouts, footnotes, and complex tables can be merged out of order.
 - **Scanned image PDFs:** Contain only raster graphics without character streams. Extracting text requires Optical Character Recognition (OCR), which is slower, computationally intensive, and susceptible to character-recognition errors.
 

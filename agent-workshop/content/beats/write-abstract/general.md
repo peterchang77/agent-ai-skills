@@ -17,6 +17,7 @@ In this exercise, you direct the agent to synthesize empirical results and verif
 Adopting a **source-first compilation pattern** ensures maximum reproducibility ([Outputs](concept:outputs)). LaTeX generates clean, standardized typography with automated section numbering and bibliographic citation formatting resolved against `references.bib`. Because the final PDF is compiled programmatically from plain text, updating estimates or refining prose requires only a concise source edit and recompilation.
 
 Two mandatory guardrails maintain scientific integrity:
+
 - **Numerical claims derive strictly from results files:** Every percentage, odds ratio, and sample size must be extracted directly from `out/results.md` and flow tables, rather than recalled from conversational memory.
 - **Citations derive strictly from `references.bib`:** The agent is prohibited from introducing external citations that do not exist within the local bibliography ([Verification](concept:verification)).
 

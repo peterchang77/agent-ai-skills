@@ -16,6 +16,7 @@ In language model architectures, **context** encompasses everything visible to t
 Because foundation models are mathematically stateless, they retain no internal memory between requests. To maintain continuity throughout an interactive session, the agent harness re-transmits the **complete conversation history**—alongside your newest directive—with every single turn.
 
 This architectural requirement produces three direct consequences:
+
 - **Escalating cost:** Token consumption compounds over time. Turn 20 processes all tokens generated across turns 1 through 19 plus its own output ([Costs](concept:costs)).
 - **Increased latency:** Time-to-first-token increases as the model processes longer input sequences.
 - **Attention degradation (Context pollution):** As the context window fills with verbose terminal logs, repetitive debugging attempts, and large text dumps, the model's attention mechanism becomes diluted. Early instructions and subtle constraints are more likely to be overlooked or deprioritized.

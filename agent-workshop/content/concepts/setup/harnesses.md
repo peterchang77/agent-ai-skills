@@ -19,6 +19,7 @@ Coding agent architectures separate reasoning, orchestration, and execution into
 | **Execution environment** | The computing infrastructure where shell commands execute and files reside. | Local workstation, isolated container, or remote compute cluster ([Environment](concept:environment)) |
 
 The foundation model evaluates context and proposes actions; the harness enforces boundaries and dispatches commands; and the host environment runs code and returns console output. Harnesses provide different **user interface modalities**:
+
 - **Command-line interfaces (CLIs / TUIs):** Lightweight, scriptable, terminal-native harnesses focused on rapid tool dispatch and terminal workflows.
 - **Code editor integrations & AI-native IDEs:** In-editor extensions or dedicated development environments tightly coupled with syntax trees, active files, and inline diffing.
 - **Desktop agent workspaces:** Standalone desktop GUI environments that manage project directories, sandboxed web browsers, multi-file deliverables, and asynchronous task offloading.
@@ -91,6 +92,7 @@ Installing an agent harness typically involves running a single package command 
 With an understanding of what agency means ([Agent vs. conversational chat](concept:agent-vs-chat)), how an agent inspects reality ([Orient the agent in a folder](beat:orient-in-folder)), how code serves as a universal protocol ([What code can do](concept:what-code-can-do)), and how the harness mediates between the model and your machine, you have completed the conceptual foundation of Section 2: **Meet your agent**.
 
 Because the harness transmits workspace context across network connections and grants the system permission to run commands locally, two immediate governance questions arise:
+
 1. *Where does my research data go, and who has access to it?*
 2. *What prevents an agent from accidentally overwriting raw files or running destructive commands?*
 

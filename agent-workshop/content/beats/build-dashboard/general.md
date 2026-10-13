@@ -17,6 +17,7 @@ In this exercise, you direct the agent to develop a standalone, interactive rese
 Web pages authored in plain HTML, CSS, and JavaScript represent an exceptional medium for research dissemination, often replacing static slide decks and complex spreadsheet workbooks ([Outputs](concept:outputs)).
 
 A robust research dashboard embodies three design requirements:
+
 - **Self-contained execution:** The HTML file embeds all necessary CSS, JavaScript, and aggregated data inline, operating entirely offline without making external CDN requests. This self-contained architecture enhances security and prevents tracking.
 - **Programmatic reproducibility:** A dedicated Python script (`scripts/make_dashboard.py`) processes the dataset and compiles the HTML output, ensuring the dashboard can be regenerated whenever data is updated ([Tools](concept:tools)).
 - **Aggregate data privacy:** Dashboards intended for dissemination must display only aggregated summary statistics, stratified rates, and cell counts—never embedding row-level patient or participant records ([Privacy and data handling](concept:privacy)).

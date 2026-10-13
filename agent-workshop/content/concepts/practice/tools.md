@@ -20,6 +20,7 @@ In an agent workflow, a **tool** is any executable program, library, or network 
 Prompting an agent in natural language is well-suited for interactive data exploration, but natural language instructions remain probabilistic. A prompt may yield subtle variations in code logic, column naming, or floating-point formatting across repeated runs.
 
 In contrast, codifying a procedure into a dedicated script provides distinct scientific advantages:
+
 - **Determinism:** The script executes identical mathematical algorithms on every invocation.
 - **Testability:** The tool can be benchmarked against synthetic datasets with known ground truth.
 - **Decoupled execution:** The tool runs independently in standard terminal environments without requiring an active language model or incurring API token costs.
@@ -41,6 +42,7 @@ Using the agent to draft, refine, and test its own analytical scripts demonstrat
 When a research task involves processing hundreds or thousands of text records (e.g., classifying clinical notes or extracting structured entities), executing requests individually within an interactive chat session is inefficient. 
 
 Instead, develop a standalone batch processing script that calls an API endpoint programmatically:
+
 - **Validate on a representative pilot:** Test the classification prompt and parsing logic on 10 to 50 records before running the full dataset.
 - **Estimate total API expenditure:** Calculate anticipated token volume and pricing before launching full-scale processing ([Costs](concept:costs)).
 - **Implement rate limiting and checkpointing:** Incorporate retry logic with exponential backoff to handle transient API rate limits, and write partial outputs to disk so an interrupted run does not lose completed records.

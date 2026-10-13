@@ -44,6 +44,7 @@ Generate an audit table listing every excluded record, categorized by exclusion 
 ## Reviewing agent-generated code
 
 Evaluating code does not require writing every line yourself. When reviewing an analytical script, focus on critical inflection points:
+
 1. **Data ingestion:** Which source files and columns are loaded?
 2. **Filtering criteria:** Which rows are dropped, and do the thresholds match the study protocol?
 3. **Missing value policies:** Are missing entries omitted, imputed, or grouped into separate categories?

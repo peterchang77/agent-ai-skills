@@ -19,6 +19,7 @@ In everyday conversation, "agency" often implies conscious intent, free will, or
 > **An agent has choices.** Equipped with a suite of tools, the model actively decides how to **navigate the external world**.
 
 When an agent works toward a research objective, the path is not predetermined:
+
 - **Choosing where to look:** When entering an unfamiliar project directory, the agent decides whether to inspect the directory tree, read a configuration file, or examine the top rows of a data table.
 - **Choosing which tools to deploy:** Rather than guessing an answer from static training memory, the agent selects among available tools—dispatching a shell command, executing a Python test, querying an API, or searching documentation.
 - **Navigating dynamically from feedback:** When a script encounters an unexpected error or a data parser hits an unmapped column, the agent inspects the console output, diagnoses the failure, and chooses an alternate path forward.
@@ -60,6 +61,7 @@ Rather than generating an entire solution in a single pass, the agent operates i
 4. **Refine:** Diagnose errors or unexpected values and adjust the approach until the objective is met.
 
 This iterative execution leads to two predictable operational dynamics:
+
 - **Self-correction:** When a script encounters a syntax error or a missing column, the agent reads the traceback, updates the code, and re-executes it, delivering functioning programs rather than plausible pseudocode.
 - **Context and cost accumulation:** Every iteration appends tool calls and console output to the session history ([Context](concept:context)), meaning complex debugging loops increase latency and token consumption ([Costs](concept:costs)).
 

@@ -17,6 +17,7 @@ In this advanced exercise, you build a batch-processing script that queries an e
 Interactive chat interfaces are unsuited for processing hundreds or thousands of empirical records. Developing a dedicated script automates inference record-by-record, records structured responses, and allows interrupted runs to resume.
 
 A production-grade batch classification script requires five engineering guardrails:
+
 - **Strict output schemas:** Require predictions as structured JSON matching a predefined enum list to eliminate parsing ambiguity.
 - **Dry-run cost estimation:** Test prompt formatting on a minimal sample and compute total projected cost before running full-scale processing.
 - **Resilient checkpointing and rate limiting:** Persist results incrementally to disk after each batch, incorporating exponential backoff to handle API rate limits.
@@ -37,6 +38,7 @@ Record the model identifier and prompt template within the output metadata.
 ```
 
 Execute the evaluation workflow:
+
 1. Run `--dry-run` to inspect the assembled prompt and estimated token cost.
 2. Run with `--limit 5` to inspect real API response formatting.
 3. Establish a hard spending cap in your provider console and execute the full run.
