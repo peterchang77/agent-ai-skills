@@ -3,18 +3,22 @@ id: harnesses
 title: Harnesses and models
 themes: [recursive-ai]
 related: [agent-vs-chat, costs, sandboxing, privacy]
-blurb: The model is the brain; the harness is the program that gives it files and tools; the interface is how you talk to it. Keep them separate in your head.
+blurb: The model is the brain; the harness is the program that gives it files and tools; the environment is where its commands run. Keep the three separate in your head.
 ---
 
 ## Three layers
 
-| Layer | What it is | Examples of the choice you make |
-|---|---|---|
-| **Model** | The language model that reads and writes | Which provider, which size/version |
-| **Harness** | The program that connects the model to files, commands, and tools, and asks for your approval | Which agent application |
-| **Interface** | How you interact with the harness | Terminal, editor/IDE, desktop app, or an always-on service |
+![The three layers of a coding agent system. The model, a cloud language model, receives context and returns tool calls. The harness assembles context, drives the loop and dispatches tools. The environment, your local filesystem and shell, runs the commands and returns output and errors.](image:three-layers-model-harness-interface)
 
-Most confusion comes from mixing these up. The same model behaves differently in different harnesses, and one harness can often run several models.
+| Layer | What it is | The choice you make |
+|---|---|---|
+| **Model** | The language model that reads and writes. It is stateless: it only sees what the harness sends | Which provider, which size and version |
+| **Harness** | The program that assembles the context, runs the loop, sends tool calls to the environment, and asks for your approval | Which agent application |
+| **Environment** | The computer where commands run and files live | Your own machine, a container, or a remote server ([Environment](concept:environment)) |
+
+The model proposes actions, the harness carries them out in the environment, and the output returns to the model as text. You also choose an **interface** for the harness: a terminal, an editor, a desktop app, or an always-on service.
+
+Most confusion comes from mixing these layers up. The same model behaves differently in different harnesses, and one harness can often run several models.
 
 ## A grid of examples
 
@@ -30,14 +34,14 @@ This is the landscape as of October 2026. Products and names change quickly, so 
 
 ## A continuum of control
 
-```text
-more interactive, customisable, controllable                     less
-Terminal / TUI  ───────────▶  Editor / IDE / GUI  ───────────▶  Long-running agent
-```
+![The continuum of control in AI harnesses, in four stages. In isolated chat there is no harness and you copy, run and verify everything. An inline copilot assists as you type in an editor. An interactive agent proposes actions and you grant permissions. An autonomous agent loops end to end in the background and you review the result.](image:continuum-of-agent-control)
 
-- **Terminal agents** give you the most visibility and control: you see each command, approve steps, and can customise with plain files. They are the focus of this material.
-- **Editor and desktop apps** add a friendlier interface and inline diffs, with somewhat less transparency.
-- **Long-running agents** work while you are away. They are powerful for routine tasks, but you review results after the fact, so they need more careful [isolation](concept:sandboxing) and [steering](concept:steering).
+- **Isolated chat** has no harness. You copy code out, run it yourself, and check everything.
+- **An inline copilot** suggests code in your editor while you direct each line.
+- **An interactive agent** proposes actions and runs them once you grant permission. A terminal agent is the usual example, and it is the focus of this material: you see each command, approve steps, and customise behaviour with plain files.
+- **An autonomous agent** loops from task to result, often in the background. It is powerful for routine work, but you review results after the fact, so it needs more careful [isolation](concept:sandboxing) and [steering](concept:steering).
+
+Moving right means delegating more. Interface and control are related but separate: editors and desktop apps can host an interactive agent too, usually with a friendlier view and inline diffs.
 
 ## How to choose
 

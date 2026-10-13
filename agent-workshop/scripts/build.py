@@ -140,6 +140,7 @@ def unwrap_prompts(text: str) -> str:
 
 def resolve(text: str, here: Path) -> str:
     text = unwrap_prompts(text)
+    text = re.sub(r"\]\(image:([\w-]+)\)", lambda m: f"]({rel(here, Path('images/figures') / (m[1] + '.jpg'))})", text)
     text = re.sub(r"\]\(concept:([\w-]+)\)", lambda m: f"]({rel(here, concept_file(m[1]))})", text)
     text = re.sub(r"\]\(beat:([\w-]+)\)", lambda m: f"]({rel(here, beat_file(m[1]))})", text)
     text = re.sub(r"\]\(setup:([\w-]*)\)", lambda m: f"]({rel(here, SETUP_FILE)}{'#' + m[1] if m[1] else ''})", text)

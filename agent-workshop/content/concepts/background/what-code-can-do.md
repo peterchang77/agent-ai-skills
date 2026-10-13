@@ -9,6 +9,8 @@ blurb: If a task can be done on a computer, an agent can usually do it by writin
 Because an agent acts through code ([Agent vs. chat](concept:agent-vs-chat)), its reach is the reach of code: nearly
 anything that can be done electronically. "Code" here does not only mean software. It is also a way to *do* work.
 
+![An AI agent at the centre, connected through executable code to data analysis, research, media generation, voice outreach and system automation.](image:code-as-universal-interface)
+
 ## A short gallery
 
 | Task | What the agent actually does | You get |

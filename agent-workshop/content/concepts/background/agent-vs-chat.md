@@ -10,16 +10,7 @@ Most people first meet AI as a **chat**: you type a question, the model answers 
 **agent** is the same kind of model connected to a computer. That connection changes what you can ask for and what
 you must check.
 
-```text
-CHAT                                   AGENT
-┌─────────────────┐                    ┌─────────────────┐
-│      model      │                    │      model      │── reads / writes ─▶ your files
-│  (only what it  │                    │                 │── runs code ──────▶ your computer
-│   remembers)    │                    │                 │── fetches ────────▶ websites, APIs
-└─────────────────┘                    └─────────────────┘
- you paste text in,                     you describe the outcome;
- you copy answers out                   it does the work and reports back
-```
+![Chat compared with an agent. A chat model works only with text you paste in. An agent runs code in a local terminal, reads and writes local files, and fetches data from APIs and the web, inside an autonomous loop of acting, observing and fixing.](image:agent-vs-chat)
 
 ## The distinction, stated cleanly
 
@@ -41,13 +32,7 @@ reach almost anything on a computer ([What code makes possible](concept:what-cod
 
 ### The agent loop
 
-```text
-        ┌──────────────────────────────────────────────┐
-        ▼                                              │
-   understand ──▶ plan ──▶ act (run code/tool) ──▶ observe result
-   your request                                        │
-                                  done? ◀──────────────┘  no: adjust and repeat
-```
+![The agent loop. Starting from your directive, the agent observes the environment and files, acts by writing and running code, and evaluates the output and errors. It repeats until the result is verified, then returns artifacts and a summary.](image:agent-loop)
 
 The loop explains two behaviours you will see constantly:
 

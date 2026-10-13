@@ -114,3 +114,7 @@
   .wk-hero { background: none; color: inherit; border: 1px solid #999; }
   .wk-hero h1, .wk-hero p { color: inherit; }
 }
+
+/* Figures */
+.md-typeset img { border-radius: 6px; }
+.md-typeset p > a > img, .md-typeset p > img { display: block; margin: 1rem auto; }
