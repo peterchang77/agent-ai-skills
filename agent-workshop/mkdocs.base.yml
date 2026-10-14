@@ -29,6 +29,11 @@ theme:
     - search.highlight
 extra_css:
   - stylesheets/extra.css
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css
+extra_javascript:
+  - javascripts/katex.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
 markdown_extensions:
   - pymdownx.tabbed: {alternate_style: true}
   - pymdownx.superfences:
@@ -36,6 +41,7 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex: {generic: true}
   - admonition
   - pymdownx.details
   - tables

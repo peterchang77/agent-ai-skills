@@ -33,7 +33,7 @@ Structuring work into ten modular, five-turn sessions reduces total input token 
 
 | Model tier | Billing structure | Optimal research scenario | Operational considerations |
 |---|---|---|---|
-| **Developer subscriptions** | Fixed monthly fee ($20–$200/month) with rolling rate caps | Daily interactive research, code drafting, interactive analysis | Rate limits can throttle work during intensive deadlines; usage caps reset periodically |
+| **Developer subscriptions** | Fixed monthly fee (\$20–\$200/month) with rolling rate caps | Daily interactive research, code drafting, interactive analysis | Rate limits can throttle work during intensive deadlines; usage caps reset periodically |
 | **Metered API access** | Pay-as-you-go per million tokens | Large-scale automated pipelines, bulk text classification, scheduled jobs | Full programmatic control, but requires hard budget limits to prevent runaway costs |
 
 Many academic institutions provide enterprise contracts or sponsored cloud credits that subsidize these services. Verify available institutional agreements before provisioning personal payment methods ([Privacy and data handling](concept:privacy)).

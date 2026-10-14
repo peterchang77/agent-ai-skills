@@ -18,9 +18,9 @@ A **crude statistical comparison** evaluates raw differences in outcome rates be
 
 A **multivariable logistic regression** models the relationship between exposure and outcome while holding candidate covariates (such as age, sex, and baseline severity) constant, estimating an **adjusted odds ratio (aOR)**:
 
-- $\text{OR} = 1.0$: Indicates no association.
-- $\text{OR} > 1.0$: Indicates higher odds of the outcome among the exposed.
-- $95\%\text{ Confidence Intervals}$: Quantify estimation uncertainty; intervals spanning 1.0 indicate associations consistent with chance variation.
+- **OR = 1.0**: Indicates no association.
+- **OR > 1.0**: Indicates higher odds of the outcome among the exposed.
+- **95% confidence interval**: Quantifies estimation uncertainty; intervals spanning 1.0 indicate associations consistent with chance variation.
 
 In observational studies, estimated odds ratios reflect **statistical association rather than definitive causal effect**, and summary write-ups must adhere to cautious scientific phrasing.
 
