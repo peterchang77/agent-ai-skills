@@ -8,10 +8,18 @@ Each demo step specifies its required starting state, allowing you to jump direc
 
 ## Quickstart
 
-An automated setup script installs the sample data and configures a coding agent (Kiro CLI). The script runs on Linux, macOS, and Windows via WSL:
+An automated setup script installs the sample data and configures a coding agent (Kiro CLI). Use the command for your platform.
+
+macOS, Linux, or Windows via WSL (bash):
 
 ```bash
 curl -fsSL https://peterchang77.github.io/agent-ai-skills/install.sh | bash
+```
+
+Windows (PowerShell, no WSL needed):
+
+```powershell
+irm https://peterchang77.github.io/agent-ai-skills/install.ps1 | iex
 ```
 
 The script performs the following actions:
@@ -19,7 +27,7 @@ The script performs the following actions:
 - **Prompts for configuration preferences:** Confirms the destination directory (defaulting to `~/workshop-demo`), asks whether to download intermediate checkpoints, and checks whether to install the agent.
 - **Retrieves the benchmark dataset:** Downloads the synthetic clinical dataset, verifies data integrity against SHA-256 checksums, and unpacks the archive into your chosen directory.
 - **Configures the agent:** Downloads and runs the official agent installer after displaying the source URL. This step is skipped if an agent is already detected.
-- **Ensures idempotent execution:** Re-running the script updates missing files without overwriting local modifications unless you explicitly pass the `--force` flag (which creates a timestamped backup before replacing files).
+- **Ensures idempotent execution:** Re-running the script updates missing files without overwriting local modifications unless you explicitly pass the `--force` flag (`-Force` in PowerShell) (which creates a timestamped backup before replacing files).
 
 Once the script completes, change into the project directory and launch your agent:
 
@@ -27,10 +35,12 @@ Once the script completes, change into the project directory and launch your age
 cd ~/workshop-demo
 ```
 
-If you chose a custom folder, use that path wherever this guide references `~/workshop-demo`. Advanced flags can be passed after `bash -s --` (for example, `bash -s -- --dir ~/my-folder --yes --checkpoints --no-agent`); pass `--help` to inspect all options.
+On Windows PowerShell the default folder is `$HOME\workshop-demo`.
+
+If you chose a custom folder, use that path wherever this guide references `~/workshop-demo`. Advanced flags can be passed after `bash -s --` (for example, `bash -s -- --dir ~/my-folder --yes --checkpoints --no-agent`); pass `--help` to inspect all options. In PowerShell, run the script as a script block to pass options: `& ([scriptblock]::Create((irm https://peterchang77.github.io/agent-ai-skills/install.ps1))) -Dir C:\work -Yes -Checkpoints -NoAgent`.
 
 > [!NOTE]
-> Review network scripts before execution: you can inspect the installer source at [install.sh](https://peterchang77.github.io/agent-ai-skills/install.sh). The workshop dataset is completely synthetic; before using institutional or clinical data, consult [Privacy and data handling](concept:privacy).
+> Review network scripts before execution: you can inspect the installer source at [install.sh](https://peterchang77.github.io/agent-ai-skills/install.sh) or [install.ps1](https://peterchang77.github.io/agent-ai-skills/install.ps1). The workshop dataset is completely synthetic; before using institutional or clinical data, consult [Privacy and data handling](concept:privacy).
 
 ## Custom setup
 
