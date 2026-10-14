@@ -60,7 +60,15 @@ cd ~/workshop-demo           # enter directory
 pwd                          # verify current path
 ```
 
-Use `ls` to audit local contents. For additional guidance on permissions, directory navigation, and shell safety, refer to the [Linux command line](guide:linux-command-line-for-coding-agents) guide.
+On Windows PowerShell:
+
+```powershell
+mkdir $HOME\workshop-demo    # create project directory
+cd $HOME\workshop-demo       # enter directory
+pwd                          # verify current path
+```
+
+Use `ls` (also available in PowerShell) to audit local contents. For additional guidance on permissions, directory navigation, and shell safety, refer to the [Linux command line](guide:linux-command-line-for-coding-agents) guide.
 
 ### 3. Verify local software dependencies
 
@@ -71,6 +79,8 @@ uv --version         # Python environment and package manager
 pdflatex --version   # required for PDF report compilation
 pandoc --version     # required for Word document conversion
 ```
+
+These commands work the same in PowerShell. On Windows, `pdflatex` is provided by MiKTeX or TeX Live.
 
 During [Prepare your environment](beat:prepare-environment), the agent will audit these dependencies and propose installation commands for missing tools ([Environment](concept:environment)). Always inspect and approve system-level installations deliberately.
 
@@ -90,7 +100,15 @@ cp -r <scenario folder>/checkpoints/<name>/. ~/workshop-demo/
 cd ~/workshop-demo
 ```
 
-If you ran the quickstart with `--checkpoints`, snapshots are pre-downloaded to `~/workshop-demo-checkpoints/<name>/`, which replaces `<scenario folder>/checkpoints/<name>` in the snippet above.
+On Windows PowerShell:
+
+```powershell
+Remove-Item -Recurse -Force $HOME\workshop-demo -ErrorAction SilentlyContinue   # ensure the target folder is disposable first
+Copy-Item -Recurse <scenario folder>\checkpoints\<name> $HOME\workshop-demo
+cd $HOME\workshop-demo
+```
+
+If you ran the quickstart with `--checkpoints`, snapshots are pre-downloaded to `~/workshop-demo-checkpoints/<name>/` (`$HOME\workshop-demo-checkpoints\<name>` on Windows), which replaces `<scenario folder>/checkpoints/<name>` in the snippet above.
 
 After copying the files, start the agent inside that folder. Maintaining an untouched copy of the data archive allows quick resets between exercises, while [version control](concept:version-control) provides the same safety for your ongoing work.
 

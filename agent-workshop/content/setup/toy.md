@@ -13,6 +13,14 @@ cp -r scenarios/toy/kit/. ~/workshop-demo/
 cd ~/workshop-demo && ls
 ```
 
+On Windows PowerShell:
+
+```powershell
+mkdir $HOME\workshop-demo -Force
+Copy-Item -Recurse scenarios\toy\kit\* $HOME\workshop-demo
+cd $HOME\workshop-demo; ls
+```
+
 | File | Format | What it is |
 |---|---|---|
 | `clinic_notes.txt` | TXT | An operations memo with the three questions to answer |
