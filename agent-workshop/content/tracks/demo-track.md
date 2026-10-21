@@ -1,6 +1,6 @@
 ---
 id: demo-track
-title: Demo track
+title: Demo · Tabular
 track: demo
 tagline: one worked example, from raw files to a cited report, in self-contained steps
 sections:
@@ -93,4 +93,5 @@ The general methodologies apply universally to empirical datasets. The workshop 
 ## Track navigation
 
 - The [concept track](../concepts/index.md) provides theoretical foundations for the methods applied here.
+- The [imaging version of this track](../demo-imaging/index.md) applies the same workflow to chest radiographs and the evaluation of an AI tool.
 - The [guided tutorial](../tutorial/index.md) arranges these exercises and concepts into a continuous, interleaved curriculum.

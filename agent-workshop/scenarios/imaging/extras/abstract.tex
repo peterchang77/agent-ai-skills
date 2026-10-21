@@ -1,0 +1,34 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\title{Evaluation of an open-source pneumothorax detector on a small chest radiograph sample}
+\author{Radiology AI Evaluation Group (toy demonstration)}
+\date{}
+\begin{document}
+\maketitle
+\noindent\textbf{Background.} Deep learning systems can flag pneumothorax on chest radiographs, but performance often falls on external data~\cite{Thian2021_34350409,Katzman2024_38189265}. A department asked whether an open-source tool is ready for a pilot.
+
+\noindent\textbf{Methods.} Retrospective evaluation of four pretrained models on a public sample of chest radiographs with planted data problems, cleaned before any score was read (283 files received, 258 retained). Adults with a recorded age, a reference label and all four scores were included; one index image per patient was analyzed. We report the AUC with a 95\% patient-level bootstrap interval, paired AUC differences between models, and sensitivity and specificity at each model's published operating point. The pilot bar was sensitivity of at least 0.85 and specificity of at least 0.80. This is a toy demonstration with synthetic data problems; no result is clinical evidence.
+
+\noindent\textbf{Results.} The cohort had 203 patients, 59 with pneumothorax. The primary model had AUC 0.78 (95\% CI 0.72 to 0.84).
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Model & AUC (95\% CI) & Difference from primary (95\% CI)\\
+\midrule
+all (primary) & 0.78 (0.72 to 0.84) & \\
+chex & 0.72 (0.64 to 0.79) & 0.06 (-0.02 to 0.15)\\
+nih & 0.67 (0.59 to 0.75) & 0.11 (0.04 to 0.18)\\
+pc & 0.69 (0.61 to 0.77) & 0.09 (0.01 to 0.16)\\
+\bottomrule
+\end{tabular}
+\end{center}
+At its published operating point the primary model had sensitivity 0.92 (0.84 to 0.98) and specificity 0.47 (0.38 to 0.55). No model met the pilot bar. In an exploratory comparison, AUC was 0.85 for PA and 0.74 for AP views (difference 0.11, 95\% CI -0.03 to 0.26).
+
+\noindent\textbf{Conclusions.} The primary model discriminated better than two of the three alternatives, but none met the pilot bar at its published threshold. The sample is small, the models may have seen these images in training, and the view-position difference is a lead, not a finding.
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}

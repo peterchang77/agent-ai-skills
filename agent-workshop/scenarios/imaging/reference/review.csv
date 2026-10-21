@@ -1,0 +1,9 @@
+file,decision,flags
+img_0097.dcm,confirm,suspected_inverted
+img_0125.dcm,confirm,suspected_inverted
+img_0145.dcm,confirm,suspected_inverted
+img_0244.dcm,confirm,suspected_inverted
+img_0010.dcm,confirm,suspected_flipped
+img_0087.dcm,confirm,suspected_flipped
+img_0206.dcm,confirm,suspected_flipped
+img_0239.dcm,confirm,suspected_flipped

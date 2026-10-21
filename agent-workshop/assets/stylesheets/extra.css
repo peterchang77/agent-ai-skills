@@ -121,3 +121,19 @@
 /* Figures */
 .md-typeset img { border-radius: 6px; }
 .md-typeset p > a > img, .md-typeset p > img { display: block; margin: 1rem auto; }
+
+/* Header dropdown (assets/javascripts/tabs-dropdown.js) */
+.wk-dd { position: relative; }
+.wk-dd-btn::after { content: "\25BE"; margin-left: 0.3em; font-size: 0.8em; opacity: 0.85; }
+.wk-dd-menu {
+  display: none; position: absolute; top: 100%; left: -0.4rem; z-index: 5; min-width: 9rem; margin: 0; padding: 0.25rem 0; list-style: none;
+  background: var(--md-default-bg-color); border: 1px solid var(--wk-card-border); border-radius: 8px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+.wk-dd:hover > .wk-dd-menu, .wk-dd:focus-within > .wk-dd-menu, .wk-dd.wk-open > .wk-dd-menu { display: block; }
+.wk-dd-link {
+  display: block; padding: 0.4rem 0.9rem; font-size: 0.72rem; color: var(--md-default-fg-color) !important; opacity: 1; white-space: nowrap;
+}
+.wk-dd-link:hover, .wk-dd-link:focus { background: var(--wk-soft); color: var(--md-typeset-a-color) !important; }
+.wk-dd-link[aria-current] { font-weight: 650; color: var(--md-typeset-a-color) !important; }
+.md-tabs { overflow: visible; }
+.md-tabs__list { contain: none; overflow: visible; }

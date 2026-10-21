@@ -1,6 +1,6 @@
 ---
 id: guided-tutorial
-title: Guided tutorial
+title: Tutorial · Tabular
 track: tutorial
 tagline: a structured path through the curriculum, alternating conceptual foundations with practical exercises
 sections:
@@ -98,4 +98,5 @@ By completing this tutorial, you will produce:
 ## Track navigation
 
 - Consult the [concept track](../concepts/index.md) for a modular reference covering core ideas independently of hands-on steps.
+- A parallel [imaging tutorial](../tutorial-imaging/index.md) follows the same path on chest radiographs.
 - Use the [demo track](../demo/index.md) to explore individual practical exercises or jump into specific checkpoints.

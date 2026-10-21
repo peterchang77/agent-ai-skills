@@ -1,6 +1,6 @@
 ---
 scenario: toy
-label: Toy dataset
+label: "Tabular: clinic network"
 ---
 
 A synthetic dataset for a three-clinic network, with every common file format and deliberate problems to find. It is

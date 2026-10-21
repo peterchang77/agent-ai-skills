@@ -1,0 +1,4817 @@
+{
+ "seed": 2026,
+ "n_files": 283,
+ "siim_small_tgz_sha256": "61d144112449f2efbc754f7ac13a0b9068d22be0d7c6a7773b3b021d638f12da",
+ "planted": {
+  "inverted_tagged_mono1": {
+   "note": "Pixels inverted and PhotometricInterpretation = MONOCHROME1 (header is honest; the fix is to honor the tag)",
+   "n": 6,
+   "source_paths": [
+    "Pneumothorax/000142.dcm",
+    "No Pneumothorax/000056.dcm",
+    "No Pneumothorax/000124.dcm",
+    "No Pneumothorax/000205.dcm",
+    "Pneumothorax/000001.dcm",
+    "No Pneumothorax/000208.dcm"
+   ],
+   "files": [
+    "img_0024.dcm",
+    "img_0112.dcm",
+    "img_0146.dcm",
+    "img_0164.dcm",
+    "img_0211.dcm",
+    "img_0236.dcm"
+   ]
+  },
+  "inverted_tag_wrong": {
+   "note": "Pixels inverted but tagged MONOCHROME2 (header lies; only looking at the image reveals it)",
+   "n": 4,
+   "source_paths": [
+    "Pneumothorax/000086.dcm",
+    "No Pneumothorax/000196.dcm",
+    "No Pneumothorax/000079.dcm",
+    "No Pneumothorax/000036.dcm"
+   ],
+   "files": [
+    "img_0097.dcm",
+    "img_0125.dcm",
+    "img_0145.dcm",
+    "img_0244.dcm"
+   ]
+  },
+  "flipped_left_right": {
+   "note": "Image mirrored left-right (burned-in markers read backwards). Laterality is unsafe: exclude, do not repair",
+   "n": 4,
+   "source_paths": [
+    "No Pneumothorax/000226.dcm",
+    "Pneumothorax/000038.dcm",
+    "No Pneumothorax/000099.dcm",
+    "No Pneumothorax/000204.dcm"
+   ],
+   "files": [
+    "img_0010.dcm",
+    "img_0087.dcm",
+    "img_0206.dcm",
+    "img_0239.dcm"
+   ]
+  },
+  "low_resolution_512": {
+   "note": "Matrix 512x512 instead of 1024x1024 (protocol requires 1024); pixel spacing doubled consistently",
+   "n": 4,
+   "source_paths": [
+    "Pneumothorax/000060.dcm",
+    "No Pneumothorax/000207.dcm",
+    "Pneumothorax/000049.dcm",
+    "No Pneumothorax/000078.dcm"
+   ],
+   "files": [
+    "img_0026.dcm",
+    "img_0079.dcm",
+    "img_0130.dcm",
+    "img_0257.dcm"
+   ]
+  },
+  "corrupt_truncated": {
+   "note": "File truncated partway through the pixel data; cannot be decoded",
+   "n": 2,
+   "source_paths": [
+    "Pneumothorax/000199.dcm",
+    "No Pneumothorax/000104.dcm"
+   ],
+   "files": [
+    "img_0091.dcm",
+    "img_0095.dcm"
+   ]
+  },
+  "burned_in_phi": {
+   "note": "Synthetic patient name, MRN and birth date drawn into the top-left corner of the pixels (SYNTHETIC; not real people)",
+   "n": 5,
+   "source_paths": [
+    "No Pneumothorax/000206.dcm",
+    "No Pneumothorax/000096.dcm",
+    "No Pneumothorax/000245.dcm",
+    "Pneumothorax/000201.dcm",
+    "No Pneumothorax/000044.dcm"
+   ],
+   "files": [
+    "img_0083.dcm",
+    "img_0104.dcm",
+    "img_0113.dcm",
+    "img_0201.dcm",
+    "img_0273.dcm"
+   ]
+  },
+  "patient_id_variants": {
+   "note": "PatientID upper-cased (4), with a leading space (4), or with a SITE1- prefix (4); same patient would not match across files",
+   "n": 12,
+   "source_paths": [
+    "No Pneumothorax/000033.dcm",
+    "Pneumothorax/000083.dcm",
+    "No Pneumothorax/000095.dcm",
+    "No Pneumothorax/000032.dcm",
+    "No Pneumothorax/000163.dcm",
+    "No Pneumothorax/000062.dcm",
+    "No Pneumothorax/000035.dcm",
+    "Pneumothorax/000233.dcm",
+    "No Pneumothorax/000022.dcm",
+    "Pneumothorax/000064.dcm",
+    "No Pneumothorax/000127.dcm",
+    "Pneumothorax/000042.dcm"
+   ],
+   "files": [
+    "img_0003.dcm",
+    "img_0058.dcm",
+    "img_0080.dcm",
+    "img_0152.dcm",
+    "img_0165.dcm",
+    "img_0180.dcm",
+    "img_0195.dcm",
+    "img_0198.dcm",
+    "img_0210.dcm",
+    "img_0263.dcm",
+    "img_0275.dcm",
+    "img_0276.dcm"
+   ]
+  },
+  "sex_variants": {
+   "note": "PatientSex written MALE/FEMALE (5), blank (5), or lower case (5) instead of M/F",
+   "n": 15,
+   "source_paths": [
+    "Pneumothorax/000107.dcm",
+    "No Pneumothorax/000069.dcm",
+    "No Pneumothorax/000237.dcm",
+    "No Pneumothorax/000230.dcm",
+    "Pneumothorax/000145.dcm",
+    "No Pneumothorax/000184.dcm",
+    "No Pneumothorax/000112.dcm",
+    "No Pneumothorax/000098.dcm",
+    "No Pneumothorax/000212.dcm",
+    "No Pneumothorax/000023.dcm",
+    "No Pneumothorax/000103.dcm",
+    "Pneumothorax/000111.dcm",
+    "No Pneumothorax/000057.dcm",
+    "No Pneumothorax/000094.dcm",
+    "No Pneumothorax/000093.dcm"
+   ],
+   "files": [
+    "img_0027.dcm",
+    "img_0038.dcm",
+    "img_0040.dcm",
+    "img_0050.dcm",
+    "img_0054.dcm",
+    "img_0063.dcm",
+    "img_0072.dcm",
+    "img_0106.dcm",
+    "img_0119.dcm",
+    "img_0159.dcm",
+    "img_0162.dcm",
+    "img_0163.dcm",
+    "img_0189.dcm",
+    "img_0194.dcm",
+    "img_0209.dcm"
+   ]
+  },
+  "age_problems": {
+   "note": "Age as 062Y (20; standard DICOM format, harmless; the other 220 files use bare numbers like 62), blank (8), implausible 212Y/150Y (2)",
+   "n": 30,
+   "source_paths": [
+    "Pneumothorax/000101.dcm",
+    "No Pneumothorax/000006.dcm",
+    "No Pneumothorax/000149.dcm",
+    "Pneumothorax/000076.dcm",
+    "No Pneumothorax/000150.dcm",
+    "Pneumothorax/000068.dcm",
+    "No Pneumothorax/000020.dcm",
+    "Pneumothorax/000153.dcm",
+    "No Pneumothorax/000088.dcm",
+    "No Pneumothorax/000008.dcm",
+    "No Pneumothorax/000110.dcm",
+    "No Pneumothorax/000040.dcm",
+    "Pneumothorax/000055.dcm",
+    "Pneumothorax/000144.dcm",
+    "Pneumothorax/000236.dcm",
+    "No Pneumothorax/000209.dcm",
+    "No Pneumothorax/000123.dcm",
+    "Pneumothorax/000084.dcm",
+    "No Pneumothorax/000168.dcm",
+    "No Pneumothorax/000221.dcm",
+    "No Pneumothorax/000229.dcm",
+    "No Pneumothorax/000241.dcm",
+    "No Pneumothorax/000225.dcm",
+    "No Pneumothorax/000014.dcm",
+    "No Pneumothorax/000147.dcm",
+    "Pneumothorax/000016.dcm",
+    "Pneumothorax/000010.dcm",
+    "Pneumothorax/000222.dcm",
+    "No Pneumothorax/000216.dcm",
+    "No Pneumothorax/000171.dcm"
+   ],
+   "files": [
+    "img_0001.dcm",
+    "img_0009.dcm",
+    "img_0011.dcm",
+    "img_0044.dcm",
+    "img_0049.dcm",
+    "img_0051.dcm",
+    "img_0053.dcm",
+    "img_0055.dcm",
+    "img_0066.dcm",
+    "img_0073.dcm",
+    "img_0074.dcm",
+    "img_0077.dcm",
+    "img_0081.dcm",
+    "img_0120.dcm",
+    "img_0124.dcm",
+    "img_0135.dcm",
+    "img_0136.dcm",
+    "img_0139.dcm",
+    "img_0166.dcm",
+    "img_0182.dcm",
+    "img_0188.dcm",
+    "img_0197.dcm",
+    "img_0220.dcm",
+    "img_0227.dcm",
+    "img_0241.dcm",
+    "img_0254.dcm",
+    "img_0258.dcm",
+    "img_0260.dcm",
+    "img_0271.dcm",
+    "img_0277.dcm"
+   ]
+  },
+  "view_position_blank": {
+   "note": "ViewPosition blank, but SeriesDescription still says 'view: PA/AP' (recoverable from another field)",
+   "n": 10,
+   "source_paths": [
+    "No Pneumothorax/000160.dcm",
+    "No Pneumothorax/000039.dcm",
+    "No Pneumothorax/000133.dcm",
+    "No Pneumothorax/000183.dcm",
+    "No Pneumothorax/000092.dcm",
+    "No Pneumothorax/000138.dcm",
+    "Pneumothorax/000227.dcm",
+    "Pneumothorax/000139.dcm",
+    "Pneumothorax/000058.dcm",
+    "Pneumothorax/000152.dcm"
+   ],
+   "files": [
+    "img_0042.dcm",
+    "img_0052.dcm",
+    "img_0069.dcm",
+    "img_0100.dcm",
+    "img_0147.dcm",
+    "img_0158.dcm",
+    "img_0205.dcm",
+    "img_0213.dcm",
+    "img_0243.dcm",
+    "img_0256.dcm"
+   ]
+  },
+  "pixel_spacing_missing": {
+   "note": "PixelSpacing tag removed",
+   "n": 6,
+   "source_paths": [
+    "No Pneumothorax/000009.dcm",
+    "No Pneumothorax/000100.dcm",
+    "No Pneumothorax/000116.dcm",
+    "Pneumothorax/000125.dcm",
+    "Pneumothorax/000046.dcm",
+    "No Pneumothorax/000105.dcm"
+   ],
+   "files": [
+    "img_0041.dcm",
+    "img_0057.dcm",
+    "img_0090.dcm",
+    "img_0161.dcm",
+    "img_0204.dcm",
+    "img_0218.dcm"
+   ]
+  },
+  "phi_in_header": {
+   "note": "Synthetic patient name, birth date and MRN in header tags (SYNTHETIC; not real people)",
+   "n": 5,
+   "source_paths": [
+    "Pneumothorax/000061.dcm",
+    "No Pneumothorax/000113.dcm",
+    "No Pneumothorax/000211.dcm",
+    "Pneumothorax/000050.dcm",
+    "No Pneumothorax/000197.dcm"
+   ],
+   "files": [
+    "img_0070.dcm",
+    "img_0115.dcm",
+    "img_0191.dcm",
+    "img_0225.dcm",
+    "img_0281.dcm"
+   ]
+  },
+  "modality_dx": {
+   "note": "Modality DX where the rest of the set says CR (both can describe a chest radiograph; the mix is an inconsistency to normalize)",
+   "n": 10,
+   "source_paths": [
+    "No Pneumothorax/000121.dcm",
+    "No Pneumothorax/000073.dcm",
+    "Pneumothorax/000214.dcm",
+    "No Pneumothorax/000228.dcm",
+    "Pneumothorax/000219.dcm",
+    "Pneumothorax/000155.dcm",
+    "No Pneumothorax/000218.dcm",
+    "No Pneumothorax/000239.dcm",
+    "No Pneumothorax/000249.dcm",
+    "No Pneumothorax/000041.dcm"
+   ],
+   "files": [
+    "img_0061.dcm",
+    "img_0067.dcm",
+    "img_0134.dcm",
+    "img_0186.dcm",
+    "img_0190.dcm",
+    "img_0193.dcm",
+    "img_0240.dcm",
+    "img_0247.dcm",
+    "img_0267.dcm",
+    "img_0283.dcm"
+   ]
+  },
+  "exact_duplicate": {
+   "note": "Byte-identical copy of another file under a different name (same SOPInstanceUID)",
+   "n": 6,
+   "source_paths": [
+    "No Pneumothorax/000192.dcm",
+    "Pneumothorax/000238.dcm",
+    "No Pneumothorax/000108.dcm",
+    "No Pneumothorax/000011.dcm",
+    "No Pneumothorax/000159.dcm",
+    "Pneumothorax/000223.dcm"
+   ],
+   "files": [
+    "img_0008.dcm",
+    "img_0140.dcm",
+    "img_0151.dcm",
+    "img_0183.dcm",
+    "img_0251.dcm",
+    "img_0266.dcm"
+   ]
+  },
+  "same_pixels_new_ids": {
+   "note": "Same pixels submitted again under new SOP/Study/Series UIDs and a new PatientID. In 2 of the 4 the labels file gives the OPPOSITE label to the original",
+   "n": 4,
+   "source_paths": [
+    "Pneumothorax/000004.dcm",
+    "No Pneumothorax/000215.dcm",
+    "No Pneumothorax/000137.dcm",
+    "No Pneumothorax/000135.dcm"
+   ],
+   "files": [
+    "img_0059.dcm",
+    "img_0086.dcm",
+    "img_0245.dcm",
+    "img_0246.dcm"
+   ]
+  },
+  "followup_same_patient": {
+   "note": "Different image (shifted, noise added), same PatientID, later StudyDate, same label: a second study of the same patient. A random image-level split would leak patients across train/test",
+   "n": 20,
+   "source_paths": [
+    "No Pneumothorax/000198.dcm",
+    "No Pneumothorax/000231.dcm",
+    "No Pneumothorax/000077.dcm",
+    "Pneumothorax/000170.dcm",
+    "Pneumothorax/000161.dcm",
+    "No Pneumothorax/000179.dcm",
+    "Pneumothorax/000070.dcm",
+    "No Pneumothorax/000031.dcm",
+    "No Pneumothorax/000097.dcm",
+    "Pneumothorax/000200.dcm",
+    "No Pneumothorax/000177.dcm",
+    "No Pneumothorax/000186.dcm",
+    "No Pneumothorax/000242.dcm",
+    "Pneumothorax/000232.dcm",
+    "Pneumothorax/000213.dcm",
+    "Pneumothorax/000187.dcm",
+    "No Pneumothorax/000188.dcm",
+    "No Pneumothorax/000141.dcm",
+    "No Pneumothorax/000025.dcm",
+    "No Pneumothorax/000037.dcm"
+   ],
+   "files": [
+    "img_0004.dcm",
+    "img_0014.dcm",
+    "img_0016.dcm",
+    "img_0020.dcm",
+    "img_0030.dcm",
+    "img_0032.dcm",
+    "img_0107.dcm",
+    "img_0110.dcm",
+    "img_0117.dcm",
+    "img_0121.dcm",
+    "img_0141.dcm",
+    "img_0215.dcm",
+    "img_0216.dcm",
+    "img_0219.dcm",
+    "img_0222.dcm",
+    "img_0230.dcm",
+    "img_0235.dcm",
+    "img_0268.dcm",
+    "img_0272.dcm",
+    "img_0279.dcm"
+   ]
+  },
+  "non_chest_image": {
+   "note": "Three images that are not chest radiographs (blank noise, gradient, checkerboard) but whose headers say CHEST; no label, no score",
+   "n": 3,
+   "source_paths": [],
+   "files": [
+    "img_0018.dcm",
+    "img_0114.dcm",
+    "img_0173.dcm"
+   ]
+  },
+  "label_spelling_variants": {
+   "note": "Label written PTX/pneumothorax/'Pneumothorax ' (9) or 'no pneumothorax'/Normal/'NO PNEUMOTHORAX' (9) instead of the two standard strings",
+   "n": 18,
+   "files": [
+    "img_0017.dcm",
+    "img_0025.dcm",
+    "img_0033.dcm",
+    "img_0037.dcm",
+    "img_0098.dcm",
+    "img_0108.dcm",
+    "img_0142.dcm",
+    "img_0174.dcm",
+    "img_0199.dcm",
+    "img_0200.dcm",
+    "img_0202.dcm",
+    "img_0226.dcm",
+    "img_0228.dcm",
+    "img_0238.dcm",
+    "img_0248.dcm",
+    "img_0249.dcm",
+    "img_0265.dcm",
+    "img_0278.dcm"
+   ]
+  },
+  "label_conflict": {
+   "note": "For 2 of the 'same_pixels_new_ids' copies, labels.csv gives the opposite label to the original file",
+   "n": 2,
+   "files": [
+    "img_0086.dcm",
+    "img_0245.dcm"
+   ],
+   "originals": [
+    "img_0006.dcm",
+    "img_0199.dcm"
+   ]
+  },
+  "label_without_image": {
+   "note": "labels.csv rows for images that are not in images/",
+   "n": 2,
+   "files": [
+    "img_9001.dcm",
+    "img_9002.dcm"
+   ]
+  },
+  "scores_as_logits": {
+   "note": "25 rows have all four scores as logits (can be negative or above 1) while the rest are probabilities in [0,1]",
+   "n": 25,
+   "files": [
+    "img_0023.dcm",
+    "img_0028.dcm",
+    "img_0035.dcm",
+    "img_0036.dcm",
+    "img_0047.dcm",
+    "img_0062.dcm",
+    "img_0075.dcm",
+    "img_0076.dcm",
+    "img_0084.dcm",
+    "img_0088.dcm",
+    "img_0094.dcm",
+    "img_0122.dcm",
+    "img_0126.dcm",
+    "img_0129.dcm",
+    "img_0148.dcm",
+    "img_0154.dcm",
+    "img_0170.dcm",
+    "img_0179.dcm",
+    "img_0224.dcm",
+    "img_0233.dcm",
+    "img_0234.dcm",
+    "img_0237.dcm",
+    "img_0250.dcm",
+    "img_0259.dcm",
+    "img_0282.dcm"
+   ]
+  },
+  "scores_blank": {
+   "note": "Blank score",
+   "n": 5,
+   "files": [
+    "img_0039.dcm",
+    "img_0046.dcm",
+    "img_0169.dcm",
+    "img_0192.dcm",
+    "img_0252.dcm"
+   ]
+  },
+  "scores_missing_row": {
+   "note": "Image has a label but no row in model_scores.csv",
+   "n": 6,
+   "files": [
+    "img_0007.dcm",
+    "img_0029.dcm",
+    "img_0045.dcm",
+    "img_0093.dcm",
+    "img_0156.dcm",
+    "img_0196.dcm"
+   ]
+  },
+  "scores_key_case": {
+   "note": "image_file written in upper case (IMG_0012.DCM): a case-sensitive join misses them",
+   "n": 10,
+   "files": [
+    "img_0056.dcm",
+    "img_0068.dcm",
+    "img_0085.dcm",
+    "img_0101.dcm",
+    "img_0143.dcm",
+    "img_0149.dcm",
+    "img_0176.dcm",
+    "img_0208.dcm",
+    "img_0212.dcm",
+    "img_0269.dcm"
+   ]
+  }
+ },
+ "files": {
+  "img_0001.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000241.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.011045,
+    "chex": 0.013575,
+    "nih": 0.059806,
+    "pc": 0.018535
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0002.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000135.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00398,
+    "chex": 0.011612,
+    "nih": 0.004635,
+    "pc": 0.000834
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0003.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000083.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.044908,
+    "chex": 0.011774,
+    "nih": 0.00536,
+    "pc": 0.00099
+   },
+   "problems": [
+    "patient_id_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0004.dcm": {
+   "kind": "followup",
+   "source_path": "Pneumothorax/000213.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.030483948472476576,
+    "chex": 0.029752077754625433,
+    "nih": 0.001,
+    "pc": 0.001
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "Pneumothorax/000213.dcm",
+   "fake_phi_text": null
+  },
+  "img_0005.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000178.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.004692,
+    "chex": 0.006664,
+    "nih": 0.002675,
+    "pc": 0.001952
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0006.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000215.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.031285,
+    "chex": 0.114215,
+    "nih": 0.043095,
+    "pc": 0.003615
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0007.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000075.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.04473,
+    "chex": 0.0237,
+    "nih": 0.018645,
+    "pc": 0.001037
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0008.dcm": {
+   "kind": "exact_duplicate",
+   "source_path": "No Pneumothorax/000011.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.002166,
+    "chex": 0.009772,
+    "nih": 0.000509,
+    "pc": 0.000463
+   },
+   "problems": [
+    "exact_duplicate"
+   ],
+   "duplicate_of": "No Pneumothorax/000011.dcm",
+   "fake_phi_text": null
+  },
+  "img_0009.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000040.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001777,
+    "chex": 0.00658,
+    "nih": 0.000521,
+    "pc": 3.5e-05
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0010.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000204.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.026314,
+    "chex": 0.011056,
+    "nih": 0.048552,
+    "pc": 0.001737
+   },
+   "problems": [
+    "flipped_left_right"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0011.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000088.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.004268,
+    "chex": 0.00627,
+    "nih": 0.000785,
+    "pc": 0.009849
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0012.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000173.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.051879,
+    "chex": 0.031763,
+    "nih": 0.030302,
+    "pc": 0.003601
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0013.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000017.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.038782,
+    "chex": 0.065734,
+    "nih": 0.038621,
+    "pc": 0.007799
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0014.dcm": {
+   "kind": "followup",
+   "source_path": "Pneumothorax/000187.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.04398843283288324,
+    "chex": 0.009784256104319662,
+    "nih": 0.11663903526458136,
+    "pc": 0.001
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "Pneumothorax/000187.dcm",
+   "fake_phi_text": null
+  },
+  "img_0015.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000194.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.000807,
+    "chex": 0.006992,
+    "nih": 0.005252,
+    "pc": 0.00033
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0016.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000179.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.02347082028534249,
+    "chex": 0.10037020506368541,
+    "nih": 0.12186318436494531,
+    "pc": 0.001
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000179.dcm",
+   "fake_phi_text": null
+  },
+  "img_0017.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000000.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.011912,
+    "chex": 0.002917,
+    "nih": 0.000995,
+    "pc": 0.001503
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0018.dcm": {
+   "kind": "non_chest",
+   "source_path": null,
+   "true_label": null,
+   "true_scores": null,
+   "problems": [
+    "non_chest_image"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0019.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000070.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.03362,
+    "chex": 0.080155,
+    "nih": 0.061721,
+    "pc": 0.015978
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0020.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000037.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.045103611668633206,
+    "chex": 0.0362922801775585,
+    "nih": 0.0987696476305103,
+    "pc": 0.047694004763173176
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000037.dcm",
+   "fake_phi_text": null
+  },
+  "img_0021.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000030.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.072251,
+    "chex": 0.0251,
+    "nih": 0.116511,
+    "pc": 0.023781
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0022.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000119.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.009936,
+    "chex": 0.008327,
+    "nih": 0.00959,
+    "pc": 0.003341
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0023.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000137.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.002471,
+    "chex": 0.006146,
+    "nih": 0.000787,
+    "pc": 0.002297
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0024.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000001.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.0636,
+    "chex": 0.040741,
+    "nih": 0.023678,
+    "pc": 0.007995
+   },
+   "problems": [
+    "inverted_tagged_mono1"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0025.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000170.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.022188,
+    "chex": 0.135335,
+    "nih": 0.008239,
+    "pc": 0.000176
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0026.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000049.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.043647,
+    "chex": 0.1221,
+    "nih": 0.021967,
+    "pc": 0.005391
+   },
+   "problems": [
+    "low_resolution_512"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0027.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000237.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.027054,
+    "chex": 0.01602,
+    "nih": 0.034824,
+    "pc": 0.001526
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0028.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000189.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.020191,
+    "chex": 0.012337,
+    "nih": 0.209186,
+    "pc": 0.008873
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0029.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000059.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.030202,
+    "chex": 0.019479,
+    "nih": 0.049935,
+    "pc": 0.004922
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0030.dcm": {
+   "kind": "followup",
+   "source_path": "Pneumothorax/000232.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.011879159255161175,
+    "chex": 0.020385612015859866,
+    "nih": 0.03557910714390211,
+    "pc": 0.0785016135678645
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "Pneumothorax/000232.dcm",
+   "fake_phi_text": null
+  },
+  "img_0031.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000021.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.053082,
+    "chex": 0.072688,
+    "nih": 0.060394,
+    "pc": 0.003136
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0032.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000177.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.06489428891904958,
+    "chex": 0.06152039259007991,
+    "nih": 0.001,
+    "pc": 0.0075465499013255685
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000177.dcm",
+   "fake_phi_text": null
+  },
+  "img_0033.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000210.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.069647,
+    "chex": 0.072792,
+    "nih": 0.096554,
+    "pc": 0.036651
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0034.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000246.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001731,
+    "chex": 0.007726,
+    "nih": 0.000339,
+    "pc": 0.001087
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0035.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000122.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.003531,
+    "chex": 0.005242,
+    "nih": 0.006275,
+    "pc": 0.000473
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0036.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000243.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.05009,
+    "chex": 0.075574,
+    "nih": 0.036914,
+    "pc": 0.063644
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0037.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000165.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.056272,
+    "chex": 0.032994,
+    "nih": 0.034725,
+    "pc": 0.011352
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0038.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000184.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.006308,
+    "chex": 0.043838,
+    "nih": 0.055875,
+    "pc": 0.002339
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0039.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000161.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.04478,
+    "chex": 0.008319,
+    "nih": 0.071075,
+    "pc": 0.005771
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0040.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000230.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.015487,
+    "chex": 0.022686,
+    "nih": 0.038164,
+    "pc": 0.020724
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0041.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000125.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.030684,
+    "chex": 0.010068,
+    "nih": 0.033548,
+    "pc": 0.003094
+   },
+   "problems": [
+    "pixel_spacing_missing"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0042.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000039.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.04019,
+    "chex": 0.10609,
+    "nih": 0.184663,
+    "pc": 0.101844
+   },
+   "problems": [
+    "view_position_blank"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0043.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000091.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.002628,
+    "chex": 0.00467,
+    "nih": 0.002211,
+    "pc": 0.001004
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0044.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000014.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001588,
+    "chex": 0.011585,
+    "nih": 0.013339,
+    "pc": 0.000884
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0045.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000028.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.027188,
+    "chex": 0.013351,
+    "nih": 0.266572,
+    "pc": 0.003236
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0046.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000158.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.002994,
+    "chex": 0.009122,
+    "nih": 0.029211,
+    "pc": 0.001799
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0047.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000191.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.017332,
+    "chex": 0.022912,
+    "nih": 0.006026,
+    "pc": 0.013735
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0048.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000154.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.038889,
+    "chex": 0.061969,
+    "nih": 0.031446,
+    "pc": 0.013079
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0049.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000010.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.037017,
+    "chex": 0.137534,
+    "nih": 0.039606,
+    "pc": 0.003593
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0050.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000103.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.008052,
+    "chex": 0.041993,
+    "nih": 0.008484,
+    "pc": 0.002277
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0051.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000055.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.017692,
+    "chex": 0.027007,
+    "nih": 0.015801,
+    "pc": 0.011872
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0052.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000092.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001658,
+    "chex": 0.008349,
+    "nih": 0.000353,
+    "pc": 0.000582
+   },
+   "problems": [
+    "view_position_blank"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0053.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000168.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.016816,
+    "chex": 0.050203,
+    "nih": 0.034245,
+    "pc": 0.012612
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0054.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000023.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.009187,
+    "chex": 0.025924,
+    "nih": 0.017272,
+    "pc": 0.008141
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0055.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000147.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.010427,
+    "chex": 0.051583,
+    "nih": 0.003882,
+    "pc": 0.017213
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0056.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000102.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.008302,
+    "chex": 0.020954,
+    "nih": 0.000815,
+    "pc": 0.001539
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0057.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000100.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.038103,
+    "chex": 0.053182,
+    "nih": 0.007483,
+    "pc": 0.001933
+   },
+   "problems": [
+    "pixel_spacing_missing"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0058.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000033.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.009539,
+    "chex": 0.004963,
+    "nih": 0.005712,
+    "pc": 0.001251
+   },
+   "problems": [
+    "patient_id_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0059.dcm": {
+   "kind": "same_pixels_new_ids",
+   "source_path": "No Pneumothorax/000135.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00398,
+    "chex": 0.011612,
+    "nih": 0.004635,
+    "pc": 0.000834
+   },
+   "problems": [
+    "same_pixels_new_ids"
+   ],
+   "duplicate_of": "No Pneumothorax/000135.dcm",
+   "fake_phi_text": null
+  },
+  "img_0060.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000156.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.012123,
+    "chex": 0.023928,
+    "nih": 0.000937,
+    "pc": 0.0265
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0061.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000121.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.008301,
+    "chex": 0.011176,
+    "nih": 0.067681,
+    "pc": 0.002163
+   },
+   "problems": [
+    "modality_dx"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0062.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000013.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.008503,
+    "chex": 0.00553,
+    "nih": 0.000225,
+    "pc": 0.000327
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0063.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000112.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.002026,
+    "chex": 0.017994,
+    "nih": 0.000128,
+    "pc": 0.000142
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0064.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000026.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.000536,
+    "chex": 0.001339,
+    "nih": 0.000183,
+    "pc": 1e-05
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0065.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000005.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.025543,
+    "chex": 0.016736,
+    "nih": 0.073191,
+    "pc": 0.003741
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0066.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000150.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.032016,
+    "chex": 0.020751,
+    "nih": 0.066097,
+    "pc": 0.00879
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0067.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000218.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.032214,
+    "chex": 0.02546,
+    "nih": 0.253529,
+    "pc": 0.013589
+   },
+   "problems": [
+    "modality_dx"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0068.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000072.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.021695,
+    "chex": 0.008288,
+    "nih": 0.065994,
+    "pc": 0.001277
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0069.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000138.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001222,
+    "chex": 0.004898,
+    "nih": 0.003403,
+    "pc": 7.8e-05
+   },
+   "problems": [
+    "view_position_blank"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0070.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000211.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.023094,
+    "chex": 0.030744,
+    "nih": 0.071979,
+    "pc": 0.01637
+   },
+   "problems": [
+    "phi_in_header"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0071.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000109.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001312,
+    "chex": 0.016471,
+    "nih": 0.003561,
+    "pc": 0.000352
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0072.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000111.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.04098,
+    "chex": 0.094741,
+    "nih": 0.160521,
+    "pc": 0.069366
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0073.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000008.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00177,
+    "chex": 0.006722,
+    "nih": 0.087147,
+    "pc": 0.000103
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0074.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000229.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.002696,
+    "chex": 0.012974,
+    "nih": 0.0027,
+    "pc": 0.002513
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0075.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000007.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.000376,
+    "chex": 0.002606,
+    "nih": 0.000174,
+    "pc": 4e-06
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0076.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000117.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.031173,
+    "chex": 0.037501,
+    "nih": 0.016386,
+    "pc": 0.00922
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0077.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000084.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.005192,
+    "chex": 0.032638,
+    "nih": 0.000807,
+    "pc": 0.000793
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0078.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000018.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00424,
+    "chex": 0.015151,
+    "nih": 0.004309,
+    "pc": 0.005039
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0079.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000060.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.044956,
+    "chex": 0.08956,
+    "nih": 0.070198,
+    "pc": 0.001199
+   },
+   "problems": [
+    "low_resolution_512"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0080.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000095.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00253,
+    "chex": 0.027919,
+    "nih": 0.003559,
+    "pc": 0.000181
+   },
+   "problems": [
+    "patient_id_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0081.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000222.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.046645,
+    "chex": 0.121875,
+    "nih": 0.103153,
+    "pc": 0.015027
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0082.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000182.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001961,
+    "chex": 0.002254,
+    "nih": 0.000128,
+    "pc": 0.000105
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0083.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000245.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001076,
+    "chex": 0.004865,
+    "nih": 0.002357,
+    "pc": 0.000912
+   },
+   "problems": [
+    "burned_in_phi"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": [
+    "POE, MARY",
+    "MRN 3390027",
+    "DOB 07/21/1974"
+   ]
+  },
+  "img_0084.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000087.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.03295,
+    "chex": 0.109649,
+    "nih": 0.002356,
+    "pc": 0.002615
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0085.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000129.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.040045,
+    "chex": 0.009521,
+    "nih": 0.023366,
+    "pc": 0.000619
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0086.dcm": {
+   "kind": "same_pixels_new_ids",
+   "source_path": "No Pneumothorax/000215.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.031285,
+    "chex": 0.114215,
+    "nih": 0.043095,
+    "pc": 0.003615
+   },
+   "problems": [
+    "same_pixels_new_ids"
+   ],
+   "duplicate_of": "No Pneumothorax/000215.dcm",
+   "fake_phi_text": null
+  },
+  "img_0087.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000226.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.04884,
+    "chex": 0.030152,
+    "nih": 0.009458,
+    "pc": 0.002965
+   },
+   "problems": [
+    "flipped_left_right"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0088.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000136.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.010761,
+    "chex": 0.027531,
+    "nih": 0.005782,
+    "pc": 0.006117
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0089.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000118.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.066494,
+    "chex": 0.065565,
+    "nih": 0.04503,
+    "pc": 0.034658
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0090.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000009.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001507,
+    "chex": 0.012474,
+    "nih": 0.014748,
+    "pc": 0.000237
+   },
+   "problems": [
+    "pixel_spacing_missing"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0091.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000104.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.011079,
+    "chex": 0.003646,
+    "nih": 0.001848,
+    "pc": 8.1e-05
+   },
+   "problems": [
+    "corrupt_truncated"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0092.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000176.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.005436,
+    "chex": 0.010375,
+    "nih": 0.00264,
+    "pc": 0.001942
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0093.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000108.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.073394,
+    "chex": 0.049472,
+    "nih": 0.046093,
+    "pc": 0.002552
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0094.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000224.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.01299,
+    "chex": 0.031896,
+    "nih": 0.008249,
+    "pc": 0.0037
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0095.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000199.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.025128,
+    "chex": 0.060838,
+    "nih": 0.021389,
+    "pc": 0.037577
+   },
+   "problems": [
+    "corrupt_truncated"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0096.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000146.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.006264,
+    "chex": 0.013711,
+    "nih": 0.022048,
+    "pc": 0.002089
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0097.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000036.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.006575,
+    "chex": 0.015323,
+    "nih": 0.03574,
+    "pc": 0.001066
+   },
+   "problems": [
+    "inverted_tag_wrong"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0098.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000134.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.027281,
+    "chex": 0.115832,
+    "nih": 0.004004,
+    "pc": 0.000496
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0099.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000223.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.051967,
+    "chex": 0.013772,
+    "nih": 0.027392,
+    "pc": 0.008855
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0100.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000058.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.029533,
+    "chex": 0.143304,
+    "nih": 0.078425,
+    "pc": 0.062225
+   },
+   "problems": [
+    "view_position_blank"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0101.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000024.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00959,
+    "chex": 0.009165,
+    "nih": 0.01223,
+    "pc": 0.010433
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0102.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000090.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.014564,
+    "chex": 0.092688,
+    "nih": 0.019222,
+    "pc": 0.009996
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0103.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000130.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.041528,
+    "chex": 0.236786,
+    "nih": 0.068637,
+    "pc": 0.053909
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0104.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000206.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.000852,
+    "chex": 0.003154,
+    "nih": 0.000812,
+    "pc": 2.9e-05
+   },
+   "problems": [
+    "burned_in_phi"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": [
+    "DOE, JANE",
+    "MRN 4471902",
+    "DOB 03/14/1961"
+   ]
+  },
+  "img_0105.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000085.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.032745,
+    "chex": 0.01447,
+    "nih": 0.006553,
+    "pc": 0.011681
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0106.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000094.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.023047,
+    "chex": 0.023986,
+    "nih": 0.035154,
+    "pc": 0.000275
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0107.dcm": {
+   "kind": "followup",
+   "source_path": "Pneumothorax/000161.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.06345791787102822,
+    "chex": 0.001,
+    "nih": 0.06683200629756501,
+    "pc": 0.04976021358387601
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "Pneumothorax/000161.dcm",
+   "fake_phi_text": null
+  },
+  "img_0108.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000181.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.01975,
+    "chex": 0.064893,
+    "nih": 0.037459,
+    "pc": 0.021217
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0109.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000192.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.049137,
+    "chex": 0.08665,
+    "nih": 0.014595,
+    "pc": 0.037097
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0110.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000097.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001,
+    "chex": 0.04427898152054166,
+    "nih": 0.001,
+    "pc": 0.02715094715678824
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000097.dcm",
+   "fake_phi_text": null
+  },
+  "img_0111.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000132.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00857,
+    "chex": 0.006719,
+    "nih": 0.069635,
+    "pc": 0.003005
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0112.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000142.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.059147,
+    "chex": 0.100281,
+    "nih": 0.034387,
+    "pc": 0.009106
+   },
+   "problems": [
+    "inverted_tagged_mono1"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0113.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000201.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.069685,
+    "chex": 0.043404,
+    "nih": 0.054483,
+    "pc": 0.008404
+   },
+   "problems": [
+    "burned_in_phi"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": [
+    "LOE, SAM",
+    "MRN 6081455",
+    "DOB 01/30/1949"
+   ]
+  },
+  "img_0114.dcm": {
+   "kind": "non_chest",
+   "source_path": null,
+   "true_label": null,
+   "true_scores": null,
+   "problems": [
+    "non_chest_image"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0115.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000113.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.052321,
+    "chex": 0.085619,
+    "nih": 0.00662,
+    "pc": 0.015134
+   },
+   "problems": [
+    "phi_in_header"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0116.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000166.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.015485,
+    "chex": 0.00802,
+    "nih": 0.024711,
+    "pc": 0.001885
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0117.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000025.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.009384325417583463,
+    "chex": 0.03648856316451435,
+    "nih": 0.001,
+    "pc": 0.019703245748792432
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000025.dcm",
+   "fake_phi_text": null
+  },
+  "img_0118.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000025.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.023935,
+    "chex": 0.014655,
+    "nih": 0.011921,
+    "pc": 0.015284
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0119.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000098.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.043778,
+    "chex": 0.060789,
+    "nih": 0.023461,
+    "pc": 0.002685
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0120.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000006.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.009749,
+    "chex": 0.008565,
+    "nih": 0.014532,
+    "pc": 0.003686
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0121.dcm": {
+   "kind": "followup",
+   "source_path": "Pneumothorax/000200.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.009193685808868087,
+    "chex": 0.040029922802152985,
+    "nih": 0.0074298356932641675,
+    "pc": 0.005882600350865335
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "Pneumothorax/000200.dcm",
+   "fake_phi_text": null
+  },
+  "img_0122.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000175.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.006565,
+    "chex": 0.014169,
+    "nih": 0.009473,
+    "pc": 0.002428
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0123.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000167.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.003864,
+    "chex": 0.009542,
+    "nih": 0.000168,
+    "pc": 0.000283
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0124.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000144.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.030276,
+    "chex": 0.014458,
+    "nih": 0.085028,
+    "pc": 0.010484
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0125.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000079.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001783,
+    "chex": 0.004459,
+    "nih": 0.000577,
+    "pc": 0.000428
+   },
+   "problems": [
+    "inverted_tag_wrong"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0126.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000114.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.06191,
+    "chex": 0.064516,
+    "nih": 0.139759,
+    "pc": 0.038179
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0127.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000034.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.000473,
+    "chex": 0.086958,
+    "nih": 0.000254,
+    "pc": 0.000147
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0128.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000063.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.003059,
+    "chex": 0.005846,
+    "nih": 0.000677,
+    "pc": 0.000998
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0129.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000190.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001844,
+    "chex": 0.002399,
+    "nih": 0.000648,
+    "pc": 3.7e-05
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0130.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000207.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.006887,
+    "chex": 0.015215,
+    "nih": 0.004035,
+    "pc": 0.001109
+   },
+   "problems": [
+    "low_resolution_512"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0131.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000234.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.000574,
+    "chex": 0.043644,
+    "nih": 9.6e-05,
+    "pc": 0.000172
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0132.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000027.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.012041,
+    "chex": 0.086621,
+    "nih": 0.052497,
+    "pc": 0.032188
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0133.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000037.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.022108,
+    "chex": 0.010785,
+    "nih": 0.136846,
+    "pc": 0.005149
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0134.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000073.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.024152,
+    "chex": 0.044051,
+    "nih": 0.017534,
+    "pc": 0.02125
+   },
+   "problems": [
+    "modality_dx"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0135.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000209.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.032854,
+    "chex": 0.010031,
+    "nih": 0.03159,
+    "pc": 0.02863
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0136.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000153.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.031391,
+    "chex": 0.018227,
+    "nih": 0.040231,
+    "pc": 0.011689
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0137.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000177.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.022534,
+    "chex": 0.03273,
+    "nih": 0.005211,
+    "pc": 0.006038
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0138.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000164.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.034614,
+    "chex": 0.050298,
+    "nih": 0.027075,
+    "pc": 0.017015
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0139.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000110.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.050006,
+    "chex": 0.051417,
+    "nih": 0.060563,
+    "pc": 0.004062
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0140.dcm": {
+   "kind": "exact_duplicate",
+   "source_path": "Pneumothorax/000238.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.021713,
+    "chex": 0.142909,
+    "nih": 0.049458,
+    "pc": 0.104332
+   },
+   "problems": [
+    "exact_duplicate"
+   ],
+   "duplicate_of": "Pneumothorax/000238.dcm",
+   "fake_phi_text": null
+  },
+  "img_0141.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000231.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001,
+    "chex": 0.012200976714470008,
+    "nih": 0.003731843974909218,
+    "pc": 0.015075837528582402
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000231.dcm",
+   "fake_phi_text": null
+  },
+  "img_0142.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000065.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.005992,
+    "chex": 0.037501,
+    "nih": 0.001969,
+    "pc": 0.005012
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0143.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000200.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.018151,
+    "chex": 0.008054,
+    "nih": 0.012545,
+    "pc": 0.002227
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0144.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000220.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.030517,
+    "chex": 0.103677,
+    "nih": 0.010378,
+    "pc": 0.035781
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0145.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000196.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00275,
+    "chex": 0.006224,
+    "nih": 0.000973,
+    "pc": 0.001266
+   },
+   "problems": [
+    "inverted_tag_wrong"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0146.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000056.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.015118,
+    "chex": 0.055882,
+    "nih": 0.012968,
+    "pc": 0.024076
+   },
+   "problems": [
+    "inverted_tagged_mono1"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0147.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000133.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001679,
+    "chex": 0.004085,
+    "nih": 0.001687,
+    "pc": 9.1e-05
+   },
+   "problems": [
+    "view_position_blank"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0148.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000232.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.016268,
+    "chex": 0.013348,
+    "nih": 0.032714,
+    "pc": 0.063548
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0149.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000180.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.014297,
+    "chex": 0.016663,
+    "nih": 0.085422,
+    "pc": 0.003481
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0150.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000082.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001985,
+    "chex": 0.001929,
+    "nih": 4e-06,
+    "pc": 0.000645
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0151.dcm": {
+   "kind": "exact_duplicate",
+   "source_path": "No Pneumothorax/000108.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.073394,
+    "chex": 0.049472,
+    "nih": 0.046093,
+    "pc": 0.002552
+   },
+   "problems": [
+    "exact_duplicate"
+   ],
+   "duplicate_of": "No Pneumothorax/000108.dcm",
+   "fake_phi_text": null
+  },
+  "img_0152.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000064.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.05176,
+    "chex": 0.033936,
+    "nih": 0.067238,
+    "pc": 0.013706
+   },
+   "problems": [
+    "patient_id_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0153.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000074.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.000889,
+    "chex": 0.110769,
+    "nih": 0.000308,
+    "pc": 0.000635
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0154.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000162.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.003499,
+    "chex": 0.007691,
+    "nih": 0.096363,
+    "pc": 0.001497
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0155.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000159.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.011997,
+    "chex": 0.058983,
+    "nih": 0.04857,
+    "pc": 0.000383
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0156.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000003.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.050066,
+    "chex": 0.031001,
+    "nih": 0.096759,
+    "pc": 0.03679
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0157.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000217.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.05404,
+    "chex": 0.102215,
+    "nih": 0.046153,
+    "pc": 0.010462
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0158.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000183.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.035361,
+    "chex": 0.030929,
+    "nih": 0.238137,
+    "pc": 0.009391
+   },
+   "problems": [
+    "view_position_blank"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0159.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000057.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.064814,
+    "chex": 0.122411,
+    "nih": 0.104355,
+    "pc": 0.004739
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0160.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000029.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.08199,
+    "chex": 0.030442,
+    "nih": 0.014785,
+    "pc": 0.008764
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0161.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000116.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.030266,
+    "chex": 0.010357,
+    "nih": 0.056658,
+    "pc": 0.002855
+   },
+   "problems": [
+    "pixel_spacing_missing"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0162.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000093.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.027472,
+    "chex": 0.020983,
+    "nih": 0.005279,
+    "pc": 0.009737
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0163.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000212.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.005892,
+    "chex": 0.12099,
+    "nih": 0.001555,
+    "pc": 0.002366
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0164.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000124.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.013251,
+    "chex": 0.022917,
+    "nih": 0.008443,
+    "pc": 0.015104
+   },
+   "problems": [
+    "inverted_tagged_mono1"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0165.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000032.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.028762,
+    "chex": 0.017914,
+    "nih": 0.062049,
+    "pc": 0.006401
+   },
+   "problems": [
+    "patient_id_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0166.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000020.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00447,
+    "chex": 0.021207,
+    "nih": 0.00083,
+    "pc": 0.003136
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0167.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000002.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.005899,
+    "chex": 0.009742,
+    "nih": 0.002907,
+    "pc": 0.001094
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0168.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000174.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.0147,
+    "chex": 0.013984,
+    "nih": 0.000892,
+    "pc": 0.000518
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0169.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000015.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.074747,
+    "chex": 0.09364,
+    "nih": 0.062072,
+    "pc": 0.040429
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0170.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000247.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.071743,
+    "chex": 0.071408,
+    "nih": 0.098538,
+    "pc": 0.009992
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0171.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000051.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.033046,
+    "chex": 0.020976,
+    "nih": 0.040907,
+    "pc": 0.00742
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0172.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000187.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.026631,
+    "chex": 0.011691,
+    "nih": 0.045895,
+    "pc": 0.009348
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0173.dcm": {
+   "kind": "non_chest",
+   "source_path": null,
+   "true_label": null,
+   "true_scores": null,
+   "problems": [
+    "non_chest_image"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0174.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000148.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00138,
+    "chex": 0.002391,
+    "nih": 7.6e-05,
+    "pc": 3.8e-05
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0175.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000052.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.022453,
+    "chex": 0.011341,
+    "nih": 0.009032,
+    "pc": 0.020093
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0176.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000172.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.004655,
+    "chex": 0.002981,
+    "nih": 0.000166,
+    "pc": 0.003203
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0177.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000031.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001535,
+    "chex": 0.002356,
+    "nih": 0.000267,
+    "pc": 0.00017
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0178.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000081.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.059534,
+    "chex": 0.021627,
+    "nih": 0.082935,
+    "pc": 0.004409
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0179.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000185.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.008269,
+    "chex": 0.028539,
+    "nih": 0.029601,
+    "pc": 0.001506
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0180.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000233.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.034889,
+    "chex": 0.117581,
+    "nih": 0.001073,
+    "pc": 0.000347
+   },
+   "problems": [
+    "patient_id_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0181.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000080.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.027432,
+    "chex": 0.014605,
+    "nih": 0.132448,
+    "pc": 0.002651
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0182.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000101.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.040733,
+    "chex": 0.008155,
+    "nih": 0.120975,
+    "pc": 0.005546
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0183.dcm": {
+   "kind": "exact_duplicate",
+   "source_path": "No Pneumothorax/000159.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.011997,
+    "chex": 0.058983,
+    "nih": 0.04857,
+    "pc": 0.000383
+   },
+   "problems": [
+    "exact_duplicate"
+   ],
+   "duplicate_of": "No Pneumothorax/000159.dcm",
+   "fake_phi_text": null
+  },
+  "img_0184.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000198.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00174,
+    "chex": 0.002966,
+    "nih": 4.4e-05,
+    "pc": 7.6e-05
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0185.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000213.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.021346,
+    "chex": 0.064663,
+    "nih": 0.01951,
+    "pc": 0.004542
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0186.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000228.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.012045,
+    "chex": 0.120012,
+    "nih": 0.004243,
+    "pc": 0.014498
+   },
+   "problems": [
+    "modality_dx"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0187.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000235.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.014829,
+    "chex": 0.014951,
+    "nih": 0.001915,
+    "pc": 0.013622
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0188.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000149.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00143,
+    "chex": 0.007178,
+    "nih": 0.001172,
+    "pc": 0.002764
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0189.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000145.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.027232,
+    "chex": 0.022324,
+    "nih": 0.079285,
+    "pc": 0.001403
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0190.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000249.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00461,
+    "chex": 0.012987,
+    "nih": 0.000643,
+    "pc": 0.004404
+   },
+   "problems": [
+    "modality_dx"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0191.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000061.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.039172,
+    "chex": 0.171646,
+    "nih": 0.050014,
+    "pc": 0.005897
+   },
+   "problems": [
+    "phi_in_header"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0192.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000019.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.003896,
+    "chex": 0.029218,
+    "nih": 0.00858,
+    "pc": 0.000481
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0193.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000219.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.038622,
+    "chex": 0.090301,
+    "nih": 0.03975,
+    "pc": 0.030547
+   },
+   "problems": [
+    "modality_dx"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0194.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000069.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.007382,
+    "chex": 0.017262,
+    "nih": 0.003051,
+    "pc": 0.004514
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0195.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000062.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.012397,
+    "chex": 0.079542,
+    "nih": 0.218488,
+    "pc": 0.003557
+   },
+   "problems": [
+    "patient_id_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0196.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000169.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.015649,
+    "chex": 0.116543,
+    "nih": 0.001385,
+    "pc": 0.001302
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0197.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000236.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.022105,
+    "chex": 0.122307,
+    "nih": 0.043113,
+    "pc": 0.004022
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0198.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000127.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.0021,
+    "chex": 0.003466,
+    "nih": 0.000114,
+    "pc": 4.6e-05
+   },
+   "problems": [
+    "patient_id_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0199.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000004.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.01784,
+    "chex": 0.031396,
+    "nih": 0.051634,
+    "pc": 0.013695
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0200.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000157.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.005785,
+    "chex": 0.141652,
+    "nih": 0.000998,
+    "pc": 0.011544
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0201.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000096.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.008537,
+    "chex": 0.015511,
+    "nih": 0.001665,
+    "pc": 0.002939
+   },
+   "problems": [
+    "burned_in_phi"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": [
+    "ROE, RICHARD",
+    "MRN 5520318",
+    "DOB 11/02/1958"
+   ]
+  },
+  "img_0202.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000047.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.013924,
+    "chex": 0.017298,
+    "nih": 0.021123,
+    "pc": 0.012445
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0203.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000066.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.003672,
+    "chex": 0.011605,
+    "nih": 0.002082,
+    "pc": 0.008583
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0204.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000105.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.002656,
+    "chex": 0.01451,
+    "nih": 0.002209,
+    "pc": 0.000455
+   },
+   "problems": [
+    "pixel_spacing_missing"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0205.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000227.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.018323,
+    "chex": 0.128199,
+    "nih": 0.144507,
+    "pc": 0.080095
+   },
+   "problems": [
+    "view_position_blank"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0206.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000099.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.000272,
+    "chex": 0.001375,
+    "nih": 0.000422,
+    "pc": 0.001006
+   },
+   "problems": [
+    "flipped_left_right"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0207.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000012.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.003183,
+    "chex": 0.054377,
+    "nih": 0.004633,
+    "pc": 0.00066
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0208.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000244.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.025778,
+    "chex": 0.008555,
+    "nih": 0.016949,
+    "pc": 0.00374
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0209.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000107.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.031047,
+    "chex": 0.128461,
+    "nih": 0.006402,
+    "pc": 0.018635
+   },
+   "problems": [
+    "sex_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0210.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000022.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001972,
+    "chex": 0.008575,
+    "nih": 0.000858,
+    "pc": 0.000688
+   },
+   "problems": [
+    "patient_id_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0211.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000208.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.012434,
+    "chex": 0.010727,
+    "nih": 0.109485,
+    "pc": 0.000788
+   },
+   "problems": [
+    "inverted_tagged_mono1"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0212.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000242.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00142,
+    "chex": 0.013714,
+    "nih": 0.000218,
+    "pc": 0.003171
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0213.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000139.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.031621,
+    "chex": 0.033009,
+    "nih": 0.012205,
+    "pc": 0.009716
+   },
+   "problems": [
+    "view_position_blank"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0214.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000120.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.088344,
+    "chex": 0.096698,
+    "nih": 0.016185,
+    "pc": 0.074644
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0215.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000141.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.07853374312890174,
+    "chex": 0.0182893113896757,
+    "nih": 0.02413252633582079,
+    "pc": 0.001
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000141.dcm",
+   "fake_phi_text": null
+  },
+  "img_0216.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000242.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001,
+    "chex": 0.001,
+    "nih": 0.001,
+    "pc": 0.001
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000242.dcm",
+   "fake_phi_text": null
+  },
+  "img_0217.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000048.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.024216,
+    "chex": 0.084604,
+    "nih": 0.047812,
+    "pc": 0.007521
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0218.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000046.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.022136,
+    "chex": 0.040623,
+    "nih": 0.007491,
+    "pc": 0.016255
+   },
+   "problems": [
+    "pixel_spacing_missing"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0219.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000031.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001,
+    "chex": 0.016256761391160005,
+    "nih": 0.001,
+    "pc": 0.001
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000031.dcm",
+   "fake_phi_text": null
+  },
+  "img_0220.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000016.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.021115,
+    "chex": 0.045455,
+    "nih": 0.064767,
+    "pc": 0.042361
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0221.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000203.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.01464,
+    "chex": 0.003469,
+    "nih": 0.00663,
+    "pc": 6e-05
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0222.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000188.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.010095118825641937,
+    "chex": 0.04642012902460787,
+    "nih": 0.03497736040306258,
+    "pc": 0.001
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000188.dcm",
+   "fake_phi_text": null
+  },
+  "img_0223.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000053.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.015929,
+    "chex": 0.009076,
+    "nih": 0.008722,
+    "pc": 0.001462
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0224.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000071.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.014989,
+    "chex": 0.010567,
+    "nih": 0.00268,
+    "pc": 0.000607
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0225.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000197.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.004999,
+    "chex": 0.003683,
+    "nih": 0.011548,
+    "pc": 0.000894
+   },
+   "problems": [
+    "phi_in_header"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0226.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000043.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.051342,
+    "chex": 0.020165,
+    "nih": 0.010219,
+    "pc": 0.041184
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0227.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000225.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.029747,
+    "chex": 0.046586,
+    "nih": 0.143207,
+    "pc": 0.008298
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0228.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000195.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.010732,
+    "chex": 0.004667,
+    "nih": 0.008934,
+    "pc": 0.002574
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0229.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000141.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.07014,
+    "chex": 0.021672,
+    "nih": 0.058363,
+    "pc": 0.00891
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0230.dcm": {
+   "kind": "followup",
+   "source_path": "Pneumothorax/000070.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.04216522063703593,
+    "chex": 0.12521322974913413,
+    "nih": 0.031091888625732988,
+    "pc": 0.05895528048688451
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "Pneumothorax/000070.dcm",
+   "fake_phi_text": null
+  },
+  "img_0231.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000131.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.002011,
+    "chex": 0.005523,
+    "nih": 0.001262,
+    "pc": 0.00079
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0232.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000115.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.053991,
+    "chex": 0.048541,
+    "nih": 0.021572,
+    "pc": 0.06825
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0233.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000240.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.036322,
+    "chex": 0.042912,
+    "nih": 0.014025,
+    "pc": 0.020093
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0234.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000140.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.009002,
+    "chex": 0.069904,
+    "nih": 0.148418,
+    "pc": 0.012814
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0235.dcm": {
+   "kind": "followup",
+   "source_path": "Pneumothorax/000170.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.043770839168754246,
+    "chex": 0.0952706477440603,
+    "nih": 0.001,
+    "pc": 0.011056727308741524
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "Pneumothorax/000170.dcm",
+   "fake_phi_text": null
+  },
+  "img_0236.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000205.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.000818,
+    "chex": 0.002459,
+    "nih": 3e-06,
+    "pc": 6e-05
+   },
+   "problems": [
+    "inverted_tagged_mono1"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0237.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000045.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.005331,
+    "chex": 0.027443,
+    "nih": 0.001616,
+    "pc": 0.000993
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0238.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000179.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.055593,
+    "chex": 0.043401,
+    "nih": 0.131546,
+    "pc": 0.00832
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0239.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000038.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.033007,
+    "chex": 0.038689,
+    "nih": 0.001848,
+    "pc": 0.019644
+   },
+   "problems": [
+    "flipped_left_right"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0240.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000155.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.034771,
+    "chex": 0.077833,
+    "nih": 0.08015,
+    "pc": 0.038382
+   },
+   "problems": [
+    "modality_dx"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0241.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000076.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.04717,
+    "chex": 0.067507,
+    "nih": 0.142113,
+    "pc": 0.003078
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0242.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000097.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001021,
+    "chex": 0.006762,
+    "nih": 8.3e-05,
+    "pc": 0.000389
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0243.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000152.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.028458,
+    "chex": 0.041535,
+    "nih": 0.499405,
+    "pc": 0.012339
+   },
+   "problems": [
+    "view_position_blank"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0244.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000086.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.068884,
+    "chex": 0.082626,
+    "nih": 0.185439,
+    "pc": 0.054516
+   },
+   "problems": [
+    "inverted_tag_wrong"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0245.dcm": {
+   "kind": "same_pixels_new_ids",
+   "source_path": "Pneumothorax/000004.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.01784,
+    "chex": 0.031396,
+    "nih": 0.051634,
+    "pc": 0.013695
+   },
+   "problems": [
+    "same_pixels_new_ids"
+   ],
+   "duplicate_of": "Pneumothorax/000004.dcm",
+   "fake_phi_text": null
+  },
+  "img_0246.dcm": {
+   "kind": "same_pixels_new_ids",
+   "source_path": "No Pneumothorax/000137.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.002471,
+    "chex": 0.006146,
+    "nih": 0.000787,
+    "pc": 0.002297
+   },
+   "problems": [
+    "same_pixels_new_ids"
+   ],
+   "duplicate_of": "No Pneumothorax/000137.dcm",
+   "fake_phi_text": null
+  },
+  "img_0247.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000041.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001303,
+    "chex": 0.005157,
+    "nih": 0.00043,
+    "pc": 0.000573
+   },
+   "problems": [
+    "modality_dx"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0248.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000193.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.034308,
+    "chex": 0.035381,
+    "nih": 0.160507,
+    "pc": 0.015385
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0249.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000151.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.017463,
+    "chex": 0.132727,
+    "nih": 0.001426,
+    "pc": 0.000307
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0250.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000186.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.020413,
+    "chex": 0.006244,
+    "nih": 0.001237,
+    "pc": 0.000553
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0251.dcm": {
+   "kind": "exact_duplicate",
+   "source_path": "Pneumothorax/000223.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.051967,
+    "chex": 0.013772,
+    "nih": 0.027392,
+    "pc": 0.008855
+   },
+   "problems": [
+    "exact_duplicate"
+   ],
+   "duplicate_of": "Pneumothorax/000223.dcm",
+   "fake_phi_text": null
+  },
+  "img_0252.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000077.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001729,
+    "chex": 0.006251,
+    "nih": 0.008412,
+    "pc": 0.000571
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0253.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000089.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.022626,
+    "chex": 0.022813,
+    "nih": 0.06613,
+    "pc": 0.006583
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0254.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000171.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.005837,
+    "chex": 0.021873,
+    "nih": 0.000805,
+    "pc": 0.004366
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0255.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000011.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.002166,
+    "chex": 0.009772,
+    "nih": 0.000509,
+    "pc": 0.000463
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0256.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000160.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.003213,
+    "chex": 0.008885,
+    "nih": 0.002467,
+    "pc": 0.001652
+   },
+   "problems": [
+    "view_position_blank"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0257.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000078.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.031792,
+    "chex": 0.022814,
+    "nih": 0.003472,
+    "pc": 0.018191
+   },
+   "problems": [
+    "low_resolution_512"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0258.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000068.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.019899,
+    "chex": 0.021976,
+    "nih": 0.438335,
+    "pc": 0.028761
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0259.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000188.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.024271,
+    "chex": 0.01025,
+    "nih": 0.045752,
+    "pc": 0.004862
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0260.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000123.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00559,
+    "chex": 0.01383,
+    "nih": 0.000551,
+    "pc": 0.004079
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0261.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000054.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.125427,
+    "chex": 0.106576,
+    "nih": 0.343636,
+    "pc": 0.005019
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0262.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000128.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.010306,
+    "chex": 0.067108,
+    "nih": 0.001808,
+    "pc": 0.000625
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0263.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000042.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.012264,
+    "chex": 0.128349,
+    "nih": 0.000651,
+    "pc": 0.000278
+   },
+   "problems": [
+    "patient_id_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0264.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000248.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.028566,
+    "chex": 0.053876,
+    "nih": 0.029584,
+    "pc": 0.001777
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0265.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000231.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.004156,
+    "chex": 0.020339,
+    "nih": 0.003567,
+    "pc": 0.000856
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0266.dcm": {
+   "kind": "exact_duplicate",
+   "source_path": "No Pneumothorax/000192.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.049137,
+    "chex": 0.08665,
+    "nih": 0.014595,
+    "pc": 0.037097
+   },
+   "problems": [
+    "exact_duplicate"
+   ],
+   "duplicate_of": "No Pneumothorax/000192.dcm",
+   "fake_phi_text": null
+  },
+  "img_0267.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000239.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.003293,
+    "chex": 0.024692,
+    "nih": 0.005846,
+    "pc": 0.001686
+   },
+   "problems": [
+    "modality_dx"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0268.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000186.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.02737953426816333,
+    "chex": 0.03331556037655328,
+    "nih": 0.001,
+    "pc": 0.05997628010399416
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000186.dcm",
+   "fake_phi_text": null
+  },
+  "img_0269.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000067.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.039299,
+    "chex": 0.011154,
+    "nih": 0.088417,
+    "pc": 0.002427
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0270.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000238.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.021713,
+    "chex": 0.142909,
+    "nih": 0.049458,
+    "pc": 0.104332
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0271.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000216.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.043938,
+    "chex": 0.016425,
+    "nih": 0.007178,
+    "pc": 0.00507
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0272.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000198.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001,
+    "chex": 0.001,
+    "nih": 0.001,
+    "pc": 0.001
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000198.dcm",
+   "fake_phi_text": null
+  },
+  "img_0273.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000044.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.02982,
+    "chex": 0.198543,
+    "nih": 0.049368,
+    "pc": 0.018133
+   },
+   "problems": [
+    "burned_in_phi"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": [
+    "MOE, ANN",
+    "MRN 2217760",
+    "DOB 09/09/1966"
+   ]
+  },
+  "img_0274.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000126.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.075539,
+    "chex": 0.027416,
+    "nih": 0.102653,
+    "pc": 0.009249
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0275.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000035.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.012071,
+    "chex": 0.08031,
+    "nih": 0.019753,
+    "pc": 0.008846
+   },
+   "problems": [
+    "patient_id_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0276.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000163.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.021141,
+    "chex": 0.093734,
+    "nih": 0.03235,
+    "pc": 0.020722
+   },
+   "problems": [
+    "patient_id_variants"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0277.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000221.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.00162,
+    "chex": 0.003521,
+    "nih": 0.029696,
+    "pc": 0.000442
+   },
+   "problems": [
+    "age_problems"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0278.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000106.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.016585,
+    "chex": 0.135193,
+    "nih": 0.270044,
+    "pc": 0.01897
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0279.dcm": {
+   "kind": "followup",
+   "source_path": "No Pneumothorax/000077.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.001,
+    "chex": 0.034472226639472775,
+    "nih": 0.001,
+    "pc": 0.001
+   },
+   "problems": [
+    "followup_same_patient"
+   ],
+   "duplicate_of": "No Pneumothorax/000077.dcm",
+   "fake_phi_text": null
+  },
+  "img_0280.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000202.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.017976,
+    "chex": 0.006425,
+    "nih": 0.00152,
+    "pc": 0.001778
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0281.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000050.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.004444,
+    "chex": 0.021533,
+    "nih": 4.6e-05,
+    "pc": 0.003446
+   },
+   "problems": [
+    "phi_in_header"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0282.dcm": {
+   "kind": "original",
+   "source_path": "No Pneumothorax/000143.dcm",
+   "true_label": "No Pneumothorax",
+   "true_scores": {
+    "all": 0.015541,
+    "chex": 0.133206,
+    "nih": 0.075841,
+    "pc": 0.056669
+   },
+   "problems": [],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  },
+  "img_0283.dcm": {
+   "kind": "original",
+   "source_path": "Pneumothorax/000214.dcm",
+   "true_label": "Pneumothorax",
+   "true_scores": {
+    "all": 0.03275,
+    "chex": 0.092739,
+    "nih": 0.005979,
+    "pc": 0.066934
+   },
+   "problems": [
+    "modality_dx"
+   ],
+   "duplicate_of": null,
+   "fake_phi_text": null
+  }
+ },
+ "decoys_not_errors": [
+  "lossy JPEG compression (JPEG baseline transfer syntax) on untouched files",
+  "varying PixelSpacing across scanners",
+  "AP and PA views mixed",
+  "8-bit pixel depth",
+  "bare-number PatientAge (e.g. '62') in most files (real quirk of the source data)",
+  "burned-in 'AP', 'PORTABLE', and L/R markers in real images (not PHI; possible shortcut features)",
+  "visible chest tubes / drains in many pneumothorax images (possible shortcut feature for a classifier)",
+  "a few real images are rotated, shifted or have black margins (the source data is heterogeneous; not planted)",
+  "pediatric patients (age under 18) in the sample: not an error, but excluded by the protocol"
+ ]
+}

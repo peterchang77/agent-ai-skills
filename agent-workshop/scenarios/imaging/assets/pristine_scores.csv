@@ -1,0 +1,251 @@
+source_path,true_label,score_all,score_chex,score_nih,score_pc
+No Pneumothorax/000000.dcm,No Pneumothorax,0.011912,0.002917,0.000995,0.001503
+No Pneumothorax/000002.dcm,No Pneumothorax,0.005899,0.009742,0.002907,0.001094
+No Pneumothorax/000005.dcm,No Pneumothorax,0.025543,0.016736,0.073191,0.003741
+No Pneumothorax/000006.dcm,No Pneumothorax,0.009749,0.008565,0.014532,0.003686
+No Pneumothorax/000007.dcm,No Pneumothorax,0.000376,0.002606,0.000174,4e-06
+No Pneumothorax/000008.dcm,No Pneumothorax,0.00177,0.006722,0.087147,0.000103
+No Pneumothorax/000009.dcm,No Pneumothorax,0.001507,0.012474,0.014748,0.000237
+No Pneumothorax/000011.dcm,No Pneumothorax,0.002166,0.009772,0.000509,0.000463
+No Pneumothorax/000012.dcm,No Pneumothorax,0.003183,0.054377,0.004633,0.00066
+No Pneumothorax/000014.dcm,No Pneumothorax,0.001588,0.011585,0.013339,0.000884
+No Pneumothorax/000015.dcm,No Pneumothorax,0.074747,0.09364,0.062072,0.040429
+No Pneumothorax/000017.dcm,No Pneumothorax,0.038782,0.065734,0.038621,0.007799
+No Pneumothorax/000018.dcm,No Pneumothorax,0.00424,0.015151,0.004309,0.005039
+No Pneumothorax/000019.dcm,No Pneumothorax,0.003896,0.029218,0.00858,0.000481
+No Pneumothorax/000020.dcm,No Pneumothorax,0.00447,0.021207,0.00083,0.003136
+No Pneumothorax/000022.dcm,No Pneumothorax,0.001972,0.008575,0.000858,0.000688
+No Pneumothorax/000023.dcm,No Pneumothorax,0.009187,0.025924,0.017272,0.008141
+No Pneumothorax/000024.dcm,No Pneumothorax,0.00959,0.009165,0.01223,0.010433
+No Pneumothorax/000025.dcm,No Pneumothorax,0.023935,0.014655,0.011921,0.015284
+No Pneumothorax/000026.dcm,No Pneumothorax,0.000536,0.001339,0.000183,1e-05
+No Pneumothorax/000027.dcm,No Pneumothorax,0.012041,0.086621,0.052497,0.032188
+No Pneumothorax/000028.dcm,No Pneumothorax,0.027188,0.013351,0.266572,0.003236
+No Pneumothorax/000030.dcm,No Pneumothorax,0.072251,0.0251,0.116511,0.023781
+No Pneumothorax/000031.dcm,No Pneumothorax,0.001535,0.002356,0.000267,0.00017
+No Pneumothorax/000032.dcm,No Pneumothorax,0.028762,0.017914,0.062049,0.006401
+No Pneumothorax/000033.dcm,No Pneumothorax,0.009539,0.004963,0.005712,0.001251
+No Pneumothorax/000034.dcm,No Pneumothorax,0.000473,0.086958,0.000254,0.000147
+No Pneumothorax/000035.dcm,No Pneumothorax,0.012071,0.08031,0.019753,0.008846
+No Pneumothorax/000036.dcm,No Pneumothorax,0.006575,0.015323,0.03574,0.001066
+No Pneumothorax/000037.dcm,No Pneumothorax,0.022108,0.010785,0.136846,0.005149
+No Pneumothorax/000039.dcm,No Pneumothorax,0.04019,0.10609,0.184663,0.101844
+No Pneumothorax/000040.dcm,No Pneumothorax,0.001777,0.00658,0.000521,3.5e-05
+No Pneumothorax/000041.dcm,No Pneumothorax,0.001303,0.005157,0.00043,0.000573
+No Pneumothorax/000044.dcm,No Pneumothorax,0.02982,0.198543,0.049368,0.018133
+No Pneumothorax/000045.dcm,No Pneumothorax,0.005331,0.027443,0.001616,0.000993
+No Pneumothorax/000047.dcm,No Pneumothorax,0.013924,0.017298,0.021123,0.012445
+No Pneumothorax/000048.dcm,No Pneumothorax,0.024216,0.084604,0.047812,0.007521
+No Pneumothorax/000051.dcm,No Pneumothorax,0.033046,0.020976,0.040907,0.00742
+No Pneumothorax/000053.dcm,No Pneumothorax,0.015929,0.009076,0.008722,0.001462
+No Pneumothorax/000054.dcm,No Pneumothorax,0.125427,0.106576,0.343636,0.005019
+No Pneumothorax/000056.dcm,No Pneumothorax,0.015118,0.055882,0.012968,0.024076
+No Pneumothorax/000057.dcm,No Pneumothorax,0.064814,0.122411,0.104355,0.004739
+No Pneumothorax/000059.dcm,No Pneumothorax,0.030202,0.019479,0.049935,0.004922
+No Pneumothorax/000062.dcm,No Pneumothorax,0.012397,0.079542,0.218488,0.003557
+No Pneumothorax/000063.dcm,No Pneumothorax,0.003059,0.005846,0.000677,0.000998
+No Pneumothorax/000066.dcm,No Pneumothorax,0.003672,0.011605,0.002082,0.008583
+No Pneumothorax/000067.dcm,No Pneumothorax,0.039299,0.011154,0.088417,0.002427
+No Pneumothorax/000069.dcm,No Pneumothorax,0.007382,0.017262,0.003051,0.004514
+No Pneumothorax/000071.dcm,No Pneumothorax,0.014989,0.010567,0.00268,0.000607
+No Pneumothorax/000072.dcm,No Pneumothorax,0.021695,0.008288,0.065994,0.001277
+No Pneumothorax/000073.dcm,No Pneumothorax,0.024152,0.044051,0.017534,0.02125
+No Pneumothorax/000074.dcm,No Pneumothorax,0.000889,0.110769,0.000308,0.000635
+No Pneumothorax/000075.dcm,No Pneumothorax,0.04473,0.0237,0.018645,0.001037
+No Pneumothorax/000077.dcm,No Pneumothorax,0.001729,0.006251,0.008412,0.000571
+No Pneumothorax/000078.dcm,No Pneumothorax,0.031792,0.022814,0.003472,0.018191
+No Pneumothorax/000079.dcm,No Pneumothorax,0.001783,0.004459,0.000577,0.000428
+No Pneumothorax/000080.dcm,No Pneumothorax,0.027432,0.014605,0.132448,0.002651
+No Pneumothorax/000082.dcm,No Pneumothorax,0.001985,0.001929,4e-06,0.000645
+No Pneumothorax/000085.dcm,No Pneumothorax,0.032745,0.01447,0.006553,0.011681
+No Pneumothorax/000087.dcm,No Pneumothorax,0.03295,0.109649,0.002356,0.002615
+No Pneumothorax/000088.dcm,No Pneumothorax,0.004268,0.00627,0.000785,0.009849
+No Pneumothorax/000089.dcm,No Pneumothorax,0.022626,0.022813,0.06613,0.006583
+No Pneumothorax/000090.dcm,No Pneumothorax,0.014564,0.092688,0.019222,0.009996
+No Pneumothorax/000091.dcm,No Pneumothorax,0.002628,0.00467,0.002211,0.001004
+No Pneumothorax/000092.dcm,No Pneumothorax,0.001658,0.008349,0.000353,0.000582
+No Pneumothorax/000093.dcm,No Pneumothorax,0.027472,0.020983,0.005279,0.009737
+No Pneumothorax/000094.dcm,No Pneumothorax,0.023047,0.023986,0.035154,0.000275
+No Pneumothorax/000095.dcm,No Pneumothorax,0.00253,0.027919,0.003559,0.000181
+No Pneumothorax/000096.dcm,No Pneumothorax,0.008537,0.015511,0.001665,0.002939
+No Pneumothorax/000097.dcm,No Pneumothorax,0.001021,0.006762,8.3e-05,0.000389
+No Pneumothorax/000098.dcm,No Pneumothorax,0.043778,0.060789,0.023461,0.002685
+No Pneumothorax/000099.dcm,No Pneumothorax,0.000272,0.001375,0.000422,0.001006
+No Pneumothorax/000100.dcm,No Pneumothorax,0.038103,0.053182,0.007483,0.001933
+No Pneumothorax/000102.dcm,No Pneumothorax,0.008302,0.020954,0.000815,0.001539
+No Pneumothorax/000103.dcm,No Pneumothorax,0.008052,0.041993,0.008484,0.002277
+No Pneumothorax/000104.dcm,No Pneumothorax,0.011079,0.003646,0.001848,8.1e-05
+No Pneumothorax/000105.dcm,No Pneumothorax,0.002656,0.01451,0.002209,0.000455
+No Pneumothorax/000108.dcm,No Pneumothorax,0.073394,0.049472,0.046093,0.002552
+No Pneumothorax/000109.dcm,No Pneumothorax,0.001312,0.016471,0.003561,0.000352
+No Pneumothorax/000110.dcm,No Pneumothorax,0.050006,0.051417,0.060563,0.004062
+No Pneumothorax/000112.dcm,No Pneumothorax,0.002026,0.017994,0.000128,0.000142
+No Pneumothorax/000113.dcm,No Pneumothorax,0.052321,0.085619,0.00662,0.015134
+No Pneumothorax/000114.dcm,No Pneumothorax,0.06191,0.064516,0.139759,0.038179
+No Pneumothorax/000115.dcm,No Pneumothorax,0.053991,0.048541,0.021572,0.06825
+No Pneumothorax/000116.dcm,No Pneumothorax,0.030266,0.010357,0.056658,0.002855
+No Pneumothorax/000118.dcm,No Pneumothorax,0.066494,0.065565,0.04503,0.034658
+No Pneumothorax/000119.dcm,No Pneumothorax,0.009936,0.008327,0.00959,0.003341
+No Pneumothorax/000121.dcm,No Pneumothorax,0.008301,0.011176,0.067681,0.002163
+No Pneumothorax/000122.dcm,No Pneumothorax,0.003531,0.005242,0.006275,0.000473
+No Pneumothorax/000123.dcm,No Pneumothorax,0.00559,0.01383,0.000551,0.004079
+No Pneumothorax/000124.dcm,No Pneumothorax,0.013251,0.022917,0.008443,0.015104
+No Pneumothorax/000127.dcm,No Pneumothorax,0.0021,0.003466,0.000114,4.6e-05
+No Pneumothorax/000128.dcm,No Pneumothorax,0.010306,0.067108,0.001808,0.000625
+No Pneumothorax/000131.dcm,No Pneumothorax,0.002011,0.005523,0.001262,0.00079
+No Pneumothorax/000132.dcm,No Pneumothorax,0.00857,0.006719,0.069635,0.003005
+No Pneumothorax/000133.dcm,No Pneumothorax,0.001679,0.004085,0.001687,9.1e-05
+No Pneumothorax/000135.dcm,No Pneumothorax,0.00398,0.011612,0.004635,0.000834
+No Pneumothorax/000136.dcm,No Pneumothorax,0.010761,0.027531,0.005782,0.006117
+No Pneumothorax/000137.dcm,No Pneumothorax,0.002471,0.006146,0.000787,0.002297
+No Pneumothorax/000138.dcm,No Pneumothorax,0.001222,0.004898,0.003403,7.8e-05
+No Pneumothorax/000141.dcm,No Pneumothorax,0.07014,0.021672,0.058363,0.00891
+No Pneumothorax/000143.dcm,No Pneumothorax,0.015541,0.133206,0.075841,0.056669
+No Pneumothorax/000146.dcm,No Pneumothorax,0.006264,0.013711,0.022048,0.002089
+No Pneumothorax/000147.dcm,No Pneumothorax,0.010427,0.051583,0.003882,0.017213
+No Pneumothorax/000148.dcm,No Pneumothorax,0.00138,0.002391,7.6e-05,3.8e-05
+No Pneumothorax/000149.dcm,No Pneumothorax,0.00143,0.007178,0.001172,0.002764
+No Pneumothorax/000150.dcm,No Pneumothorax,0.032016,0.020751,0.066097,0.00879
+No Pneumothorax/000156.dcm,No Pneumothorax,0.012123,0.023928,0.000937,0.0265
+No Pneumothorax/000159.dcm,No Pneumothorax,0.011997,0.058983,0.04857,0.000383
+No Pneumothorax/000160.dcm,No Pneumothorax,0.003213,0.008885,0.002467,0.001652
+No Pneumothorax/000162.dcm,No Pneumothorax,0.003499,0.007691,0.096363,0.001497
+No Pneumothorax/000163.dcm,No Pneumothorax,0.021141,0.093734,0.03235,0.020722
+No Pneumothorax/000164.dcm,No Pneumothorax,0.034614,0.050298,0.027075,0.017015
+No Pneumothorax/000165.dcm,No Pneumothorax,0.056272,0.032994,0.034725,0.011352
+No Pneumothorax/000166.dcm,No Pneumothorax,0.015485,0.00802,0.024711,0.001885
+No Pneumothorax/000167.dcm,No Pneumothorax,0.003864,0.009542,0.000168,0.000283
+No Pneumothorax/000168.dcm,No Pneumothorax,0.016816,0.050203,0.034245,0.012612
+No Pneumothorax/000169.dcm,No Pneumothorax,0.015649,0.116543,0.001385,0.001302
+No Pneumothorax/000171.dcm,No Pneumothorax,0.005837,0.021873,0.000805,0.004366
+No Pneumothorax/000172.dcm,No Pneumothorax,0.004655,0.002981,0.000166,0.003203
+No Pneumothorax/000174.dcm,No Pneumothorax,0.0147,0.013984,0.000892,0.000518
+No Pneumothorax/000175.dcm,No Pneumothorax,0.006565,0.014169,0.009473,0.002428
+No Pneumothorax/000176.dcm,No Pneumothorax,0.005436,0.010375,0.00264,0.001942
+No Pneumothorax/000177.dcm,No Pneumothorax,0.022534,0.03273,0.005211,0.006038
+No Pneumothorax/000178.dcm,No Pneumothorax,0.004692,0.006664,0.002675,0.001952
+No Pneumothorax/000179.dcm,No Pneumothorax,0.055593,0.043401,0.131546,0.00832
+No Pneumothorax/000180.dcm,No Pneumothorax,0.014297,0.016663,0.085422,0.003481
+No Pneumothorax/000182.dcm,No Pneumothorax,0.001961,0.002254,0.000128,0.000105
+No Pneumothorax/000183.dcm,No Pneumothorax,0.035361,0.030929,0.238137,0.009391
+No Pneumothorax/000184.dcm,No Pneumothorax,0.006308,0.043838,0.055875,0.002339
+No Pneumothorax/000186.dcm,No Pneumothorax,0.020413,0.006244,0.001237,0.000553
+No Pneumothorax/000188.dcm,No Pneumothorax,0.024271,0.01025,0.045752,0.004862
+No Pneumothorax/000190.dcm,No Pneumothorax,0.001844,0.002399,0.000648,3.7e-05
+No Pneumothorax/000192.dcm,No Pneumothorax,0.049137,0.08665,0.014595,0.037097
+No Pneumothorax/000193.dcm,No Pneumothorax,0.034308,0.035381,0.160507,0.015385
+No Pneumothorax/000194.dcm,No Pneumothorax,0.000807,0.006992,0.005252,0.00033
+No Pneumothorax/000195.dcm,No Pneumothorax,0.010732,0.004667,0.008934,0.002574
+No Pneumothorax/000196.dcm,No Pneumothorax,0.00275,0.006224,0.000973,0.001266
+No Pneumothorax/000197.dcm,No Pneumothorax,0.004999,0.003683,0.011548,0.000894
+No Pneumothorax/000198.dcm,No Pneumothorax,0.00174,0.002966,4.4e-05,7.6e-05
+No Pneumothorax/000202.dcm,No Pneumothorax,0.017976,0.006425,0.00152,0.001778
+No Pneumothorax/000203.dcm,No Pneumothorax,0.01464,0.003469,0.00663,6e-05
+No Pneumothorax/000204.dcm,No Pneumothorax,0.026314,0.011056,0.048552,0.001737
+No Pneumothorax/000205.dcm,No Pneumothorax,0.000818,0.002459,3e-06,6e-05
+No Pneumothorax/000206.dcm,No Pneumothorax,0.000852,0.003154,0.000812,2.9e-05
+No Pneumothorax/000207.dcm,No Pneumothorax,0.006887,0.015215,0.004035,0.001109
+No Pneumothorax/000208.dcm,No Pneumothorax,0.012434,0.010727,0.109485,0.000788
+No Pneumothorax/000209.dcm,No Pneumothorax,0.032854,0.010031,0.03159,0.02863
+No Pneumothorax/000210.dcm,No Pneumothorax,0.069647,0.072792,0.096554,0.036651
+No Pneumothorax/000211.dcm,No Pneumothorax,0.023094,0.030744,0.071979,0.01637
+No Pneumothorax/000212.dcm,No Pneumothorax,0.005892,0.12099,0.001555,0.002366
+No Pneumothorax/000215.dcm,No Pneumothorax,0.031285,0.114215,0.043095,0.003615
+No Pneumothorax/000216.dcm,No Pneumothorax,0.043938,0.016425,0.007178,0.00507
+No Pneumothorax/000218.dcm,No Pneumothorax,0.032214,0.02546,0.253529,0.013589
+No Pneumothorax/000220.dcm,No Pneumothorax,0.030517,0.103677,0.010378,0.035781
+No Pneumothorax/000221.dcm,No Pneumothorax,0.00162,0.003521,0.029696,0.000442
+No Pneumothorax/000224.dcm,No Pneumothorax,0.01299,0.031896,0.008249,0.0037
+No Pneumothorax/000225.dcm,No Pneumothorax,0.029747,0.046586,0.143207,0.008298
+No Pneumothorax/000226.dcm,No Pneumothorax,0.04884,0.030152,0.009458,0.002965
+No Pneumothorax/000228.dcm,No Pneumothorax,0.012045,0.120012,0.004243,0.014498
+No Pneumothorax/000229.dcm,No Pneumothorax,0.002696,0.012974,0.0027,0.002513
+No Pneumothorax/000230.dcm,No Pneumothorax,0.015487,0.022686,0.038164,0.020724
+No Pneumothorax/000231.dcm,No Pneumothorax,0.004156,0.020339,0.003567,0.000856
+No Pneumothorax/000234.dcm,No Pneumothorax,0.000574,0.043644,9.6e-05,0.000172
+No Pneumothorax/000235.dcm,No Pneumothorax,0.014829,0.014951,0.001915,0.013622
+No Pneumothorax/000237.dcm,No Pneumothorax,0.027054,0.01602,0.034824,0.001526
+No Pneumothorax/000239.dcm,No Pneumothorax,0.003293,0.024692,0.005846,0.001686
+No Pneumothorax/000241.dcm,No Pneumothorax,0.011045,0.013575,0.059806,0.018535
+No Pneumothorax/000242.dcm,No Pneumothorax,0.00142,0.013714,0.000218,0.003171
+No Pneumothorax/000243.dcm,No Pneumothorax,0.05009,0.075574,0.036914,0.063644
+No Pneumothorax/000244.dcm,No Pneumothorax,0.025778,0.008555,0.016949,0.00374
+No Pneumothorax/000245.dcm,No Pneumothorax,0.001076,0.004865,0.002357,0.000912
+No Pneumothorax/000246.dcm,No Pneumothorax,0.001731,0.007726,0.000339,0.001087
+No Pneumothorax/000248.dcm,No Pneumothorax,0.028566,0.053876,0.029584,0.001777
+No Pneumothorax/000249.dcm,No Pneumothorax,0.00461,0.012987,0.000643,0.004404
+Pneumothorax/000001.dcm,Pneumothorax,0.0636,0.040741,0.023678,0.007995
+Pneumothorax/000003.dcm,Pneumothorax,0.050066,0.031001,0.096759,0.03679
+Pneumothorax/000004.dcm,Pneumothorax,0.01784,0.031396,0.051634,0.013695
+Pneumothorax/000010.dcm,Pneumothorax,0.037017,0.137534,0.039606,0.003593
+Pneumothorax/000013.dcm,Pneumothorax,0.008503,0.00553,0.000225,0.000327
+Pneumothorax/000016.dcm,Pneumothorax,0.021115,0.045455,0.064767,0.042361
+Pneumothorax/000021.dcm,Pneumothorax,0.053082,0.072688,0.060394,0.003136
+Pneumothorax/000029.dcm,Pneumothorax,0.08199,0.030442,0.014785,0.008764
+Pneumothorax/000038.dcm,Pneumothorax,0.033007,0.038689,0.001848,0.019644
+Pneumothorax/000042.dcm,Pneumothorax,0.012264,0.128349,0.000651,0.000278
+Pneumothorax/000043.dcm,Pneumothorax,0.051342,0.020165,0.010219,0.041184
+Pneumothorax/000046.dcm,Pneumothorax,0.022136,0.040623,0.007491,0.016255
+Pneumothorax/000049.dcm,Pneumothorax,0.043647,0.1221,0.021967,0.005391
+Pneumothorax/000050.dcm,Pneumothorax,0.004444,0.021533,4.6e-05,0.003446
+Pneumothorax/000052.dcm,Pneumothorax,0.022453,0.011341,0.009032,0.020093
+Pneumothorax/000055.dcm,Pneumothorax,0.017692,0.027007,0.015801,0.011872
+Pneumothorax/000058.dcm,Pneumothorax,0.029533,0.143304,0.078425,0.062225
+Pneumothorax/000060.dcm,Pneumothorax,0.044956,0.08956,0.070198,0.001199
+Pneumothorax/000061.dcm,Pneumothorax,0.039172,0.171646,0.050014,0.005897
+Pneumothorax/000064.dcm,Pneumothorax,0.05176,0.033936,0.067238,0.013706
+Pneumothorax/000065.dcm,Pneumothorax,0.005992,0.037501,0.001969,0.005012
+Pneumothorax/000068.dcm,Pneumothorax,0.019899,0.021976,0.438335,0.028761
+Pneumothorax/000070.dcm,Pneumothorax,0.03362,0.080155,0.061721,0.015978
+Pneumothorax/000076.dcm,Pneumothorax,0.04717,0.067507,0.142113,0.003078
+Pneumothorax/000081.dcm,Pneumothorax,0.059534,0.021627,0.082935,0.004409
+Pneumothorax/000083.dcm,Pneumothorax,0.044908,0.011774,0.00536,0.00099
+Pneumothorax/000084.dcm,Pneumothorax,0.005192,0.032638,0.000807,0.000793
+Pneumothorax/000086.dcm,Pneumothorax,0.068884,0.082626,0.185439,0.054516
+Pneumothorax/000101.dcm,Pneumothorax,0.040733,0.008155,0.120975,0.005546
+Pneumothorax/000106.dcm,Pneumothorax,0.016585,0.135193,0.270044,0.01897
+Pneumothorax/000107.dcm,Pneumothorax,0.031047,0.128461,0.006402,0.018635
+Pneumothorax/000111.dcm,Pneumothorax,0.04098,0.094741,0.160521,0.069366
+Pneumothorax/000117.dcm,Pneumothorax,0.031173,0.037501,0.016386,0.00922
+Pneumothorax/000120.dcm,Pneumothorax,0.088344,0.096698,0.016185,0.074644
+Pneumothorax/000125.dcm,Pneumothorax,0.030684,0.010068,0.033548,0.003094
+Pneumothorax/000126.dcm,Pneumothorax,0.075539,0.027416,0.102653,0.009249
+Pneumothorax/000129.dcm,Pneumothorax,0.040045,0.009521,0.023366,0.000619
+Pneumothorax/000130.dcm,Pneumothorax,0.041528,0.236786,0.068637,0.053909
+Pneumothorax/000134.dcm,Pneumothorax,0.027281,0.115832,0.004004,0.000496
+Pneumothorax/000139.dcm,Pneumothorax,0.031621,0.033009,0.012205,0.009716
+Pneumothorax/000140.dcm,Pneumothorax,0.009002,0.069904,0.148418,0.012814
+Pneumothorax/000142.dcm,Pneumothorax,0.059147,0.100281,0.034387,0.009106
+Pneumothorax/000144.dcm,Pneumothorax,0.030276,0.014458,0.085028,0.010484
+Pneumothorax/000145.dcm,Pneumothorax,0.027232,0.022324,0.079285,0.001403
+Pneumothorax/000151.dcm,Pneumothorax,0.017463,0.132727,0.001426,0.000307
+Pneumothorax/000152.dcm,Pneumothorax,0.028458,0.041535,0.499405,0.012339
+Pneumothorax/000153.dcm,Pneumothorax,0.031391,0.018227,0.040231,0.011689
+Pneumothorax/000154.dcm,Pneumothorax,0.038889,0.061969,0.031446,0.013079
+Pneumothorax/000155.dcm,Pneumothorax,0.034771,0.077833,0.08015,0.038382
+Pneumothorax/000157.dcm,Pneumothorax,0.005785,0.141652,0.000998,0.011544
+Pneumothorax/000158.dcm,Pneumothorax,0.002994,0.009122,0.029211,0.001799
+Pneumothorax/000161.dcm,Pneumothorax,0.04478,0.008319,0.071075,0.005771
+Pneumothorax/000170.dcm,Pneumothorax,0.022188,0.135335,0.008239,0.000176
+Pneumothorax/000173.dcm,Pneumothorax,0.051879,0.031763,0.030302,0.003601
+Pneumothorax/000181.dcm,Pneumothorax,0.01975,0.064893,0.037459,0.021217
+Pneumothorax/000185.dcm,Pneumothorax,0.008269,0.028539,0.029601,0.001506
+Pneumothorax/000187.dcm,Pneumothorax,0.026631,0.011691,0.045895,0.009348
+Pneumothorax/000189.dcm,Pneumothorax,0.020191,0.012337,0.209186,0.008873
+Pneumothorax/000191.dcm,Pneumothorax,0.017332,0.022912,0.006026,0.013735
+Pneumothorax/000199.dcm,Pneumothorax,0.025128,0.060838,0.021389,0.037577
+Pneumothorax/000200.dcm,Pneumothorax,0.018151,0.008054,0.012545,0.002227
+Pneumothorax/000201.dcm,Pneumothorax,0.069685,0.043404,0.054483,0.008404
+Pneumothorax/000213.dcm,Pneumothorax,0.021346,0.064663,0.01951,0.004542
+Pneumothorax/000214.dcm,Pneumothorax,0.03275,0.092739,0.005979,0.066934
+Pneumothorax/000217.dcm,Pneumothorax,0.05404,0.102215,0.046153,0.010462
+Pneumothorax/000219.dcm,Pneumothorax,0.038622,0.090301,0.03975,0.030547
+Pneumothorax/000222.dcm,Pneumothorax,0.046645,0.121875,0.103153,0.015027
+Pneumothorax/000223.dcm,Pneumothorax,0.051967,0.013772,0.027392,0.008855
+Pneumothorax/000227.dcm,Pneumothorax,0.018323,0.128199,0.144507,0.080095
+Pneumothorax/000232.dcm,Pneumothorax,0.016268,0.013348,0.032714,0.063548
+Pneumothorax/000233.dcm,Pneumothorax,0.034889,0.117581,0.001073,0.000347
+Pneumothorax/000236.dcm,Pneumothorax,0.022105,0.122307,0.043113,0.004022
+Pneumothorax/000238.dcm,Pneumothorax,0.021713,0.142909,0.049458,0.104332
+Pneumothorax/000240.dcm,Pneumothorax,0.036322,0.042912,0.014025,0.020093
+Pneumothorax/000247.dcm,Pneumothorax,0.071743,0.071408,0.098538,0.009992

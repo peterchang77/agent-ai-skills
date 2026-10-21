@@ -32,7 +32,7 @@ A practical course for researchers ready to put AI coding agents to work on empi
 
     An end-to-end empirical case study structured into modular, restorable exercises.
 
-    [:octicons-arrow-right-24: Start demo track](demo/index.md)
+    [:octicons-arrow-right-24: Start demo track](demo/index.md) · [Imaging version](demo-imaging/index.md)
 
 -   :material-map-marker-path: **Guided tutorial**
 
@@ -59,7 +59,7 @@ All tracks utilize the same core modules. Each concept page links directly to co
 | If your immediate priority is... | Recommended path |
 |---|---|
 | Building a comprehensive understanding from scratch | [Guided tutorial](tutorial/index.md) |
-| Running code immediately with an existing agent | [Demo track](demo/index.md) |
+| Running code immediately with an existing agent | [Demo track](demo/index.md) (tabular data) or [Imaging demo track](demo-imaging/index.md) (chest radiographs and AI evaluation) |
 | Reviewing architecture, safety, and operational patterns | [Concept track](concepts/index.md) |
 | Ensuring compliance before handling proprietary data | [Privacy and data handling](concept:privacy) and [Secrets](concept:secrets) |
 | Solving a specific data or coding task | The relevant [demo exercise](demo/index.md), followed by its supporting concepts |
@@ -67,7 +67,9 @@ All tracks utilize the same core modules. Each concept page links directly to co
 
 ## Benchmark dataset
 
-The demonstrations use a **synthetic** multi-site clinical dataset engineered with known baseline characteristics and planted data artifacts. This provides an objective ground truth, enabling participants to verify agent calculations with certainty. The data contains no real patient health information. Each exercise provides a generalized approach suitable for any research domain alongside a concrete **Workshop example** based on the synthetic kit. Scenario preferences are preserved across pages.
+The demonstrations use a **synthetic** multi-site clinical dataset engineered with known baseline characteristics and planted data artifacts. This provides an objective ground truth, enabling participants to verify agent calculations with certainty. The data contains no real patient health information. Each exercise provides a generalized approach suitable for any research domain alongside a concrete **Workshop example** based on the synthetic kit.
+
+A parallel [imaging demo track](demo-imaging/index.md) covers the same workflow for radiology audiences. It uses a small public sample of real chest radiographs, with synthetic problems added, to evaluate an open-source AI tool.
 
 ## Also in this repository
 

@@ -26,6 +26,9 @@ Profiling is intentionally **decoupled from data cleaning**. Many apparent anoma
 | **Unit discordance** | Laboratory values recorded in both mg/dL and mmol/L | Introduces bimodal artifactual distributions |
 | **Mixed date formats** | Interleaved `YYYY-MM-DD` and `MM/DD/YYYY` strings | Triggers parsing failures or incorrect temporal sorting |
 | **Structured missingness** | Unpopulated fields across specific visit types | Violates Missing Completely at Random (MCAR) assumptions |
+| **Content that contradicts its metadata** | A file whose header says one thing and whose contents show another (e.g. an image stored upside down or mirrored) | Silently corrupts any measurement taken from the content |
+
+Not all data is a table. For files such as images, the same audit applies to two layers: the **metadata** (headers and tags, which code can check exhaustively) and the **content** itself (which code can check only partly, so a person may need to look). Say which layer each finding comes from.
 
 ## General methodology
 

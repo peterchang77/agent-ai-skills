@@ -48,12 +48,16 @@ for d in sorted((CONTENT / "beats").iterdir()):
 tracks = {}
 for p in sorted((CONTENT / "tracks").glob("*.md")):
     fm, body = load(p); tracks[fm.get("id")] = (fm, body)
+_order = {"concepts": 0, "demo": 1, "tutorial": 2}   # nav order: concepts, demo, scenario demo tracks, tutorial
+tracks = dict(sorted(tracks.items(), key=lambda kv: (_order.get(kv[1][0].get("track"), 9), bool(kv[1][0].get("scenario")), kv[0])))
 primer = load(CONTENT / "setup" / "primer.md")
 setup_scn = {}
 for p in sorted((CONTENT / "setup").glob("*.md")):
     if p.name != "primer.md":
         fm, body = load(p); setup_scn[fm["scenario"]] = (fm, body)
 scenarios = sorted(setup_scn, key=lambda s: (s != "toy", s))
+own_track = {s for s in scenarios if setup_scn[s][0].get("own_track")}   # shown only in their own track, not as a tab in the shared tracks
+active = [s for s in scenarios if s not in own_track]                    # scenarios whose tabs appear in the shared tracks
 label = lambda s: setup_scn[s][0].get("label", s)
 
 # ---------------- derived + validation ----------------
@@ -96,10 +100,14 @@ def steps_of(fm):
     return [(None, fm.get("steps", []))]
 for tid, (fm, _) in tracks.items():
     if fm.get("track") not in ("concepts", "demo", "tutorial"): errors.append(f"track {tid}: bad 'track'")
+    if fm.get("scenario") and fm["scenario"] not in setup_scn: errors.append(f"track {tid}: unknown scenario {fm['scenario']}")
+    if fm.get("scenario") and fm.get("track") not in ("demo", "tutorial"): errors.append(f"track {tid}: 'scenario' is only supported on demo and tutorial tracks")
     for _, steps in steps_of(fm):
         for s in steps:
             if "concept" in s and s["concept"] not in concepts: errors.append(f"track {tid}: unknown concept {s['concept']}")
             if "beat" in s and s["beat"] not in beats: errors.append(f"track {tid}: unknown beat {s['beat']}")
+            if "beat" in s and fm.get("scenario") and (fm["scenario"], s["beat"]) not in examples:
+                errors.append(f"track {tid}: beat {s['beat']} has no '{fm['scenario']}' example")
     if fm.get("track") in ("demo", "tutorial"):   # every beat's prerequisites must appear earlier in the demo track
         seen = []
         for _, steps in steps_of(fm):
@@ -107,7 +115,7 @@ for tid, (fm, _) in tracks.items():
                 if "beat" in s:
                     for n in beats[s["beat"]][0].get("needs", []) or []:
                         if n not in seen: errors.append(f"track {tid}: {s['beat']} needs {n} earlier")
-                    seen.append(s["beat"])
+                    seen += [s["beat"]] + list(beats[s["beat"]][0].get("provides") or [])   # `provides`: this beat stands in for a toy-named prerequisite
 if errors:
     print("\n".join(errors)); sys.exit(1)
 tr = [t for t in tracks.values() if t[0].get("track") == "concepts"]
@@ -121,8 +129,20 @@ for b in beats:
 
 # ---------------- rendering helpers ----------------
 concept_file = lambda c: Path("concepts") / f"{c}.md"
-beat_file = lambda r: Path("demo") / f"{r}.md"
-SETUP_FILE = Path("demo") / "setup.md"
+CUR = dict(dir="demo", beats=set(), scenarios=None)   # set per track: page directory, beats in this track, scenarios to show
+# A beat's "home" page is in demo/ if the shared demo track has it, otherwise in the first scenario track that does.
+home_dir = {}
+for _t in sorted(tracks.values(), key=lambda t: bool(t[0].get("scenario"))):
+    if _t[0].get("track") == "demo":
+        for _, _st in steps_of(_t[0]):
+            for _s in _st:
+                if "beat" in _s: home_dir.setdefault(_s["beat"], f"demo-{_t[0]['scenario']}" if _t[0].get("scenario") else "demo")
+def need_target(n):
+    """In a scenario track a prerequisite may be satisfied by a beat that `provides` it (e.g. evaluate-detector provides analyze-pilot)."""
+    if not CUR["beats"] or n in CUR["beats"]: return n
+    return next((r for r in CUR["beats"] if n in (beats[r][0].get("provides") or [])), n)
+beat_file = lambda r: Path(CUR["dir"] if r in CUR["beats"] else home_dir.get(r, "demo")) / f"{r}.md"
+SETUP_FILE_FN = lambda: Path(CUR["dir"]) / "setup.md"
 rel = lambda frm, to: Path(os.path.relpath(to, frm.parent)).as_posix()
 
 STRUCTURED = re.compile(r"^\s*(\d+[.)]|[-*•])\s|\n\s*\n|^\s{2,}\S|[│├└┌▶─]", re.M)
@@ -143,7 +163,7 @@ def resolve(text: str, here: Path) -> str:
     text = re.sub(r"\]\(image:([\w-]+)\)", lambda m: f"]({rel(here, Path('images/figures') / (m[1] + '.jpg'))})", text)
     text = re.sub(r"\]\(concept:([\w-]+)\)", lambda m: f"]({rel(here, concept_file(m[1]))})", text)
     text = re.sub(r"\]\(beat:([\w-]+)\)", lambda m: f"]({rel(here, beat_file(m[1]))})", text)
-    text = re.sub(r"\]\(setup:([\w-]*)\)", lambda m: f"]({rel(here, SETUP_FILE)}{'#' + m[1] if m[1] else ''})", text)
+    text = re.sub(r"\]\(setup:([\w-]*)\)", lambda m: f"]({rel(here, SETUP_FILE_FN())}{'#' + m[1] if m[1] else ''})", text)
     return re.sub(r"\]\(guide:([\w-]+)\)", lambda m: f"]({REPO_URL}{m[1]}/)", text)
 
 indent = lambda t, n=4: "\n".join(" " * n + l if l.strip() else "" for l in t.strip().splitlines())
@@ -161,7 +181,7 @@ def example_block(sc, role, here, full=True):
     if not full:
         inner = f"```text\n{one_line(first)}\n```"
     else:
-        head = (f"**Start from:** {fm['starts_from']} ([how to restore]({rel(here, SETUP_FILE)}#restore-a-starting-point))  \n"
+        head = (f"**Start from:** {fm['starts_from']} ([how to restore]({rel(here, SETUP_FILE_FN())}#restore-a-starting-point))  \n"
                 f"**Produces:** {fm['produces']}\n\n")
         inner = head + prompt_blocks(fm["prompt"]) + body
     return f'!!! example "Workshop example · {label(sc)}"\n\n{indent(inner)}'
@@ -185,7 +205,7 @@ def badge(cls, text=None):
 KIND = {"full": "Full step", "mini": "Quick step", "detour": "Optional detour", "advanced": "Advanced"}
 def render_beat(r, here):
     fm, body = beats[r]
-    ex = {label(s): example_block(s, r, here) for s in scenarios if (s, r) in examples}
+    ex = {label(s): example_block(s, r, here) for s in CUR["scenarios"] if (s, r) in examples}
     meta = f'<p class="wk-meta">{badge(fm["kind"])} &nbsp;about {fm["time"]}</p>'
     page = body.replace("<!-- example -->", tabs(ex))
     out = [f"# {fm['title']}", "", meta, "", resolve(page, here), "", "## Concepts behind this", ""]
@@ -193,13 +213,13 @@ def render_beat(r, here):
         cf = concepts[c][0]
         out.append(f"- **{short(cf)}.** {cf['blurb']} [Go deeper →]({rel(here, concept_file(c))})")
     if fm.get("needs"):
-        out += ["", "**Builds on:** " + ", ".join(f"[{beats[n][0]['title']}]({rel(here, beat_file(n))})" for n in fm["needs"])]
+        out += ["", "**Builds on:** " + ", ".join(f"[{beats[need_target(n)][0]['title']}]({rel(here, beat_file(need_target(n)))})" for n in fm["needs"])]
     return "\n".join(out) + "\n"
 
 def render_setup(here):
     fm, body = primer
     out = [f"# {fm['title']}", "", resolve(body, here), "", "## Your scenario's data", "",
-           tabs({label(s): setup_scn[s][1] for s in scenarios})]
+           tabs({label(s): setup_scn[s][1] for s in CUR["scenarios"]})]
     return resolve("\n".join(out), here) + "\n"
 
 def render_step(step, here):
@@ -214,7 +234,7 @@ def write(path, text):
     (DOCS / path).parent.mkdir(parents=True, exist_ok=True); (DOCS / path).write_text(text)
 
 # ---------------- generate ----------------
-step_path = lambda s: concept_file(s["concept"]) if "concept" in s else SETUP_FILE if "setup" in s else beat_file(s["beat"])
+step_path = lambda s: concept_file(s["concept"]) if "concept" in s else SETUP_FILE_FN() if "setup" in s else Path(CUR["dir"]) / f"{s['beat']}.md"
 step_type = lambda s: badge("concept", "Concept") if "concept" in s else badge("demo", "Demo") if "beat" in s else badge("setup", "Setup")
 def step_desc(s):
     if "concept" in s: return concepts[s["concept"]][0]["blurb"]
@@ -243,13 +263,18 @@ if DOCS.exists(): shutil.rmtree(DOCS)
 shutil.copytree(ROOT / "assets", DOCS, dirs_exist_ok=True)   # logo, css
 nav = [{"Home": "index.md"}]
 for tid, (fm, body) in tracks.items():
-    kind = fm["track"]; index = Path(kind) / "index.md"
+    kind = fm["track"]; scn = fm.get("scenario")
+    # Scenario tracks get their own page directory (demo-<scenario>/) and show only that scenario; links to beats inside the track stay inside it.
+    tdir = f"{kind}-{scn}" if scn else kind          # page directory of a scenario track, e.g. tutorial-imaging/
+    CUR.update(dir=tdir if scn else "demo", scenarios=[scn] if scn else active,
+               beats={s["beat"] for _, st in steps_of(fm) for s in st if "beat" in s} if scn else set())
+    index = Path(tdir) / "index.md"
     sec_nav, toc, n = [], [], 0
     for name, steps in steps_of(fm):
         entries, rows = [], []
         for s in steps:
             n += 1
-            f = Path("tutorial") / f"{s.get('concept') or s.get('beat') or 'setup'}.md" if kind == "tutorial" else step_path(s)
+            f = Path(tdir) / f"{s.get('concept') or s.get('beat') or 'setup'}.md" if kind == "tutorial" else step_path(s)
             if kind == "tutorial" and (DOCS / f).exists(): errors.append(f"tutorial: duplicate step {f.stem}")
             write(f, render_step(s, f))
             entries.append({step_title(s): f.as_posix()}); rows.append((n, s, f))
