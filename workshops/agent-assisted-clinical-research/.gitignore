@@ -1,8 +1,0 @@
-# Workshop-generated / protected artifacts
-data/
-outputs/
-.env
-.env.*
-*.log
-!*.md
-!*.json
