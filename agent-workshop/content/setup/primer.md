@@ -38,7 +38,7 @@ cd ~/workshop-demo
 
 On Windows PowerShell the default folder is `$HOME\workshop-demo`.
 
-If you chose a custom folder, use that path wherever this guide references `~/workshop-demo`. Advanced flags can be passed after `bash -s --` (for example, `bash -s -- --dir ~/my-folder --yes --checkpoints --no-agent`); pass `--help` to inspect all options. In PowerShell, run the script as a script block to pass options: `& ([scriptblock]::Create((irm https://peterchang77.github.io/agent-ai-skills/install.ps1))) -Dir C:\work -Yes -Checkpoints -NoAgent`.
+If you chose a custom folder, use that path wherever this guide references `~/workshop-demo`. Advanced flags can be passed after `bash -s --` (for example, `bash -s -- --scenario {{scenario}} --dir ~/my-folder --yes --checkpoints --no-agent`); pass `--help` to inspect all options. In PowerShell, run the script as a script block to pass options: `& ([scriptblock]::Create((irm https://peterchang77.github.io/agent-ai-skills/install.ps1))) -Scenario {{scenario}} -Dir C:\work -Yes -Checkpoints -NoAgent`.
 
 > [!NOTE]
 > Review network scripts before execution: you can inspect the installer source at [install.sh](https://peterchang77.github.io/agent-ai-skills/install.sh) or [install.ps1](https://peterchang77.github.io/agent-ai-skills/install.ps1). The workshop dataset is completely synthetic; before using institutional or clinical data, consult [Privacy and data handling](concept:privacy).

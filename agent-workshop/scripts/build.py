@@ -345,3 +345,18 @@ IMG_TOOLS = ("build_kit.py", "siim_data.py", "make_checkpoints.py")
 publish_zip("imaging-tools", ROOT, only=lambda r: r.parts[:2] == ("scenarios", "imaging") and "__pycache__" not in r.parts and (
     r.parts[2] in IMG_TOOLS or r.parts[2] in ("assets", "reference", "extras")))
 print(f"ok: {len(concepts)} concepts, {len(beats)} beats, {len(examples)} examples, {len(tracks)} tracks -> docs/")
+
+# --- legacy URLs: /demo/... and /tutorial/... moved to the clinical tracks (demo-clinical/, tutorial-clinical/). Static redirect stubs keep old links working. ---
+_STUB = ('<!doctype html><html lang="en"><meta charset="utf-8"><title>Moved</title>'
+         '<link rel="canonical" href="{t}"><meta http-equiv="refresh" content="0; url={t}">'
+         '<script>location.replace("{t}" + location.hash)</script>'
+         '<p>This page moved to <a href="{t}">{t}</a>.</p></html>\n')
+for _kind in ("demo", "tutorial"):
+    _new = DOCS / f"{_kind}-clinical"
+    for _md in sorted(_new.rglob("*.md")):
+        _rel = _md.relative_to(_new).with_suffix("")          # e.g. "clean-data" or "index"
+        _parts = [] if _rel.name == "index" else list(_rel.parts)
+        _stub = DOCS.joinpath(_kind, *_parts, "index.html")
+        _stub.parent.mkdir(parents=True, exist_ok=True)
+        _target = "../" * (len(_parts) + 1) + "/".join([f"{_kind}-clinical"] + _parts) + "/"
+        _stub.write_text(_STUB.format(t=_target))
