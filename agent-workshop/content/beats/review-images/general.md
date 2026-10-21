@@ -29,7 +29,7 @@ a larger view with the header on click, and confirm / reject / unsure buttons th
 Tell me how to open it.
 ```
 
-Open the page, review the flagged images, then use the export button to save `review.csv`. Tell the agent where it is. Do not let the agent decide for you which flags are real.
+Open the page, review the flagged images, then use the export button to save `review.csv`. The export is a browser download, so move it into the project's `out/` folder yourself (see the example), and tell the agent where it is. Do not let the agent decide for you which flags are real.
 
 <!-- example -->
 

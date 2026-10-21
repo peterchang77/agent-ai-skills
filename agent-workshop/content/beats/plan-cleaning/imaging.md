@@ -9,7 +9,12 @@ prompt: |
   When we agree, write the final decisions to notes/cleaning-decisions.md.
 ---
 
-**Files used:** `out/profile.md`, `out/review.csv`.
+**Files used:** `out/profile.md`, `out/review.csv`. Check that `out/review.csv` exists before you start (`ls out/review.csv`). If the agent says it cannot find it, the file is probably still in your browser's download folder: move it into `out/` (see the previous step). If you skipped the review, download the finished file instead:
+
+```text
+Download https://peterchang77.github.io/agent-ai-skills/downloads/imaging-review.csv to out/review.csv (create out/ if needed; if out/review.csv already exists, tell me before replacing it). Fetch only that URL and change nothing else. Then show me the file and how many rows it has.
+```
+
 
 **Mechanical fixes (approve together).** Normalize patient IDs (lower case, no spaces, no `SITE1-` prefix); normalize sex to M/F; fill a blank view position from `SeriesDescription`; set modality to `CR`; invert the six
 MONOCHROME1 images and set the tag to MONOCHROME2; normalize the label spellings; convert the logit score rows with the sigmoid; match score file names to image file names ignoring case; clear the header patient details.

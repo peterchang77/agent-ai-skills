@@ -340,6 +340,8 @@ def publish_zip(name, src, only=None):
     (out / f"{name}.zip.sha256").write_text(h((out / f"{name}.zip").read_bytes()) + "\n")
 publish_zip("toy-kit", ROOT / "scenarios/toy/kit")
 publish_zip("toy-checkpoints", ROOT / "scenarios/toy/checkpoints")
+# Imaging: a ready-made review.csv (the reference human review) for people who skip the viewer step; fetched with one curl command
+(DOCS / "downloads" / "imaging-review.csv").write_bytes((ROOT / "scenarios/imaging/reference/review.csv").read_bytes())
 # Imaging: the kit is 74 MB, so participants build it locally from the public images. The installer downloads these scripts, not the kit.
 IMG_TOOLS = ("build_kit.py", "siim_data.py", "make_checkpoints.py")
 publish_zip("imaging-tools", ROOT, only=lambda r: r.parts[:2] == ("scenarios", "imaging") and "__pycache__" not in r.parts and (
