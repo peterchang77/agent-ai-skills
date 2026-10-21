@@ -26,14 +26,16 @@ uvx --with "mkdocs<2" --with mkdocs-material==9.7.7 mkdocs serve -a 127.0.0.1:80
 ## Tracks
 
 - **Concept track** (`/concepts/…`): the ideas, each ending with links to the demo steps that apply it.
-- **Demo track** (`/demo/…`): one worked example. Each step states the starting state it needs, so it can be done alone.
-- **Guided tutorial** (`/tutorial/…`): one long path that interleaves concept pages and demo steps in a sensible order.
+- **Demo tracks** (`/demo-<scenario>/…`): one worked example per scenario (`demo-clinical`, `demo-imaging`). Each step states the starting state it needs, so it can be done alone.
+- **Guided tutorials** (`/tutorial-<scenario>/…`): one long path per scenario that interleaves concept pages and demo steps in a sensible order.
+
+Scenarios are parallel: each has `content/setup/<scenario>.md`, `content/tracks/demo-<scenario>.md` and `content/tracks/tutorial-<scenario>.md`. The header shows Demo and Tutorial as dropdowns with one entry per scenario. Shared track text lives in `content/snippets/`. The internal id of the clinical scenario is `toy`.
 
 The validator checks every link between concepts, beats and tracks, and that each beat's prerequisites come earlier in the demo track.
 
 ## Adding a scenario
 
-Add `content/setup/<scenario>.md` (with a `label`) and, for each beat, `content/beats/<role>/<scenario>.md` with `starts_from`, `produces`, and `prompt`. Beats missing a scenario simply show no tab for it.
+Add `content/setup/<scenario>.md` (with a `label`, `own_track: true` and `dir`), a demo and a tutorial track page with `scenario:`, and, for each beat in the track, `content/beats/<role>/<scenario>.md` with `starts_from`, `produces`, and `prompt`. A scenario track may only include beats that have an example for it.
 
 ## The toy scenario
 

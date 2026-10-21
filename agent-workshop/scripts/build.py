@@ -59,6 +59,8 @@ scenarios = sorted(setup_scn, key=lambda s: (s != "toy", s))
 own_track = {s for s in scenarios if setup_scn[s][0].get("own_track")}   # shown only in their own track, not as a tab in the shared tracks
 active = [s for s in scenarios if s not in own_track]                    # scenarios whose tabs appear in the shared tracks
 label = lambda s: setup_scn[s][0].get("label", s)
+scn_slug = lambda s: setup_scn[s][0].get("slug", s)                          # page-directory name of a scenario (demo-<slug>/, tutorial-<slug>/)
+track_dir = lambda kind, scn: f"{kind}-{scn_slug(scn)}" if scn else kind
 
 # ---------------- derived + validation ----------------
 for cid, (fm, _) in concepts.items():
@@ -129,19 +131,21 @@ for b in beats:
 
 # ---------------- rendering helpers ----------------
 concept_file = lambda c: Path("concepts") / f"{c}.md"
-CUR = dict(dir="demo", beats=set(), scenarios=None)   # set per track: page directory, beats in this track, scenarios to show
+_first = next((t[0] for t in tracks.values() if t[0].get("track") == "demo"), {})
+DEFAULT_DIR = track_dir("demo", _first.get("scenario"))     # where shared pages (concepts, home) send readers for setup and for beats outside any scenario
+CUR = dict(dir=DEFAULT_DIR, beats=set(), scenarios=None)   # set per track: page directory, beats in this track, scenarios to show
 # A beat's "home" page is in demo/ if the shared demo track has it, otherwise in the first scenario track that does.
 home_dir = {}
 for _t in sorted(tracks.values(), key=lambda t: bool(t[0].get("scenario"))):
     if _t[0].get("track") == "demo":
         for _, _st in steps_of(_t[0]):
             for _s in _st:
-                if "beat" in _s: home_dir.setdefault(_s["beat"], f"demo-{_t[0]['scenario']}" if _t[0].get("scenario") else "demo")
+                if "beat" in _s: home_dir.setdefault(_s["beat"], track_dir("demo", _t[0].get("scenario")))
 def need_target(n):
     """In a scenario track a prerequisite may be satisfied by a beat that `provides` it (e.g. evaluate-detector provides analyze-pilot)."""
     if not CUR["beats"] or n in CUR["beats"]: return n
     return next((r for r in CUR["beats"] if n in (beats[r][0].get("provides") or [])), n)
-beat_file = lambda r: Path(CUR["dir"] if r in CUR["beats"] else home_dir.get(r, "demo")) / f"{r}.md"
+beat_file = lambda r: Path(CUR["dir"] if r in CUR["beats"] else home_dir.get(r, DEFAULT_DIR)) / f"{r}.md"
 SETUP_FILE_FN = lambda: Path(CUR["dir"]) / "setup.md"
 rel = lambda frm, to: Path(os.path.relpath(to, frm.parent)).as_posix()
 
@@ -217,9 +221,12 @@ def render_beat(r, here):
     return "\n".join(out) + "\n"
 
 def render_setup(here):
+    """The shared primer, specialised for the scenario: its project folder name, and installer-only text kept or dropped."""
     fm, body = primer
-    out = [f"# {fm['title']}", "", resolve(body, here), "", "## Your scenario's data", "",
-           tabs({label(s): setup_scn[s][1] for s in CUR["scenarios"]})]
+    scn = CUR["scenarios"][0]; sfm, sbody = setup_scn[scn]
+    body = re.sub(r"<!-- installer -->(.*?)<!-- /installer -->", (lambda m: m[1]) if sfm.get("installer") else "", body, flags=re.S)
+    body = body.replace("workshop-demo", sfm.get("dir", "workshop-demo"))
+    out = [f"# {fm['title']}", "", resolve(body, here), "", "## Your scenario's data", "", f"**Scenario: {label(scn)}**", "", sbody]
     return resolve("\n".join(out), here) + "\n"
 
 def render_step(step, here):
@@ -259,14 +266,44 @@ def toc_tables(kind, toc, index):
         out.append("")
     return "\n".join(out)
 
+def track_index(fm):
+    return Path(track_dir(fm["track"], fm.get("scenario"))) / "index.md"
+
+def track_nav(fm, here):
+    """Auto-generated 'Track navigation' list: the concept track, the counterpart track of this scenario, and parallel versions."""
+    L = lambda t: f"[{t[0]['title']}]({rel(here, track_index(t[0]))})"
+    out, kind, scn = [], fm["track"], fm.get("scenario")
+    if kind == "concepts":
+        for t in tracks.values():
+            if t[0]["track"] == "demo": out.append(f"- {L(t)} applies these concepts sequentially to a complete worked example ({label(t[0]['scenario'])}).")
+        for t in tracks.values():
+            if t[0]["track"] == "tutorial": out.append(f"- {L(t)} interleaves the concepts with hands-on exercises in one progression ({label(t[0]['scenario'])}).")
+        return "\n".join(out)
+    out.append(f"- The [concept track]({rel(here, Path('concepts/index.md'))}) gives the principles behind the methods used here.")
+    other = "tutorial" if kind == "demo" else "demo"
+    for t in tracks.values():
+        if t[0]["track"] == other and t[0].get("scenario") == scn:
+            out.append(f"- {L(t)} " + ("arranges these exercises and the concepts into one continuous path." if other == "tutorial" else "lets you explore single exercises of this example or jump to a checkpoint."))
+    for t in tracks.values():
+        if t[0]["track"] == kind and t[0].get("scenario") != scn:
+            out.append(f"- Parallel version: {L(t)} ({label(t[0]['scenario'])}).")
+    return "\n".join(out)
+
+def expand_track(fm, body, here):
+    """Placeholders: <!-- include: NAME --> (content/snippets/NAME.md), <!-- track-nav -->, {{demo}} (this scenario's demo index)."""
+    body = re.sub(r"<!-- include: ([\w-]+) -->", lambda m: (CONTENT / "snippets" / f"{m[1]}.md").read_text().strip(), body)
+    demo = next((t for t in tracks.values() if t[0]["track"] == "demo" and t[0].get("scenario") == fm.get("scenario")), None)
+    if demo: body = body.replace("{{demo}}", rel(here, track_index(demo[0])))
+    return body.replace("<!-- track-nav -->", track_nav(fm, here))
+
 if DOCS.exists(): shutil.rmtree(DOCS)
 shutil.copytree(ROOT / "assets", DOCS, dirs_exist_ok=True)   # logo, css
 nav = [{"Home": "index.md"}]
 for tid, (fm, body) in tracks.items():
     kind = fm["track"]; scn = fm.get("scenario")
     # Scenario tracks get their own page directory (demo-<scenario>/) and show only that scenario; links to beats inside the track stay inside it.
-    tdir = f"{kind}-{scn}" if scn else kind          # page directory of a scenario track, e.g. tutorial-imaging/
-    CUR.update(dir=tdir if scn else "demo", scenarios=[scn] if scn else active,
+    tdir = track_dir(kind, scn)          # page directory of a scenario track, e.g. tutorial-imaging/
+    CUR.update(dir=tdir if scn else DEFAULT_DIR, scenarios=[scn] if scn else active,
                beats={s["beat"] for _, st in steps_of(fm) for s in st if "beat" in s} if scn else set())
     index = Path(tdir) / "index.md"
     sec_nav, toc, n = [], [], 0
@@ -282,7 +319,7 @@ for tid, (fm, body) in tracks.items():
     flat = [{"Overview": index.as_posix()}]
     for e in sec_nav: flat += e if isinstance(e, list) else [e]
     nav.append({fm["title"]: flat})
-    page = body.replace("<!-- toc -->", toc_tables(kind, toc, index))
+    page = expand_track(fm, body, index).replace("<!-- toc -->", toc_tables(kind, toc, index))
     write(index, f"# {fm['title']}\n\n" + resolve(page, index) + "\n")
 if errors: print("\n".join(errors)); sys.exit(1)
 write(Path("index.md"), resolve((CONTENT / "home.md").read_text().strip(), Path("index.md")) + "\n")

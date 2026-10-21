@@ -1,10 +1,20 @@
 ---
 scenario: toy
-label: "Tabular: clinic network"
+slug: clinical
+label: "Clinical: clinic network"
+own_track: true
+installer: true
+dir: workshop-demo
 ---
 
 A synthetic dataset for a three-clinic network, with every common file format and deliberate problems to find. It is
 safe to share and is not real patient data. The files live in `scenarios/toy/kit/` in this repository.
+
+**The story.** You are the analyst. The memo in `clinic_notes.txt` asks three things: which clinics meet their
+HbA1c targets; whether the Hillcrest call pilot increased HbA1c rechecks (and a one-page abstract with references);
+and, if time allows, whether Northside's Saturday hours reduced urgent visits.
+
+### Get the kit
 
 The [quickstart](#quickstart) installer downloads these files for you. To copy them by hand instead, from the repository's `agent-workshop/` folder:
 
@@ -34,10 +44,6 @@ cd $HOME\workshop-demo; ls
 | `staffing.db` | SQLite | Monthly staffing by clinic |
 | `visit_notes.csv` | CSV | 200 short free-text visit notes (for the bulk-inference step) |
 | `visit_notes_labeled_sample.csv` | CSV | Correct categories for the first 30 notes |
-
-**The story.** You are the analyst. The memo in `clinic_notes.txt` asks three things: which clinics meet their
-HbA1c targets; whether the Hillcrest call pilot increased HbA1c rechecks (and a one-page abstract with references);
-and, if time allows, whether Northside's Saturday hours reduced urgent visits.
 
 ### Checkpoints
 

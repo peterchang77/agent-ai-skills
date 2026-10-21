@@ -1,5 +1,5 @@
 ---
-id: guided-tutorial-imaging
+id: tutorial-imaging
 title: Tutorial · Imaging
 track: tutorial
 scenario: imaging
@@ -67,7 +67,7 @@ sections:
       - {beat: bulk-classify}
 ---
 
-This guided tutorial follows the same structured path as the [tabular tutorial](../tutorial/index.md), on a radiology example: you direct a coding agent to audit and clean a set of chest radiographs, define a study population, and evaluate open-source AI tools that flag **pneumothorax**. Background concepts are placed just before the hands-on step that uses them, with direct links back to the reference pages.
+This guided tutorial provides a structured, linear path through the workshop on a radiology example: you direct a coding agent to audit and clean a set of chest radiographs, define a study population, and evaluate open-source AI tools that flag **pneumothorax**. By sequencing conceptual background alongside practical exercises, it ensures you have the necessary context immediately before each hands-on task, with direct links back to the reference pages.
 
 You can complete it in one session or across several. Work from each stage is preserved as a restorable checkpoint, so you can pause, resume, or skip forward at any point ([Setup](setup.md#restore-a-starting-point)).
 
@@ -83,11 +83,12 @@ By completing this tutorial, you will produce:
 - A verified bibliography, an abstract with citations, and a self-contained results dashboard.
 - A reusable command-line tool and agent skill tracked in Git, alongside a bulk report-classification workflow using an external API.
 
+<!-- include: tutorial-common -->
+
 ## Contents
 
 <!-- toc -->
 
 ## Track navigation
 
-- Consult the [concept track](../concepts/index.md) for a modular reference covering core ideas independently of hands-on steps.
-- Use the [imaging demo track](../demo-imaging/index.md) to explore individual practical exercises or jump into specific checkpoints.
+<!-- track-nav -->

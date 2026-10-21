@@ -1,4 +1,4 @@
-// Group header tabs named "Group · Variant" into one dropdown per group (e.g. "Demo ▾" with Tabular / Imaging).
+// Group header tabs named "Group · Variant" into one dropdown per group (e.g. "Demo ▾" with Clinical / Imaging).
 // Plain DOM only. If this script fails, the ungrouped tabs still work. Below the wide-screen breakpoint Material hides the tabs and uses the drawer.
 document.addEventListener("DOMContentLoaded", function () {
   var list = document.querySelector(".md-tabs__list");

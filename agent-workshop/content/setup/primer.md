@@ -6,6 +6,7 @@ Before beginning the exercises, configure a dedicated project directory with an 
 
 Each demo step specifies its required starting state, allowing you to jump directly into any exercise ([Restore a starting point](#restore-a-starting-point)).
 
+<!-- installer -->
 ## Quickstart
 
 An automated setup script installs the sample data and configures a coding agent (Kiro CLI). Use the command for your platform.
@@ -41,6 +42,8 @@ If you chose a custom folder, use that path wherever this guide references `~/wo
 
 > [!NOTE]
 > Review network scripts before execution: you can inspect the installer source at [install.sh](https://peterchang77.github.io/agent-ai-skills/install.sh) or [install.ps1](https://peterchang77.github.io/agent-ai-skills/install.ps1). The workshop dataset is completely synthetic; before using institutional or clinical data, consult [Privacy and data handling](concept:privacy).
+
+<!-- /installer -->
 
 ## Custom setup
 
@@ -86,7 +89,7 @@ During [Prepare your environment](beat:prepare-environment), the agent will audi
 
 ### 4. Populate scenario data
 
-Consult the tabs under [Your scenario's data](#your-scenarios-data) below to unpack the required dataset files. (The automated quickstart performs this step automatically for the synthetic clinical scenario.)
+Follow [Your scenario's data](#your-scenarios-data) below to unpack or build the dataset files.<!-- installer --> (The automated quickstart performs this step for you.)<!-- /installer -->
 
 ## Restore a starting point
 
@@ -108,7 +111,7 @@ Copy-Item -Recurse <scenario folder>\checkpoints\<name> $HOME\workshop-demo
 cd $HOME\workshop-demo
 ```
 
-If you ran the quickstart with `--checkpoints`, snapshots are pre-downloaded to `~/workshop-demo-checkpoints/<name>/` (`$HOME\workshop-demo-checkpoints\<name>` on Windows), which replaces `<scenario folder>/checkpoints/<name>` in the snippet above.
+<!-- installer -->If you ran the quickstart with `--checkpoints`, snapshots are pre-downloaded to `~/workshop-demo-checkpoints/<name>/` (`$HOME\workshop-demo-checkpoints\<name>` on Windows), which replaces `<scenario folder>/checkpoints/<name>` in the snippet above.<!-- /installer -->
 
 After copying the files, start the agent inside that folder. Maintaining an untouched copy of the data archive allows quick resets between exercises, while [version control](concept:version-control) provides the same safety for your ongoing work.
 

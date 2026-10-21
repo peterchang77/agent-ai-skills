@@ -37,7 +37,7 @@ sections:
 
 The concept track explains the foundational principles behind coding agents. Each page examines a core concept, such as agent architecture, context limits, or verification strategies, in a generalized form independent of any specific dataset or tool. You can read these modules sequentially or reference individual topics as needed.
 
-Every concept page follows a consistent structure: theoretical background, general methodology, verification guidelines, common failure modes, and a **Try it** section linking directly to practical exercises in the [demo track](../demo/index.md).
+Every concept page follows a consistent structure: theoretical background, general methodology, verification guidelines, common failure modes, and a **Try it** section linking directly to practical exercises in the demo tracks (see Track navigation below).
 
 ## Topic areas
 
@@ -64,5 +64,4 @@ Every concept page follows a consistent structure: theoretical background, gener
 
 ## Track navigation
 
-- The [demo track](../demo/index.md) applies these concepts sequentially to a complete research case study.
-- The [guided tutorial](../tutorial/index.md) interleaves these concepts with corresponding hands-on exercises in a single progression.
+<!-- track-nav -->

@@ -32,7 +32,7 @@ A practical course for researchers ready to put AI coding agents to work on empi
 
     An end-to-end empirical case study structured into modular, restorable exercises.
 
-    [:octicons-arrow-right-24: Start demo track](demo/index.md) · [Imaging version](demo-imaging/index.md)
+    [:octicons-arrow-right-24: Clinical](demo-clinical/index.md) · [:octicons-arrow-right-24: Imaging](demo-imaging/index.md)
 
 -   :material-map-marker-path: **Guided tutorial**
 
@@ -40,7 +40,7 @@ A practical course for researchers ready to put AI coding agents to work on empi
 
     A unified, step-by-step curriculum pairing theoretical background with hands-on practice.
 
-    [:octicons-arrow-right-24: Begin guided tutorial](tutorial/index.md)
+    [:octicons-arrow-right-24: Clinical](tutorial-clinical/index.md) · [:octicons-arrow-right-24: Imaging](tutorial-imaging/index.md)
 
 </div>
 
@@ -58,18 +58,22 @@ All tracks utilize the same core modules. Each concept page links directly to co
 
 | If your immediate priority is... | Recommended path |
 |---|---|
-| Building a comprehensive understanding from scratch | [Guided tutorial](tutorial/index.md) |
-| Running code immediately with an existing agent | [Demo track](demo/index.md) (tabular data) or [Imaging demo track](demo-imaging/index.md) (chest radiographs and AI evaluation) |
+| Building a comprehensive understanding from scratch | Guided tutorial: [Clinical](tutorial-clinical/index.md) or [Imaging](tutorial-imaging/index.md) |
+| Running code immediately with an existing agent | Demo track: [Clinical](demo-clinical/index.md) (clinic data) or [Imaging](demo-imaging/index.md) (chest radiographs) |
 | Reviewing architecture, safety, and operational patterns | [Concept track](concepts/index.md) |
 | Ensuring compliance before handling proprietary data | [Privacy and data handling](concept:privacy) and [Secrets](concept:secrets) |
-| Solving a specific data or coding task | The relevant [demo exercise](demo/index.md), followed by its supporting concepts |
-| Instructing students or research colleagues | The [guided tutorial](tutorial/index.md), using each step's example as a classroom exercise |
+| Solving a specific data or coding task | The relevant exercise in the [Clinical](demo-clinical/index.md) or [Imaging](demo-imaging/index.md) demo, followed by its supporting concepts |
+| Instructing students or research colleagues | The guided tutorial ([Clinical](tutorial-clinical/index.md) or [Imaging](tutorial-imaging/index.md)), using each step's example as a classroom exercise |
 
-## Benchmark dataset
+## Two worked examples
 
-The demonstrations use a **synthetic** multi-site clinical dataset engineered with known baseline characteristics and planted data artifacts. This provides an objective ground truth, enabling participants to verify agent calculations with certainty. The data contains no real patient health information. Each exercise provides a generalized approach suitable for any research domain alongside a concrete **Workshop example** based on the synthetic kit.
+The demo and tutorial tracks come in two parallel versions that follow the same steps and teach the same concepts. Each exercise provides a generalized approach suitable for any research domain alongside a concrete **Workshop example** from the version you chose. Pick the one closer to your work, or do both.
 
-A parallel [imaging demo track](demo-imaging/index.md) covers the same workflow for radiology audiences. It uses a small public sample of real chest radiographs, with synthetic problems added, to evaluate an open-source AI tool.
+| | Clinical | Imaging |
+|---|---|---|
+| **Story** | A three-clinic network: target attainment and a follow-up call pilot | An AI tool for pneumothorax on chest radiographs: is it ready for a pilot? |
+| **Data** | Synthetic visits, spreadsheet, Word, PDF, HTML and database files | A public sample of real chest radiographs (DICOM), model scores and reports, with synthetic problems added |
+| **Distinctive** | Many file formats; an observational analysis with confounding | Pixel-level checks and a viewer; evaluating an AI model with intervals |
 
 ## Also in this repository
 

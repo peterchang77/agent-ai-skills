@@ -1,7 +1,9 @@
 ---
 scenario: imaging
+slug: imaging
 label: "Imaging: chest radiographs"
 own_track: true
+dir: workshop-imaging
 ---
 
 A kit built around **real, public chest radiographs** (a 250-image sample from the SIIM-ACR pneumothorax challenge, de-identified before
