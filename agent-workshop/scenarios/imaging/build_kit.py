@@ -398,7 +398,15 @@ for h, body in [
     ("Reporting", "State every exclusion and fix with counts. State what could not be checked. Make no claim about clinical benefit."),
 ]:
     d.add_heading(h, 2); d.add_paragraph(body)
+import datetime, zipfile
+d.core_properties.created = d.core_properties.modified = d.core_properties.last_printed = datetime.datetime(2025, 1, 1)
+d.core_properties.author = d.core_properties.last_modified_by = "workshop"
 d.save(KIT / "eval_protocol.docx")
+# python-docx stamps every zip entry with the current time; rewrite with a fixed time so the kit is byte-identical on every build
+_p = KIT / "eval_protocol.docx"; _entries = [(i.filename, zipfile.ZipFile(_p).read(i.filename)) for i in zipfile.ZipFile(_p).infolist()]
+with zipfile.ZipFile(_p, "w", zipfile.ZIP_DEFLATED) as z:
+    for _n, _b in _entries:
+        zi = zipfile.ZipInfo(_n, (2020, 1, 1, 0, 0, 0)); zi.compress_type = zipfile.ZIP_DEFLATED; zi.external_attr = 0o644 << 16; z.writestr(zi, _b)
 
 # ---------------- reference ----------------
 meta = {e["name"]: dict(kind=e["kind"], source_path=e["source"], true_label=e["label"], true_scores=e["scores"],

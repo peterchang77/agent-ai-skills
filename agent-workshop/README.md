@@ -40,3 +40,7 @@ Add `content/setup/<scenario>.md` (with a `label`, `own_track: true` and `dir`),
 ## The toy scenario
 
 `scenarios/toy/` holds a deterministic generator (`uv run build_kit.py`) for a synthetic three-clinic dataset with planted data problems and planted effects, a reference solution under `reference/`, and restorable `checkpoints/` (`python3 reference/make_checkpoints.py`). The planted truth is in `reference/truth.json`, outside the kit. All data is synthetic.
+
+## Installers
+
+`assets/install.sh` and `assets/install.ps1` take `--scenario clinical|imaging` (`-Scenario` in PowerShell). Clinical downloads the published `toy-kit` and `toy-checkpoints` zips. Imaging downloads the small published `imaging-tools` zip (the build scripts), uses `uv` to build the 74 MB kit locally from the public image sample (and optionally the checkpoints), and copies the result into the project folder without overwriting your changes. `scripts/build.py` publishes the zips under `docs/downloads/`. Test locally with `python3 -m http.server` in `docs/` and `WORKSHOP_BASE_URL=http://127.0.0.1:PORT`.

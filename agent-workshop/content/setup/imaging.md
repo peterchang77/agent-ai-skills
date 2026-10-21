@@ -3,6 +3,8 @@ scenario: imaging
 slug: imaging
 label: "Imaging: chest radiographs"
 own_track: true
+installer: true
+retrieve: Offers to install the Python tool `uv` if it is missing, downloads the small build scripts (checksum-verified) and builds the image kit on your computer from the public sample (about 33 MB downloaded, a minute or two, the same files every time); optionally builds the checkpoints (about 0.5 GB). The scripts that some steps mention, such as `scenarios/imaging/...`, are placed in a separate `-tools` folder next to your project folder.
 dir: workshop-imaging
 ---
 
@@ -18,7 +20,7 @@ patients. The sample was assembled quickly and has not been checked.
 
 ### Get the kit
 
-The kit (about 280 files, 74 MB) is generated from the public images by a script, so it is not stored in Git. From the repository's
+The [quickstart](#quickstart) installer builds the kit for you. The kit (about 280 files, 74 MB) is generated from the public images by a script, so it is not stored in Git. To build it by hand instead, from the repository's
 `agent-workshop/` folder, with [uv](https://docs.astral.sh/uv/) installed:
 
 ```bash
@@ -72,6 +74,8 @@ restore one ([how](setup:restore-a-starting-point)):
 ```bash
 uv run scenarios/imaging/make_checkpoints.py
 ```
+
+(The installer does this when you choose checkpoints. It takes a few minutes and about 0.5 GB.)
 
 | Checkpoint (in `scenarios/imaging/checkpoints/`) | Contains |
 |---|---|

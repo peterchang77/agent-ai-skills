@@ -1,0 +1,13 @@
+{
+  "Name": "Workshop",
+  "StorageDirectory": "./orthanc-db",
+  "IndexDirectory": "./orthanc-db",
+  "HttpPort": 8042,
+  "RemoteAccessAllowed": false,
+  "AuthenticationEnabled": true,
+  "RegisteredUsers": { "workshop": "workshop-demo-only" },
+  "DicomServerEnabled": false,
+  "ExecuteLuaEnabled": false,
+  "OverwriteInstances": false,
+  "StableAge": 5
+}

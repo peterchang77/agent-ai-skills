@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Workshop installer: downloads the toy dataset and installs an agent harness (Kiro CLI).
+# Workshop installer: sets up the clinical or imaging workshop data and installs an agent harness (Kiro CLI).
 #
 #   curl -fsSL https://peterchang77.github.io/agent-ai-skills/install.sh | bash
 #   curl -fsSL .../install.sh | bash -s -- --dir ~/work --yes
@@ -10,13 +10,15 @@ set -euo pipefail
 
 BASE_URL="${WORKSHOP_BASE_URL:-https://peterchang77.github.io/agent-ai-skills}"
 KIRO_INSTALL_URL="${KIRO_INSTALL_URL:-https://cli.kiro.dev/install}"
-DIR="" ; YES=0 ; FORCE=0 ; AGENT=ask ; CHECKPOINTS=ask
+SCEN="" ; DIR="" ; YES=0 ; FORCE=0 ; AGENT=ask ; CHECKPOINTS=ask
 
 usage() { cat <<'U'
 Usage: install.sh [options]
-  --dir PATH       your project folder for the data (default: ~/workshop-demo)
-  --checkpoints    also download the checkpoints, to <folder>-checkpoints
-                   (catch-up copies of each stage)
+  --scenario NAME  clinical (clinic-network data) or imaging (chest radiographs)
+                   (default: clinical; imaging needs the 'uv' Python tool and builds its data locally)
+  --dir PATH       your project folder for the data (default: ~/workshop-demo, or ~/workshop-imaging)
+  --checkpoints    also set up the checkpoints, to <folder>-checkpoints
+                   (catch-up copies of each stage; about 0.5 GB for imaging)
   --no-agent       do not install the agent (Kiro CLI)
   --force          overwrite files that differ from the published version
                    (existing copies are backed up to <folder>-backup-<time>)
@@ -26,6 +28,7 @@ U
 }
 while [ $# -gt 0 ]; do
   case "$1" in
+    --scenario) SCEN="${2:?--scenario needs clinical or imaging}"; shift 2 ;;
     --dir) DIR="${2:?--dir needs a path}"; shift 2 ;;
     --checkpoints) CHECKPOINTS=yes; shift ;;
     --no-agent) AGENT=no; shift ;;
@@ -105,20 +108,76 @@ fetch_set() {
   return 0
 }
 
+# sync_tree SRC DEST NAME : copy a local folder into DEST under the same rules as fetch_set (never clobber your changes)
+sync_tree() {
+  local src="$1" dest="$2" name="$3" new=0 same=0 kept=0 replaced=0 f path
+  mkdir -p "$dest"
+  while IFS= read -r -d '' f; do
+    path="${f#"$src"/}"
+    if [ ! -e "$dest/$path" ]; then
+      mkdir -p "$dest/$(dirname "$path")"; cp "$f" "$dest/$path"; new=$((new+1))
+    elif cmp -s "$f" "$dest/$path"; then same=$((same+1))
+    elif [ "$FORCE" = 1 ]; then
+      mkdir -p "$BACKUP/$name/$(dirname "$path")"
+      mv "$dest/$path" "$BACKUP/$name/$path"; cp "$f" "$dest/$path"; replaced=$((replaced+1))
+    else kept=$((kept+1)); say "  kept your version of $path (differs; use --force to replace)"
+    fi
+  done < <(find "$src" -type f -print0)
+  say "  $name: $new added, $same unchanged, $replaced replaced, $kept kept"
+  [ "$replaced" -gt 0 ] && say "  replaced files were backed up to $BACKUP/$name/"
+  return 0
+}
+
+# The imaging data is built on this computer from the public image sample (the finished kit is 74 MB, so it is not published).
+install_imaging() {
+  local tools="$DIR-tools" here="$DIR-tools/scenarios/imaging"
+  if ! command -v uv >/dev/null 2>&1; then
+    say "Python tool: 'uv' is not installed (the imaging data is built with it)."
+    say "  This runs the vendor's installer: curl -LsSf https://astral.sh/uv/install.sh | sh"
+    say "  (it is fetched live and not checked by this script)"
+    if [ "$YES" = 1 ] || confirm "Install uv now?" y; then
+      curl -LsSf https://astral.sh/uv/install.sh | sh
+      export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+    fi
+    command -v uv >/dev/null 2>&1 || die "uv is required for the imaging data. Install it from https://docs.astral.sh/uv/ and run this script again."
+  fi
+  fetch_set imaging-tools "$tools"
+  say "  Building the image kit (downloads the 33 MB public sample the first time; about a minute)..."
+  ( cd "$here" && uv run build_kit.py ) >"$TMP/build_kit.log" 2>&1 || { tail -n 15 "$TMP/build_kit.log" >&2; die "building the image kit failed (log above)."; }
+  sync_tree "$here/kit" "$DIR" imaging-kit
+  if [ "$CHECKPOINTS" = ask ]; then
+    if confirm "Also build the checkpoints (catch-up copies of each stage; about 0.5 GB and a few minutes)?" n; then CHECKPOINTS=yes; else CHECKPOINTS=no; fi
+  fi
+  if [ "$CHECKPOINTS" = yes ]; then
+    say "  Building the checkpoints..."
+    ( cd "$here" && uv run make_checkpoints.py ) >"$TMP/checkpoints.log" 2>&1 || { tail -n 15 "$TMP/checkpoints.log" >&2; die "building the checkpoints failed (log above)."; }
+    sync_tree "$here/checkpoints" "$DIR-checkpoints" imaging-checkpoints
+  fi
+  rm -rf "$here/checkpoints" "$here/kit"   # generated copies; rebuilding is deterministic
+  say "  The scripts that some steps mention (scenarios/imaging/...) are in $tools"
+}
+
 say "Workshop installer"
 say
 
 # 1. Data
-[ -n "$DIR" ] || DIR="$(ask "Which folder should the workshop data go in?" "$HOME/workshop-demo")"
+[ -n "$SCEN" ] || SCEN="$(ask "Which version: clinical (clinic-network data) or imaging (chest radiographs)?" clinical)"
+case "$SCEN" in clinical|imaging) ;; *) die "--scenario must be clinical or imaging";; esac
+DEFDIR="$HOME/workshop-demo"; [ "$SCEN" = imaging ] && DEFDIR="$HOME/workshop-imaging"
+[ -n "$DIR" ] || DIR="$(ask "Which folder should the workshop data go in?" "$DEFDIR")"
 DIR="${DIR/#\~/$HOME}"
 mkdir -p "$DIR"; DIR="$(cd "$DIR" && pwd)"
 BACKUP="$DIR-backup-$STAMP"
 say "Project folder: $DIR"
-fetch_set toy-kit "$DIR"
-if [ "$CHECKPOINTS" = ask ]; then
-  if confirm "Also download the checkpoints (catch-up copies of each stage)?" n; then CHECKPOINTS=yes; else CHECKPOINTS=no; fi
+if [ "$SCEN" = imaging ]; then
+  install_imaging
+else
+  fetch_set toy-kit "$DIR"
+  if [ "$CHECKPOINTS" = ask ]; then
+    if confirm "Also download the checkpoints (catch-up copies of each stage)?" n; then CHECKPOINTS=yes; else CHECKPOINTS=no; fi
+  fi
+  [ "$CHECKPOINTS" = yes ] && fetch_set toy-checkpoints "$DIR-checkpoints"
 fi
-[ "$CHECKPOINTS" = yes ] && fetch_set toy-checkpoints "$DIR-checkpoints"
 say
 
 # 2. Agent harness
@@ -140,4 +199,8 @@ fi
 
 say
 say "Done. Next:  cd \"$DIR\" && kiro-cli"
-say "Optional: some steps use 'uv' (https://docs.astral.sh/uv/) to run Python scripts."
+if [ "$SCEN" = imaging ]; then
+  say "Note: the answer key for the planted problems is in $DIR-tools/scenarios/imaging/truth/. Leave it unopened until you have finished."
+else
+  say "Optional: some steps use 'uv' (https://docs.astral.sh/uv/) to run Python scripts."
+fi

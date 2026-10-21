@@ -14,19 +14,19 @@ An automated setup script installs the sample data and configures a coding agent
 macOS, Linux, or Windows via WSL (bash):
 
 ```bash
-curl -fsSL https://peterchang77.github.io/agent-ai-skills/install.sh | bash
+curl -fsSL https://peterchang77.github.io/agent-ai-skills/install.sh | bash -s -- --scenario {{scenario}}
 ```
 
 Windows (PowerShell, no WSL needed):
 
 ```powershell
-irm https://peterchang77.github.io/agent-ai-skills/install.ps1 | iex
+& ([scriptblock]::Create((irm https://peterchang77.github.io/agent-ai-skills/install.ps1))) -Scenario {{scenario}}
 ```
 
 The script performs the following actions:
 
-- **Prompts for configuration preferences:** Confirms the destination directory (defaulting to `~/workshop-demo`), asks whether to download intermediate checkpoints, and checks whether to install the agent.
-- **Retrieves the benchmark dataset:** Downloads the synthetic clinical dataset, verifies data integrity against SHA-256 checksums, and unpacks the archive into your chosen directory.
+- **Prompts for configuration preferences:** Confirms the destination directory (defaulting to `~/workshop-demo`), asks whether to set up intermediate checkpoints, and checks whether to install the agent.
+- **Retrieves the benchmark dataset:** {{retrieve}}
 - **Configures the agent:** Downloads and runs the official agent installer after displaying the source URL. This step is skipped if an agent is already detected.
 - **Ensures idempotent execution:** Re-running the script updates missing files without overwriting local modifications unless you explicitly pass the `--force` flag (`-Force` in PowerShell) (which creates a timestamped backup before replacing files).
 

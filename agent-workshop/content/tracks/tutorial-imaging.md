@@ -42,6 +42,7 @@ sections:
       - {concept: context}
       - {beat: build-cohort}
       - {beat: evaluate-detector}
+      - {beat: run-model}
       - {beat: review-with-second-agent}
   - name: 7. Write it up
     steps:
@@ -65,6 +66,7 @@ sections:
       - {concept: sandboxing}
       - {beat: use-secrets}
       - {beat: bulk-classify}
+      - {beat: query-dicom-server}
 ---
 
 This guided tutorial provides a structured, linear path through the workshop on a radiology example: you direct a coding agent to audit and clean a set of chest radiographs, define a study population, and evaluate open-source AI tools that flag **pneumothorax**. By sequencing conceptual background alongside practical exercises, it ensures you have the necessary context immediately before each hands-on task, with direct links back to the reference pages.

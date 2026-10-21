@@ -6,7 +6,7 @@
 Needs kit/ (run build_kit.py first). Writes checkpoints/{cleaned,cohort,evaluated,referenced,reported}/, each a full copy of the kit plus the work done so far,
 so a participant can start any later step in an empty folder. Generated, large, and not meant for Git.
 """
-import shutil, subprocess, sys
+import os, shutil, subprocess, sys
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -82,7 +82,8 @@ put(EX / "abstract.tex", d / "out/abstract.tex")
 if shutil.which("pdflatex") and shutil.which("bibtex"):
     sh = lambda *a: subprocess.run(a, cwd=d / "out", check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     shutil.copy(d / "references.bib", d / "out/references.bib")
+    env = {**os.environ, "SOURCE_DATE_EPOCH": "1577836800", "FORCE_SOURCE_DATE": "1"}   # fixed PDF dates: byte-identical rebuilds
     for cmd in (["pdflatex", "-interaction=nonstopmode", "abstract.tex"], ["bibtex", "abstract"], ["pdflatex", "-interaction=nonstopmode", "abstract.tex"], ["pdflatex", "-interaction=nonstopmode", "abstract.tex"]):
-        subprocess.run(cmd, cwd=d / "out", stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(cmd, cwd=d / "out", env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     for junk in ("abstract.aux", "abstract.log", "abstract.bbl", "abstract.blg", "references.bib"): (d / "out" / junk).unlink(missing_ok=True)
 print("checkpoints:", sorted(p.name for p in OUT.iterdir()))

@@ -225,7 +225,7 @@ def render_setup(here):
     fm, body = primer
     scn = CUR["scenarios"][0]; sfm, sbody = setup_scn[scn]
     body = re.sub(r"<!-- installer -->(.*?)<!-- /installer -->", (lambda m: m[1]) if sfm.get("installer") else "", body, flags=re.S)
-    body = body.replace("workshop-demo", sfm.get("dir", "workshop-demo"))
+    body = body.replace("workshop-demo", sfm.get("dir", "workshop-demo")).replace("{{scenario}}", scn_slug(scn)).replace("{{retrieve}}", sfm.get("retrieve", ""))
     out = [f"# {fm['title']}", "", resolve(body, here), "", "## Your scenario's data", "", f"**Scenario: {label(scn)}**", "", sbody]
     return resolve("\n".join(out), here) + "\n"
 
@@ -326,9 +326,10 @@ write(Path("index.md"), resolve((CONTENT / "home.md").read_text().strip(), Path(
 (ROOT / "mkdocs.yml").write_text((ROOT / "mkdocs.base.yml").read_text().rstrip() + "\n" + yaml.safe_dump({"nav": nav}, sort_keys=False, allow_unicode=True))
 # --- downloadable kits for assets/install.sh: deterministic zip + per-file manifest + zip checksum ---
 import hashlib, zipfile
-def publish_zip(name, src):
+def publish_zip(name, src, only=None):
+    """Zip src (or only the files `only` selects, as paths relative to src) with a manifest and checksum, deterministically."""
     out = DOCS / "downloads"; out.mkdir(parents=True, exist_ok=True)
-    files = sorted(f for f in src.rglob("*") if f.is_file())
+    files = sorted(f for f in src.rglob("*") if f.is_file() and (only is None or only(f.relative_to(src))))
     with zipfile.ZipFile(out / f"{name}.zip", "w", zipfile.ZIP_DEFLATED) as z:
         for f in files:
             zi = zipfile.ZipInfo(f.relative_to(src).as_posix(), (2020, 1, 1, 0, 0, 0))
@@ -339,4 +340,8 @@ def publish_zip(name, src):
     (out / f"{name}.zip.sha256").write_text(h((out / f"{name}.zip").read_bytes()) + "\n")
 publish_zip("toy-kit", ROOT / "scenarios/toy/kit")
 publish_zip("toy-checkpoints", ROOT / "scenarios/toy/checkpoints")
+# Imaging: the kit is 74 MB, so participants build it locally from the public images. The installer downloads these scripts, not the kit.
+IMG_TOOLS = ("build_kit.py", "siim_data.py", "make_checkpoints.py")
+publish_zip("imaging-tools", ROOT, only=lambda r: r.parts[:2] == ("scenarios", "imaging") and "__pycache__" not in r.parts and (
+    r.parts[2] in IMG_TOOLS or r.parts[2] in ("assets", "reference", "extras")))
 print(f"ok: {len(concepts)} concepts, {len(beats)} beats, {len(examples)} examples, {len(tracks)} tracks -> docs/")

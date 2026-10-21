@@ -4,6 +4,7 @@ slug: clinical
 label: "Clinical: clinic network"
 own_track: true
 installer: true
+retrieve: Downloads the synthetic clinical dataset, verifies data integrity against SHA-256 checksums, and unpacks the archive into your chosen directory.
 dir: workshop-demo
 ---
 

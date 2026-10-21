@@ -27,6 +27,7 @@ sections:
     steps:
       - {beat: build-cohort}
       - {beat: evaluate-detector}
+      - {beat: run-model}
       - {beat: review-with-second-agent}
   - name: 4. References and writing
     steps:
@@ -46,6 +47,7 @@ sections:
     steps:
       - {beat: use-secrets}
       - {beat: bulk-classify}
+      - {beat: query-dicom-server}
 ---
 
 This track follows one worked example for a radiology and imaging-informatics audience: a department wants to know whether an open-source AI tool that flags **pneumothorax** (a collapsed lung from air leaking into the chest) on chest radiographs is ready for a pilot. You direct a coding agent through the same workflow used in the [clinical demo track](../demo-clinical/index.md): inspect the inputs, audit and clean them, define the study population, analyze, and write up, but the data are DICOM images, the cleaning involves pixels as well as headers, and the analysis is the evaluation of an AI model.
