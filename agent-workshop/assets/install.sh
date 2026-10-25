@@ -190,6 +190,16 @@ else
   say "  This runs the vendor's installer: curl -fsSL $KIRO_INSTALL_URL | bash"
   say "  (it is fetched live and not checked by this script)"
   if [ "$YES" = 1 ] || confirm "Install Kiro CLI now?" y; then
+    # The Kiro installer needs unzip, which a fresh Ubuntu image lacks.
+    if ! command -v unzip >/dev/null 2>&1; then
+      if command -v apt-get >/dev/null 2>&1; then
+        say "  'unzip' is required by the Kiro installer; installing it with apt-get (may ask for sudo)."
+        SUDO=""; [ "$(id -u)" = 0 ] || SUDO="sudo"
+        { $SUDO apt-get update -qq && $SUDO apt-get install -y -qq unzip; } || die "could not install unzip; run: sudo apt-get install -y unzip"
+      else
+        die "'unzip' is required by the Kiro installer; install it with your package manager and rerun."
+      fi
+    fi
     curl -fsSL "$KIRO_INSTALL_URL" | bash
     say "Agent: install finished. Open a new shell if 'kiro-cli' is not found."
   else
