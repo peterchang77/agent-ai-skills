@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.10"
+# requires-python = ">=3.10,<3.13"
 # dependencies = ["pydicom==2.4.4", "pillow==10.4.0", "numpy"]
 # ///
 """Reference cohort builder (the 'cohort' checkpoint).   uv run reference/build_cohort.py CLEAN_DIR OUT_DIR

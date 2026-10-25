@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.10"
+# requires-python = ">=3.10,<3.13"
 # dependencies = ["torch", "torchxrayvision==1.4.0", "pydicom==2.4.4", "pillow", "numpy", "scikit-image"]
 # ///
 """Reference: run the pretrained models on the cleaned cohort images (CPU) and compare with the provided scores.

@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.10"
+# requires-python = ">=3.10,<3.13"
 # dependencies = ["pydicom==2.4.4", "pylibjpeg==2.0.1", "pylibjpeg-libjpeg==2.3.0", "numpy", "pillow==10.4.0", "python-docx==1.1.2"]
 # ///
 """Regenerate the imaging workshop data kit (deterministic).
