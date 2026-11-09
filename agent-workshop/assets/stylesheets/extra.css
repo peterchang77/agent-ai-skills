@@ -137,3 +137,24 @@
 .wk-dd-link[aria-current] { font-weight: 650; color: var(--md-typeset-a-color) !important; }
 .md-tabs { overflow: visible; }
 .md-tabs__list { contain: none; overflow: visible; }
+
+/* Figure carousel (assets/javascripts/carousel.js). Without JS the images stack. */
+.wk-carousel { margin: 1rem auto; max-width: 30rem; }
+.wk-carousel p { margin: 0; }
+.wk-car-on .wk-car-stage { position: relative; overflow: hidden; border-radius: 8px; border: 1px solid var(--wk-card-border); background: #fff; }
+.wk-car-track { display: flex; transition: transform 0.3s ease; }
+.wk-car-slide { flex: 0 0 100%; margin: 0; }
+.wk-car-slide img { display: block; width: 100%; height: auto; margin: 0; border-radius: 0; }
+.wk-car-prev, .wk-car-next {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 2.4rem; height: 2.4rem; padding: 0 0 0.2rem; border: 1px solid var(--wk-card-border);
+  border-radius: 50%; background: rgba(255, 255, 255, 0.92); color: #243447; font-size: 1.6rem; line-height: 1; cursor: pointer; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.wk-car-prev { left: 0.5rem; } .wk-car-next { right: 0.5rem; }
+.wk-car-prev:hover:not(:disabled), .wk-car-next:hover:not(:disabled) { background: #fff; color: var(--md-typeset-a-color); }
+.wk-car-prev:disabled, .wk-car-next:disabled { opacity: 0.3; cursor: default; }
+.wk-car-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.6rem; }
+.wk-car-dot { width: 0.65rem; height: 0.65rem; padding: 0; border: 0; border-radius: 50%; background: var(--md-default-fg-color--lighter); cursor: pointer; }
+.wk-car-dot[aria-current] { background: var(--md-typeset-a-color); }
+.wk-car-prev:focus-visible, .wk-car-next:focus-visible, .wk-car-dot:focus-visible, .wk-carousel:focus-visible { outline: 2px solid var(--md-typeset-a-color); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .wk-car-track { transition: none; } }
+@media print { .wk-car-prev, .wk-car-next, .wk-car-dots { display: none; } .wk-car-track { display: block; transform: none !important; } }
