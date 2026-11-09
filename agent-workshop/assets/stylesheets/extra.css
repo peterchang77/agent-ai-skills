@@ -139,7 +139,7 @@
 .md-tabs__list { contain: none; overflow: visible; }
 
 /* Figure carousel (assets/javascripts/carousel.js). Without JS the images stack. */
-.wk-carousel { margin: 1rem auto; max-width: 30rem; }
+.wk-carousel { margin: 1rem auto; max-width: min(22rem, 48vh); }
 .wk-carousel p { margin: 0; }
 .wk-car-on .wk-car-stage { position: relative; overflow: hidden; border-radius: 8px; border: 1px solid var(--wk-card-border); background: #fff; }
 .wk-car-track { display: flex; transition: transform 0.3s ease; }
